@@ -1,0 +1,195 @@
+.root {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap-small);
+  padding: var(--padding-medium);
+  border-radius: var(--radius-2xlarge);
+  overflow: hidden;
+}
+
+/* ── Themes ── */
+
+.default {
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+}
+
+.subtle {
+  background: var(--color-bg-surface-alt);
+}
+
+/* ── Sizes by level ── */
+
+.master {
+  min-width: 214px;
+}
+
+.sub {
+  min-width: 164px;
+}
+
+/* ── Action button ── */
+
+.action-slot {
+  position: absolute;
+  top: var(--padding-small);
+  right: var(--padding-small);
+}
+
+/* ── Metric contents ── */
+
+.metric-contents {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+/* Sub level: icon + metric side by side */
+.sub-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-medium);
+  width: 100%;
+}
+
+/* ── Icon slot ── */
+
+.icon-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  overflow: hidden;
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Metric inline ── */
+
+.metric-inline {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.metric-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+}
+
+.metric-title-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  width: 100%;
+}
+
+.metric-color-dot {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: var(--radius-rounded);
+  flex-shrink: 0;
+}
+
+.metric-title {
+  flex: 1 0 0;
+  min-width: 0;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-tertiary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-secondary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.metric-value {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-display-4);
+  line-height: var(--line-height-display-4);
+  letter-spacing: var(--letter-spacing-display-4, -1.6px);
+  color: var(--color-content-neutral-primary);
+  margin: 0;
+  width: 100%;
+}
+
+/* ── Trend badge ── */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  height: 24px;
+  min-width: 24px;
+  padding: 2px var(--padding-2xsmall);
+  border-radius: var(--radius-rounded);
+  align-self: flex-start;
+}
+
+.badge-icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.badge-label {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+  white-space: nowrap;
+  padding: 0 var(--padding-2xsmall);
+}
+
+.badge-positive {
+  background: var(--color-bg-fill-positive-subtle-default);
+}
+.badge-positive .badge-icon,
+.badge-positive .badge-label {
+  color: var(--color-content-positive-primary);
+}
+
+.badge-negative {
+  background: var(--color-bg-fill-negative-subtle-default);
+}
+.badge-negative .badge-icon,
+.badge-negative .badge-label {
+  color: var(--color-content-negative-primary);
+}
+
+.badge-neutral {
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+.badge-neutral .badge-label {
+  color: var(--color-content-neutral-secondary);
+}
+
+/* ── Chart slot ── */
+
+.chart-slot {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: var(--radius-base);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

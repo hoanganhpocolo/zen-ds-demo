@@ -1,0 +1,132 @@
+/* ==========================================================
+   EFFECT STYLES — Shadow & Blur tokens
+   Mapped from Figma Effect Styles
+
+   Shadow color references (from mode-colors.css):
+   - --color-shadow-neutral-light   Light: rgba(0,0,0,0.04)  Dark: rgba(0,0,0,0.16)
+   - --color-shadow-neutral-medium  Light: rgba(0,0,0,0.08)  Dark: rgba(0,0,0,0.24)
+   - --color-shadow-neutral-strong  Light: rgba(0,0,0,0.12)  Dark: rgba(0,0,0,0.36)
+   - --color-shadow-neutral-heavy   Light: rgba(0,0,0,0.16)  Dark: rgba(0,0,0,0.44)
+   - --color-shadow-inverse-strong  Light: rgba(0,0,0,0.12)  Dark: rgba(255,255,255,0.12)
+   ========================================================== */
+
+:root {
+
+  /* ── Shadow / Action ── */
+
+  --shadow-action-level-1:
+    0px 1px 1px 0px var(--color-shadow-neutral-light);
+
+  /* ── Shadow / Bottom ── */
+
+  --shadow-bottom-level-1:
+    0px 6px 20px -4px var(--color-shadow-neutral-medium);
+
+  --shadow-bottom-level-2:
+    0px 4px 8px -4px var(--color-shadow-neutral-medium),
+    0px 12px 28px 0px var(--color-shadow-neutral-medium);
+
+  --shadow-bottom-level-3:
+    0px 4px 12px -4px var(--color-shadow-neutral-medium),
+    0px 16px 32px 0px var(--color-shadow-neutral-heavy);
+
+  --shadow-bottom-level-4:
+    0px 4px 4px 0px var(--color-shadow-neutral-light),
+    0px 4px 24px 0px var(--color-shadow-neutral-light),
+    0px 24px 24px 0px var(--color-shadow-neutral-light),
+    0px 32px 32px 0px var(--color-shadow-neutral-light),
+    0px 64px 64px 0px var(--color-shadow-neutral-strong),
+    0px 120px 120px 0px var(--color-shadow-neutral-medium);
+
+  /* ── Shadow / Top ── */
+
+  --shadow-top-level-1:
+    0px -6px 20px -4px var(--color-shadow-neutral-medium);
+
+  --shadow-top-level-2:
+    0px -4px 8px -4px var(--color-shadow-neutral-medium),
+    0px -12px 28px 0px var(--color-shadow-neutral-medium);
+
+  --shadow-top-level-3:
+    0px -4px 12px -4px var(--color-shadow-neutral-medium),
+    0px -16px 32px 0px var(--color-shadow-neutral-heavy);
+
+  --shadow-top-level-4:
+    0px -4px 4px 0px var(--color-shadow-neutral-light),
+    0px -4px 24px 0px var(--color-shadow-neutral-light),
+    0px -24px 24px 0px var(--color-shadow-neutral-light),
+    0px -32px 32px 0px var(--color-shadow-neutral-light),
+    0px -64px 64px 0px var(--color-shadow-neutral-strong),
+    0px -120px 120px 0px var(--color-shadow-neutral-medium);
+
+  /* ── Effect / Combined (shadow + blur) ── */
+
+  --effect-container-shadow:
+    0px 4px 24px 0px var(--color-shadow-neutral-medium);
+  --effect-container-blur: blur(120px);
+
+  --effect-popover-shadow:
+    0px 12px 28px 0px var(--color-shadow-neutral-medium);
+  --effect-popover-blur: blur(60px);
+
+  --effect-overlay-blur: blur(100px);
+
+  --effect-input-shadow:
+    inset 0px 0px 3px 0px var(--color-shadow-inverse-strong);
+  --effect-input-blur: blur(40px);
+}
+
+/* ── Utility classes ── */
+
+.shadow-action-1 {
+  box-shadow: var(--shadow-action-level-1);
+}
+
+.shadow-bottom-1 {
+  box-shadow: var(--shadow-bottom-level-1);
+}
+.shadow-bottom-2 {
+  box-shadow: var(--shadow-bottom-level-2);
+}
+.shadow-bottom-3 {
+  box-shadow: var(--shadow-bottom-level-3);
+}
+.shadow-bottom-4 {
+  box-shadow: var(--shadow-bottom-level-4);
+}
+
+.shadow-top-1 {
+  box-shadow: var(--shadow-top-level-1);
+}
+.shadow-top-2 {
+  box-shadow: var(--shadow-top-level-2);
+}
+.shadow-top-3 {
+  box-shadow: var(--shadow-top-level-3);
+}
+.shadow-top-4 {
+  box-shadow: var(--shadow-top-level-4);
+}
+
+.effect-container {
+  box-shadow: var(--effect-container-shadow);
+  backdrop-filter: var(--effect-container-blur);
+  -webkit-backdrop-filter: var(--effect-container-blur);
+}
+
+.effect-popover {
+  box-shadow: var(--effect-popover-shadow);
+  backdrop-filter: var(--effect-popover-blur);
+  -webkit-backdrop-filter: var(--effect-popover-blur);
+}
+
+.effect-overlay {
+  backdrop-filter: var(--effect-overlay-blur);
+  -webkit-backdrop-filter: var(--effect-overlay-blur);
+}
+
+.effect-input {
+  box-shadow: var(--effect-input-shadow);
+  backdrop-filter: var(--effect-input-blur);
+  -webkit-backdrop-filter: var(--effect-input-blur);
+}

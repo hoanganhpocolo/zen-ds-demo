@@ -1,0 +1,121 @@
+.root {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-small);
+  padding: var(--padding-medium);
+  border-radius: var(--radius-large);
+  overflow: hidden;
+}
+
+/* ── Themes ── */
+
+.neutral {
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+.info {
+  background: var(--color-bg-fill-info-subtle-default);
+}
+
+.positive {
+  background: var(--color-bg-fill-positive-subtle-default);
+}
+
+.warning {
+  background: var(--color-bg-fill-warning-subtle-default);
+}
+
+.negative {
+  background: var(--color-bg-fill-negative-subtle-default);
+}
+
+/* ── Icon ── */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.neutral .icon { color: var(--color-content-neutral-primary); }
+.info    .icon { color: var(--color-content-info-primary); }
+.positive .icon { color: var(--color-content-positive-primary); }
+.warning .icon { color: var(--color-content-warning-primary); }
+.negative .icon { color: var(--color-content-negative-primary); }
+
+/* ── Content ── */
+
+.content {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+}
+
+.title {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: -0.32px;
+  margin: 0;
+}
+
+.caption {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-tertiary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  margin: 0;
+}
+
+.neutral .title,
+.neutral .caption { color: var(--color-content-neutral-primary); }
+.info .title,
+.info .caption    { color: var(--color-content-info-primary); }
+.positive .title,
+.positive .caption { color: var(--color-content-positive-primary); }
+.warning .title,
+.warning .caption  { color: var(--color-content-warning-primary); }
+.negative .title,
+.negative .caption { color: var(--color-content-negative-primary); }
+
+/* ── Action ── */
+
+.action {
+  align-self: flex-start;
+}
+
+/* ── Close ── */
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  opacity: 0.5;
+  transition: opacity 150ms ease;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.neutral .close { color: var(--color-content-neutral-primary); }
+.info    .close { color: var(--color-content-info-primary); }
+.positive .close { color: var(--color-content-positive-primary); }
+.warning .close  { color: var(--color-content-warning-primary); }
+.negative .close { color: var(--color-content-negative-primary); }

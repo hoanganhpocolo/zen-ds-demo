@@ -1,0 +1,208 @@
+/* ── Overlay backdrop ── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.overlay-visible {
+  opacity: 1;
+}
+
+/* ── Sheet container ── */
+
+.sheet {
+  position: relative;
+  display: flex;
+  gap: var(--gap-2xsmall);
+  align-items: flex-start;
+  width: var(--viewport-width, 375px);
+  max-width: 100%;
+  overflow: clip;
+  border-top-left-radius: var(--radius-3xlarge);
+  border-top-right-radius: var(--radius-3xlarge);
+  border: 1px solid var(--color-border-container-default, rgba(0, 0, 0, 0.06));
+  border-bottom: none;
+  backdrop-filter: blur(60px);
+  background: var(--color-bg-container, rgba(255, 255, 255, 0.91));
+  box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.08);
+  transform: translateY(100%);
+  transition: transform 300ms ease;
+}
+
+.sheet-modal {
+  max-height: 720px;
+}
+
+.overlay-visible .sheet {
+  transform: translateY(0);
+}
+
+/* ── Inner container ── */
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  border-top-left-radius: var(--radius-xlarge);
+  border-top-right-radius: var(--radius-xlarge);
+}
+
+/* ── Top indicator (drag handle) ── */
+
+.top-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--padding-xsmall);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.top-indicator-bar {
+  width: 40px;
+  height: 4px;
+  border-radius: 1000px;
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+/* ── Bottom indicator (home bar) ── */
+
+.bottom-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: var(--padding-medium);
+  padding-bottom: var(--padding-xsmall);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.bottom-indicator-bar {
+  width: 121px;
+  height: 4px;
+  border-radius: 1000px;
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+/* ── Header ── */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding: 20px;
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  width: 100%;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+}
+
+.header-title {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h4);
+  color: var(--color-content-neutral-primary);
+}
+
+.header-description {
+  max-width: 720px;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-secondary);
+}
+
+/* ── Close button ── */
+
+.close-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--color-bg-fill-neutral-flat-default);
+  border: none;
+  border-radius: var(--radius-rounded);
+  padding: var(--padding-small);
+  cursor: pointer;
+  color: var(--color-content-neutral-primary);
+  transition: background 150ms ease;
+}
+
+.close:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+/* ── Body ── */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--padding-xlarge);
+  width: 100%;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.body-action {
+  padding: var(--padding-2xsmall);
+}
+
+/* ── Footer ── */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: var(--padding-medium) 20px;
+  border-top: 1px solid var(--color-border-neutral-subtle-light-default, #f0f0f0);
+  width: 100%;
+  flex-shrink: 0;
+}
+
+.footer-buttons {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  width: 100%;
+}
+
+.footer-buttons > * {
+  flex: 1;
+}

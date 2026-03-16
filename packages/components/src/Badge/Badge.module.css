@@ -1,0 +1,157 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  border-radius: var(--radius-rounded);
+  white-space: nowrap;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  background: var(--_badge-bg, transparent);
+  color: var(--_badge-text);
+}
+
+/* ── Sizes ── */
+
+.size-m {
+  padding: var(--padding-3xsmall) var(--padding-xsmall);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+}
+
+.size-s {
+  padding: var(--padding-3xsmall) var(--padding-2xsmall);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+}
+
+/* ── Dot ── */
+
+.dot-m {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--_badge-dot);
+}
+
+.dot-s {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--_badge-dot);
+}
+
+/* ── Solid variant ── */
+
+.variant-solid.color-neutral {
+  --_badge-bg: var(--color-bg-fill-neutral-solid-default);
+  --_badge-text: var(--color-content-inverse);
+  --_badge-dot: var(--color-content-inverse);
+}
+
+.variant-solid.color-accent {
+  --_badge-bg: var(--color-bg-fill-accent-solid-default);
+  --_badge-text: var(--color-content-on-accent);
+  --_badge-dot: var(--color-content-on-accent);
+}
+
+.variant-solid.color-info {
+  --_badge-bg: var(--color-bg-fill-info-solid-default);
+  --_badge-text: var(--color-content-on-accent);
+  --_badge-dot: var(--color-content-on-accent);
+}
+
+.variant-solid.color-positive {
+  --_badge-bg: var(--color-bg-fill-positive-solid-default);
+  --_badge-text: var(--color-content-on-accent);
+  --_badge-dot: var(--color-content-on-accent);
+}
+
+.variant-solid.color-negative {
+  --_badge-bg: var(--color-bg-fill-negative-solid-default);
+  --_badge-text: var(--color-content-on-accent);
+  --_badge-dot: var(--color-content-on-accent);
+}
+
+.variant-solid.color-warning {
+  --_badge-bg: var(--color-bg-fill-warning-solid-default);
+  --_badge-text: var(--color-content-on-accent);
+  --_badge-dot: var(--color-content-on-accent);
+}
+
+/* ── Subtle variant ── */
+
+.variant-subtle.color-neutral {
+  --_badge-bg: var(--color-bg-fill-neutral-subtle-default);
+  --_badge-text: var(--color-content-neutral-primary);
+  --_badge-dot: var(--color-content-neutral-secondary);
+}
+
+.variant-subtle.color-accent {
+  --_badge-bg: var(--color-bg-fill-accent-subtle-default);
+  --_badge-text: var(--color-content-accent-primary);
+  --_badge-dot: var(--color-content-accent-primary);
+}
+
+.variant-subtle.color-info {
+  --_badge-bg: var(--color-bg-fill-info-subtle-default);
+  --_badge-text: var(--color-content-info-primary);
+  --_badge-dot: var(--color-content-info-primary);
+}
+
+.variant-subtle.color-positive {
+  --_badge-bg: var(--color-bg-fill-positive-subtle-default);
+  --_badge-text: var(--color-content-positive-primary);
+  --_badge-dot: var(--color-content-positive-primary);
+}
+
+.variant-subtle.color-negative {
+  --_badge-bg: var(--color-bg-fill-negative-subtle-default);
+  --_badge-text: var(--color-content-negative-primary);
+  --_badge-dot: var(--color-content-negative-primary);
+}
+
+.variant-subtle.color-warning {
+  --_badge-bg: var(--color-bg-fill-warning-subtle-default);
+  --_badge-text: var(--color-content-warning-primary);
+  --_badge-dot: var(--color-content-warning-primary);
+}
+
+/* ── Ghost variant ── */
+
+.variant-ghost.color-neutral {
+  --_badge-bg: transparent;
+  --_badge-text: var(--color-content-neutral-primary);
+  --_badge-dot: var(--color-content-neutral-secondary);
+}
+
+.variant-ghost.color-accent {
+  --_badge-bg: transparent;
+  --_badge-text: var(--color-content-accent-primary);
+  --_badge-dot: var(--color-content-accent-primary);
+}
+
+.variant-ghost.color-info {
+  --_badge-bg: transparent;
+  --_badge-text: var(--color-content-info-primary);
+  --_badge-dot: var(--color-content-info-primary);
+}
+
+.variant-ghost.color-positive {
+  --_badge-bg: transparent;
+  --_badge-text: var(--color-content-positive-primary);
+  --_badge-dot: var(--color-content-positive-primary);
+}
+
+.variant-ghost.color-negative {
+  --_badge-bg: transparent;
+  --_badge-text: var(--color-content-negative-primary);
+  --_badge-dot: var(--color-content-negative-primary);
+}
+
+.variant-ghost.color-warning {
+  --_badge-bg: transparent;
+  --_badge-text: var(--color-content-warning-primary);
+  --_badge-dot: var(--color-content-warning-primary);
+}

@@ -1,0 +1,154 @@
+/* ── Root ── */
+
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Container ── */
+
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  width: 100%;
+  background: var(--color-bg-fill-neutral-subtle-light-default);
+  backdrop-filter: blur(20px);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-base);
+  transition: background 120ms ease, border-color 120ms ease;
+  overflow: hidden;
+}
+
+.container:hover {
+  background: var(--color-bg-fill-neutral-subtle-light-hover);
+}
+
+.container:focus-within {
+  border-color: var(--color-border-focused-neutral-solid);
+  background: var(--color-bg-fill-neutral-subtle-light-default);
+}
+
+/* ── Sizes ── */
+
+.size-default .container {
+  height: 48px;
+  padding: var(--padding-small) var(--padding-medium);
+  gap: var(--gap-xsmall);
+}
+
+.size-small .container {
+  height: 40px;
+  padding: var(--padding-2xsmall) var(--padding-small);
+  gap: var(--gap-2xsmall);
+}
+
+/* ── Search icon ── */
+
+.leading {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.search-icon {
+  color: var(--color-content-neutral-tertiary);
+  flex-shrink: 0;
+}
+
+/* ── Native input ── */
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  caret-color: var(--color-content-neutral-primary);
+}
+
+.input::placeholder {
+  color: var(--color-content-placeholder);
+  font-weight: var(--font-weight-secondary);
+}
+
+.input-filled {
+  font-weight: var(--font-weight-primary);
+}
+
+/* ── Clear button ── */
+
+.clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-content-neutral-tertiary);
+  border-radius: var(--radius-rounded);
+  transition: color 120ms ease;
+}
+
+.clear:hover {
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Filter button (dropdown & icon themes) ── */
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-3xsmall);
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-content-neutral-primary);
+  border-radius: var(--radius-xsmall);
+  transition: color 120ms ease, opacity 120ms ease;
+}
+
+.filter:hover {
+  opacity: 0.75;
+}
+
+.filter-label {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  white-space: nowrap;
+}
+
+/* ── Trailing (default theme custom slot) ── */
+
+.trailing {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Inner shadow overlay ── */
+
+.inner-shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 0 3px 0 var(--color-shadow-inverse-strong);
+  pointer-events: none;
+}

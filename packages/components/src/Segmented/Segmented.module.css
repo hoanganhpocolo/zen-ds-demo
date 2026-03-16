@@ -1,0 +1,115 @@
+/* ── Root (track / container) ── */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-bg-fill-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-2xsmall);
+}
+
+.full-width {
+  display: flex;
+  width: 100%;
+}
+
+.full-width .item-list {
+  flex: 1;
+}
+
+.full-width .item {
+  flex: 1;
+}
+
+/* ── Item list ── */
+
+.item-list {
+  display: flex;
+  align-items: center;
+}
+
+/* ── Item button ── */
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-2xsmall);
+  border: none;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, box-shadow 120ms ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Sizes ── */
+
+.size-medium .item {
+  height: 40px;
+  padding: var(--padding-xsmall);
+}
+
+/* ── Label ── */
+
+.item-label {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  padding: 0 var(--padding-2xsmall);
+}
+
+/* ── Icon ── */
+
+.item-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* ── Unselected ── */
+
+.item-unselected {
+  background: transparent;
+  color: var(--color-content-neutral-tertiary);
+}
+
+/* ── Level: Secondary (unselected hover) ── */
+
+.level-secondary .item-unselected:hover {
+  background: var(--comp-segmented-item-secondary-color-bg-unselected-hover);
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Level: Primary (unselected hover) ── */
+
+.level-primary .item-unselected:hover {
+  background: var(--comp-segmented-item-primary-color-bg-unselected-hover);
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Selected — Secondary ── */
+
+.level-secondary .item-selected {
+  background: var(--comp-segmented-item-secondary-color-bg-selected-default);
+  color: var(--comp-segmented-item-secondary-color-content-selected);
+  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light, rgba(0, 0, 0, 0.04));
+}
+
+/* ── Selected — Primary ── */
+
+.level-primary .item-selected {
+  background: var(--comp-segmented-item-primary-color-bg-selected-default);
+  color: var(--comp-segmented-item-primary-color-content-selected);
+  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light, rgba(0, 0, 0, 0.04));
+}
+
+/* ── Disabled ── */
+
+.item-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

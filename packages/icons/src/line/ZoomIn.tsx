@@ -1,0 +1,16 @@
+import { forwardRef, type SVGAttributes } from 'react';
+
+export interface IconProps extends SVGAttributes<SVGSVGElement> {
+  size?: number | string;
+}
+
+export const ZoomIn = forwardRef<SVGSVGElement, IconProps>(
+  ({ size = 24, ...rest }, ref) => {
+    const ariaHidden = !rest['aria-label'];
+    return (
+      <svg ref={ref} {...rest} fill="none" aria-hidden={ariaHidden} viewBox="0 0 24 24" width={size} height={size}><path fill="currentColor" d="M11 2a9 9 0 0 1 9 9 8.96 8.96 0 0 1-1.968 5.618L23 21.586 21.586 23l-4.968-4.968A8.96 8.96 0 0 1 11 20a9 9 0 1 1 0-18m0 2a7 7 0 1 0 4.856 12.041 1 1 0 0 1 .185-.185A7 7 0 0 0 11 4m1 6h3v2h-3v3h-2v-3H7v-2h3V7h2z"/></svg>
+    );
+  },
+);
+
+ZoomIn.displayName = 'ZoomIn';

@@ -1,0 +1,34 @@
+/* ==========================================================
+   BREAKPOINT & GRID TOKENS
+   ========================================================== */
+
+/* Desktop (1512×982) */
+@media (min-width: 1025px) {
+  :root {
+    --grid-gutter: 24px;
+    --grid-margin: 32px;
+    --grid-modal-padding: 24px;
+    --grid-side-panel-standard-padding: 32px;
+  }
+}
+
+/* Tablet (744×1133) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  :root {
+    --grid-gutter: 24px;
+    --grid-margin: 24px;
+    --grid-modal-padding: 20px;
+    --grid-side-panel-standard-padding: 24px;
+  }
+}
+
+/* Mobile (375×812) */
+@media (max-width: 600px) {
+  :root {
+    --grid-gutter: 16px;
+    --grid-margin: 16px;
+    --grid-modal-padding: 20px;
+    --grid-side-panel-standard-padding: 20px;
+  }
+}
+

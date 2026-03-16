@@ -1,0 +1,16 @@
+import { forwardRef, type SVGAttributes } from 'react';
+
+export interface IconProps extends SVGAttributes<SVGSVGElement> {
+  size?: number | string;
+}
+
+export const ShieldZap = forwardRef<SVGSVGElement, IconProps>(
+  ({ size = 24, ...rest }, ref) => {
+    const ariaHidden = !rest['aria-label'];
+    return (
+      <svg ref={ref} {...rest} fill="none" aria-hidden={ariaHidden} viewBox="0 0 24 24" width={size} height={size}><path fill="currentColor" d="M11.051 1.33a3 3 0 0 1 1.897 0l6.877 2.293a3 3 0 0 1 2.04 3.094l-.537 6.439a9 9 0 0 1-4.198 6.885l-4.6 2.875a1 1 0 0 1-1.06 0L6.868 20.04a9 9 0 0 1-4.199-6.885l-.537-6.439a3 3 0 0 1 2.041-3.094zM9.292 7.178l2.872 2.872-2.738 1.916a1.002 1.002 0 0 0-.134 1.527l3.715 3.715 1.414-1.415-2.872-2.871 2.738-1.917a1.002 1.002 0 0 0 .134-1.526l-3.715-3.715z"/></svg>
+    );
+  },
+);
+
+ShieldZap.displayName = 'ShieldZap';

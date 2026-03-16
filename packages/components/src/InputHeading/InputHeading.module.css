@@ -1,0 +1,73 @@
+/* ── Root ── */
+
+.root {
+  position: relative;
+  width: 100%;
+}
+
+/* ── Container (the editable area with hover/focus bg) ── */
+
+.container {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-base);
+  padding: var(--padding-xsmall);
+  background: transparent;
+  transition: background 150ms ease;
+  cursor: text;
+}
+
+/* Negative inset to align text with surrounding content */
+.root.size-h1 .container {
+  margin: -4px -8px;
+}
+
+.root.size-h2 .container {
+  margin: -6px -8px;
+}
+
+/* Hover state */
+.root:hover .container,
+.container.inputted-hover {
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+/* Focus state */
+.container.focused {
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+/* ── Input (styled as heading) ── */
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  resize: none;
+  overflow: hidden;
+  color: var(--color-content-neutral-primary);
+  caret-color: var(--color-bg-fill-active-neutral-solid);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+}
+
+.input::placeholder {
+  color: var(--color-content-placeholder);
+}
+
+/* H1 size: uses text-h1 tokens */
+.input-h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  letter-spacing: var(--letter-spacing-h1);
+}
+
+/* H2 size: uses text-h3 tokens (matches Figma mapping) */
+.input-h2 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  letter-spacing: var(--letter-spacing-h3);
+}

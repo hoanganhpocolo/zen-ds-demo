@@ -1,0 +1,23 @@
+{
+  "name": "@zen/tokens",
+  "version": "0.1.0",
+  "description": "Zen Design System — CSS design tokens",
+  "type": "module",
+  "main": "./src/styles/tokens/index.css",
+  "exports": {
+    ".": "./src/styles/tokens/index.css",
+    "./primitives": "./src/styles/tokens/primitives.css",
+    "./semantic": "./src/styles/tokens/semantic-colors.css",
+    "./mode": "./src/styles/tokens/mode-colors.css",
+    "./components": "./src/styles/tokens/component-tokens.css",
+    "./typography": "./src/styles/tokens/typography.css",
+    "./spacing": "./src/styles/tokens/spacing.css",
+    "./radius": "./src/styles/tokens/corner-radius.css",
+    "./breakpoints": "./src/styles/tokens/breakpoints.css"
+  },
+  "files": [
+    "src/styles/tokens"
+  ],
+  "keywords": ["design-tokens", "css-variables", "zen"],
+  "license": "MIT"
+}

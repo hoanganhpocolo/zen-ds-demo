@@ -1,0 +1,90 @@
+.alert-banner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* ── Sizes ── */
+
+.size-m {
+  gap: var(--gap-small);
+  padding: var(--padding-small) var(--padding-large);
+}
+
+.size-s {
+  gap: var(--gap-xsmall);
+  padding: var(--padding-xsmall) var(--padding-medium);
+}
+
+/* ── Themes ── */
+
+.default {
+  background: var(--color-bg-fill-neutral-solid-default);
+  color: var(--color-content-inverse);
+}
+
+.info {
+  background: var(--color-bg-fill-info-solid-default);
+  color: var(--color-content-on-colors);
+}
+
+.positive {
+  background: var(--color-bg-fill-positive-solid-default);
+  color: var(--color-content-on-colors);
+}
+
+.warning {
+  background: var(--color-bg-fill-warning-solid-default);
+  color: var(--color-content-on-brights);
+}
+
+.negative {
+  background: var(--color-bg-fill-negative-solid-default);
+  color: var(--color-content-on-colors);
+}
+
+/* ── Inner elements ── */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.message {
+  flex: 1;
+  min-width: 0;
+}
+
+.size-m .message {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-base);
+}
+
+.size-s .message {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  opacity: 0.8;
+  transition: opacity 150ms ease;
+}
+
+.close:hover {
+  opacity: 1;
+}
