@@ -34,47 +34,47 @@
   --image-size-2xsmall: var(--dm-20);
 
   /* ── Button Size (height) ── */
-  --button-size-xlarge: var(--dm-64);
-  --button-size-large: var(--dm-56);
-  --button-size-medium: var(--dm-48);
-  --button-size-small: var(--dm-40);
-  --button-size-xsmall: var(--dm-32);
-  --button-size-2xsmall: var(--dm-24);
+  --button-size-xlarge: var(--dm-56);
+  --button-size-large: var(--dm-48);
+  --button-size-medium: var(--dm-40);
+  --button-size-small: var(--dm-32);
+  --button-size-xsmall: var(--dm-24);
+  --button-size-2xsmall: var(--dm-16);
 
   /* ── Button Spacing ── */
   /* XLarge */
   --button-spacing-xlarge-h-padding: var(--dm-16);
   --button-spacing-xlarge-v-padding: var(--dm-16);
   --button-spacing-xlarge-gap: var(--dm-4);
-  --button-spacing-xlarge-text-wrapper-padding: var(--dm-8);
+  --button-spacing-xlarge-text-wrapper-padding: var(--dm-4);
   /* Large */
   --button-spacing-large-h-padding: var(--dm-16);
   --button-spacing-large-v-padding: var(--dm-16);
-  --button-spacing-large-gap: 0px;
-  --button-spacing-large-text-wrapper-padding: var(--dm-8);
+  --button-spacing-large-gap: var(--dm-2);
+  --button-spacing-large-text-wrapper-padding: var(--dm-4);
   /* Medium */
   --button-spacing-medium-h-padding: var(--dm-12);
   --button-spacing-medium-v-padding: var(--dm-12);
-  --button-spacing-medium-gap: 0px;
-  --button-spacing-medium-text-wrapper-padding: var(--dm-8);
+  --button-spacing-medium-gap: var(--dm-2);
+  --button-spacing-medium-text-wrapper-padding: var(--dm-4);
   /* Small */
-  --button-spacing-small-h-padding: 10px;
+  --button-spacing-small-h-padding: var(--dm-8);
   --button-spacing-small-v-padding: var(--dm-8);
   --button-spacing-small-gap: var(--dm-2);
   --button-spacing-small-text-wrapper-padding: var(--dm-4);
   /* XSmall */
-  --button-spacing-xsmall-h-padding: 6px;
-  --button-spacing-xsmall-v-padding: var(--dm-8);
+  --button-spacing-xsmall-h-padding: var(--dm-4);
+  --button-spacing-xsmall-v-padding: var(--dm-4);
   --button-spacing-xsmall-gap: var(--dm-2);
   --button-spacing-xsmall-text-wrapper-padding: var(--dm-4);
 
   /* ── Input Size (height) ── */
-  --input-size-xlarge: var(--dm-64);
-  --input-size-large: var(--dm-56);
-  --input-size-medium: var(--dm-48);
-  --input-size-small: var(--dm-40);
-  --input-size-heading-h1: var(--dm-40);
-  --input-size-heading-h2: var(--dm-36);
+  --input-size-xlarge: var(--dm-56);
+  --input-size-large: var(--dm-48);
+  --input-size-medium: var(--dm-40);
+  --input-size-small: var(--dm-32);
+  --input-size-heading-h1: var(--dm-36);
+  --input-size-heading-h2: var(--dm-32);
 
   /* ── Input Spacing ── */
   /* XLarge */
@@ -84,17 +84,17 @@
   --input-spacing-xlarge-outside-field-gap: var(--dm-8);
   /* Large */
   --input-spacing-large-h-padding: var(--dm-16);
-  --input-spacing-large-v-padding: var(--dm-16);
+  --input-spacing-large-v-padding: var(--dm-12);
   --input-spacing-large-inside-field-gap: var(--dm-8);
   --input-spacing-large-outside-field-gap: var(--dm-8);
   /* Medium */
-  --input-spacing-medium-h-padding: var(--dm-16);
-  --input-spacing-medium-v-padding: var(--dm-12);
+  --input-spacing-medium-h-padding: var(--dm-12);
+  --input-spacing-medium-v-padding: 10px;
   --input-spacing-medium-inside-field-gap: var(--dm-8);
-  --input-spacing-medium-outside-field-gap: var(--dm-8);
+  --input-spacing-medium-outside-field-gap: var(--dm-4);
   /* Small */
-  --input-spacing-small-h-padding: var(--dm-12);
-  --input-spacing-small-v-padding: var(--dm-8);
+  --input-spacing-small-h-padding: var(--dm-8);
+  --input-spacing-small-v-padding: 6px;
   --input-spacing-small-inside-field-gap: var(--dm-8);
   --input-spacing-small-outside-field-gap: var(--dm-4);
 
@@ -118,20 +118,20 @@
   --textarea-spacing-small-gap: var(--dm-8);
 
   /* ── Chip Size (height) ── */
-  --chip-size-medium: var(--dm-48);
-  --chip-size-small: var(--dm-40);
+  --chip-size-medium: var(--dm-40);
+  --chip-size-small: var(--dm-32);
 
   /* ── Chip Spacing ── */
   /* Medium */
-  --chip-spacing-medium-h-padding: var(--dm-20);
+  --chip-spacing-medium-h-padding: var(--dm-16);
   --chip-spacing-medium-v-padding: var(--dm-12);
   --chip-spacing-medium-gap: var(--dm-8);
   --chip-spacing-medium-customized-padding: var(--dm-12);
-  --chip-spacing-medium-minimum-padding: var(--dm-8);
+  --chip-spacing-medium-minimum-padding: 6px;
   /* Small */
-  --chip-spacing-small-h-padding: var(--dm-16);
-  --chip-spacing-small-v-padding: var(--dm-8);
-  --chip-spacing-small-gap: var(--dm-8);
+  --chip-spacing-small-h-padding: var(--dm-12);
+  --chip-spacing-small-v-padding: var(--dm-4);
+  --chip-spacing-small-gap: var(--dm-4);
   --chip-spacing-small-customized-padding: var(--dm-8);
   --chip-spacing-small-minimum-padding: var(--dm-4);
 

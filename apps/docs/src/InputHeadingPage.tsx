@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { InputHeading } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function InputHeadingPage() {
   const [title, setTitle] = useState('');
@@ -11,7 +12,7 @@ export function InputHeadingPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -113,76 +114,27 @@ export function InputHeadingPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>size</code></td>
-            <td>Heading size — H1 uses h1 typography, H2 uses h3 typography</td>
-            <td><code>'h1'</code> | <code>'h2'</code></td>
-            <td><code>'h2'</code></td>
-          </tr>
-          <tr>
-            <td><code>placeholder</code></td>
-            <td>Placeholder text shown when empty</td>
-            <td><code>string</code></td>
-            <td><code>'Heading'</code></td>
-          </tr>
-          <tr>
-            <td><code>value</code></td>
-            <td>Controlled value</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>defaultValue</code></td>
-            <td>Default value (uncontrolled)</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>onChange</code></td>
-            <td>Change handler</td>
-            <td><code>ChangeEventHandler</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>size</code>, 'Heading size — H1 uses h1 typography, H2 uses h3 typography', <><code>'h1'</code> | <code>'h2'</code></>, <code>'h2'</code>],
+          [<code>placeholder</code>, 'Placeholder text shown when empty', <code>string</code>, <code>'Heading'</code>],
+          [<code>value</code>, 'Controlled value', <code>string</code>, '—'],
+          [<code>defaultValue</code>, 'Default value (uncontrolled)', <code>string</code>, '—'],
+          [<code>onChange</code>, 'Change handler', <code>ChangeEventHandler</code>, '—'],
+        ]}
+      />
 
       {/* ── Design Tokens ── */}
       <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-3xlarge)' }}>Design Tokens</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Size</th>
-            <th>Font Size</th>
-            <th>Line Height</th>
-            <th>Letter Spacing</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>h1</code></td>
-            <td><code>--font-size-h1</code> (36px)</td>
-            <td><code>--line-height-h1</code> (44px)</td>
-            <td><code>--letter-spacing-h1</code></td>
-          </tr>
-          <tr>
-            <td><code>h2</code></td>
-            <td><code>--font-size-h3</code> (28px)</td>
-            <td><code>--line-height-h3</code> (36px)</td>
-            <td><code>--letter-spacing-h3</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Size', 'Font Size', 'Line Height', 'Letter Spacing']}
+        rows={[
+          [<code>h1</code>, <code>--font-size-h1</code>, <code>--line-height-h1</code>, <code>--letter-spacing-h1</code>],
+          [<code>h2</code>, <code>--font-size-h3</code>, <code>--line-height-h3</code>, <code>--letter-spacing-h3</code>],
+        ]}
+      />
       </div>
     </>
   );

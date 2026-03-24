@@ -1,0 +1,237 @@
+/* ══ Root ══ */
+
+.root {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-bg-canvas-default);
+}
+
+/* ══ Sidebar ══ */
+
+.sidebarOuter {
+  width: 280px;
+  flex-shrink: 0;
+  padding: var(--padding-xsmall);
+  height: 100%;
+  display: flex;
+}
+
+.sidebarOuter > * {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sidebarLogo {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.sidebarLogoMark {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-small);
+  background: var(--color-bg-fill-accent-solid-default);
+  color: var(--color-content-inverse);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ══ Main ══ */
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ══ Navigator ══ */
+
+.navigator {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--padding-xlarge) var(--padding-2xlarge) var(--padding-small);
+  flex-shrink: 0;
+}
+
+.navLeading {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.navTrailing {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+/* Bell notification badge */
+.notifWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.notifBadge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  transform: translate(50%, -50%);
+  background: var(--color-bg-fill-negative-solid-default);
+  color: var(--color-content-inverse);
+  border: 2px solid var(--color-bg-canvas-default);
+  border-radius: var(--radius-rounded);
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-small-label);
+  font-weight: var(--font-weight-secondary);
+  line-height: 1;
+  padding: 0 var(--padding-2xsmall);
+  pointer-events: none;
+}
+
+
+/* ══ Body ══ */
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--padding-xsmall) var(--padding-2xlarge) var(--padding-2xlarge);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bodyContent {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+/* ── Row 1: metrics grid + line chart ── */
+
+.row1 {
+  display: flex;
+  gap: var(--gap-small);
+  align-items: stretch;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-small);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Line chart card ── */
+
+.lineChartCard {
+  width: 340px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-2xlarge);
+  background: var(--color-bg-surface-default);
+  padding: var(--padding-medium) var(--padding-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.chartCardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.areaChartArea {
+  height: 200px;
+}
+
+/* ── Bar group chart card ── */
+
+.barChartCard {
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-2xlarge);
+  background: var(--color-bg-surface-default);
+  padding: var(--padding-medium) var(--padding-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.barChartArea {
+  height: 200px;
+}
+
+/* Chart legend */
+
+.chartLegend {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.legendDotAccent {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-accent-solid-default);
+  flex-shrink: 0;
+}
+
+.legendDotNeutral {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  flex-shrink: 0;
+}
+
+/* ── Row 3: Traffic Sources + Sessions ── */
+
+.row3 {
+  display: flex;
+  gap: var(--gap-small);
+  align-items: stretch;
+}
+
+.panelCard {
+  flex: 1;
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-2xlarge);
+  background: var(--color-bg-surface-default);
+  padding: var(--padding-medium) var(--padding-large);
+}
+
+.trafficRow {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+}
+
+.sessionsChartArea {
+  height: 160px;
+}

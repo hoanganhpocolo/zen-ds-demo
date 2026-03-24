@@ -1,0 +1,462 @@
+/* ══ Root ══ */
+
+.root {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-bg-canvas-default);
+}
+
+/* ══ Workspace Strip ══ */
+
+.workspaceStrip {
+  width: 56px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  padding: var(--padding-small) 0;
+  background: var(--color-bg-surface-default);
+  border-right: 1px solid var(--color-border-neutral-subtle-light-default);
+}
+
+.workspaceLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-bottom: var(--gap-2xsmall);
+}
+
+.zenMark {
+  display: block;
+  border-radius: var(--radius-small);
+}
+
+.workspaceAvatars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.workspaceActive {
+  position: relative;
+  border-radius: var(--radius-small);
+  outline: 2px solid var(--color-border-accent-default);
+  outline-offset: 2px;
+}
+
+/* ══ Sidebar ══ */
+
+.sidebarOuter {
+  width: 220px;
+  flex-shrink: 0;
+  padding: var(--padding-xsmall);
+  height: 100%;
+  display: flex;
+}
+
+.sidebarOuter > * {
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* ══ Main ══ */
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── Top bar ── */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--padding-small) var(--padding-xlarge);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+  flex-shrink: 0;
+  height: 56px;
+  background: var(--color-bg-surface-default);
+}
+
+.topbarLeft {
+  flex-shrink: 0;
+}
+
+.topbarSearch {
+  flex: 1;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.topbarActions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+.topbarDivider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-border-neutral-subtle-light-default);
+  margin: 0 var(--gap-2xsmall);
+}
+
+/* ══ Content ══ */
+
+.content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── Contact Panel ── */
+
+.contactPanel {
+  width: 260px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--color-border-neutral-subtle-light-default);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface-default);
+}
+
+.contactProfile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--padding-xlarge) var(--padding-medium) var(--padding-medium);
+}
+
+.contactActions {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-medium);
+  padding: 0 var(--padding-medium) var(--padding-medium);
+}
+
+.contactActionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-3xsmall);
+}
+
+.contactDivider {
+  height: 1px;
+  background: var(--color-border-neutral-subtle-light-default);
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+  padding: var(--padding-medium);
+}
+
+.contactInfoRow {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  min-height: 20px;
+}
+
+/* ── Deal Stage ── */
+
+.dealStageSection {
+  padding: var(--padding-medium);
+}
+
+.dealSteps {
+  display: flex;
+  gap: var(--gap-3xsmall);
+}
+
+.dealStep {
+  flex: 1;
+  height: 6px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+.dealStepDone {
+  background: var(--color-bg-fill-positive-solid-default);
+}
+
+.dealStepCurrent {
+  background: var(--color-bg-fill-accent-solid-default);
+}
+
+/* Contact tabs */
+
+.contactTabs {
+  padding: 0 var(--padding-medium);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+  flex-shrink: 0;
+}
+
+/* Activity feed */
+
+.activityFeed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding: var(--padding-medium);
+}
+
+.activityItem {
+  display: flex;
+  gap: var(--gap-small);
+  align-items: flex-start;
+}
+
+.activityAvatarCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.activityLine {
+  width: 1px;
+  flex: 1;
+  min-height: 16px;
+  background: var(--color-border-neutral-subtle-light-default);
+  margin-top: var(--gap-3xsmall);
+}
+
+.activityBody {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Loan section */
+
+.loanSection {
+  padding: var(--padding-medium);
+}
+
+.loanRow {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-small);
+  padding: var(--padding-xsmall) 0;
+}
+
+/* ── Detail Panel ── */
+
+.detailPanel {
+  flex: 1;
+  min-width: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-canvas-default);
+}
+
+.detailHeader {
+  padding: var(--padding-medium) var(--padding-xlarge) 0;
+  background: var(--color-bg-surface-default);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+}
+
+.breadcrumbRow {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+.detailTitleRow {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  margin-top: var(--gap-small);
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  margin-top: var(--gap-xsmall);
+  margin-bottom: var(--gap-medium);
+}
+
+.metaDivider {
+  width: 1px;
+  height: 14px;
+  background: var(--color-border-neutral-subtle-default);
+  flex-shrink: 0;
+}
+
+.memberAvatars {
+  display: flex;
+  align-items: center;
+}
+
+/* Main tabs */
+
+.mainTabs {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  padding: 0 var(--padding-xlarge);
+  background: var(--color-bg-surface-default);
+  overflow-x: auto;
+  flex-shrink: 0;
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+}
+
+/* ── Document content ── */
+
+.docContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.docMetrics {
+  display: flex;
+  gap: 1px;
+  background: var(--color-border-neutral-subtle-light-default);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+}
+
+.docMetricCard {
+  flex: 1;
+  padding: var(--padding-medium) var(--padding-xlarge);
+  background: var(--color-bg-surface-default);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+}
+
+.docMetricLabel {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+/* Document toolbar */
+
+.docToolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-small) var(--padding-xlarge);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+  background: var(--color-bg-surface-default);
+  flex-shrink: 0;
+}
+
+.docFilterTabs {
+  display: flex;
+  gap: var(--gap-3xsmall);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  border-radius: var(--radius-base);
+  padding: var(--padding-3xsmall);
+}
+
+.filterTab {
+  height: 28px;
+  padding: 0 var(--padding-small);
+  border-radius: var(--radius-small);
+  border: none;
+  background: transparent;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-tertiary);
+  color: var(--color-content-neutral-secondary);
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+}
+
+.filterTab:hover {
+  color: var(--color-content-neutral-primary);
+}
+
+.filterTabActive {
+  background: var(--color-bg-surface-default);
+  color: var(--color-content-neutral-primary);
+  font-weight: var(--font-weight-secondary);
+  box-shadow: 0 1px 3px var(--color-shadow-neutral-medium);
+}
+
+/* Document list */
+
+.docList {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface-default);
+  flex: 1;
+}
+
+.docRow {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  padding: var(--padding-small) var(--padding-xlarge);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+  transition: background 120ms ease;
+}
+
+.docRow:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.docRow:last-child {
+  border-bottom: none;
+}
+
+.docIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-small);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.docInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+}
+
+.docStatus {
+  flex-shrink: 0;
+}
+
+.docActions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-3xsmall);
+  flex-shrink: 0;
+}
+
+/* ── Empty tab state ── */
+
+.emptyTab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-4xlarge);
+}

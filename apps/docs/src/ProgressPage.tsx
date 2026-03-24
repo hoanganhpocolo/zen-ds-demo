@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ProgressBar, ProgressCircle } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function ProgressPage() {
   const [value, setValue] = useState(40);
@@ -10,7 +11,7 @@ export function ProgressPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -118,25 +119,25 @@ export function ProgressPage() {
 
         {/* ── API ── */}
         <h2 className="docs-section-title text-h3">API — ProgressBar</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Progress value 0–100</td><td><code>number</code></td><td>—</td></tr>
-            <tr><td><code>theme</code></td><td>Color theme</td><td><code>'accent' | 'neutral' | 'status'</code></td><td><code>'neutral'</code></td></tr>
-            <tr><td><code>label</code></td><td>Label to the right of bar</td><td><code>ReactNode</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Progress value 0–100', <code>number</code>, '—'],
+            [<code>theme</code>, 'Color theme', <><code>'accent'</code> | <code>'neutral'</code> | <code>'status'</code></>, <code>'neutral'</code>],
+            [<code>label</code>, 'Label to the right of bar', <code>ReactNode</code>, '—'],
+          ]}
+        />
 
         <h2 className="docs-section-title text-h3">API — ProgressCircle</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Progress value 0–100. Automatically shows done state at 100</td><td><code>number</code></td><td>—</td></tr>
-            <tr><td><code>size</code></td><td>m = 32px · s = 20px</td><td><code>'m' | 's'</code></td><td><code>'m'</code></td></tr>
-            <tr><td><code>theme</code></td><td>Color theme</td><td><code>'accent' | 'neutral'</code></td><td><code>'accent'</code></td></tr>
-            <tr><td><code>label</code></td><td>Label to the right</td><td><code>ReactNode</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Progress value 0–100. Automatically shows done state at 100', <code>number</code>, '—'],
+            [<code>size</code>, 'm = 32px · s = 20px', <><code>'m'</code> | <code>'s'</code></>, <code>'m'</code>],
+            [<code>theme</code>, 'Color theme', <><code>'accent'</code> | <code>'neutral'</code></>, <code>'accent'</code>],
+            [<code>label</code>, 'Label to the right', <code>ReactNode</code>, '—'],
+          ]}
+        />
 
       </div>
     </>

@@ -35,6 +35,8 @@ export interface DialogProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title
   onClose?: () => void;
   /** Portal target (defaults to document.body) */
   portalTarget?: HTMLElement;
+  /** Render panel inline without portal or backdrop (for static previews) */
+  inline?: boolean;
 }
 
 const THEME_ICONS: Record<DialogTheme, ReactNode> = {
@@ -58,6 +60,7 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       onSecondary,
       onClose,
       portalTarget,
+      inline = false,
       className,
       ...rest
     },
@@ -97,61 +100,65 @@ export const Dialog = forwardRef<HTMLDivElement, DialogProps>(
       onClose?.();
     }, [onSecondary, onClose]);
 
-    if (!open) return null;
+    if (!open && !inline) return null;
 
-    const content = (
+    const panel = (
+      <div
+        ref={(node) => {
+          dialogRef.current = node!;
+          if (typeof ref === 'function') ref(node);
+          else if (ref) ref.current = node;
+        }}
+        role="alertdialog"
+        aria-modal="true"
+        aria-labelledby="dialog-title"
+        aria-describedby={description ? 'dialog-desc' : undefined}
+        tabIndex={-1}
+        className={[styles.panel, styles[theme], className ?? ''].filter(Boolean).join(' ')}
+        onClick={(e) => e.stopPropagation()}
+        {...rest}
+      >
+        {/* Content */}
+        <div className={styles.content}>
+          {/* Icon */}
+          <div className={[styles['icon-wrapper'], styles[`icon-${theme}`]].join(' ')}>
+            {THEME_ICONS[theme]}
+          </div>
+
+          {/* Heading + description */}
+          <div className={styles.text}>
+            <h2 id="dialog-title" className={styles.title}>{title}</h2>
+            {description && (
+              <p id="dialog-desc" className={styles.description}>{description}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Actions */}
+        <div className={styles.actions}>
+          <Button variant="tertiary" size="m" onClick={handleSecondary}>
+            {secondaryLabel}
+          </Button>
+          <Button variant="primary" size="m" onClick={onPrimary}>
+            {primaryLabel}
+          </Button>
+        </div>
+      </div>
+    );
+
+    if (inline) return panel;
+
+    return createPortal(
       <div
         className={styles.backdrop}
         onClick={handleBackdropClick}
         onKeyDown={handleKeyDown}
         role="presentation"
       >
-        {/* Dialog panel — stop propagation so clicks inside don't close */}
-        <div
-          ref={(node) => {
-            dialogRef.current = node!;
-            if (typeof ref === 'function') ref(node);
-            else if (ref) ref.current = node;
-          }}
-          role="alertdialog"
-          aria-modal="true"
-          aria-labelledby="dialog-title"
-          aria-describedby={description ? 'dialog-desc' : undefined}
-          tabIndex={-1}
-          className={[styles.panel, styles[theme], className ?? ''].filter(Boolean).join(' ')}
-          onClick={(e) => e.stopPropagation()}
-          {...rest}
-        >
-          {/* Content */}
-          <div className={styles.content}>
-            {/* Icon */}
-            <div className={[styles['icon-wrapper'], styles[`icon-${theme}`]].join(' ')}>
-              {THEME_ICONS[theme]}
-            </div>
-
-            {/* Heading + description */}
-            <div className={styles.text}>
-              <h2 id="dialog-title" className={styles.title}>{title}</h2>
-              {description && (
-                <p id="dialog-desc" className={styles.description}>{description}</p>
-              )}
-            </div>
-          </div>
-
-          {/* Actions */}
-          <div className={styles.actions}>
-            <Button variant="tertiary" size="m" onClick={handleSecondary}>
-              {secondaryLabel}
-            </Button>
-            <Button variant="primary" size="m" onClick={onPrimary}>
-              {primaryLabel}
-            </Button>
-          </div>
-        </div>
-      </div>
+        {panel}
+      </div>,
+      portalTarget ?? document.body,
     );
-
-    return createPortal(content, portalTarget ?? document.body);
   },
 );
 

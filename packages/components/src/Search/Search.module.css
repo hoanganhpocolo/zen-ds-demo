@@ -15,11 +15,12 @@
   gap: var(--gap-xsmall);
   width: 100%;
   background: var(--color-bg-fill-neutral-subtle-light-default);
-  backdrop-filter: blur(20px);
-  border: 1.5px solid transparent;
   border-radius: var(--radius-base);
-  transition: background 120ms ease, border-color 120ms ease;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  transition: background 120ms ease, outline-color 120ms ease;
   overflow: hidden;
+  cursor: text;
 }
 
 .container:hover {
@@ -27,22 +28,22 @@
 }
 
 .container:focus-within {
-  border-color: var(--color-border-focused-neutral-solid);
+  outline-color: var(--color-border-focused-neutral-solid);
   background: var(--color-bg-fill-neutral-subtle-light-default);
 }
 
 /* ── Sizes ── */
 
 .size-default .container {
-  height: 48px;
-  padding: var(--padding-small) var(--padding-medium);
-  gap: var(--gap-xsmall);
+  height: var(--input-size-medium);
+  padding: var(--input-spacing-medium-v-padding) var(--input-spacing-medium-h-padding);
+  gap: var(--input-spacing-medium-inside-field-gap);
 }
 
 .size-small .container {
-  height: 40px;
-  padding: var(--padding-2xsmall) var(--padding-small);
-  gap: var(--gap-2xsmall);
+  height: var(--input-size-small);
+  padding: var(--input-spacing-small-v-padding) var(--input-spacing-small-h-padding);
+  gap: var(--input-spacing-small-inside-field-gap);
 }
 
 /* ── Search icon ── */

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Pagination } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function PaginationPage() {
   const [primaryPage, setPrimaryPage] = useState(1);
@@ -14,7 +15,7 @@ export function PaginationPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -94,66 +95,19 @@ export function PaginationPage() {
         </div>
 
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>theme</code></td>
-              <td>Visual theme</td>
-              <td><code>'primary' | 'secondary' | 'inline'</code></td>
-              <td><code>'primary'</code></td>
-            </tr>
-            <tr>
-              <td><code>page</code></td>
-              <td>Current page (1-indexed)</td>
-              <td><code>number</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>totalPages</code></td>
-              <td>Total pages (primary / secondary)</td>
-              <td><code>number</code></td>
-              <td><code>1</code></td>
-            </tr>
-            <tr>
-              <td><code>total</code></td>
-              <td>Total items count (inline)</td>
-              <td><code>number</code></td>
-              <td><code>0</code></td>
-            </tr>
-            <tr>
-              <td><code>pageSize</code></td>
-              <td>Items per page (inline)</td>
-              <td><code>number</code></td>
-              <td><code>10</code></td>
-            </tr>
-            <tr>
-              <td><code>pageSizeOptions</code></td>
-              <td>Page size dropdown options (inline)</td>
-              <td><code>number[]</code></td>
-              <td><code>[10, 20, 50, 100]</code></td>
-            </tr>
-            <tr>
-              <td><code>onChange</code></td>
-              <td>Called with new page number</td>
-              <td><code>(page: number) =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>onPageSizeChange</code></td>
-              <td>Called when page size changes (inline)</td>
-              <td><code>(size: number) =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>theme</code>, 'Visual theme', <><code>'primary'</code> | <code>'secondary'</code> | <code>'inline'</code></>, <code>'primary'</code>],
+            [<code>page</code>, 'Current page (1-indexed)', <code>number</code>, '—'],
+            [<code>totalPages</code>, 'Total pages (primary / secondary)', <code>number</code>, <code>1</code>],
+            [<code>total</code>, 'Total items count (inline)', <code>number</code>, <code>0</code>],
+            [<code>pageSize</code>, 'Items per page (inline)', <code>number</code>, <code>10</code>],
+            [<code>pageSizeOptions</code>, 'Page size dropdown options (inline)', <code>number[]</code>, <code>[10, 20, 50, 100]</code>],
+            [<code>onChange</code>, 'Called with new page number', <code>(page: number) =&gt; void</code>, '—'],
+            [<code>onPageSizeChange</code>, 'Called when page size changes (inline)', <code>(size: number) =&gt; void</code>, '—'],
+          ]}
+        />
       </div>
     </>
   );

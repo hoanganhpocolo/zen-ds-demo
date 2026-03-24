@@ -20,6 +20,8 @@ export interface MetricCardProps extends HTMLAttributes<HTMLDivElement> {
   theme?: MetricCardTheme;
   /** Icon displayed in the icon slot */
   icon?: ReactNode;
+  /** Show background on the icon slot (default: true) */
+  iconBackground?: boolean;
   /** Metric label above the value */
   metricTitle?: string;
   /** Color dot next to the metric title */
@@ -87,6 +89,7 @@ export const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
       level = 'master',
       theme = 'default',
       icon,
+      iconBackground = true,
       metricTitle,
       metricColor,
       value,
@@ -131,7 +134,11 @@ export const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
               {/* Master: icon on top, then metric */}
               {level === 'master' && (
                 <>
-                  {icon && <div className={styles['icon-slot']}>{icon}</div>}
+                  {icon && (
+                    <div className={[styles['icon-slot'], !iconBackground ? styles['icon-slot-no-bg'] : ''].filter(Boolean).join(' ')}>
+                      {icon}
+                    </div>
+                  )}
                   <MetricInline
                     metricTitle={metricTitle}
                     metricColor={metricColor}
@@ -144,7 +151,11 @@ export const MetricCard = forwardRef<HTMLDivElement, MetricCardProps>(
               {/* Sub: icon left, metric right */}
               {level === 'sub' && (
                 <div className={styles['sub-row']}>
-                  {icon && <div className={styles['icon-slot']}>{icon}</div>}
+                  {icon && (
+                    <div className={[styles['icon-slot'], !iconBackground ? styles['icon-slot-no-bg'] : ''].filter(Boolean).join(' ')}>
+                      {icon}
+                    </div>
+                  )}
                   <MetricInline
                     metricTitle={metricTitle}
                     metricColor={metricColor}

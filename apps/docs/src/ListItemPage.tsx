@@ -4,6 +4,7 @@ import { Button } from '@zen/components';
 import { Plus, ChevronRight01, DotsHorizontal } from '@zen/icons/line';
 import { CheckCircle } from '@zen/icons/solid';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function ListItemPage() {
   return (
@@ -11,7 +12,7 @@ export function ListItemPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -173,48 +174,16 @@ export function ListItemPage() {
         </DemoBlock>
 
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>selected</code></td>
-              <td>Highlights the row with accent background</td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-            </tr>
-            <tr>
-              <td><code>leading</code></td>
-              <td>Leading slot — avatar, icon, image</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>title</code></td>
-              <td>Primary title text</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>caption</code></td>
-              <td>Secondary caption text</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>trailing</code></td>
-              <td>Trailing slot — buttons, badge, chevron</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>selected</code>, 'Highlights the row with accent background', <code>boolean</code>, <code>false</code>],
+            [<code>leading</code>, 'Leading slot — avatar, icon, image', <code>ReactNode</code>, '—'],
+            [<code>title</code>, 'Primary title text', <code>ReactNode</code>, '—'],
+            [<code>caption</code>, 'Secondary caption text', <code>ReactNode</code>, '—'],
+            [<code>trailing</code>, 'Trailing slot — buttons, badge, chevron', <code>ReactNode</code>, '—'],
+          ]}
+        />
       </div>
     </>
   );

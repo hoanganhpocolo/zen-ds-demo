@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Checkbox } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function CheckboxPage() {
   const [agreed, setAgreed] = useState(false);
@@ -11,7 +12,7 @@ export function CheckboxPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -136,54 +137,17 @@ export function CheckboxPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>label</code></td>
-            <td>Label text</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>caption</code></td>
-            <td>Caption text below the label</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>checkSide</code></td>
-            <td>Checkbox position relative to label</td>
-            <td><code>'left'</code> | <code>'right'</code></td>
-            <td><code>'left'</code></td>
-          </tr>
-          <tr>
-            <td><code>checked</code></td>
-            <td>Controlled checked state</td>
-            <td><code>boolean</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>defaultChecked</code></td>
-            <td>Initial checked state (uncontrolled)</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>disabled</code></td>
-            <td>Disable the checkbox</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>label</code>, 'Label text', <code>string</code>, '—'],
+          [<code>caption</code>, 'Caption text below the label', <code>string</code>, '—'],
+          [<code>checkSide</code>, 'Checkbox position relative to label', <><code>'left'</code> | <code>'right'</code></>, <code>'left'</code>],
+          [<code>checked</code>, 'Controlled checked state', <code>boolean</code>, '—'],
+          [<code>defaultChecked</code>, 'Initial checked state (uncontrolled)', <code>boolean</code>, <code>false</code>],
+          [<code>disabled</code>, 'Disable the checkbox', <code>boolean</code>, <code>false</code>],
+        ]}
+      />
       </div>
     </>
   );

@@ -263,10 +263,32 @@
   --light-color-indigo-alpha-12: rgba(0, 10, 76, 0.8706);
 
   /* Lime */
-  --light-color-lime-10: #84ba12;
+  --light-color-lime-1: #fcfdfa;
+  --light-color-lime-2: #f8faf3;
+  --light-color-lime-3: #eef6d6;
+  --light-color-lime-4: #e2f0bd;
+  --light-color-lime-5: #d3e7a6;
+  --light-color-lime-6: #c2da91;
+  --light-color-lime-7: #abc978;
+  --light-color-lime-8: #8db654;
+  --light-color-lime-9: #bdee63;
+  --light-color-lime-10: #b0e64c;
+  --light-color-lime-11: #5c7c2f;
+  --light-color-lime-12: #37401c;
 
   /* Lime-Alpha */
-  --light-color-lime-alpha-10: rgba(123, 181, 0, 0.93);
+  --light-color-lime-alpha-1: rgba(102, 153, 0, 0.0196);
+  --light-color-lime-alpha-2: rgba(107, 149, 0, 0.0471);
+  --light-color-lime-alpha-3: rgba(150, 200, 0, 0.1608);
+  --light-color-lime-alpha-4: rgba(143, 198, 0, 0.2588);
+  --light-color-lime-alpha-5: rgba(129, 187, 0, 0.349);
+  --light-color-lime-alpha-6: rgba(114, 170, 0, 0.4314);
+  --light-color-lime-alpha-7: rgba(97, 153, 0, 0.5294);
+  --light-color-lime-alpha-8: rgba(85, 146, 0, 0.6706);
+  --light-color-lime-alpha-9: rgba(147, 228, 0, 0.6118);
+  --light-color-lime-alpha-10: rgba(143, 220, 0, 0.702);
+  --light-color-lime-alpha-11: rgba(55, 95, 0, 0.8157);
+  --light-color-lime-alpha-12: rgba(30, 41, 0, 0.8902);
 
   /* Mint */
   --light-color-mint-1: #f9fefd;
@@ -887,6 +909,34 @@
   --dark-color-indigo-alpha-10: rgba(91, 115, 255, 0.6902);
   --dark-color-indigo-alpha-11: #97b0ff;
   --dark-color-indigo-alpha-12: #d7e1ff;
+
+  /* Lime */
+  --dark-color-lime-1: #11130c;
+  --dark-color-lime-2: #151a10;
+  --dark-color-lime-3: #1f2917;
+  --dark-color-lime-4: #29371d;
+  --dark-color-lime-5: #334423;
+  --dark-color-lime-6: #3d522a;
+  --dark-color-lime-7: #496231;
+  --dark-color-lime-8: #577538;
+  --dark-color-lime-9: #bdee63;
+  --dark-color-lime-10: #d4ff70;
+  --dark-color-lime-11: #bde56c;
+  --dark-color-lime-12: #e3f7ba;
+
+  /* Lime-Alpha */
+  --dark-color-lime-alpha-1: rgba(17, 187, 0, 0.0118);
+  --dark-color-lime-alpha-2: rgba(120, 247, 0, 0.0392);
+  --dark-color-lime-alpha-3: rgba(155, 253, 76, 0.102);
+  --dark-color-lime-alpha-4: rgba(167, 254, 92, 0.1608);
+  --dark-color-lime-alpha-5: rgba(175, 254, 101, 0.2157);
+  --dark-color-lime-alpha-6: rgba(178, 254, 109, 0.2745);
+  --dark-color-lime-alpha-7: rgba(182, 255, 111, 0.3412);
+  --dark-color-lime-alpha-8: rgba(182, 253, 109, 0.4235);
+  --dark-color-lime-alpha-9: rgba(202, 255, 105, 0.9294);
+  --dark-color-lime-alpha-10: rgba(212, 255, 112, 1.0);
+  --dark-color-lime-alpha-11: rgba(209, 254, 119, 0.8941);
+  --dark-color-lime-alpha-12: rgba(233, 254, 191, 0.9686);
 
   /* Mint */
   --dark-color-mint-1: #0a1311;

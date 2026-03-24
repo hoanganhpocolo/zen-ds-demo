@@ -1,5 +1,6 @@
 import { Divider } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function DividerPage() {
   return (
@@ -8,7 +9,7 @@ export function DividerPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -91,30 +92,13 @@ export function DividerPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>color</code></td>
-            <td>Border color intensity</td>
-            <td><code>'default' | 'medium' | 'high'</code></td>
-            <td><code>'default'</code></td>
-          </tr>
-          <tr>
-            <td><code>orientation</code></td>
-            <td>Direction of the divider</td>
-            <td><code>'horizontal' | 'vertical'</code></td>
-            <td><code>'horizontal'</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>color</code>, 'Border color intensity', <><code>'default'</code> | <code>'medium'</code> | <code>'high'</code></>, <code>'default'</code>],
+          [<code>orientation</code>, 'Direction of the divider', <><code>'horizontal'</code> | <code>'vertical'</code></>, <code>'horizontal'</code>],
+        ]}
+      />
       </div>
     </>
   );

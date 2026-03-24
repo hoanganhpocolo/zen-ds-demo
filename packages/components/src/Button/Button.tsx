@@ -16,15 +16,6 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   loading?: boolean;
 }
 
-const labelPaddingMap: Record<ButtonSize, string> = {
-  '2xs': styles['label-wrapper-padding-xs'],
-  xs: styles['label-wrapper-padding-xs'],
-  s: styles['label-wrapper-padding-s'],
-  m: styles['label-wrapper-padding-m'],
-  l: styles['label-wrapper-padding-l'],
-  xl: styles['label-wrapper-padding-xl'],
-};
-
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
@@ -62,7 +53,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       >
         {loading && <span className={styles.spinner} aria-hidden="true" />}
         {icon && !loading && <span className={styles.icon}>{icon}</span>}
-        {children && <span className={`${styles.label} ${labelPaddingMap[size]}`}>{children}</span>}
+        {children && <span className={styles['label-wrapper']}>{children}</span>}
         {iconRight && <span className={styles.icon}>{iconRight}</span>}
       </button>
     );

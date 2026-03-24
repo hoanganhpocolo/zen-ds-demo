@@ -1,0 +1,230 @@
+/* ══ Root ══ */
+
+.root {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-bg-canvas-default);
+}
+
+/* ══ Sidebar outer wrapper ══
+   Matches Figma: p-[8px] creating space around the floating card */
+
+.sidebarOuter {
+  width: 280px;
+  flex-shrink: 0;
+  padding: var(--padding-xsmall); /* 8px all sides */
+  height: 100%;
+  display: flex;
+}
+
+.sidebarOuter > * {
+  /* Force the Sidebar component to fill the padded area */
+  width: 100% !important;
+  height: 100% !important;
+  position: relative !important;
+}
+
+/* ── Sidebar header slot ── */
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sidebarLogo {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.sidebarLogoMark {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-small);
+  background: var(--color-bg-fill-accent-solid-default);
+  color: var(--color-content-on-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ══ Main ══ */
+
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ══ Zone 1: Navigator ══
+   Figma: pt-24px px-32px, flex row with leading/center/trailing slots */
+
+.navigator {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--padding-xlarge) var(--padding-2xlarge) var(--padding-small);
+  flex-shrink: 0;
+}
+
+.navLeading {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  flex: 1;
+}
+
+.navCenter {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.navTrailing {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-medium);
+}
+
+/* Bell notification badge wrapper */
+.notifWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.notifBadge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  transform: translate(50%, -50%);
+  background: var(--color-bg-fill-negative-solid-default);
+  color: var(--color-content-inverse);
+  border: 2px solid var(--color-bg-canvas-default);
+  border-radius: var(--radius-rounded);
+  min-width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-small-label);
+  font-weight: var(--font-weight-secondary);
+  line-height: 1;
+  padding: 0 var(--padding-2xsmall);
+  pointer-events: none;
+}
+
+/* ══ Zone 2: Page title ══ */
+
+.pageTitle {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: 0 var(--padding-2xlarge);
+  padding-bottom: var(--padding-medium);
+  flex-shrink: 0;
+}
+
+.pageTitleActions {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+}
+
+/* ══ Body ══ */
+
+.body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--padding-xsmall) var(--padding-2xlarge) var(--padding-2xlarge);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bodyContent {
+  width: 100%;
+  max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+/* ── Metric cards row ── */
+
+.metricsRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-small);
+}
+
+/* ── Bottom grid ── */
+
+.bottomGrid {
+  display: flex;
+  gap: var(--gap-small);
+  align-items: flex-start;
+}
+
+/* ── Table card ── */
+
+.tableCard {
+  flex: 1;
+  min-width: 0;
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-2xlarge);
+  background: var(--color-bg-surface-default);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.tableCardHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: var(--padding-medium) var(--padding-xlarge) var(--padding-xsmall);
+}
+
+.tabGroup {
+  padding: 0 var(--padding-xlarge);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-default);
+  flex-shrink: 0;
+}
+
+/* ── Right panel ── */
+
+.rightPanel {
+  width: 280px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.panelCard {
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-2xlarge);
+  background: var(--color-bg-surface-default);
+  padding: var(--padding-medium) var(--padding-large);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.panelCardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

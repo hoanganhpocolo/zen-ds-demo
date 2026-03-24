@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { InlineMessage } from '@zen/components';
 import type { InlineMessageTheme } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const THEMES: InlineMessageTheme[] = ['neutral', 'info', 'positive', 'warning', 'negative'];
 
@@ -13,7 +14,7 @@ export function InlineMessagePage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -114,60 +115,18 @@ export function InlineMessagePage() {
         </DemoBlock>
 
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>theme</code></td>
-              <td>Color theme</td>
-              <td><code>'neutral' | 'info' | 'positive' | 'warning' | 'negative'</code></td>
-              <td><code>'neutral'</code></td>
-            </tr>
-            <tr>
-              <td><code>title</code></td>
-              <td>Bold title text</td>
-              <td><code>string</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>caption</code></td>
-              <td>Body caption text</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>actionLabel</code></td>
-              <td>Action button label</td>
-              <td><code>string</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>onAction</code></td>
-              <td>Action button click handler</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>closable</code></td>
-              <td>Show close button</td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-            </tr>
-            <tr>
-              <td><code>onClose</code></td>
-              <td>Close button click handler</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>theme</code>, 'Color theme', <><code>'neutral'</code> | <code>'info'</code> | <code>'positive'</code> | <code>'warning'</code> | <code>'negative'</code></>, <code>'neutral'</code>],
+            [<code>title</code>, 'Bold title text', <code>string</code>, '—'],
+            [<code>caption</code>, 'Body caption text', <code>ReactNode</code>, '—'],
+            [<code>actionLabel</code>, 'Action button label', <code>string</code>, '—'],
+            [<code>onAction</code>, 'Action button click handler', <code>() =&gt; void</code>, '—'],
+            [<code>closable</code>, 'Show close button', <code>boolean</code>, <code>false</code>],
+            [<code>onClose</code>, 'Close button click handler', <code>() =&gt; void</code>, '—'],
+          ]}
+        />
       </div>
     </>
   );

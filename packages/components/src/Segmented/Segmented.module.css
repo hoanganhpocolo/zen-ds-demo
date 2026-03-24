@@ -34,7 +34,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--gap-2xsmall);
   border: none;
   border-radius: var(--radius-base);
   cursor: pointer;
@@ -46,8 +45,24 @@
 /* ── Sizes ── */
 
 .size-medium .item {
-  height: 40px;
+  height: 32px;
   padding: var(--padding-xsmall);
+  gap: var(--gap-2xsmall);
+}
+
+.size-small .item {
+  height: 24px;
+  padding: var(--padding-2xsmall);
+  gap: var(--gap-3xsmall);
+  border-radius: var(--radius-rounded);
+}
+
+/* ── Label Wrapper (Text-Wrapper frame, padding: 0 4px) ── */
+
+.label-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
 }
 
 /* ── Label ── */
@@ -55,10 +70,19 @@
 .item-label {
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-primary);
-  font-size: var(--font-size-body-base);
-  line-height: var(--line-height-body-base);
-  letter-spacing: var(--letter-spacing-body-base);
-  padding: 0 var(--padding-2xsmall);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.size-medium .item-label {
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.size-small .item-label {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
 }
 
 /* ── Icon ── */
@@ -68,6 +92,9 @@
   align-items: center;
   flex-shrink: 0;
 }
+
+.size-medium .item-icon { width: 20px; height: 20px; }
+.size-small  .item-icon { width: 16px; height: 16px; }
 
 /* ── Unselected ── */
 

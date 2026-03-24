@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__figma-console__figma_list_open_files",
+      "Bash(gh issue:*)",
+      "WebFetch(domain:github.com)",
+      "Read(//Users/lap16506/.figma-console-mcp/**)",
+      "Read(//Users/lap16506/**)",
+      "Read(//Users/lap16506/.claude/**)",
+      "mcp__figma-console__figma_get_design_system_summary",
+      "mcp__figma-console__figma_get_component_for_development",
+      "mcp__figma-console__figma_get_component_details",
+      "mcp__figma-console__figma_audit_design_system",
+      "mcp__figma-console__figma_check_design_parity",
+      "mcp__figma-console__figma_generate_component_doc",
+      "mcp__figma-console__figma_execute",
+      "mcp__figma-console__figma_take_screenshot"
+    ],
+    "additionalDirectories": [
+      "/Users/lap16506/.npm/_npx/b547afed9fcf6dcb/node_modules/figma-console-mcp/dist/core"
+    ]
+  }
+}

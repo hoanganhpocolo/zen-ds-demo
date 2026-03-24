@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Sidebar, SidebarItem } from '@zen/components';
 import { Home03, Settings01, Settings03, BarChart01, SearchMedium } from '@zen/icons/line';
 import { User } from '@zen/icons/line';
+import { ApiTable } from './ApiTable';
 
 export function SidebarPage() {
   const [selected1, setSelected1] = useState('home');
@@ -21,7 +22,7 @@ export function SidebarPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -140,34 +141,34 @@ export function SidebarPage() {
 
         {/* ── API ── */}
         <h2 className="docs-section-title text-h3">API — Sidebar</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>background</code></td><td>Surface color</td><td><code>"default" | "alternate"</code></td><td><code>"default"</code></td></tr>
-            <tr><td><code>expanded</code></td><td>Controlled expanded state</td><td><code>boolean</code></td><td>—</td></tr>
-            <tr><td><code>defaultExpanded</code></td><td>Uncontrolled default</td><td><code>boolean</code></td><td><code>true</code></td></tr>
-            <tr><td><code>onExpandedChange</code></td><td>Toggle callback</td><td><code>(v: boolean) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>header</code></td><td>Custom header slot</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>footer</code></td><td>Footer items</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>children</code></td><td>Body items</td><td><code>ReactNode</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>background</code>, 'Surface color', <><code>"default"</code> | <code>"alternate"</code></>, <code>"default"</code>],
+            [<code>expanded</code>, 'Controlled expanded state', <code>boolean</code>, '—'],
+            [<code>defaultExpanded</code>, 'Uncontrolled default', <code>boolean</code>, <code>true</code>],
+            [<code>onExpandedChange</code>, 'Toggle callback', <code>(v: boolean) =&gt; void</code>, '—'],
+            [<code>header</code>, 'Custom header slot', <code>ReactNode</code>, '—'],
+            [<code>footer</code>, 'Footer items', <code>ReactNode</code>, '—'],
+            [<code>children</code>, 'Body items', <code>ReactNode</code>, '—'],
+          ]}
+        />
 
         <h2 className="docs-section-title text-h3">API — SidebarItem</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>label</code></td><td>Item text</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>icon</code></td><td>Leading icon</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>selected</code></td><td>Active/selected state</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>theme</code></td><td>Selected color theme</td><td><code>"neutral" | "accent"</code></td><td><code>"neutral"</code></td></tr>
-            <tr><td><code>level</code></td><td>Indent level</td><td><code>"master" | "child"</code></td><td><code>"master"</code></td></tr>
-            <tr><td><code>counter</code></td><td>Badge counter value</td><td><code>number | string</code></td><td>—</td></tr>
-            <tr><td><code>dropdown</code></td><td>Show trailing chevron</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>dropdownOpen</code></td><td>Rotate chevron</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>disabled</code></td><td>Disable interaction</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>label</code>, 'Item text', <code>string</code>, '—'],
+            [<code>icon</code>, 'Leading icon', <code>ReactNode</code>, '—'],
+            [<code>selected</code>, 'Active/selected state', <code>boolean</code>, <code>false</code>],
+            [<code>theme</code>, 'Selected color theme', <><code>"neutral"</code> | <code>"accent"</code></>, <code>"neutral"</code>],
+            [<code>level</code>, 'Indent level', <><code>"master"</code> | <code>"child"</code></>, <code>"master"</code>],
+            [<code>counter</code>, 'Badge counter value', <><code>number</code> | <code>string</code></>, '—'],
+            [<code>dropdown</code>, 'Show trailing chevron', <code>boolean</code>, <code>false</code>],
+            [<code>dropdownOpen</code>, 'Rotate chevron', <code>boolean</code>, <code>false</code>],
+            [<code>disabled</code>, 'Disable interaction', <code>boolean</code>, <code>false</code>],
+          ]}
+        />
 
       </div>
     </>

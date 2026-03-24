@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Chip, Avatar } from '@zen/components';
 import { Star01 } from '@zen/icons/line';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function ChipPage() {
   const [selected, setSelected] = useState(false);
@@ -18,7 +19,7 @@ export function ChipPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -186,72 +187,20 @@ export function ChipPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>label</code></td>
-            <td>Chip label text</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Size variant</td>
-            <td><code>'s'</code> | <code>'m'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>level</code></td>
-            <td>Visual level</td>
-            <td><code>'primary'</code> | <code>'secondary'</code></td>
-            <td><code>'primary'</code></td>
-          </tr>
-          <tr>
-            <td><code>selected</code></td>
-            <td>Selected state</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>leading</code></td>
-            <td>Leading element (icon, photo, avatar)</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>trailing</code></td>
-            <td>Trailing element (avatar, custom)</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>dropdown</code></td>
-            <td>Show dropdown chevron</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>onRemove</code></td>
-            <td>Show close button, called on click</td>
-            <td><code>() =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>disabled</code></td>
-            <td>Disable the chip</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>label</code>, 'Chip label text', <code>string</code>, '—'],
+          [<code>size</code>, 'Size variant', <><code>'s'</code> | <code>'m'</code></>, <code>'m'</code>],
+          [<code>level</code>, 'Visual level', <><code>'primary'</code> | <code>'secondary'</code></>, <code>'primary'</code>],
+          [<code>selected</code>, 'Selected state', <code>boolean</code>, <code>false</code>],
+          [<code>leading</code>, 'Leading element (icon, photo, avatar)', <code>ReactNode</code>, '—'],
+          [<code>trailing</code>, 'Trailing element (avatar, custom)', <code>ReactNode</code>, '—'],
+          [<code>dropdown</code>, 'Show dropdown chevron', <code>boolean</code>, <code>false</code>],
+          [<code>onRemove</code>, 'Show close button, called on click', <code>() =&gt; void</code>, '—'],
+          [<code>disabled</code>, 'Disable the chip', <code>boolean</code>, <code>false</code>],
+        ]}
+      />
       </div>
     </>
   );

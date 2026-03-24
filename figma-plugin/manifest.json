@@ -1,0 +1,8 @@
+{
+  "name": "Zen Component Replacer",
+  "id": "zen-component-replacer",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"]
+}

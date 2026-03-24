@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Slider } from '@zen/components';
+import { ApiTable } from './ApiTable';
 
 export function SliderPage() {
   const [val, setVal] = useState(40);
@@ -76,28 +77,21 @@ export function SliderPage() {
 
       {/* API */}
       <h2 className="text-h3 docs-section-title">API</h2>
-      <table className="docs-api-table">
-        <thead>
-          <tr>
-            <th className="text-body-small">Prop</th>
-            <th className="text-body-small">Type</th>
-            <th className="text-body-small">Default</th>
-            <th className="text-body-small">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>value</code></td><td><code>number</code></td><td>—</td><td>Controlled value</td></tr>
-          <tr><td><code>defaultValue</code></td><td><code>number</code></td><td><code>50</code></td><td>Uncontrolled default</td></tr>
-          <tr><td><code>min</code></td><td><code>number</code></td><td><code>0</code></td><td>Minimum value</td></tr>
-          <tr><td><code>max</code></td><td><code>number</code></td><td><code>100</code></td><td>Maximum value</td></tr>
-          <tr><td><code>step</code></td><td><code>number</code></td><td><code>1</code></td><td>Step increment</td></tr>
-          <tr><td><code>onChange</code></td><td><code>(value: number) =&gt; void</code></td><td>—</td><td>Called when value changes</td></tr>
-          <tr><td><code>theme</code></td><td><code>'neutral' | 'accent' | 'white'</code></td><td><code>'neutral'</code></td><td>Fill color theme</td></tr>
-          <tr><td><code>size</code></td><td><code>'small' | 'medium' | 'large'</code></td><td><code>'medium'</code></td><td>Track and thumb size</td></tr>
-          <tr><td><code>showLabels</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show min/max labels below track</td></tr>
-          <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disabled state</td></tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Prop', 'Type', 'Default', 'Description']}
+        rows={[
+          [<code>value</code>, <code>number</code>, '—', 'Controlled value'],
+          [<code>defaultValue</code>, <code>number</code>, <code>50</code>, 'Uncontrolled default'],
+          [<code>min</code>, <code>number</code>, <code>0</code>, 'Minimum value'],
+          [<code>max</code>, <code>number</code>, <code>100</code>, 'Maximum value'],
+          [<code>step</code>, <code>number</code>, <code>1</code>, 'Step increment'],
+          [<code>onChange</code>, <code>(value: number) =&gt; void</code>, '—', 'Called when value changes'],
+          [<code>theme</code>, <><code>'neutral'</code> | <code>'accent'</code> | <code>'white'</code></>, <code>'neutral'</code>, 'Fill color theme'],
+          [<code>size</code>, <><code>'small'</code> | <code>'medium'</code> | <code>'large'</code></>, <code>'medium'</code>, 'Track and thumb size'],
+          [<code>showLabels</code>, <code>boolean</code>, <code>false</code>, 'Show min/max labels below track'],
+          [<code>disabled</code>, <code>boolean</code>, <code>false</code>, 'Disabled state'],
+        ]}
+      />
     </div>
   );
 }

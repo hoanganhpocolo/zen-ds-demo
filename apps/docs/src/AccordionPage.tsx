@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Accordion, AccordionGroup } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const faqItems = [
   {
@@ -29,7 +30,7 @@ export function AccordionPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -179,86 +180,27 @@ export function AccordionPage() {
       <h2 className="docs-section-title text-h3">API</h2>
 
       <h3 className="text-body-base" style={{ fontWeight: 'var(--font-weight-primary)', marginBottom: 'var(--gap-small)' }}>Accordion</h3>
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>title</code></td>
-            <td>Title text (required)</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Size variant</td>
-            <td><code>'m'</code> | <code>'l'</code> | <code>'xl'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>theme</code></td>
-            <td>Visual theme</td>
-            <td><code>'divider'</code> | <code>'box'</code></td>
-            <td><code>'divider'</code></td>
-          </tr>
-          <tr>
-            <td><code>expanded</code></td>
-            <td>Controlled expanded state</td>
-            <td><code>boolean</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>defaultExpanded</code></td>
-            <td>Initial expanded state (uncontrolled)</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>onExpandedChange</code></td>
-            <td>Called when expanded state changes</td>
-            <td><code>(expanded: boolean) =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>children</code></td>
-            <td>Content displayed when expanded</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>title</code>, 'Title text (required)', <code>string</code>, '—'],
+          [<code>size</code>, 'Size variant', <><code>'m'</code> | <code>'l'</code> | <code>'xl'</code></>, <code>'m'</code>],
+          [<code>theme</code>, 'Visual theme', <><code>'divider'</code> | <code>'box'</code></>, <code>'divider'</code>],
+          [<code>expanded</code>, 'Controlled expanded state', <code>boolean</code>, '—'],
+          [<code>defaultExpanded</code>, 'Initial expanded state (uncontrolled)', <code>boolean</code>, <code>false</code>],
+          [<code>onExpandedChange</code>, 'Called when expanded state changes', <code>(expanded: boolean) =&gt; void</code>, '—'],
+          [<code>children</code>, 'Content displayed when expanded', <code>ReactNode</code>, '—'],
+        ]}
+      />
 
       <h3 className="text-body-base" style={{ fontWeight: 'var(--font-weight-primary)', marginTop: 'var(--gap-xlarge)', marginBottom: 'var(--gap-small)' }}>AccordionGroup</h3>
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>size</code></td>
-            <td>Shared size for all children</td>
-            <td><code>'m'</code> | <code>'l'</code> | <code>'xl'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>theme</code></td>
-            <td>Shared theme for all children</td>
-            <td><code>'divider'</code> | <code>'box'</code></td>
-            <td><code>'divider'</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>size</code>, 'Shared size for all children', <><code>'m'</code> | <code>'l'</code> | <code>'xl'</code></>, <code>'m'</code>],
+          [<code>theme</code>, 'Shared theme for all children', <><code>'divider'</code> | <code>'box'</code></>, <code>'divider'</code>],
+        ]}
+      />
       </div>
     </>
   );

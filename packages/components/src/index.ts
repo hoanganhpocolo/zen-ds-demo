@@ -90,4 +90,52 @@ export { Button } from './Button';
 export type { ButtonProps, ButtonVariant, ButtonSize } from './Button';
 
 export { Stepper } from './Stepper';
-export type { StepperProps, StepperStep, StepStatus } from './Stepper';
+export type { StepperProps, StepperStep, StepStatus, StepperOrientation } from './Stepper';
+
+export { TabItem, TabGroup } from './Tab';
+export type { TabItemProps, TabGroupProps, TabStyle, TabSize } from './Tab';
+
+export { Tag } from './Tag';
+export type { TagProps, TagTheme } from './Tag';
+
+export { Toggle } from './Toggle';
+export type { ToggleProps, ToggleSize } from './Toggle';
+
+export { FileUploader } from './FileUploader';
+export type { FileUploaderProps, UploaderFile } from './FileUploader';
+
+export {
+  Table,
+  TableContainer,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableHeaderCell,
+  TableCell,
+  TableExpandRow,
+  TextCell,
+  LeadingCell,
+  DockIconCell,
+  TrendCell,
+  ActionCell,
+} from './Table';
+export type {
+  TableProps,
+  TableContainerProps,
+  TableHeadProps,
+  TableBodyProps,
+  TableRowProps,
+  TableHeaderCellProps,
+  TableCellProps,
+  TableExpandRowProps,
+  TextCellProps,
+  LeadingCellProps,
+  DockIconCellProps,
+  TrendCellProps,
+  ActionCellProps,
+  SortDirection,
+  TableAlign,
+  CellState,
+  TrendDirection,
+  StickyEdge,
+} from './Table';

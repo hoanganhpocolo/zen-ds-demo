@@ -7,6 +7,7 @@ export default defineConfig([
       'line/index': 'src/line/index.ts',
       'solid/index': 'src/solid/index.ts',
       'social/index': 'src/social/index.ts',
+      'file/index': 'src/file/index.ts',
     },
     format: ['esm', 'cjs'],
     dts: true,

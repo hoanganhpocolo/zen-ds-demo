@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { SidePanel, Button } from '@zen/components';
+import { ApiTable } from './ApiTable';
 
 function SidePanelDemo({ variant }: { variant: 'standard' | 'modal' }) {
   const [open, setOpen] = useState(false);
@@ -99,13 +100,26 @@ function SidePanelDemo({ variant }: { variant: 'standard' | 'modal' }) {
 
 export function SidePanelPage() {
   return (
-    <div className="docs-page-body">
-      <div className="docs-page-header" style={{ marginBottom: 'var(--gap-3xlarge)' }}>
-        <h1 className="text-h1 docs-page-title">Side Panel</h1>
-        <p className="text-body-base docs-page-description">
-          A panel that slides in from the side of the screen. Available in two variants: standard (pushes content, with left border) and modal (floats over content with backdrop).
-        </p>
+    <>
+      <div className="docs-page-header">
+        <div className="docs-page-header-top">
+          <div className="docs-page-header-breadcrumb">
+            <span className="text-subheading">
+              <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
+              <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
+            </span>
+          </div>
+        </div>
+        <div className="docs-page-header-divider" />
+        <h1 className="docs-page-title text-display-1">Side Panel</h1>
+        <div className="docs-page-text">
+          <p className="docs-page-description text-subheading">
+            A panel that slides in from the side of the screen. Available in two variants: standard (pushes content, with left border) and modal (floats over content with backdrop).
+          </p>
+        </div>
       </div>
+
+      <div className="docs-page-body">
 
       {/* Standard demo */}
       <h2 className="text-h3 docs-section-title">Standard</h2>
@@ -129,24 +143,19 @@ export function SidePanelPage() {
 
       {/* API */}
       <h2 className="text-h3 docs-section-title">API</h2>
-      <table className="docs-api-table">
-        <thead>
-          <tr>
-            <th className="text-body-small">Prop</th>
-            <th className="text-body-small">Type</th>
-            <th className="text-body-small">Default</th>
-            <th className="text-body-small">Description</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>variant</code></td><td><code>'standard' | 'modal'</code></td><td><code>'standard'</code></td><td>Panel variant</td></tr>
-          <tr><td><code>title</code></td><td><code>ReactNode</code></td><td>—</td><td>Heading text</td></tr>
-          <tr><td><code>description</code></td><td><code>ReactNode</code></td><td>—</td><td>Description below heading</td></tr>
-          <tr><td><code>footer</code></td><td><code>ReactNode</code></td><td>—</td><td>Footer slot — typically action buttons</td></tr>
-          <tr><td><code>onClose</code></td><td><code>() =&gt; void</code></td><td>—</td><td>Close button handler (hides button if not provided)</td></tr>
-          <tr><td><code>children</code></td><td><code>ReactNode</code></td><td>—</td><td>Body content</td></tr>
-        </tbody>
-      </table>
-    </div>
+      <ApiTable
+        columns={['Prop', 'Type', 'Default', 'Description']}
+        rows={[
+          [<code>variant</code>, <><code>'standard'</code> | <code>'modal'</code></>, <code>'standard'</code>, 'Panel variant'],
+          [<code>title</code>, <code>ReactNode</code>, '—', 'Heading text'],
+          [<code>description</code>, <code>ReactNode</code>, '—', 'Description below heading'],
+          [<code>footer</code>, <code>ReactNode</code>, '—', 'Footer slot — typically action buttons'],
+          [<code>onClose</code>, <code>() =&gt; void</code>, '—', 'Close button handler (hides button if not provided)'],
+          [<code>children</code>, <code>ReactNode</code>, '—', 'Body content'],
+        ]}
+      />
+
+      </div>
+    </>
   );
 }

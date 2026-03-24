@@ -18,8 +18,8 @@
 .square.size-l   { border-radius: var(--radius-base); }
 .square.size-m   { border-radius: var(--radius-base); }
 .square.size-s   { border-radius: var(--radius-small); }
-.square.size-xs  { border-radius: var(--radius-xsmall); }
-.square.size-2xs { border-radius: var(--radius-2xsmall); }
+.square.size-xs  { border-radius: var(--radius-small); }
+.square.size-2xs { border-radius: var(--radius-xsmall); }
 
 /* ── Sizes ── */
 
@@ -48,8 +48,8 @@
 .square.size-l   .inner { border-radius: calc(var(--radius-base) - 1px); }
 .square.size-m   .inner { border-radius: calc(var(--radius-base) - 1px); }
 .square.size-s   .inner { border-radius: calc(var(--radius-small) - 1px); }
-.square.size-xs  .inner { border-radius: calc(var(--radius-xsmall) - 1px); }
-.square.size-2xs .inner { border-radius: calc(var(--radius-2xsmall) - 1px); }
+.square.size-xs  .inner { border-radius: calc(var(--radius-small) - 1px); }
+.square.size-2xs .inner { border-radius: calc(var(--radius-xsmall) - 1px); }
 
 /* ── Initials (text content) ── */
 
@@ -143,23 +143,35 @@
   backdrop-filter: blur(50px);
 }
 
+/* ── Focus ring ── */
+
+.avatar:focus-visible {
+  outline: 3px solid var(--color-border-active-primary-solid);
+  outline-offset: 4px;
+}
+
 /* ── Status indicator ── */
 
 .status {
   position: absolute;
   border-radius: var(--radius-rounded);
   background: var(--color-bg-fill-positive-solid-default);
-  border-style: solid;
-  border-color: var(--color-border-inverse);
 }
 
-.size-2xl .status { width: 16px; height: 16px; border-width: 3px; bottom: 8px; right: 8px; }
-.size-xl  .status { width: 16px; height: 16px; border-width: 3px; bottom: 4px; right: 4px; }
-.size-l   .status { width: 16px; height: 16px; border-width: 3px; bottom: 0;   right: 0; }
-.size-m   .status { width: 12px; height: 12px; border-width: 2px; bottom: 0;   right: 0; }
-.size-s   .status { width: 8px;  height: 8px;  border-width: 2px; bottom: 0;   right: 0; }
-.size-xs  .status { width: 6px;  height: 6px;  border-width: 1px; bottom: -1px; right: -1px; }
-.size-2xs .status { width: 4px;  height: 4px;  border-width: 1px; bottom: -1px; right: -1px; }
+/* Status color variants */
+.status-active   { background: var(--color-bg-fill-positive-solid-default); }
+.status-pending  { background: var(--color-bg-fill-warning-solid-default); }
+.status-inactive { background: var(--color-bg-fill-negative-solid-default); }
+.status-disabled { background: var(--color-bg-fill-disabled); }
+
+/* Size × position — dot size from Figma, box-shadow = outside stroke */
+.size-2xl .status { width: 16px; height: 16px; box-shadow: 0 0 0 3px var(--color-border-inverse); bottom: 8px; right: 8px; }
+.size-xl  .status { width: 16px; height: 16px; box-shadow: 0 0 0 3px var(--color-border-inverse); bottom: 6px; right: 6px; }
+.size-l   .status { width: 16px; height: 16px; box-shadow: 0 0 0 3px var(--color-border-inverse); bottom: 0;   right: 0;   }
+.size-m   .status { width: 12px; height: 12px; box-shadow: 0 0 0 2px var(--color-border-inverse); bottom: 0;   right: 0;   }
+.size-s   .status { width: 8px;  height: 8px;  box-shadow: 0 0 0 2px var(--color-border-inverse); bottom: 1px; right: 1px; }
+.size-xs  .status { width: 4px;  height: 4px;  box-shadow: 0 0 0 1px var(--color-border-inverse); bottom: 1px; right: 1px; }
+.size-2xs .status { width: 4px;  height: 4px;  box-shadow: 0 0 0 1px var(--color-border-inverse); bottom: 1px; right: 1px; }
 
 /* ── Avatar Group ── */
 

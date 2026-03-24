@@ -1,6 +1,7 @@
 import { Button } from '@zen/components';
 import { Heart, SearchMedium, Plus, Settings01, Bell01, Star01, Mail01 } from '@zen/icons/line';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const allVariants = ['primary', 'accent', 'secondary', 'tertiary', 'danger', 'danger-subtle', 'positive', 'positive-subtle', 'flat-primary', 'flat-accent'] as const;
 const overlayVariants = ['inverse', 'white', 'white-overlay', 'black-overlay'] as const;
@@ -12,7 +13,7 @@ export function ButtonPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -52,6 +53,16 @@ export function ButtonPage() {
           title="Variant"
           description="14 button variants for different semantic purposes. Primary and Accent swap based on component theme."
           fullWidth
+          code={`<Button variant="primary">Primary</Button>
+<Button variant="accent">Accent</Button>
+<Button variant="secondary">Secondary</Button>
+<Button variant="tertiary">Tertiary</Button>
+<Button variant="danger">Danger</Button>
+<Button variant="danger-subtle">Danger Subtle</Button>
+<Button variant="positive">Positive</Button>
+<Button variant="positive-subtle">Positive Subtle</Button>
+<Button variant="flat-primary">Flat Primary</Button>
+<Button variant="flat-accent">Flat Accent</Button>`}
         >
           <Button variant="primary">Primary</Button>
           <Button variant="accent">Accent</Button>
@@ -69,6 +80,11 @@ export function ButtonPage() {
         <DemoBlock
           title="Size"
           description="6 sizes from 2XS (24px, icon-only) to XL (64px). Default is M."
+          code={`<Button variant="primary" size="xs">XS</Button>
+<Button variant="primary" size="s">Small</Button>
+<Button variant="primary" size="m">Medium</Button>
+<Button variant="primary" size="l">Large</Button>
+<Button variant="primary" size="xl">XL</Button>`}
         >
           <Button variant="primary" size="xs">XS</Button>
           <Button variant="primary" size="s">Small</Button>
@@ -81,6 +97,13 @@ export function ButtonPage() {
         <DemoBlock
           title="Icon"
           description="Leading icon adapts size to the button. Pair with text for clarity."
+          code={`import { Plus, SearchMedium, Settings01, Mail01 } from '@zen/icons/line';
+
+<Button variant="primary" size="xl" icon={<Plus size={32} />}>Create</Button>
+<Button variant="primary" size="l" icon={<SearchMedium size={24} />}>Search</Button>
+<Button variant="accent" size="m" icon={<Plus size={24} />}>New</Button>
+<Button variant="tertiary" size="s" icon={<Settings01 size={20} />}>Settings</Button>
+<Button variant="secondary" size="xs" icon={<Mail01 size={16} />}>Email</Button>`}
         >
           <Button variant="primary" size="xl" icon={<Plus size={32} />}>Create</Button>
           <Button variant="primary" size="l" icon={<SearchMedium size={24} />}>Search</Button>
@@ -93,6 +116,10 @@ export function ButtonPage() {
         <DemoBlock
           title="Loading"
           description="A loading state replaces the icon with a spinner and disables interaction."
+          code={`<Button variant="primary" loading>Saving...</Button>
+<Button variant="accent" loading>Processing</Button>
+<Button variant="secondary" loading>Loading</Button>
+<Button variant="tertiary" loading>Wait</Button>`}
         >
           <Button variant="primary" loading>Saving...</Button>
           <Button variant="accent" loading>Processing</Button>
@@ -104,6 +131,11 @@ export function ButtonPage() {
         <DemoBlock
           title="Disabled"
           description="Disabled buttons use dedicated disabled tokens — not opacity. Cursor changes to not-allowed."
+          code={`<Button variant="primary" disabled>Primary</Button>
+<Button variant="accent" disabled>Accent</Button>
+<Button variant="secondary" disabled>Secondary</Button>
+<Button variant="tertiary" disabled>Tertiary</Button>
+<Button variant="danger" disabled>Danger</Button>`}
         >
           <Button variant="primary" disabled>Primary</Button>
           <Button variant="accent" disabled>Accent</Button>
@@ -116,6 +148,15 @@ export function ButtonPage() {
         <DemoBlock
           title="Icon Only"
           description="Omit children to get a square icon button. Supports all sizes including 2XS (24px)."
+          code={`import { Plus } from '@zen/icons/line';
+
+// Omit children — icon prop alone creates a square button
+<Button variant="primary" size="2xs" icon={<Plus size={16} />} />
+<Button variant="primary" size="xs" icon={<Plus size={20} />} />
+<Button variant="primary" size="s" icon={<Plus size={20} />} />
+<Button variant="primary" size="m" icon={<Plus size={24} />} />
+<Button variant="primary" size="l" icon={<Plus size={24} />} />
+<Button variant="primary" size="xl" icon={<Plus size={32} />} />`}
         >
           <Button variant="primary" size="2xs" icon={<Plus size={16} />} />
           <Button variant="primary" size="xs" icon={<Plus size={20} />} />
@@ -238,74 +279,20 @@ export function ButtonPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>variant</code></td>
-            <td>Visual style of the button</td>
-            <td>
-              <code>'primary'</code> | <code>'accent'</code> | <code>'secondary'</code> | <code>'tertiary'</code> | <code>'danger'</code> | <code>'danger-subtle'</code> | <code>'positive'</code> | <code>'positive-subtle'</code> | <code>'flat-primary'</code> | <code>'flat-accent'</code> | <code>'inverse'</code> | <code>'white'</code> | <code>'white-overlay'</code> | <code>'black-overlay'</code>
-            </td>
-            <td><code>'primary'</code></td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Button size</td>
-            <td><code>'2xs'</code> | <code>'xs'</code> | <code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>icon</code></td>
-            <td>Leading icon element. When passed without children, renders as icon-only (square) button.</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>iconRight</code></td>
-            <td>Trailing icon element</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>loading</code></td>
-            <td>Shows a spinner and disables interaction</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>disabled</code></td>
-            <td>Prevents interaction and applies disabled styling</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>onClick</code></td>
-            <td>Click handler</td>
-            <td><code>(e: MouseEvent) =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>className</code></td>
-            <td>Additional CSS class name</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>children</code></td>
-            <td>Button label text. Omit for icon-only mode.</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>variant</code>, 'Visual style of the button', <><code>'primary'</code> | <code>'accent'</code> | <code>'secondary'</code> | <code>'tertiary'</code> | <code>'danger'</code> | <code>'danger-subtle'</code> | <code>'positive'</code> | <code>'positive-subtle'</code> | <code>'flat-primary'</code> | <code>'flat-accent'</code> | <code>'inverse'</code> | <code>'white'</code> | <code>'white-overlay'</code> | <code>'black-overlay'</code></>, <code>'primary'</code>],
+          [<code>size</code>, 'Button size', <><code>'2xs'</code> | <code>'xs'</code> | <code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code></>, <code>'m'</code>],
+          [<code>icon</code>, 'Leading icon element. When passed without children, renders as icon-only (square) button.', <code>ReactNode</code>, '—'],
+          [<code>iconRight</code>, 'Trailing icon element', <code>ReactNode</code>, '—'],
+          [<code>loading</code>, 'Shows a spinner and disables interaction', <code>boolean</code>, <code>false</code>],
+          [<code>disabled</code>, 'Prevents interaction and applies disabled styling', <code>boolean</code>, <code>false</code>],
+          [<code>onClick</code>, 'Click handler', <code>(e: MouseEvent) =&gt; void</code>, '—'],
+          [<code>className</code>, 'Additional CSS class name', <code>string</code>, '—'],
+          [<code>children</code>, 'Button label text. Omit for icon-only mode.', <code>ReactNode</code>, '—'],
+        ]}
+      />
 
       {/* ── Design Tokens ── */}
       <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-3xlarge)' }}>Design Tokens</h2>
@@ -314,87 +301,31 @@ export function ButtonPage() {
       <p className="text-body-small" style={{ color: 'var(--color-content-neutral-secondary)', marginBottom: 'var(--gap-medium)' }}>
         Primary and Accent variants use component tokens that swap via <code className="docs-code">data-component-theme</code> attribute.
       </p>
-      <table className="docs-api-table text-body-small" style={{ marginBottom: 'var(--gap-xlarge)' }}>
-        <thead>
-          <tr>
-            <th>Token</th>
-            <th>Brand mode</th>
-            <th>Neutral mode</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>--comp-button-primary-color-bg-default</code></td>
-            <td>Accent solid</td>
-            <td>Neutral solid</td>
-          </tr>
-          <tr>
-            <td><code>--comp-button-accent-color-bg-default</code></td>
-            <td>Neutral solid</td>
-            <td>Accent solid</td>
-          </tr>
-          <tr>
-            <td><code>--comp-button-primary-color-border-focused</code></td>
-            <td>Accent focus ring</td>
-            <td>Neutral focus ring</td>
-          </tr>
-          <tr>
-            <td><code>--comp-button-accent-color-border-focused</code></td>
-            <td>Neutral focus ring</td>
-            <td>Accent focus ring</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Token', 'Brand mode', 'Neutral mode']}
+        colWidths={['50%', '25%', '25%']}
+        rows={[
+          [<code>--comp-button-primary-color-bg-default</code>, 'Accent solid', 'Neutral solid'],
+          [<code>--comp-button-accent-color-bg-default</code>, 'Neutral solid', 'Accent solid'],
+          [<code>--comp-button-primary-color-border-focused</code>, 'Accent focus ring', 'Neutral focus ring'],
+          [<code>--comp-button-accent-color-border-focused</code>, 'Neutral focus ring', 'Accent focus ring'],
+        ]}
+        style={{ marginBottom: 'var(--gap-xlarge)' }}
+      />
 
       <h3 className="text-body-base-primary" style={{ marginBottom: 'var(--gap-small)' }}>Size Tokens</h3>
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Size</th>
-            <th>Height</th>
-            <th>Recommended icon</th>
-            <th>Token</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>2xs</code></td>
-            <td>24px</td>
-            <td>16px</td>
-            <td><code>--button-size-2xsmall</code></td>
-          </tr>
-          <tr>
-            <td><code>xs</code></td>
-            <td>32px</td>
-            <td>20px</td>
-            <td><code>--button-size-xsmall</code></td>
-          </tr>
-          <tr>
-            <td><code>s</code></td>
-            <td>40px</td>
-            <td>20px</td>
-            <td><code>--button-size-small</code></td>
-          </tr>
-          <tr>
-            <td><code>m</code></td>
-            <td>48px</td>
-            <td>24px</td>
-            <td><code>--button-size-medium</code></td>
-          </tr>
-          <tr>
-            <td><code>l</code></td>
-            <td>56px</td>
-            <td>24px</td>
-            <td><code>--button-size-large</code></td>
-          </tr>
-          <tr>
-            <td><code>xl</code></td>
-            <td>64px</td>
-            <td>32px</td>
-            <td><code>--button-size-xlarge</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Size', 'Height', 'Recommended icon', 'Token']}
+        colWidths={['12%', '15%', '23%', '50%']}
+        rows={[
+          [<code>2xs</code>, '24px', '16px', <code>--button-size-2xsmall</code>],
+          [<code>xs</code>, '32px', '20px', <code>--button-size-xsmall</code>],
+          [<code>s</code>, '40px', '20px', <code>--button-size-small</code>],
+          [<code>m</code>, '48px', '24px', <code>--button-size-medium</code>],
+          [<code>l</code>, '56px', '24px', <code>--button-size-large</code>],
+          [<code>xl</code>, '64px', '32px', <code>--button-size-xlarge</code>],
+        ]}
+      />
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import { Breadcrumb, BreadcrumbItem } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function BreadcrumbPage() {
   return (
@@ -8,7 +9,7 @@ export function BreadcrumbPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -118,68 +119,24 @@ export function BreadcrumbPage() {
       <h2 className="docs-section-title text-h3">API</h2>
 
       <h3 className="text-body-base" style={{ fontWeight: 'var(--font-weight-primary)', marginBottom: 'var(--gap-small)' }}>Breadcrumb</h3>
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>separator</code></td>
-            <td>Custom separator between items</td>
-            <td><code>ReactNode</code></td>
-            <td>Chevron right icon</td>
-          </tr>
-          <tr>
-            <td><code>children</code></td>
-            <td>BreadcrumbItem elements</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>separator</code>, 'Custom separator between items', <code>ReactNode</code>, 'Chevron right icon'],
+          [<code>children</code>, 'BreadcrumbItem elements', <code>ReactNode</code>, '—'],
+        ]}
+      />
 
       <h3 className="text-body-base" style={{ fontWeight: 'var(--font-weight-primary)', marginTop: 'var(--gap-xlarge)', marginBottom: 'var(--gap-small)' }}>BreadcrumbItem</h3>
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>master</code></td>
-            <td>Show home icon (root/first item)</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>icon</code></td>
-            <td>Custom icon (replaces default home icon)</td>
-            <td><code>ReactNode</code></td>
-            <td>Home icon</td>
-          </tr>
-          <tr>
-            <td><code>href</code></td>
-            <td>Link URL</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>children</code></td>
-            <td>Label text</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>master</code>, 'Show home icon (root/first item)', <code>boolean</code>, <code>false</code>],
+          [<code>icon</code>, 'Custom icon (replaces default home icon)', <code>ReactNode</code>, 'Home icon'],
+          [<code>href</code>, 'Link URL', <code>string</code>, '—'],
+          [<code>children</code>, 'Label text', <code>ReactNode</code>, '—'],
+        ]}
+      />
       </div>
     </>
   );

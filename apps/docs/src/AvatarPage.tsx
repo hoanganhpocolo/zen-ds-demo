@@ -1,5 +1,6 @@
 import { Avatar, AvatarGroup } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const COLORS = ['accent', 'blue', 'crimson', 'cyan', 'green', 'indigo', 'orange', 'pink', 'plum', 'purple', 'red', 'teal', 'violet', 'yellow'] as const;
 
@@ -20,7 +21,7 @@ export function AvatarPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -108,15 +109,25 @@ export function AvatarPage() {
 
         {/* Status */}
         <DemoBlock
-          title="Status Indicator"
-          description="Show an online/active status dot. Scales with avatar size."
+          title="Status — Active"
+          description="Show online/active status. Scales with avatar size."
         >
-          <Avatar size="2xl" color="accent" status>A</Avatar>
-          <Avatar size="xl" color="blue" status>B</Avatar>
-          <Avatar size="l" color="green" status>C</Avatar>
-          <Avatar size="m" color="purple" status>D</Avatar>
-          <Avatar size="s" color="red" status>E</Avatar>
-          <Avatar size="xs" color="orange" status>F</Avatar>
+          <Avatar size="2xl" color="accent" status="active">A</Avatar>
+          <Avatar size="xl" color="blue" status="active">B</Avatar>
+          <Avatar size="l" color="green" status="active">C</Avatar>
+          <Avatar size="m" color="purple" status="active">D</Avatar>
+          <Avatar size="s" color="red" status="active">E</Avatar>
+          <Avatar size="xs" color="orange" status="active">F</Avatar>
+        </DemoBlock>
+
+        <DemoBlock
+          title="Status variants"
+          description="active · pending · inactive · disabled"
+        >
+          <Avatar size="m" color="accent" status="active">A</Avatar>
+          <Avatar size="m" color="accent" status="pending">P</Avatar>
+          <Avatar size="m" color="accent" status="inactive">I</Avatar>
+          <Avatar size="m" color="accent" status="disabled">D</Avatar>
         </DemoBlock>
 
         {/* Square + Solid + Status */}
@@ -124,9 +135,9 @@ export function AvatarPage() {
           title="Square + Solid + Status"
           description="All features combined."
         >
-          <Avatar size="xl" shape="square" color="crimson" background="solid" status>Z</Avatar>
-          <Avatar size="l" shape="square" color="indigo" background="solid" status>K</Avatar>
-          <Avatar size="m" shape="square" color="teal" background="solid" status>M</Avatar>
+          <Avatar size="xl" shape="square" color="crimson" background="solid" status="active">Z</Avatar>
+          <Avatar size="l" shape="square" color="indigo" background="solid" status="pending">K</Avatar>
+          <Avatar size="m" shape="square" color="teal" background="solid" status="inactive">M</Avatar>
         </DemoBlock>
 
         {/* Avatar Group */}
@@ -183,122 +194,47 @@ export function AvatarPage() {
       {/* ── API: Avatar ── */}
       <h2 className="docs-section-title text-h3">API — Avatar</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>children</code></td>
-            <td>Text content (initials). Ignored when <code>src</code> is provided.</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>src</code></td>
-            <td>Image source URL</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>alt</code></td>
-            <td>Alt text for the image</td>
-            <td><code>string</code></td>
-            <td><code>''</code></td>
-          </tr>
-          <tr>
-            <td><code>shape</code></td>
-            <td>Shape of the avatar</td>
-            <td><code>'circle'</code> | <code>'square'</code></td>
-            <td><code>'circle'</code></td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Size variant</td>
-            <td><code>'2xs'</code> | <code>'xs'</code> | <code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code> | <code>'2xl'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>color</code></td>
-            <td>Color variant</td>
-            <td><code>'accent'</code> | <code>'neutral'</code> | <code>'blue'</code> | <code>'brown'</code> | <code>'crimson'</code> | <code>'cyan'</code> | <code>'green'</code> | <code>'indigo'</code> | <code>'orange'</code> | <code>'pink'</code> | <code>'plum'</code> | <code>'purple'</code> | <code>'red'</code> | <code>'teal'</code> | <code>'violet'</code> | <code>'yellow'</code></td>
-            <td><code>'accent'</code></td>
-          </tr>
-          <tr>
-            <td><code>background</code></td>
-            <td>Background style</td>
-            <td><code>'subtle'</code> | <code>'solid'</code></td>
-            <td><code>'subtle'</code></td>
-          </tr>
-          <tr>
-            <td><code>status</code></td>
-            <td>Show online status indicator</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>children</code>, <>Text content (initials). Ignored when <code>src</code> is provided.</>, <code>ReactNode</code>, '—'],
+          [<code>src</code>, 'Image source URL', <code>string</code>, '—'],
+          [<code>alt</code>, 'Alt text for the image', <code>string</code>, <code>''</code>],
+          [<code>shape</code>, 'Shape of the avatar', <><code>'circle'</code> | <code>'square'</code></>, <code>'circle'</code>],
+          [<code>size</code>, 'Size variant', <><code>'2xs'</code> | <code>'xs'</code> | <code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code> | <code>'2xl'</code></>, <code>'m'</code>],
+          [<code>color</code>, 'Color variant', <><code>'accent'</code> | <code>'neutral'</code> | <code>'blue'</code> | <code>'brown'</code> | <code>'crimson'</code> | <code>'cyan'</code> | <code>'green'</code> | <code>'indigo'</code> | <code>'orange'</code> | <code>'pink'</code> | <code>'plum'</code> | <code>'purple'</code> | <code>'red'</code> | <code>'teal'</code> | <code>'violet'</code> | <code>'yellow'</code></>, <code>'accent'</code>],
+          [<code>background</code>, 'Background style', <><code>'subtle'</code> | <code>'solid'</code></>, <code>'subtle'</code>],
+          [<code>status</code>, 'Show online status indicator', <code>boolean</code>, <code>false</code>],
+        ]}
+      />
 
       {/* ── API: AvatarGroup ── */}
       <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-3xlarge)' }}>API — AvatarGroup</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>children</code></td>
-            <td>Avatar elements</td>
-            <td><code>ReactElement&lt;AvatarProps&gt;[]</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Size applied to all avatars</td>
-            <td><code>'2xs'</code> | <code>'xs'</code> | <code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code> | <code>'2xl'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>max</code></td>
-            <td>Maximum visible avatars before "+N" overflow</td>
-            <td><code>number</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>children</code>, 'Avatar elements', <code>ReactElement&lt;AvatarProps&gt;[]</code>, '—'],
+          [<code>size</code>, 'Size applied to all avatars', <><code>'2xs'</code> | <code>'xs'</code> | <code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code> | <code>'2xl'</code></>, <code>'m'</code>],
+          [<code>max</code>, 'Maximum visible avatars before "+N" overflow', <code>number</code>, '—'],
+        ]}
+      />
 
       {/* ── Design Tokens ── */}
       <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-3xlarge)' }}>Design Tokens</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Size</th>
-            <th>Dimension</th>
-            <th>Token</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><code>2xl</code></td><td>100px</td><td><code>--image-size-2xlarge</code></td></tr>
-          <tr><td><code>xl</code></td><td>80px</td><td><code>--image-size-xlarge</code></td></tr>
-          <tr><td><code>l</code></td><td>60px</td><td><code>--image-size-large</code></td></tr>
-          <tr><td><code>m</code></td><td>40px</td><td><code>--image-size-medium</code></td></tr>
-          <tr><td><code>s</code></td><td>32px</td><td><code>--image-size-small</code></td></tr>
-          <tr><td><code>xs</code></td><td>24px</td><td><code>--image-size-xsmall</code></td></tr>
-          <tr><td><code>2xs</code></td><td>20px</td><td><code>--image-size-2xsmall</code></td></tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Size', 'Dimension', 'Token']}
+        rows={[
+          [<code>2xl</code>, '100px', <code>--image-size-2xlarge</code>],
+          [<code>xl</code>, '80px', <code>--image-size-xlarge</code>],
+          [<code>l</code>, '60px', <code>--image-size-large</code>],
+          [<code>m</code>, '40px', <code>--image-size-medium</code>],
+          [<code>s</code>, '32px', <code>--image-size-small</code>],
+          [<code>xs</code>, '24px', <code>--image-size-xsmall</code>],
+          [<code>2xs</code>, '20px', <code>--image-size-2xsmall</code>],
+        ]}
+      />
       </div>
     </>
   );

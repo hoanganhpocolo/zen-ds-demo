@@ -1,0 +1,387 @@
+/* ── Hidden native input ── */
+
+.native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Label ── */
+
+.label {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-small);
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Help text ── */
+
+.help-text {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+.help-text-message {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-neutral-tertiary);
+  flex: 1;
+}
+
+/* ── Root wrapper ── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-xsmall);
+  width: 100%;
+}
+
+/* ── Drop zone ── */
+
+/* Extended=Yes (default): column, centered icon + text + caption */
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-medium);
+  padding: var(--padding-medium);
+  width: 100%;
+  border: 2px dashed var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  background: transparent;
+  cursor: pointer;
+  transition: border-color 150ms ease;
+  text-align: center;
+}
+
+/* Extended=No (compact): inline row, icon + text, no caption */
+.drop-zone-compact {
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--gap-xsmall);
+  padding: var(--padding-small) var(--padding-medium);
+  border-radius: var(--radius-base);
+  text-align: left;
+}
+
+/* Hover state: subtle border darkening */
+.drop-zone:hover {
+  border-color: var(--color-border-neutral-subtle-hover);
+}
+
+/* Dragover state: accent focused border */
+.drop-zone-dragover {
+  border-color: var(--color-border-focused-accent);
+  cursor: copy;
+}
+
+/* Focus-visible state: same accent border as dragover */
+.drop-zone:focus-visible {
+  border-color: var(--color-border-focused-accent);
+  outline: none;
+}
+
+/* Alert/Error state: negative border */
+.drop-zone-error {
+  border-color: var(--color-border-negative-solid-default);
+}
+
+/* Error persists on hover/focus too */
+.drop-zone-error:hover,
+.drop-zone-error:focus-visible {
+  border-color: var(--color-border-negative-solid-default);
+}
+
+/* ── Drop zone content ── */
+
+.drop-zone-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--color-content-neutral-secondary);
+}
+
+.drop-zone-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+  width: 100%;
+  min-width: 0;
+}
+
+/* In compact mode, content fills remaining space */
+.drop-zone-compact .drop-zone-content {
+  flex: 1;
+}
+
+.drop-zone-title {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+}
+
+.drop-zone-caption {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-neutral-tertiary);
+}
+
+
+/* ── File list ── */
+
+.file-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+  width: 100%;
+}
+
+/* ── File item ── */
+
+.file-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  padding: var(--padding-medium) var(--padding-medium) var(--padding-small);
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  width: 100%;
+}
+
+/* Uploaded / Replaceable: no progress bar → tighter padding */
+.file-item-done {
+  padding-bottom: var(--padding-medium);
+  gap: 0;
+}
+
+/* Alert/Error state: negative subtle background, no border */
+.file-item-alert {
+  background: var(--color-bg-fill-negative-subtle-default);
+  border-color: transparent;
+  padding-bottom: var(--padding-medium);
+  gap: 0;
+}
+
+/* ── File item with thumbnail (icon or photo on left) ── */
+
+.file-item-thumbnail {
+  display: flex;
+  gap: var(--gap-small);
+  align-items: center;
+  width: 100%;
+}
+
+/* File-type icon: 32×40 */
+.file-item-file-icon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
+/* Photo thumbnail: 40×40 rounded */
+.file-item-photo {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-small);
+  overflow: hidden;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── File item body (name + details + actions) ── */
+
+.file-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+  flex: 1;
+  min-width: 0;
+}
+
+.file-item-main {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  width: 100%;
+}
+
+.file-item-name {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-body-small);
+  color: var(--color-content-neutral-primary);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Right-side action buttons */
+.file-item-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  flex-shrink: 0;
+  height: 20px;
+}
+
+.file-item-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-content-neutral-tertiary);
+  transition: color 150ms ease;
+  flex-shrink: 0;
+}
+
+.file-item-action-btn:hover {
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Details row (size • time or error message) ── */
+
+.file-item-details {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  width: 100%;
+}
+
+.file-item-size {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-neutral-tertiary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.file-item-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-content-neutral-tertiary);
+  flex-shrink: 0;
+}
+
+.file-item-time {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-neutral-tertiary);
+  flex: 1;
+}
+
+/* ── Error / Alert details ── */
+
+.file-item-error-info {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  flex-shrink: 0;
+}
+
+.file-item-error-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-content-negative-secondary);
+}
+
+.file-item-error-msg {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-negative-secondary);
+  white-space: nowrap;
+}
+
+.file-item-error-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-content-negative-primary);
+  flex-shrink: 0;
+}
+
+.file-item-error-size {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-negative-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── Progress bar ── */
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--color-bg-fill-neutral-subtle-default);
+  border-radius: var(--radius-rounded);
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background: var(--color-bg-fill-active-neutral-solid);
+  border-radius: var(--radius-rounded);
+  transition: width 300ms ease;
+}
+
+/* ── File type icon (PDF, etc.) ── */
+
+.file-type-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 40px;
+  flex-shrink: 0;
+}

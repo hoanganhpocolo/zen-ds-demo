@@ -1,0 +1,74 @@
+.root {
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  font-family: var(--font-family-dev);
+  font-size: 13px;
+  line-height: 1.65;
+  flex-shrink: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px var(--padding-small);
+  background: var(--color-bg-fill-neutral-ghost-default);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+.lang {
+  font-size: 11px;
+  font-weight: var(--font-weight-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-content-neutral-tertiary);
+}
+
+.copy {
+  font-size: 12px;
+  font-family: var(--font-family-sans);
+  color: var(--color-content-neutral-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px var(--padding-xsmall);
+  border-radius: var(--radius-xsmall);
+  transition: color 120ms, background 120ms;
+  min-width: 60px;
+  text-align: center;
+}
+
+.copy:hover {
+  color: var(--color-content-neutral-primary);
+  background: var(--color-bg-fill-neutral-ghost-hover);
+}
+
+.pre {
+  margin: 0;
+  padding: var(--padding-medium) var(--padding-large);
+  overflow-x: auto;
+  background: var(--color-bg-surface-default);
+  color: var(--color-content-neutral-primary);
+  tab-size: 2;
+}
+
+/* ── Syntax token colors ── */
+
+/* Keywords — accent/brand */
+.kw  { color: var(--color-content-accent-primary); }
+
+/* Strings — positive/green */
+.str { color: var(--color-content-positive-primary); }
+
+/* Comments — muted */
+.cmt { color: var(--color-content-neutral-tertiary); font-style: italic; }
+
+/* JSX tags — info/blue */
+.tag { color: var(--color-content-info-primary); }
+
+/* Numbers — warning/amber */
+.num { color: var(--color-content-warning-primary); }
+
+/* Punctuation — slightly muted */
+.punc { color: var(--color-content-neutral-secondary); }

@@ -378,25 +378,9 @@
   flex-shrink: 0;
 }
 
-.label {
+.label-wrapper {
   white-space: nowrap;
-  padding: 0 var(--button-label-text-wrapper-padding);
-}
-
-.label-wrapper-padding-xl {
-  padding: 0 var(--button-spacing-xlarge-text-wrapper-padding);
-}
-.label-wrapper-padding-l {
-  padding: 0 var(--button-spacing-large-text-wrapper-padding);
-}
-.label-wrapper-padding-m {
-  padding: 0 var(--button-spacing-medium-text-wrapper-padding);
-}
-.label-wrapper-padding-s {
-  padding: 0 var(--button-spacing-small-text-wrapper-padding);
-}
-.label-wrapper-padding-xs {
-  padding: 0 var(--button-spacing-xsmall-text-wrapper-padding);
+  padding: 0 4px;
 }
 
 .spinner {

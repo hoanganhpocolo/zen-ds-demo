@@ -6,6 +6,11 @@
   width: 100%;
 }
 
+.root-vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
 /* ── Step ── */
 
 .step {
@@ -35,7 +40,8 @@
   background: var(--color-bg-fill-neutral-subtle-default);
 }
 
-.line-hidden {
+.line-hidden,
+.line-v.line-hidden {
   background: transparent;
 }
 
@@ -70,7 +76,7 @@
 
 .indicator-error {
   background: var(--color-bg-fill-negative-subtle-default);
-  color: var(--color-content-negative-primary);
+  color: var(--color-content-negative-highlight);
 }
 
 /* ── Focus ring ── */
@@ -135,8 +141,66 @@
 }
 
 .title-error {
+  color: var(--color-content-negative-highlight);
+}
+
+.subtitle-error {
   color: var(--color-content-negative-primary);
 }
+
+/* ── Vertical step ── */
+
+.step-v {
+  display: flex;
+  flex-direction: row;
+  gap: var(--gap-xsmall);
+  min-height: 82px;
+  align-items: stretch;
+}
+
+/* Left column: top-line + indicator + bottom-line */
+
+.step-v-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  flex-shrink: 0;
+}
+
+/* Vertical connector line */
+
+.line-v {
+  flex: 1;
+  min-height: 0;
+  width: 2px;
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+.line-v-dark {
+  background: var(--color-bg-fill-neutral-solid-default);
+}
+
+.line-v-error {
+  background: var(--color-bg-fill-negative-solid-default);
+}
+
+/* Vertical content: left-aligned */
+
+.content-v {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+  padding: 0 var(--padding-xsmall);
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+  overflow: hidden;
+}
+
+/* ── Subtitle ── */
 
 .subtitle {
   font-family: var(--font-family-sans);

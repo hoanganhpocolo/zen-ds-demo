@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { NumberField } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function NumberFieldPage() {
   const [qty, setQty] = useState<number | undefined>(1);
@@ -12,7 +13,7 @@ export function NumberFieldPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -147,84 +148,22 @@ export function NumberFieldPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>label</code></td>
-            <td>Label text above the field</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Size variant</td>
-            <td><code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>align</code></td>
-            <td>Layout: left = trailing [−][+], center = split [−] value [+]</td>
-            <td><code>'left'</code> | <code>'center'</code></td>
-            <td><code>'left'</code></td>
-          </tr>
-          <tr>
-            <td><code>step</code></td>
-            <td>Step increment</td>
-            <td><code>number</code></td>
-            <td><code>1</code></td>
-          </tr>
-          <tr>
-            <td><code>min</code></td>
-            <td>Minimum value</td>
-            <td><code>number</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>max</code></td>
-            <td>Maximum value</td>
-            <td><code>number</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>leading</code></td>
-            <td>Leading element (left-aligned mode only)</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>helpText</code></td>
-            <td>Help text below the field</td>
-            <td><code>string</code> | <code>{'{ message, tone?, icon? }'}</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>error</code></td>
-            <td>Error state</td>
-            <td><code>boolean | string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>disabled</code></td>
-            <td>Disable the input</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>readOnly</code></td>
-            <td>Read-only mode</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>label</code>, 'Label text above the field', <code>string</code>, '—'],
+          [<code>size</code>, 'Size variant', <><code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code></>, <code>'m'</code>],
+          [<code>align</code>, 'Layout: left = trailing [−][+], center = split [−] value [+]', <><code>'left'</code> | <code>'center'</code></>, <code>'left'</code>],
+          [<code>step</code>, 'Step increment', <code>number</code>, <code>1</code>],
+          [<code>min</code>, 'Minimum value', <code>number</code>, '—'],
+          [<code>max</code>, 'Maximum value', <code>number</code>, '—'],
+          [<code>leading</code>, 'Leading element (left-aligned mode only)', <code>ReactNode</code>, '—'],
+          [<code>helpText</code>, 'Help text below the field', <><code>string</code> | <code>{'{ message, tone?, icon? }'}</code></>, '—'],
+          [<code>error</code>, 'Error state', <code>boolean | string</code>, '—'],
+          [<code>disabled</code>, 'Disable the input', <code>boolean</code>, <code>false</code>],
+          [<code>readOnly</code>, 'Read-only mode', <code>boolean</code>, <code>false</code>],
+        ]}
+      />
       </div>
     </>
   );

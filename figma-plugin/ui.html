@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: Inter, -apple-system, sans-serif; font-size: 12px; background: #fff; color: #1a1a1a; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+
+  .tabs { display: flex; border-bottom: 1px solid #e5e5e5; flex-shrink: 0; }
+  .tab { flex: 1; padding: 9px 4px; border: none; background: none; font-size: 11px; font-weight: 500; color: #888; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: all 120ms; }
+  .tab.active { color: #7c3aed; border-bottom-color: #7c3aed; }
+
+  .panel { display: none; flex: 1; flex-direction: column; overflow: hidden; }
+  .panel.active { display: flex; }
+
+  .sel-bar { padding: 7px 12px; background: #f7f7f7; border-bottom: 1px solid #eee; font-size: 11px; color: #666; flex-shrink: 0; }
+  .sel-bar span { font-weight: 600; color: #111; }
+
+  /* ── Import panel ── */
+  .import-area {
+    flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 20px; gap: 12px; text-align: center;
+  }
+  .drop-zone {
+    width: 100%; padding: 28px 16px; border: 2px dashed #d0c4f7; border-radius: 12px;
+    cursor: pointer; transition: all 150ms; background: #faf8ff;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .drop-zone:hover, .drop-zone.drag-over { border-color: #7c3aed; background: #f0ebff; }
+  .drop-zone-icon { font-size: 28px; }
+  .drop-zone-title { font-size: 13px; font-weight: 600; color: #444; }
+  .drop-zone-sub { font-size: 11px; color: #999; }
+  #file-input { display: none; }
+
+  .import-info { font-size: 11px; color: #888; line-height: 1.6; }
+  .import-info code { background: #f0ebff; color: #7c3aed; padding: 1px 5px; border-radius: 4px; font-family: monospace; font-size: 10px; }
+
+  /* ── Preview results ── */
+  .preview-header { padding: 8px 12px; background: #f7f7f7; border-bottom: 1px solid #eee; font-size: 11px; color: #555; flex-shrink: 0; display: flex; align-items: center; justify-content: space-between; }
+  .preview-list { flex: 1; overflow-y: auto; padding: 4px 8px; }
+  .preview-item { display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-radius: 6px; margin-bottom: 3px; }
+  .preview-item:hover { background: #f7f5ff; }
+  .preview-item input[type=checkbox] { accent-color: #7c3aed; flex-shrink: 0; }
+  .preview-info { flex: 1; min-width: 0; }
+  .preview-comp { font-size: 12px; font-weight: 500; }
+  .preview-props { font-size: 10px; color: #7c3aed; margin-top: 1px; }
+  .preview-layer { font-size: 10px; color: #aaa; }
+  .conf { font-size: 9px; padding: 1px 5px; border-radius: 8px; font-weight: 600; flex-shrink: 0; }
+  .conf-high { background: #d1fae5; color: #065f46; }
+  .conf-mid  { background: #fef3c7; color: #92400e; }
+  .conf-low  { background: #fee2e2; color: #991b1b; }
+
+  /* ── Manual replace panel ── */
+  .search-wrap { padding: 7px 10px; flex-shrink: 0; border-bottom: 1px solid #eee; }
+  .search-wrap input { width: 100%; padding: 6px 10px; border: 1px solid #ddd; border-radius: 6px; font-size: 11px; outline: none; }
+  .search-wrap input:focus { border-color: #7c3aed; }
+  .comp-list { flex: 1; overflow-y: auto; padding: 4px 0; }
+  .cat-label { padding: 8px 12px 3px; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: #bbb; }
+  .comp-item { display: flex; align-items: center; padding: 6px 12px; cursor: pointer; border-radius: 4px; margin: 0 4px; transition: background 80ms; }
+  .comp-item:hover { background: #f0ebff; }
+  .comp-item.selected { background: #ede9fe; }
+  .comp-item-name { flex: 1; font-size: 12px; font-weight: 500; }
+
+  /* ── Scan panel ── */
+  .scan-area { flex: 1; overflow-y: auto; padding: 8px; }
+  .empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 8px; color: #bbb; text-align: center; padding: 20px; line-height: 1.6; font-size: 11px; }
+  .empty-icon { font-size: 30px; }
+  .match-item { border: 1px solid #eee; border-radius: 8px; padding: 7px 10px; margin-bottom: 5px; display: flex; align-items: center; gap: 8px; }
+  .match-item input[type=checkbox] { accent-color: #7c3aed; flex-shrink: 0; }
+  .match-info { flex: 1; min-width: 0; }
+  .match-original { font-size: 10px; color: #aaa; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .match-arrow { font-size: 10px; color: #ddd; }
+  .match-target { font-size: 12px; font-weight: 500; color: #7c3aed; }
+
+  /* ── Footer ── */
+  .footer { padding: 9px 12px; border-top: 1px solid #eee; display: flex; gap: 7px; flex-shrink: 0; }
+  .btn { flex: 1; padding: 8px; border-radius: 7px; border: none; font-size: 12px; font-weight: 500; cursor: pointer; transition: all 120ms; }
+  .btn-primary { background: #7c3aed; color: #fff; }
+  .btn-primary:hover { background: #6d28d9; }
+  .btn-primary:disabled { background: #c4b5fd; cursor: not-allowed; }
+  .btn-secondary { background: #f0f0f0; color: #444; }
+  .btn-secondary:hover { background: #e5e5e5; }
+  .resize-row { padding: 2px 12px 8px; display: flex; align-items: center; gap: 6px; font-size: 11px; color: #666; flex-shrink: 0; }
+  .resize-row input[type=checkbox] { accent-color: #7c3aed; }
+
+  .toast { position: fixed; bottom: 56px; left: 50%; transform: translateX(-50%) translateY(8px); background: #1a1a1a; color: #fff; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 500; opacity: 0; transition: all 180ms; pointer-events: none; white-space: nowrap; z-index: 100; }
+  .toast.error { background: #dc2626; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('import')">Import JSON</button>
+  <button class="tab" onclick="switchTab('scan')">Scan</button>
+  <button class="tab" onclick="switchTab('manual')">Manual</button>
+</div>
+
+<!-- ══ IMPORT JSON ══ -->
+<div class="panel active" id="panel-import">
+  <div class="sel-bar" id="sel-import">Select the captured frame before importing</div>
+
+  <div id="import-drop-view" class="import-area">
+    <div class="drop-zone" id="drop-zone" onclick="document.getElementById('file-input').click()"
+         ondragover="onDragOver(event)" ondragleave="onDragLeave(event)" ondrop="onDrop(event)">
+      <div class="drop-zone-icon">📂</div>
+      <div class="drop-zone-title">Drop zen-map.json here</div>
+      <div class="drop-zone-sub">or click to browse</div>
+    </div>
+    <input type="file" id="file-input" accept=".json" onchange="onFileSelect(event)" />
+    <div class="import-info">
+      Generate the file by opening the app in capture mode.<br/>
+      The file downloads automatically as <code>zen-map.json</code>.<br/>
+      Or run <code>window.__zenExport()</code> in the console.
+    </div>
+  </div>
+
+  <div id="import-preview-view" style="display:none; flex:1; flex-direction:column; overflow:hidden;">
+    <div class="preview-header">
+      <span id="preview-count">0 components found</span>
+      <button style="font-size:11px;border:none;background:none;color:#7c3aed;cursor:pointer" onclick="resetImport()">↩ Change file</button>
+    </div>
+    <div class="preview-list" id="preview-list"></div>
+    <div class="footer">
+      <button class="btn btn-secondary" onclick="toggleAll()">Toggle All</button>
+      <button class="btn btn-primary" id="do-import-btn" onclick="doImport()">Replace Components</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SCAN ══ -->
+<div class="panel" id="panel-scan">
+  <div class="sel-bar" id="sel-scan">Select a captured frame then click Scan</div>
+  <div class="scan-area" id="scan-area">
+    <div class="empty"><div class="empty-icon">🔍</div><div>Select a captured frame and click <strong>Scan</strong> to detect components by layer name</div></div>
+  </div>
+  <div class="footer">
+    <button class="btn btn-secondary" onclick="doScan()">Scan</button>
+    <button class="btn btn-primary" id="batch-btn" disabled onclick="doBatchReplace()">Replace All</button>
+  </div>
+</div>
+
+<!-- ══ MANUAL ══ -->
+<div class="panel" id="panel-manual">
+  <div class="sel-bar" id="sel-manual">No layers selected</div>
+  <div class="search-wrap"><input type="text" id="search" placeholder="Search components…" oninput="filterList()" /></div>
+  <div class="comp-list" id="comp-list"></div>
+  <div class="resize-row"><input type="checkbox" id="resize-check" checked /><label for="resize-check">Match original size</label></div>
+  <div class="footer">
+    <button class="btn btn-secondary" onclick="clearSel()">Clear</button>
+    <button class="btn btn-primary" id="replace-btn" disabled onclick="doReplace()">Replace Selected</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  let allComponents = [];
+  let selectedCompId = null;
+  let scanMatches = [];
+  let currentMapData = null;
+  let previewMatches = [];
+
+  window.onmessage = (e) => {
+    const msg = e.data.pluginMessage;
+    if (!msg) return;
+    if (msg.type === 'init') { allComponents = msg.components; renderList(allComponents); }
+    if (msg.type === 'selection') {
+      const txt = msg.count === 0 ? 'No layers selected'
+        : `<span>${msg.count}</span> selected: ${msg.names.slice(0,2).join(', ')}${msg.names.length > 2 ? ` +${msg.names.length-2}` : ''}`;
+      ['sel-import','sel-scan','sel-manual'].forEach(id => document.getElementById(id).innerHTML = txt);
+      updateReplaceBtn();
+    }
+    if (msg.type === 'toast') showToast(msg.message, msg.error);
+    if (msg.type === 'scan-results') renderScanResults(msg.matches);
+    if (msg.type === 'preview-results') renderPreview(msg.matches, msg.total);
+  };
+
+  // ── Tabs ──
+  function switchTab(tab) {
+    const tabs = ['import','scan','manual'];
+    document.querySelectorAll('.tab').forEach((t, i) => t.classList.toggle('active', tabs[i] === tab));
+    document.querySelectorAll('.panel').forEach((p, i) => p.classList.toggle('active', tabs[i] === tab));
+  }
+
+  // ── File import ──
+  function onDragOver(e) { e.preventDefault(); document.getElementById('drop-zone').classList.add('drag-over'); }
+  function onDragLeave(e) { document.getElementById('drop-zone').classList.remove('drag-over'); }
+  function onDrop(e) {
+    e.preventDefault();
+    document.getElementById('drop-zone').classList.remove('drag-over');
+    const file = e.dataTransfer.files[0];
+    if (file) readFile(file);
+  }
+  function onFileSelect(e) { const file = e.target.files[0]; if (file) readFile(file); }
+
+  function readFile(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      try {
+        currentMapData = JSON.parse(e.target.result);
+        parent.postMessage({ pluginMessage: { type: 'preview-map', data: currentMapData } }, '*');
+      } catch(err) { showToast('Invalid JSON file', true); }
+    };
+    reader.readAsText(file);
+  }
+
+  function renderPreview(matches, total) {
+    previewMatches = matches;
+    document.getElementById('import-drop-view').style.display = 'none';
+    const pv = document.getElementById('import-preview-view');
+    pv.style.display = 'flex';
+
+    const matched = matches.filter(m => m.layerId).length;
+    document.getElementById('preview-count').textContent = `${total} components · ${matched} matched`;
+
+    const list = document.getElementById('preview-list');
+    list.innerHTML = matches.map((m, i) => {
+      const conf = m.confidence;
+      const confClass = conf >= 0.8 ? 'conf-high' : conf >= 0.5 ? 'conf-mid' : 'conf-low';
+      const confLabel = conf >= 0.8 ? '✓ high' : conf >= 0.5 ? '~ mid' : '✗ low';
+      const propsStr = Object.entries(m.comp.variantProps || {}).map(([k,v]) => `${k}=${v}`).join(' · ');
+      return `<div class="preview-item">
+        <input type="checkbox" id="pi-${i}" ${m.layerId && conf >= 0.5 ? 'checked' : ''} ${!m.layerId ? 'disabled' : ''} />
+        <div class="preview-info">
+          <div class="preview-comp">${m.comp.component}</div>
+          ${propsStr ? `<div class="preview-props">${propsStr}</div>` : ''}
+          <div class="preview-layer">${m.layerId ? m.layerName : '⚠ no match found'}</div>
+        </div>
+        ${m.layerId ? `<span class="conf ${confClass}">${confLabel}</span>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  function resetImport() {
+    currentMapData = null;
+    previewMatches = [];
+    document.getElementById('import-drop-view').style.display = 'flex';
+    document.getElementById('import-preview-view').style.display = 'none';
+    document.getElementById('file-input').value = '';
+  }
+
+  function toggleAll() {
+    const cbs = document.querySelectorAll('#preview-list input[type=checkbox]:not([disabled])');
+    const allChecked = Array.from(cbs).every(cb => cb.checked);
+    cbs.forEach(cb => cb.checked = !allChecked);
+  }
+
+  function doImport() {
+    if (!currentMapData) return;
+    // Filter to only selected items
+    const selected = previewMatches.filter((m, i) => {
+      const cb = document.getElementById('pi-' + i);
+      return cb && cb.checked;
+    });
+    const filteredData = { ...currentMapData, components: selected.map(m => m.comp) };
+    parent.postMessage({ pluginMessage: { type: 'import-map', data: filteredData } }, '*');
+  }
+
+  // ── Scan ──
+  function doScan() { parent.postMessage({ pluginMessage: { type: 'scan' } }, '*'); }
+
+  function renderScanResults(matches) {
+    scanMatches = matches;
+    const el = document.getElementById('scan-area');
+    if (!matches.length) {
+      el.innerHTML = `<div class="empty"><div class="empty-icon">😶</div><div>No Zen component names detected. Try the Import JSON tab for more accurate matching.</div></div>`;
+      document.getElementById('batch-btn').disabled = true;
+      return;
+    }
+    el.innerHTML = matches.map((m, i) => `
+      <div class="match-item">
+        <input type="checkbox" id="mc-${i}" checked />
+        <div class="match-info">
+          <div class="match-original">${m.nodeName}</div>
+          <div class="match-arrow">↓</div>
+          <div class="match-target">${m.compName}</div>
+        </div>
+      </div>`).join('');
+    document.getElementById('batch-btn').disabled = false;
+  }
+
+  function doBatchReplace() {
+    const items = scanMatches.filter((_, i) => {
+      const cb = document.getElementById('mc-' + i);
+      return cb && cb.checked;
+    }).map(m => ({ nodeId: m.nodeId, compNodeId: m.compNodeId, props: m.props }));
+    if (!items.length) return;
+    parent.postMessage({ pluginMessage: { type: 'batch-replace', items } }, '*');
+  }
+
+  // ── Manual ──
+  function renderList(comps) {
+    const el = document.getElementById('comp-list');
+    const cats = [...new Set(comps.map(c => c.category))];
+    el.innerHTML = cats.map(cat => {
+      const items = comps.filter(c => c.category === cat);
+      if (!items.length) return '';
+      return `<div class="cat-label">${cat}</div>${items.map(c => `
+        <div class="comp-item ${selectedCompId===c.id?'selected':''}" id="ci-${c.id}" onclick="selectComp('${c.id}')">
+          <div class="comp-item-name">${c.name}</div>
+        </div>`).join('')}`;
+    }).join('');
+  }
+
+  function filterList() {
+    const q = document.getElementById('search').value.toLowerCase();
+    renderList(allComponents.filter(c =>
+      c.name.toLowerCase().includes(q) || c.category.toLowerCase().includes(q) ||
+      c.keywords.some(k => k.includes(q))
+    ));
+  }
+
+  function selectComp(id) {
+    selectedCompId = selectedCompId === id ? null : id;
+    document.querySelectorAll('.comp-item').forEach(el => el.classList.remove('selected'));
+    if (selectedCompId) document.getElementById('ci-' + selectedCompId)?.classList.add('selected');
+    updateReplaceBtn();
+  }
+
+  function clearSel() { selectedCompId = null; document.querySelectorAll('.comp-item').forEach(el => el.classList.remove('selected')); updateReplaceBtn(); }
+  function updateReplaceBtn() { document.getElementById('replace-btn').disabled = !selectedCompId; }
+  function doReplace() {
+    if (!selectedCompId) return;
+    parent.postMessage({ pluginMessage: { type: 'replace', compId: selectedCompId, resize: document.getElementById('resize-check').checked } }, '*');
+  }
+
+  // ── Toast ──
+  function showToast(msg, error=false) {
+    const el = document.getElementById('toast');
+    el.textContent = msg; el.className = 'toast'+(error?' error':'')+' show';
+    setTimeout(() => el.classList.remove('show'), 2500);
+  }
+</script>
+</body>
+</html>

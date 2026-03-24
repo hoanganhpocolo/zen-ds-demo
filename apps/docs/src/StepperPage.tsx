@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Stepper } from '@zen/components';
+import { Stepper, Button } from '@zen/components';
+import { ChevronLeft01, ChevronRight01 } from '@zen/icons/line';
 import { DemoBlock } from './DemoBlock';
 
 const steps = [
@@ -19,8 +20,8 @@ export function StepperPage() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <Stepper steps={steps} currentStep={current} />
           <div style={{ display: 'flex', gap: 8, justifyContent: 'center' }}>
-            <button onClick={() => setCurrent((v) => Math.max(0, v - 1))}>← Prev</button>
-            <button onClick={() => setCurrent((v) => Math.min(steps.length - 1, v + 1))}>Next →</button>
+            <Button variant="tertiary" size="s" icon={<ChevronLeft01 size={16} />} onClick={() => setCurrent((v) => Math.max(0, v - 1))}>Prev</Button>
+            <Button variant="tertiary" size="s" iconRight={<ChevronRight01 size={16} />} onClick={() => setCurrent((v) => Math.min(steps.length - 1, v + 1))}>Next</Button>
           </div>
         </div>
       </DemoBlock>
@@ -46,6 +47,18 @@ export function StepperPage() {
           steps={[{ title: 'Details' }, { title: 'Done' }]}
           currentStep={0}
         />
+      </DemoBlock>
+
+      <DemoBlock label="Vertical — step 1 active">
+        <Stepper steps={steps} currentStep={1} orientation="vertical" />
+      </DemoBlock>
+
+      <DemoBlock label="Vertical — all completed">
+        <Stepper steps={steps} currentStep={steps.length} orientation="vertical" />
+      </DemoBlock>
+
+      <DemoBlock label="Vertical — with error">
+        <Stepper steps={steps} currentStep={2} errorSteps={[1]} orientation="vertical" />
       </DemoBlock>
 
     </div>

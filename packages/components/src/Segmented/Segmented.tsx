@@ -2,7 +2,7 @@ import { useState, type HTMLAttributes, type ReactNode } from 'react';
 import styles from './Segmented.module.css';
 
 export type SegmentedLevel = 'primary' | 'secondary';
-export type SegmentedSize = 'medium';
+export type SegmentedSize = 'medium' | 'small';
 
 export interface SegmentedItem {
   /** Unique value for this item */
@@ -89,7 +89,9 @@ export function Segmented({
               {item.icon && (
                 <span className={styles['item-icon']}>{item.icon}</span>
               )}
-              <span className={styles['item-label']}>{item.label}</span>
+              <span className={styles['label-wrapper']}>
+                <span className={styles['item-label']}>{item.label}</span>
+              </span>
             </button>
           );
         })}

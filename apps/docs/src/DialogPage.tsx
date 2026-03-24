@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { Dialog } from '@zen/components';
+import { Dialog, Button, Segmented } from '@zen/components';
 import type { DialogTheme } from '@zen/components';
-import { Button } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const THEMES: { theme: DialogTheme; label: string }[] = [
   { theme: 'default',  label: 'Default' },
@@ -14,13 +14,14 @@ const THEMES: { theme: DialogTheme; label: string }[] = [
 
 export function DialogPage() {
   const [openTheme, setOpenTheme] = useState<DialogTheme | null>(null);
+  const [previewTheme, setPreviewTheme] = useState<DialogTheme>('default');
 
   return (
     <>
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -72,107 +73,42 @@ export function DialogPage() {
         </div>
 
         <h2 className="docs-section-title text-h3">Static Preview</h2>
-        <p className="text-body-small" style={{ color: 'var(--color-content-neutral-secondary)', marginBottom: 'var(--gap-large)' }}>
-          Dialog panels shown inline (without portal/backdrop).
-        </p>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-large)' }}>
-          {THEMES.map(({ theme, label }) => (
-            <DemoBlock key={theme} title={label}>
-              {/* Render panel only, no portal */}
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  width: 440,
-                  maxWidth: '100%',
-                  borderRadius: 'var(--radius-giant)',
-                  overflow: 'hidden',
-                  background: 'var(--color-bg-surface-default)',
-                  border: '1px solid var(--color-border-neutral-subtle-light-default)',
-                  boxShadow: '0px 4px 24px 0px rgba(0,0,0,0.08)',
-                }}
-              >
-                <Dialog
-                  open={false}
-                  theme={theme}
-                  title="Modal Heading Text"
-                  description="Everything in Zen contains Auto Layout. Moreover, we've redefined all variants and we have created brand-new components."
-                  primaryLabel="Confirm"
-                  secondaryLabel="Cancel"
-                />
-              </div>
-            </DemoBlock>
-          ))}
-        </div>
+        <DemoBlock
+          title={THEMES.find(t => t.theme === previewTheme)?.label ?? ''}
+          direction="column"
+          previewStyle={{ alignItems: 'center' }}
+        >
+          <Segmented
+            items={THEMES.map(({ theme, label }) => ({ value: theme, label }))}
+            value={previewTheme}
+            onChange={(v) => setPreviewTheme(v as DialogTheme)}
+          />
+          <Dialog
+            inline
+            theme={previewTheme}
+            title="Modal Heading Text"
+            description="Everything in Zen contains Auto Layout. Moreover, we've redefined all variants and we have created brand-new components."
+            primaryLabel="Confirm"
+            secondaryLabel="Cancel"
+          />
+        </DemoBlock>
 
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>open</code></td>
-              <td>Controls visibility</td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-            </tr>
-            <tr>
-              <td><code>theme</code></td>
-              <td>Color/icon theme</td>
-              <td><code>'default' | 'info' | 'positive' | 'warning' | 'negative'</code></td>
-              <td><code>'default'</code></td>
-            </tr>
-            <tr>
-              <td><code>title</code></td>
-              <td>Dialog heading (required)</td>
-              <td><code>string</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>description</code></td>
-              <td>Body description text</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>primaryLabel</code></td>
-              <td>Primary button label</td>
-              <td><code>string</code></td>
-              <td><code>'Confirm'</code></td>
-            </tr>
-            <tr>
-              <td><code>secondaryLabel</code></td>
-              <td>Secondary button label</td>
-              <td><code>string</code></td>
-              <td><code>'Cancel'</code></td>
-            </tr>
-            <tr>
-              <td><code>onPrimary</code></td>
-              <td>Primary button click</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>onSecondary</code></td>
-              <td>Secondary button click (also calls onClose)</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>onClose</code></td>
-              <td>Called on backdrop click or Escape key</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>open</code>, 'Controls visibility', <code>boolean</code>, <code>false</code>],
+            [<code>theme</code>, 'Color/icon theme', <><code>'default'</code> | <code>'info'</code> | <code>'positive'</code> | <code>'warning'</code> | <code>'negative'</code></>, <code>'default'</code>],
+            [<code>title</code>, 'Dialog heading (required)', <code>string</code>, '—'],
+            [<code>description</code>, 'Body description text', <code>ReactNode</code>, '—'],
+            [<code>primaryLabel</code>, 'Primary button label', <code>string</code>, <code>'Confirm'</code>],
+            [<code>secondaryLabel</code>, 'Secondary button label', <code>string</code>, <code>'Cancel'</code>],
+            [<code>onPrimary</code>, 'Primary button click', <code>() =&gt; void</code>, '—'],
+            [<code>onSecondary</code>, 'Secondary button click (also calls onClose)', <code>() =&gt; void</code>, '—'],
+            [<code>onClose</code>, 'Called on backdrop click or Escape key', <code>() =&gt; void</code>, '—'],
+          ]}
+        />
       </div>
     </>
   );

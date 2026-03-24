@@ -70,6 +70,10 @@
   color: var(--color-content-neutral-primary);
 }
 
+.icon-slot-no-bg {
+  background: transparent;
+}
+
 /* ── Metric inline ── */
 
 .metric-inline {

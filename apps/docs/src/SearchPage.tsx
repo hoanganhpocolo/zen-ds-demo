@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Search } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function SearchPage() {
   const [value1, setValue1] = useState('');
@@ -15,7 +16,7 @@ export function SearchPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -121,21 +122,21 @@ export function SearchPage() {
 
         {/* ── API ── */}
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Controlled value</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>onChange</code></td><td>Change callback</td><td><code>(value: string) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>onSearch</code></td><td>Called on Enter key</td><td><code>(value: string) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>placeholder</code></td><td>Placeholder text</td><td><code>string</code></td><td><code>"Search"</code></td></tr>
-            <tr><td><code>size</code></td><td>Size variant</td><td><code>"default" | "small"</code></td><td><code>"default"</code></td></tr>
-            <tr><td><code>theme</code></td><td>Visual theme</td><td><code>"default" | "filter-dropdown" | "filter-icon"</code></td><td><code>"default"</code></td></tr>
-            <tr><td><code>showSearchIcon</code></td><td>Show left search icon</td><td><code>boolean</code></td><td><code>true</code></td></tr>
-            <tr><td><code>filterLabel</code></td><td>Label for filter-dropdown trailing</td><td><code>string</code></td><td><code>"All"</code></td></tr>
-            <tr><td><code>onFilterClick</code></td><td>Called when filter button clicked</td><td><code>() =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>trailing</code></td><td>Custom trailing content (default theme)</td><td><code>ReactNode</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Controlled value', <code>string</code>, '—'],
+            [<code>onChange</code>, 'Change callback', <code>(value: string) =&gt; void</code>, '—'],
+            [<code>onSearch</code>, 'Called on Enter key', <code>(value: string) =&gt; void</code>, '—'],
+            [<code>placeholder</code>, 'Placeholder text', <code>string</code>, <code>"Search"</code>],
+            [<code>size</code>, 'Size variant', <><code>"default"</code> | <code>"small"</code></>, <code>"default"</code>],
+            [<code>theme</code>, 'Visual theme', <><code>"default"</code> | <code>"filter-dropdown"</code> | <code>"filter-icon"</code></>, <code>"default"</code>],
+            [<code>showSearchIcon</code>, 'Show left search icon', <code>boolean</code>, <code>true</code>],
+            [<code>filterLabel</code>, 'Label for filter-dropdown trailing', <code>string</code>, <code>"All"</code>],
+            [<code>onFilterClick</code>, 'Called when filter button clicked', <code>() =&gt; void</code>, '—'],
+            [<code>trailing</code>, 'Custom trailing content (default theme)', <code>ReactNode</code>, '—'],
+          ]}
+        />
 
       </div>
     </>

@@ -1,6 +1,7 @@
 import { MetricCard } from '@zen/components';
 import { Home03 } from '@zen/icons/solid';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const homeIcon = <Home03 size={24} />;
 
@@ -10,7 +11,7 @@ export function MetricCardPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -139,78 +140,21 @@ export function MetricCardPage() {
         </div>
 
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>level</code></td>
-              <td>Card hierarchy — master (vertical) or sub (compact row)</td>
-              <td><code>'master' | 'sub'</code></td>
-              <td><code>'master'</code></td>
-            </tr>
-            <tr>
-              <td><code>theme</code></td>
-              <td>Visual style</td>
-              <td><code>'default' | 'subtle'</code></td>
-              <td><code>'default'</code></td>
-            </tr>
-            <tr>
-              <td><code>icon</code></td>
-              <td>Icon in the 48px icon slot</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>metricTitle</code></td>
-              <td>Label above the metric value</td>
-              <td><code>string</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>metricColor</code></td>
-              <td>Color dot next to the metric title (CSS color value)</td>
-              <td><code>string</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>value</code></td>
-              <td>Main metric value</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>trend</code></td>
-              <td>Trend badge with label and direction</td>
-              <td><code>{'{ label: string; direction?: "positive" | "negative" | "neutral" }'}</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>showAction</code></td>
-              <td>Show the 3-dot action button (top right)</td>
-              <td><code>boolean</code></td>
-              <td><code>true</code></td>
-            </tr>
-            <tr>
-              <td><code>onAction</code></td>
-              <td>3-dot button click handler</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>chart</code></td>
-              <td>Chart/visual slot (80×80px) on the right</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>level</code>, 'Card hierarchy — master (vertical) or sub (compact row)', <><code>'master'</code> | <code>'sub'</code></>, <code>'master'</code>],
+            [<code>theme</code>, 'Visual style', <><code>'default'</code> | <code>'subtle'</code></>, <code>'default'</code>],
+            [<code>icon</code>, 'Icon in the 48px icon slot', <code>ReactNode</code>, '—'],
+            [<code>metricTitle</code>, 'Label above the metric value', <code>string</code>, '—'],
+            [<code>metricColor</code>, 'Color dot next to the metric title (CSS color value)', <code>string</code>, '—'],
+            [<code>value</code>, 'Main metric value', <code>ReactNode</code>, '—'],
+            [<code>trend</code>, 'Trend badge with label and direction', <code>{'{ label: string; direction?: "positive" | "negative" | "neutral" }'}</code>, '—'],
+            [<code>showAction</code>, 'Show the 3-dot action button (top right)', <code>boolean</code>, <code>true</code>],
+            [<code>onAction</code>, '3-dot button click handler', <code>() =&gt; void</code>, '—'],
+            [<code>chart</code>, 'Chart/visual slot (80×80px) on the right', <code>ReactNode</code>, '—'],
+          ]}
+        />
       </div>
     </>
   );

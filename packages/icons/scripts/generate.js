@@ -1,10 +1,12 @@
 /**
  * SVG → React component generator for @zen/icons
  *
- * Reads SVGs from svg/{line,solid,social}/, optimizes with SVGO,
- * and generates React components in src/{line,solid,social}/.
+ * Reads SVGs from svg/{line,solid,social,file}/, optimizes with SVGO,
+ * and generates React components in src/{line,solid,social,file}/.
  *
- * Naming: icon-chevron-down-line.svg → ChevronDown.tsx
+ * Naming:
+ *   icon-chevron-down-line.svg → ChevronDown.tsx
+ *   Type=PDF.svg               → FilePdf.tsx  (file category)
  */
 
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, existsSync } from 'fs';
@@ -27,6 +29,17 @@ function kebabToPascal(str) {
 function extractIconName(filename, category) {
   // Remove prefix and suffix
   let name = filename.replace(/\.svg$/, '');
+
+  if (category === 'file') {
+    // Type=PDF.svg → FilePdf
+    // Type=Zip.svg → FileZip
+    const typeMatch = name.match(/Type=(.+)/);
+    if (typeMatch) {
+      const raw = typeMatch[1].replace(/[^a-zA-Z0-9]/g, '');
+      return 'File' + raw.charAt(0).toUpperCase() + raw.slice(1);
+    }
+    return 'File' + kebabToPascal(name.replace(/^file-?/, ''));
+  }
 
   if (category === 'social') {
     // ic-Social=Pinterest,Style=Original.svg → Pinterest
@@ -128,6 +141,91 @@ function svgToJsx(svgContent) {
     .replace(/stroke="#000"/g, 'stroke="currentColor"');
 }
 
+// ── File icon helpers (colored, 32×40 viewBox) ──
+
+function optimizeSvgFile(svgString) {
+  const result = optimize(svgString, {
+    multipass: true,
+    plugins: [
+      {
+        name: 'preset-default',
+        params: {
+          overrides: {
+            removeViewBox: false,
+          },
+        },
+      },
+      'removeDimensions',
+      {
+        name: 'removeAttrs',
+        params: { attrs: '(xmlns|class|data-.*)' },
+      },
+      {
+        name: 'addAttributesToSVGElement',
+        params: {
+          attributes: [
+            { width: '{width}' },
+            { height: '{height}' },
+          ],
+        },
+      },
+    ],
+  });
+  return result.data;
+}
+
+function svgToJsxFile(svgContent) {
+  return svgContent
+    // Convert inline style="..." strings to JSX style objects
+    .replace(/style="([^"]*)"/g, (_, css) => {
+      const obj = css.split(';').filter(Boolean).map((rule) => {
+        const [prop, ...vals] = rule.split(':');
+        const key = prop.trim().replace(/-([a-z])/g, (__, c) => c.toUpperCase());
+        return `${key}:${JSON.stringify(vals.join(':').trim())}`;
+      }).join(',');
+      return `style={{${obj}}}`;
+    })
+    // Convert SVG attributes to JSX (no color→currentColor — keep branded colors)
+    .replace(/fill-rule=/g, 'fillRule=')
+    .replace(/clip-rule=/g, 'clipRule=')
+    .replace(/clip-path=/g, 'clipPath=')
+    .replace(/fill-opacity=/g, 'fillOpacity=')
+    .replace(/stroke-width=/g, 'strokeWidth=')
+    .replace(/stroke-linecap=/g, 'strokeLinecap=')
+    .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
+    .replace(/stroke-dasharray=/g, 'strokeDasharray=')
+    .replace(/stroke-dashoffset=/g, 'strokeDashoffset=')
+    .replace(/stroke-miterlimit=/g, 'strokeMiterlimit=')
+    .replace(/stroke-opacity=/g, 'strokeOpacity=')
+    .replace(/stop-color=/g, 'stopColor=')
+    .replace(/stop-opacity=/g, 'stopOpacity=')
+    // Replace placeholder attributes
+    .replace('width="{width}"', 'width={width}')
+    .replace('height="{height}"', 'height={height}')
+    // Spread props onto svg element
+    .replace('<svg ', '<svg {...rest} ');
+}
+
+function generateFileComponent(componentName, jsxContent) {
+  return `import { forwardRef, type SVGAttributes } from 'react';
+
+export interface FileIconProps extends SVGAttributes<SVGSVGElement> {
+  width?: number | string;
+  height?: number | string;
+}
+
+export const ${componentName} = forwardRef<SVGSVGElement, FileIconProps>(
+  ({ width = 32, height = 40, ...rest }, ref) => {
+    return (
+      ${jsxContent.replace('<svg ', '<svg ref={ref} ')}
+    );
+  },
+);
+
+${componentName}.displayName = '${componentName}';
+`;
+}
+
 function generateComponent(componentName, jsxContent) {
   return `import { forwardRef, type SVGAttributes } from 'react';
 
@@ -150,8 +248,8 @@ ${componentName}.displayName = '${componentName}';
 
 // ── Main ──
 
-const CATEGORIES = ['line', 'solid', 'social'];
-const stats = { line: 0, solid: 0, social: 0, errors: 0 };
+const CATEGORIES = ['line', 'solid', 'social', 'file'];
+const stats = { line: 0, solid: 0, social: 0, file: 0, errors: 0 };
 
 for (const category of CATEGORIES) {
   const svgDir = join(ROOT, 'svg', category);
@@ -180,9 +278,12 @@ for (const category of CATEGORIES) {
       }
       seenNames.set(componentName, 1);
 
-      const optimized = optimizeSvg(svgRaw);
-      const jsx = svgToJsx(optimized);
-      const component = generateComponent(componentName, jsx);
+      const isFile = category === 'file';
+      const optimized = isFile ? optimizeSvgFile(svgRaw) : optimizeSvg(svgRaw);
+      const jsx = isFile ? svgToJsxFile(optimized) : svgToJsx(optimized);
+      const component = isFile
+        ? generateFileComponent(componentName, jsx)
+        : generateComponent(componentName, jsx);
 
       writeFileSync(join(srcDir, `${componentName}.tsx`), component);
       exports.push(componentName);
@@ -194,10 +295,11 @@ for (const category of CATEGORIES) {
   }
 
   // Generate index.ts for this category
+  const typeExport = category === 'file' ? 'FileIconProps' : 'IconProps';
   const indexContent = exports
     .sort()
     .map((name) => `export { ${name} } from './${name}';`)
-    .join('\n') + '\n\nexport type { IconProps } from \'./' + exports[0] + '\';\n';
+    .join('\n') + '\n\nexport type { ' + typeExport + ' } from \'./' + exports[0] + '\';\n';
 
   writeFileSync(join(srcDir, 'index.ts'), indexContent);
   console.log(`✓ ${category}: ${exports.length} components`);
@@ -210,4 +312,4 @@ const rootIndex = CATEGORIES.map(
 
 writeFileSync(join(ROOT, 'src', 'index.ts'), rootIndex);
 
-console.log(`\nDone! ${stats.line + stats.solid + stats.social} icons generated (${stats.errors} errors)`);
+console.log(`\nDone! ${stats.line + stats.solid + stats.social + stats.file} icons generated (${stats.errors} errors)`);

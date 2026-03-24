@@ -1,0 +1,26 @@
+.aside {
+  width: 224px;
+  flex-shrink: 0;
+}
+
+.inner {
+  position: sticky;
+  top: calc(56px + var(--gap-large));
+  padding: var(--padding-xlarge) var(--padding-medium) var(--padding-xlarge) var(--padding-small);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+  max-height: calc(100vh - 56px - var(--gap-large) * 2);
+  overflow-y: auto;
+}
+
+.title {
+  color: var(--color-content-neutral-tertiary);
+  padding: 0 var(--padding-xsmall);
+  margin-bottom: var(--gap-2xsmall);
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+}

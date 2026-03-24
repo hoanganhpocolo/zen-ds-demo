@@ -8,7 +8,7 @@
   cursor: pointer;
   transition: background 150ms ease, border-color 150ms ease;
   font-family: var(--font-family-sans);
-  font-weight: var(--font-weight-secondary);
+  font-weight: var(--font-weight-primary);
   white-space: nowrap;
   user-select: none;
   outline: none;
@@ -29,8 +29,8 @@
   height: var(--chip-size-medium);
   padding: var(--chip-spacing-medium-v-padding) var(--chip-spacing-medium-h-padding);
   gap: var(--chip-spacing-medium-gap);
-  font-size: var(--font-size-body-base);
-  line-height: var(--line-height-body-base);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
 }
 
 .size-m.customized {

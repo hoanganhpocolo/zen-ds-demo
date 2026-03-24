@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { BottomSheet, Button, InputField } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function BottomSheetPage() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -14,7 +15,7 @@ export function BottomSheetPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -221,60 +222,18 @@ export function BottomSheetPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>open</code></td>
-            <td>Whether the sheet is visible</td>
-            <td><code>boolean</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>onClose</code></td>
-            <td>Called when the sheet should close</td>
-            <td><code>() =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>title</code></td>
-            <td>Header title text</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>description</code></td>
-            <td>Description text below the title</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>header</code></td>
-            <td>Show the header section</td>
-            <td><code>boolean</code></td>
-            <td><code>true</code></td>
-          </tr>
-          <tr>
-            <td><code>footer</code></td>
-            <td>Footer buttons (enables modal mode)</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>children</code></td>
-            <td>Body content</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>open</code>, 'Whether the sheet is visible', <code>boolean</code>, '—'],
+          [<code>onClose</code>, 'Called when the sheet should close', <code>() =&gt; void</code>, '—'],
+          [<code>title</code>, 'Header title text', <code>string</code>, '—'],
+          [<code>description</code>, 'Description text below the title', <code>string</code>, '—'],
+          [<code>header</code>, 'Show the header section', <code>boolean</code>, <code>true</code>],
+          [<code>footer</code>, 'Footer buttons (enables modal mode)', <code>ReactNode</code>, '—'],
+          [<code>children</code>, 'Body content', <code>ReactNode</code>, '—'],
+        ]}
+      />
       </div>
     </>
   );

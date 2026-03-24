@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Radio, RadioGroup } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function RadioPage() {
   const [plan, setPlan] = useState('monthly');
@@ -11,7 +12,7 @@ export function RadioPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -168,29 +169,29 @@ export function RadioPage() {
         </div>
 
         <h2 className="docs-section-title text-h3">API — Radio</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Option value for RadioGroup matching</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>label</code></td><td>Label text</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>caption</code></td><td>Secondary caption below label</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>radioSide</code></td><td>Mark position</td><td><code>'left' | 'right'</code></td><td><code>'left'</code></td></tr>
-            <tr><td><code>border</code></td><td>Bordered card variant</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>checked</code></td><td>Controlled checked state</td><td><code>boolean</code></td><td>—</td></tr>
-            <tr><td><code>disabled</code></td><td>Disable interaction</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Option value for RadioGroup matching', <code>string</code>, '—'],
+            [<code>label</code>, 'Label text', <code>string</code>, '—'],
+            [<code>caption</code>, 'Secondary caption below label', <code>string</code>, '—'],
+            [<code>radioSide</code>, 'Mark position', <><code>'left'</code> | <code>'right'</code></>, <code>'left'</code>],
+            [<code>border</code>, 'Bordered card variant', <code>boolean</code>, <code>false</code>],
+            [<code>checked</code>, 'Controlled checked state', <code>boolean</code>, '—'],
+            [<code>disabled</code>, 'Disable interaction', <code>boolean</code>, <code>false</code>],
+          ]}
+        />
 
         <h2 className="docs-section-title text-h3">API — RadioGroup</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Controlled selected value</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>defaultValue</code></td><td>Initial value (uncontrolled)</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>onChange</code></td><td>Called when selection changes</td><td><code>(value: string) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>name</code></td><td>Shared name for all child inputs</td><td><code>string</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Controlled selected value', <code>string</code>, '—'],
+            [<code>defaultValue</code>, 'Initial value (uncontrolled)', <code>string</code>, '—'],
+            [<code>onChange</code>, 'Called when selection changes', <code>(value: string) =&gt; void</code>, '—'],
+            [<code>name</code>, 'Shared name for all child inputs', <code>string</code>, '—'],
+          ]}
+        />
 
       </div>
     </>

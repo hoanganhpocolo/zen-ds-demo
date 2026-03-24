@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { InputField, Avatar } from '@zen/components';
 import { SearchSmall, Mail01, Eye, EyeOff, ChevronDown } from '@zen/icons/line';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function InputFieldPage() {
   const [password, setPassword] = useState('');
@@ -14,7 +15,7 @@ export function InputFieldPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -198,118 +199,34 @@ export function InputFieldPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>label</code></td>
-            <td>Label text above the field</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Size variant</td>
-            <td><code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>leading</code></td>
-            <td>Element rendered before the input (icon, avatar, etc.)</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>trailing</code></td>
-            <td>Element rendered after the input (icon, button, etc.)</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>clearable</code></td>
-            <td>Show clear button when input has value</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>helpText</code></td>
-            <td>Help text below the field</td>
-            <td><code>string</code> | <code>{'{ message, tone?, icon? }'}</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>charCount</code></td>
-            <td>Character count display (e.g. "0/100")</td>
-            <td><code>string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>error</code></td>
-            <td>Error state — pass string for error message, boolean for just the border</td>
-            <td><code>boolean | string</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>disabled</code></td>
-            <td>Disable the input</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>readOnly</code></td>
-            <td>Read-only mode (dashed border)</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>label</code>, 'Label text above the field', <code>string</code>, '—'],
+          [<code>size</code>, 'Size variant', <><code>'s'</code> | <code>'m'</code> | <code>'l'</code> | <code>'xl'</code></>, <code>'m'</code>],
+          [<code>leading</code>, 'Element rendered before the input (icon, avatar, etc.)', <code>ReactNode</code>, '—'],
+          [<code>trailing</code>, 'Element rendered after the input (icon, button, etc.)', <code>ReactNode</code>, '—'],
+          [<code>clearable</code>, 'Show clear button when input has value', <code>boolean</code>, <code>false</code>],
+          [<code>helpText</code>, 'Help text below the field', <><code>string</code> | <code>{'{ message, tone?, icon? }'}</code></>, '—'],
+          [<code>charCount</code>, 'Character count display (e.g. "0/100")', <code>string</code>, '—'],
+          [<code>error</code>, 'Error state — pass string for error message, boolean for just the border', <code>boolean | string</code>, '—'],
+          [<code>disabled</code>, 'Disable the input', <code>boolean</code>, <code>false</code>],
+          [<code>readOnly</code>, 'Read-only mode (dashed border)', <code>boolean</code>, <code>false</code>],
+        ]}
+      />
 
       {/* ── Design Tokens ── */}
       <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-3xlarge)' }}>Design Tokens</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Size</th>
-            <th>Height</th>
-            <th>Padding</th>
-            <th>Radius</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>xl</code></td>
-            <td><code>--input-size-xlarge</code> (64px)</td>
-            <td>16px × 16px</td>
-            <td><code>--radius-input-xlarge</code></td>
-          </tr>
-          <tr>
-            <td><code>l</code></td>
-            <td><code>--input-size-large</code> (56px)</td>
-            <td>16px × 16px</td>
-            <td><code>--radius-input-large</code></td>
-          </tr>
-          <tr>
-            <td><code>m</code></td>
-            <td><code>--input-size-medium</code> (48px)</td>
-            <td>16px × 12px</td>
-            <td><code>--radius-input-medium</code></td>
-          </tr>
-          <tr>
-            <td><code>s</code></td>
-            <td><code>--input-size-small</code> (40px)</td>
-            <td>12px × 8px</td>
-            <td><code>--radius-input-small</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Size', 'Height', 'Padding', 'Radius']}
+        rows={[
+          [<code>xl</code>, <code>--input-size-xlarge</code>, '16px × 16px', <code>--radius-input-xlarge</code>],
+          [<code>l</code>, <code>--input-size-large</code>, '16px × 16px', <code>--radius-input-large</code>],
+          [<code>m</code>, <code>--input-size-medium</code>, '16px × 12px', <code>--radius-input-medium</code>],
+          [<code>s</code>, <code>--input-size-small</code>, '12px × 8px', <code>--radius-input-small</code>],
+        ]}
+      />
       </div>
     </>
   );

@@ -325,6 +325,11 @@
   --color-white: #ffffff;
 }
 
+/* ── Brand contrast: white text on dark/saturated brand hues ── */
+[data-brand-bright="false"] {
+  --color-content-on-accent: #ffffff;
+}
+
 [data-theme="dark"] {
 
   /* ── Bg ── */
@@ -448,9 +453,9 @@
   --color-bg-fill-white-overlay-default: rgba(255, 255, 255, 0.3);
   --color-bg-fill-white-overlay-hover: rgba(255, 255, 255, 0.4);
   --color-bg-fill-white-overlay-pressed: rgba(255, 255, 255, 0.5);
-  --color-bg-fill-white-solid-default: var(--light-color-neutral-1);  /* Light-Color/Neutral/1 */
-  --color-bg-fill-white-solid-hover: var(--light-color-neutral-2);  /* Light-Color/Neutral/2 */
-  --color-bg-fill-white-solid-pressed: var(--light-color-neutral-3);  /* Light-Color/Neutral/3 */
+  --color-bg-fill-white-solid-default: var(--light-color-gray-1);  /* Light-Color/Neutral/1 */
+  --color-bg-fill-white-solid-hover: var(--light-color-gray-2);  /* Light-Color/Neutral/2 */
+  --color-bg-fill-white-solid-pressed: var(--light-color-gray-3);  /* Light-Color/Neutral/3 */
   --color-bg-overlay: rgba(0, 0, 0, 0.35);
   --color-bg-popover-glass: rgba(33, 33, 33, 0.86);
   --color-bg-popover-overlay: rgba(0, 0, 0, 0.86);

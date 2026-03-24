@@ -22,6 +22,8 @@ export type AvatarColor =
   | 'violet'
   | 'yellow';
 
+export type AvatarStatus = 'active' | 'pending' | 'inactive' | 'disabled';
+
 export interface AvatarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'children'> {
   /** Text content (initials). Ignored when `src` is provided. */
   children?: ReactNode;
@@ -37,8 +39,8 @@ export interface AvatarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'child
   color?: AvatarColor;
   /** Background style */
   background?: AvatarBackground;
-  /** Show online status indicator */
-  status?: boolean;
+  /** Status indicator */
+  status?: AvatarStatus;
 }
 
 /* ── Color → CSS variable mapping ── */
@@ -115,7 +117,7 @@ export const Avatar = forwardRef<HTMLDivElement, AvatarProps>(
             <span className={styles.initials}>{children}</span>
           )}
         </div>
-        {status && <span className={styles.status} />}
+        {status && <span className={[styles.status, styles[`status-${status}`]].join(' ')} />}
       </div>
     );
   },

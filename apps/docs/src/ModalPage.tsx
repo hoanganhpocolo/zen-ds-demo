@@ -3,6 +3,7 @@ import { Modal } from '@zen/components';
 import type { ModalLayout } from '@zen/components';
 import { Button } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const LAYOUTS: { layout: ModalLayout; label: string; description: string }[] = [
   { layout: 'basic',      label: 'Basic',       description: '440px — single column, body slot' },
@@ -20,7 +21,7 @@ export function ModalPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -99,84 +100,22 @@ export function ModalPage() {
         </div>
 
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead>
-            <tr>
-              <th>Property</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Default</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><code>open</code></td>
-              <td>Controls visibility</td>
-              <td><code>boolean</code></td>
-              <td><code>false</code></td>
-            </tr>
-            <tr>
-              <td><code>layout</code></td>
-              <td>Panel layout variant</td>
-              <td><code>'basic' | 'big' | 'fixed-left' | 'half-half' | '3-4'</code></td>
-              <td><code>'basic'</code></td>
-            </tr>
-            <tr>
-              <td><code>title</code></td>
-              <td>Modal heading (required)</td>
-              <td><code>string</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>caption</code></td>
-              <td>Subheading / description text</td>
-              <td><code>ReactNode</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>children</code></td>
-              <td>Body slot content</td>
-              <td><code>ReactNode</code></td>
-              <td>Dashed placeholder</td>
-            </tr>
-            <tr>
-              <td><code>sideSlot</code></td>
-              <td>Left side-panel slot (multi-column only)</td>
-              <td><code>ReactNode</code></td>
-              <td>Dashed placeholder</td>
-            </tr>
-            <tr>
-              <td><code>primaryLabel</code></td>
-              <td>Primary button label</td>
-              <td><code>string</code></td>
-              <td><code>'Confirm'</code></td>
-            </tr>
-            <tr>
-              <td><code>secondaryLabel</code></td>
-              <td>Secondary button label</td>
-              <td><code>string</code></td>
-              <td><code>'Cancel'</code></td>
-            </tr>
-            <tr>
-              <td><code>onPrimary</code></td>
-              <td>Primary button click</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>onSecondary</code></td>
-              <td>Secondary button click (also calls onClose)</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-            <tr>
-              <td><code>onClose</code></td>
-              <td>Called on backdrop click or Escape key</td>
-              <td><code>() =&gt; void</code></td>
-              <td>—</td>
-            </tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>open</code>, 'Controls visibility', <code>boolean</code>, <code>false</code>],
+            [<code>layout</code>, 'Panel layout variant', <><code>'basic'</code> | <code>'big'</code> | <code>'fixed-left'</code> | <code>'half-half'</code> | <code>'3-4'</code></>, <code>'basic'</code>],
+            [<code>title</code>, 'Modal heading (required)', <code>string</code>, '—'],
+            [<code>caption</code>, 'Subheading / description text', <code>ReactNode</code>, '—'],
+            [<code>children</code>, 'Body slot content', <code>ReactNode</code>, 'Dashed placeholder'],
+            [<code>sideSlot</code>, 'Left side-panel slot (multi-column only)', <code>ReactNode</code>, 'Dashed placeholder'],
+            [<code>primaryLabel</code>, 'Primary button label', <code>string</code>, <code>'Confirm'</code>],
+            [<code>secondaryLabel</code>, 'Secondary button label', <code>string</code>, <code>'Cancel'</code>],
+            [<code>onPrimary</code>, 'Primary button click', <code>() =&gt; void</code>, '—'],
+            [<code>onSecondary</code>, 'Secondary button click (also calls onClose)', <code>() =&gt; void</code>, '—'],
+            [<code>onClose</code>, 'Called on backdrop click or Escape key', <code>() =&gt; void</code>, '—'],
+          ]}
+        />
       </div>
     </>
   );

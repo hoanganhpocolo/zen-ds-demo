@@ -26,6 +26,11 @@
       "import": "./dist/social/index.js",
       "require": "./dist/social/index.cjs",
       "types": "./dist/social/index.d.ts"
+    },
+    "./file": {
+      "import": "./dist/file/index.js",
+      "require": "./dist/file/index.cjs",
+      "types": "./dist/file/index.d.ts"
     }
   },
   "files": [

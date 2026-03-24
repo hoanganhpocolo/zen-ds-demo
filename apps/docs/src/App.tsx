@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { Button, Sidebar, SidebarItem } from '@zen/components';
-import { Settings01 } from '@zen/icons/line';
+import { Button, Sidebar, SidebarItem, Badge } from '@zen/components';
+import { Settings01, Palette } from '@zen/icons/line';
 import { ButtonPage } from './ButtonPage';
 import { AlertBannerPage } from './AlertBannerPage';
 import { AvatarPage } from './AvatarPage';
@@ -32,9 +32,18 @@ import { SidebarPage } from './SidebarPage';
 import { SidePanelPage } from './SidePanelPage';
 import { SliderPage } from './SliderPage';
 import { StepperPage } from './StepperPage';
+import { TabPage } from './TabPage';
+import { TagPage } from './TagPage';
+import { TablePage } from './TablePage';
+import { TogglePage } from './TogglePage';
+import { UploaderPage } from './UploaderPage';
+import { TokenPage } from './TokenPage';
+import { ThemePicker, DEFAULT_HUE, applyBrandHue, type Hue } from './ThemePicker';
+import { OnThisPage } from './OnThisPage';
+import { DemoPage } from './DemoPage';
 import './docs.css';
 
-type Page = 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'textarea' | 'number';
+type Page = 'tokens' | 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'tab' | 'table' | 'tag' | 'textarea' | 'number' | 'toggle' | 'uploader';
 
 const sidebarSections = [
   {
@@ -81,21 +90,25 @@ const sidebarSections = [
       { id: 'side-panel', label: 'Side Panel' },
       { id: 'slider', label: 'Slider (in progress)' },
       { id: 'stepper', label: 'Stepper' },
-      { id: 'select', label: 'Select' },
       { id: 'tab', label: 'Tab' },
+      { id: 'table', label: 'Table' },
       { id: 'textarea', label: 'Text Area' },
       { id: 'tag', label: 'Tag' },
       { id: 'toggle', label: 'Toggle' },
+      { id: 'uploader', label: 'File Uploader' },
     ],
   },
 ];
 
 export function App() {
+  const [section, setSection] = useState<'components' | 'demo'>('components');
   const [page, setPage] = useState<Page>('button');
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [radius, setRadius] = useState<'rounded' | 'smooth' | 'standard'>('rounded');
+  const [radius, setRadius] = useState<'rounded' | 'smooth' | 'standard' | 'luxury'>('rounded');
   const [baseFont, setBaseFont] = useState<'16' | '14'>('16');
   const [componentTheme, setComponentTheme] = useState<'brand' | 'neutral'>('brand');
+  const [brandHue, setBrandHue] = useState<Hue>(DEFAULT_HUE);
+  const [showThemePicker, setShowThemePicker] = useState(false);
 
   const toggleBaseFont = () => {
     const next = baseFont === '16' ? '14' : '16';
@@ -107,11 +120,12 @@ export function App() {
     const next = theme === 'light' ? 'dark' : 'light';
     setTheme(next);
     document.documentElement.setAttribute('data-theme', next);
+    if (brandHue !== DEFAULT_HUE) applyBrandHue(brandHue);
   };
 
   const cycleRadius = () => {
-    const order: Array<'rounded' | 'smooth' | 'standard'> = ['rounded', 'smooth', 'standard'];
-    const next = order[(order.indexOf(radius) + 1) % 3];
+    const order: Array<'rounded' | 'smooth' | 'standard' | 'luxury'> = ['rounded', 'smooth', 'standard', 'luxury'];
+    const next = order[(order.indexOf(radius) + 1) % 4];
     setRadius(next);
     document.documentElement.setAttribute('data-radius', next);
   };
@@ -123,16 +137,29 @@ export function App() {
   };
 
   return (
-    <div className="docs-layout">
+    <div className="docs-layout" style={{ position: 'relative' }}>
       {/* ── Top Navigation ── */}
       <header className="docs-topnav">
         <a className="docs-topnav-logo" href="/">
           <img src="/zen-mark.svg" alt="Zen" />
+          <span style={{ fontFamily: 'var(--font-family-display)', fontWeight: 'var(--font-weight-primary)', fontSize: '22px', letterSpacing: '-0.5px', lineHeight: 1 }}>Zen</span>
+          <Badge label="Kaiz" color="neutral" variant="subtle" size="s" dot={false} />
         </a>
 
         <nav className="docs-topnav-links">
-          <button className="docs-topnav-link text-body-small" data-active>
+          <button
+            className="docs-topnav-link text-body-small"
+            data-active={section === 'components'}
+            onClick={() => setSection('components')}
+          >
             Components
+          </button>
+          <button
+            className="docs-topnav-link text-body-small"
+            data-active={section === 'demo'}
+            onClick={() => setSection('demo')}
+          >
+            Demo
           </button>
         </nav>
 
@@ -152,12 +179,27 @@ export function App() {
             {componentTheme}
           </Button>
           <div className="docs-topnav-divider" />
+          <Button
+            variant={showThemePicker ? 'secondary' : 'flat-primary'}
+            size="xs"
+            icon={<Palette size={16} />}
+            onClick={() => setShowThemePicker(v => !v)}
+          />
           <Button variant="flat-primary" size="xs" icon={<Settings01 size={16} />} />
         </div>
       </header>
 
+      {showThemePicker && (
+        <ThemePicker
+          hue={brandHue}
+          onChange={setBrandHue}
+          onClose={() => setShowThemePicker(false)}
+        />
+      )}
+
       {/* ── Content ── */}
-      <div className="docs-content">
+      {section === 'demo' && <DemoPage />}
+      <div className="docs-content" style={{ display: section === 'demo' ? 'none' : undefined }}>
         {/* ── Sidebar ── */}
         <Sidebar
           background="alternate"
@@ -182,6 +224,7 @@ export function App() {
 
         {/* ── Main ── */}
         <main className="docs-main">
+          {page === 'tokens' && <TokenPage />}
           {page === 'accordion' && <AccordionPage />}
           {page === 'alert-banner' && <AlertBannerPage />}
           {page === 'avatar' && <AvatarPage />}
@@ -209,11 +252,19 @@ export function App() {
           {page === 'side-panel' && <SidePanelPage />}
           {page === 'slider' && <SliderPage />}
           {page === 'stepper' && <StepperPage />}
+          {page === 'tab' && <TabPage />}
+          {page === 'table' && <TablePage />}
+          {page === 'tag' && <TagPage />}
           {page === 'input' && <InputFieldPage />}
           {page === 'input-heading' && <InputHeadingPage />}
           {page === 'textarea' && <TextAreaPage />}
           {page === 'number' && <NumberFieldPage />}
+          {page === 'toggle' && <TogglePage />}
+          {page === 'uploader' && <UploaderPage />}
         </main>
+
+        {/* ── On This Page ── */}
+        <OnThisPage page={page} />
       </div>
     </div>
   );

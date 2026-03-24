@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { RatingNps, RatingStar, RatingOpinion } from '@zen/components';
 import type { OpinionValue } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function RatingPage() {
   const [nps5, setNps5] = useState<number | undefined>(undefined);
@@ -17,7 +18,7 @@ export function RatingPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -125,38 +126,38 @@ export function RatingPage() {
 
         {/* ── API ── */}
         <h2 className="docs-section-title text-h3">API — RatingNps</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Selected number</td><td><code>number</code></td><td>—</td></tr>
-            <tr><td><code>onChange</code></td><td>Selection callback</td><td><code>(v: number) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>scale</code></td><td>0–5 or 0–10</td><td><code>5 | 10</code></td><td><code>5</code></td></tr>
-            <tr><td><code>lowLabel</code></td><td>Left end label</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>highLabel</code></td><td>Right end label</td><td><code>string</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Selected number', <code>number</code>, '—'],
+            [<code>onChange</code>, 'Selection callback', <code>(v: number) =&gt; void</code>, '—'],
+            [<code>scale</code>, '0–5 or 0–10', <><code>5</code> | <code>10</code></>, <code>5</code>],
+            [<code>lowLabel</code>, 'Left end label', <code>string</code>, '—'],
+            [<code>highLabel</code>, 'Right end label', <code>string</code>, '—'],
+          ]}
+        />
 
         <h2 className="docs-section-title text-h3">API — RatingStar</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Rating (0–5, 0.5 steps)</td><td><code>number</code></td><td><code>0</code></td></tr>
-            <tr><td><code>onChange</code></td><td>Rating callback</td><td><code>(v: number) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>allowHalf</code></td><td>Enable half-star selection</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>readOnly</code></td><td>Disable interaction</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>size</code></td><td>Star size in px</td><td><code>number</code></td><td><code>24</code></td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Rating (0–5, 0.5 steps)', <code>number</code>, <code>0</code>],
+            [<code>onChange</code>, 'Rating callback', <code>(v: number) =&gt; void</code>, '—'],
+            [<code>allowHalf</code>, 'Enable half-star selection', <code>boolean</code>, <code>false</code>],
+            [<code>readOnly</code>, 'Disable interaction', <code>boolean</code>, <code>false</code>],
+            [<code>size</code>, 'Star size in px', <code>number</code>, <code>24</code>],
+          ]}
+        />
 
         <h2 className="docs-section-title text-h3">API — RatingOpinion</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Selected emotion</td><td><code>OpinionValue</code></td><td>—</td></tr>
-            <tr><td><code>onChange</code></td><td>Selection callback</td><td><code>(v: OpinionValue) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>scale</code></td><td>Number of options</td><td><code>2 | 3 | 5</code></td><td><code>5</code></td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Selected emotion', <code>OpinionValue</code>, '—'],
+            [<code>onChange</code>, 'Selection callback', <code>(v: OpinionValue) =&gt; void</code>, '—'],
+            [<code>scale</code>, 'Number of options', <><code>2</code> | <code>3</code> | <code>5</code></>, <code>5</code>],
+          ]}
+        />
 
       </div>
     </>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Calendar } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function CalendarPage() {
   const [date, setDate] = useState<Date | null>(null);
@@ -17,7 +18,7 @@ export function CalendarPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -109,78 +110,21 @@ export function CalendarPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>value</code></td>
-            <td>Selected date (controlled)</td>
-            <td><code>Date | null</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>defaultValue</code></td>
-            <td>Default selected date (uncontrolled)</td>
-            <td><code>Date | null</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>onChange</code></td>
-            <td>Called when a date is selected</td>
-            <td><code>(date: Date) =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>timePicker</code></td>
-            <td>Show time picker inputs</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>actions</code></td>
-            <td>Show Cancel/Submit buttons</td>
-            <td><code>boolean</code></td>
-            <td><code>false</code></td>
-          </tr>
-          <tr>
-            <td><code>onCancel</code></td>
-            <td>Called when Cancel is clicked</td>
-            <td><code>() =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>onSubmit</code></td>
-            <td>Called when Submit is clicked</td>
-            <td><code>(date: Date | null) =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>eventDates</code></td>
-            <td>Dates to show event dots</td>
-            <td><code>Date[]</code></td>
-            <td><code>[]</code></td>
-          </tr>
-          <tr>
-            <td><code>minDate</code></td>
-            <td>Minimum selectable date</td>
-            <td><code>Date</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>maxDate</code></td>
-            <td>Maximum selectable date</td>
-            <td><code>Date</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>value</code>, 'Selected date (controlled)', <code>Date | null</code>, '—'],
+          [<code>defaultValue</code>, 'Default selected date (uncontrolled)', <code>Date | null</code>, '—'],
+          [<code>onChange</code>, 'Called when a date is selected', <code>(date: Date) =&gt; void</code>, '—'],
+          [<code>timePicker</code>, 'Show time picker inputs', <code>boolean</code>, <code>false</code>],
+          [<code>actions</code>, 'Show Cancel/Submit buttons', <code>boolean</code>, <code>false</code>],
+          [<code>onCancel</code>, 'Called when Cancel is clicked', <code>() =&gt; void</code>, '—'],
+          [<code>onSubmit</code>, 'Called when Submit is clicked', <code>(date: Date | null) =&gt; void</code>, '—'],
+          [<code>eventDates</code>, 'Dates to show event dots', <code>Date[]</code>, <code>[]</code>],
+          [<code>minDate</code>, 'Minimum selectable date', <code>Date</code>, '—'],
+          [<code>maxDate</code>, 'Maximum selectable date', <code>Date</code>, '—'],
+        ]}
+      />
       </div>
     </>
   );

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Segmented } from '@zen/components';
 import { Home01, Settings01, User } from '@zen/icons/line';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 const ITEMS_2 = [
   { value: 'day', label: 'Day' },
@@ -36,13 +37,17 @@ export function SegmentedPage() {
   const [iconSec, setIconSec] = useState('home');
   const [iconPri, setIconPri] = useState('settings');
   const [full, setFull] = useState('week');
+  const [sizeMd, setSizeMd] = useState('week');
+  const [sizeSm, setSizeSm] = useState('week');
+  const [iconMd, setIconMd] = useState('home');
+  const [iconSm, setIconSm] = useState('home');
 
   return (
     <>
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -58,6 +63,28 @@ export function SegmentedPage() {
       </div>
 
       <div className="docs-page-body">
+
+        {/* ── Sizes ── */}
+        <h2 className="docs-section-title text-h3">Sizes</h2>
+        <div className="docs-demo-grid">
+
+          <DemoBlock title="Medium (default)" description="32px height">
+            <Segmented items={ITEMS_3} value={sizeMd} onChange={setSizeMd} size="medium" />
+          </DemoBlock>
+
+          <DemoBlock title="Small" description="24px height">
+            <Segmented items={ITEMS_3} value={sizeSm} onChange={setSizeSm} size="small" />
+          </DemoBlock>
+
+          <DemoBlock title="Medium + icons">
+            <Segmented items={ICON_ITEMS} value={iconMd} onChange={setIconMd} size="medium" />
+          </DemoBlock>
+
+          <DemoBlock title="Small + icons">
+            <Segmented items={ICON_ITEMS} value={iconSm} onChange={setIconSm} size="small" />
+          </DemoBlock>
+
+        </div>
 
         {/* ── Secondary ── */}
         <h2 className="docs-section-title text-h3">Secondary</h2>
@@ -117,29 +144,29 @@ export function SegmentedPage() {
 
         {/* ── API ── */}
         <h2 className="docs-section-title text-h3">API</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>items</code></td><td>Array of items</td><td><code>SegmentedItem[]</code></td><td>—</td></tr>
-            <tr><td><code>value</code></td><td>Controlled selected value</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>defaultValue</code></td><td>Uncontrolled default</td><td><code>string</code></td><td>first item</td></tr>
-            <tr><td><code>onChange</code></td><td>Selection callback</td><td><code>(value: string) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>level</code></td><td>Visual level</td><td><code>"primary" | "secondary"</code></td><td><code>"secondary"</code></td></tr>
-            <tr><td><code>size</code></td><td>Size variant</td><td><code>"medium"</code></td><td><code>"medium"</code></td></tr>
-            <tr><td><code>fullWidth</code></td><td>Stretch to fill parent</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>items</code>, 'Array of items', <code>SegmentedItem[]</code>, '—'],
+            [<code>value</code>, 'Controlled selected value', <code>string</code>, '—'],
+            [<code>defaultValue</code>, 'Uncontrolled default', <code>string</code>, 'first item'],
+            [<code>onChange</code>, 'Selection callback', <code>(value: string) =&gt; void</code>, '—'],
+            [<code>level</code>, 'Visual level', <><code>"primary"</code> | <code>"secondary"</code></>, <code>"secondary"</code>],
+            [<code>size</code>, 'Size variant', <><code>"medium"</code> | <code>"small"</code></>, <code>"medium"</code>],
+            [<code>fullWidth</code>, 'Stretch to fill parent', <code>boolean</code>, <code>false</code>],
+          ]}
+        />
 
         <h2 className="docs-section-title text-h3">SegmentedItem</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>value</code></td><td>Unique identifier</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>label</code></td><td>Display text</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>icon</code></td><td>Leading icon</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>disabled</code></td><td>Disable this item</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Unique identifier', <code>string</code>, '—'],
+            [<code>label</code>, 'Display text', <code>string</code>, '—'],
+            [<code>icon</code>, 'Leading icon', <code>ReactNode</code>, '—'],
+            [<code>disabled</code>, 'Disable this item', <code>boolean</code>, <code>false</code>],
+          ]}
+        />
 
       </div>
     </>

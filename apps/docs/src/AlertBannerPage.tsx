@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { AlertBanner, Button } from '@zen/components';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 export function AlertBannerPage() {
   const [visible, setVisible] = useState(true);
@@ -11,7 +12,7 @@ export function AlertBannerPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -146,94 +147,31 @@ export function AlertBannerPage() {
       {/* ── API ── */}
       <h2 className="docs-section-title text-h3">API</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Description</th>
-            <th>Type</th>
-            <th>Default</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>children</code></td>
-            <td>Alert message content</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>theme</code></td>
-            <td>Color theme</td>
-            <td><code>'default'</code> | <code>'info'</code> | <code>'positive'</code> | <code>'warning'</code> | <code>'negative'</code></td>
-            <td><code>'default'</code></td>
-          </tr>
-          <tr>
-            <td><code>size</code></td>
-            <td>Size variant</td>
-            <td><code>'m'</code> | <code>'s'</code></td>
-            <td><code>'m'</code></td>
-          </tr>
-          <tr>
-            <td><code>icon</code></td>
-            <td>Leading icon. Auto-selected by theme if omitted. Pass <code>null</code> to hide.</td>
-            <td><code>ReactNode | null</code></td>
-            <td>Auto</td>
-          </tr>
-          <tr>
-            <td><code>action</code></td>
-            <td>Action button element (only shown at size "m")</td>
-            <td><code>ReactNode</code></td>
-            <td>—</td>
-          </tr>
-          <tr>
-            <td><code>onClose</code></td>
-            <td>Called when the close button is clicked. If omitted, close button is hidden.</td>
-            <td><code>() =&gt; void</code></td>
-            <td>—</td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Property', 'Description', 'Type', 'Default']}
+        rows={[
+          [<code>children</code>, 'Alert message content', <code>ReactNode</code>, '—'],
+          [<code>theme</code>, 'Color theme', <><code>'default'</code> | <code>'info'</code> | <code>'positive'</code> | <code>'warning'</code> | <code>'negative'</code></>, <code>'default'</code>],
+          [<code>size</code>, 'Size variant', <><code>'m'</code> | <code>'s'</code></>, <code>'m'</code>],
+          [<code>icon</code>, <>Leading icon. Auto-selected by theme if omitted. Pass <code>null</code> to hide.</>, <><code>ReactNode | null</code></>, 'Auto'],
+          [<code>action</code>, 'Action button element (only shown at size "m")', <code>ReactNode</code>, '—'],
+          [<code>onClose</code>, 'Called when the close button is clicked. If omitted, close button is hidden.', <code>() =&gt; void</code>, '—'],
+        ]}
+      />
 
       {/* ── Design Tokens ── */}
       <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-3xlarge)' }}>Design Tokens</h2>
 
-      <table className="docs-api-table text-body-small">
-        <thead>
-          <tr>
-            <th>Theme</th>
-            <th>Background</th>
-            <th>Text Color</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>default</code></td>
-            <td><code>--color-bg-fill-neutral-solid-default</code></td>
-            <td><code>--color-content-inverse</code></td>
-          </tr>
-          <tr>
-            <td><code>info</code></td>
-            <td><code>--color-bg-fill-info-solid-default</code></td>
-            <td><code>--color-content-on-colors</code></td>
-          </tr>
-          <tr>
-            <td><code>positive</code></td>
-            <td><code>--color-bg-fill-positive-solid-default</code></td>
-            <td><code>--color-content-on-colors</code></td>
-          </tr>
-          <tr>
-            <td><code>warning</code></td>
-            <td><code>--color-bg-fill-warning-solid-default</code></td>
-            <td><code>--color-content-on-brights</code></td>
-          </tr>
-          <tr>
-            <td><code>negative</code></td>
-            <td><code>--color-bg-fill-negative-solid-default</code></td>
-            <td><code>--color-content-on-colors</code></td>
-          </tr>
-        </tbody>
-      </table>
+      <ApiTable
+        columns={['Theme', 'Background', 'Text Color']}
+        rows={[
+          [<code>default</code>, <code>--color-bg-fill-neutral-solid-default</code>, <code>--color-content-inverse</code>],
+          [<code>info</code>, <code>--color-bg-fill-info-solid-default</code>, <code>--color-content-on-colors</code>],
+          [<code>positive</code>, <code>--color-bg-fill-positive-solid-default</code>, <code>--color-content-on-colors</code>],
+          [<code>warning</code>, <code>--color-bg-fill-warning-solid-default</code>, <code>--color-content-on-brights</code>],
+          [<code>negative</code>, <code>--color-bg-fill-negative-solid-default</code>, <code>--color-content-on-colors</code>],
+        ]}
+      />
       </div>
     </>
   );

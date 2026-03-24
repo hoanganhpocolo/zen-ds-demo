@@ -6,6 +6,7 @@ import {
   Star01,
 } from '@zen/icons/line';
 import { DemoBlock } from './DemoBlock';
+import { ApiTable } from './ApiTable';
 
 /* ── Demo data ── */
 
@@ -62,7 +63,7 @@ export function PopoverPage() {
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
-            <span className="text-h4" style={{ letterSpacing: '-0.04em' }}>
+            <span className="text-subheading">
               <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
               <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
             </span>
@@ -250,30 +251,30 @@ export function PopoverPage() {
         </div>
 
         <h2 className="docs-section-title text-h3">API — Popover</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>search</code></td><td>Show search input</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>searchValue</code></td><td>Controlled search value</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>onSearchChange</code></td><td>Search input callback</td><td><code>(v: string) =&gt; void</code></td><td>—</td></tr>
-            <tr><td><code>label</code></td><td>Label text above items</td><td><code>string</code></td><td>—</td></tr>
-            <tr><td><code>maxHeight</code></td><td>Max list height before scroll (px)</td><td><code>number</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>search</code>, 'Show search input', <code>boolean</code>, <code>false</code>],
+            [<code>searchValue</code>, 'Controlled search value', <code>string</code>, '—'],
+            [<code>onSearchChange</code>, 'Search input callback', <code>(v: string) =&gt; void</code>, '—'],
+            [<code>label</code>, 'Label text above items', <code>string</code>, '—'],
+            [<code>maxHeight</code>, 'Max list height before scroll (px)', <code>number</code>, '—'],
+          ]}
+        />
 
         <h2 className="docs-section-title text-h3">API — PopoverItem</h2>
-        <table className="docs-api-table text-body-small">
-          <thead><tr><th>Property</th><th>Description</th><th>Type</th><th>Default</th></tr></thead>
-          <tbody>
-            <tr><td><code>selected</code></td><td>Highlight + show check icon</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>leading</code></td><td>Leading slot (icon, avatar, dot…)</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>label</code></td><td>Primary label text</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>caption</code></td><td>Secondary caption text</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>trailing</code></td><td>Trailing slot (badge, checkbox…) — hidden when selected</td><td><code>ReactNode</code></td><td>—</td></tr>
-            <tr><td><code>disabled</code></td><td>Disable interaction</td><td><code>boolean</code></td><td><code>false</code></td></tr>
-            <tr><td><code>onClick</code></td><td>Click / Enter handler</td><td><code>() =&gt; void</code></td><td>—</td></tr>
-          </tbody>
-        </table>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>selected</code>, 'Highlight + show check icon', <code>boolean</code>, <code>false</code>],
+            [<code>leading</code>, 'Leading slot (icon, avatar, dot…)', <code>ReactNode</code>, '—'],
+            [<code>label</code>, 'Primary label text', <code>ReactNode</code>, '—'],
+            [<code>caption</code>, 'Secondary caption text', <code>ReactNode</code>, '—'],
+            [<code>trailing</code>, 'Trailing slot (badge, checkbox…) — hidden when selected', <code>ReactNode</code>, '—'],
+            [<code>disabled</code>, 'Disable interaction', <code>boolean</code>, <code>false</code>],
+            [<code>onClick</code>, 'Click / Enter handler', <code>() =&gt; void</code>, '—'],
+          ]}
+        />
 
       </div>
     </>

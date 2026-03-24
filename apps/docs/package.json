@@ -9,10 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@zen/tokens": "*",
     "@zen/components": "*",
+    "@zen/tokens": "*",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "react-dom": "^19.1.0",
+    "recharts": "^3.8.0"
   },
   "devDependencies": {
     "@types/react": "^19.1.6",
