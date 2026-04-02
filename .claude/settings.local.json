@@ -30,7 +30,13 @@
       "mcp__figma-console__figma_get_file_data",
       "Bash(npx tsup:*)",
       "Read(//Users/lap16506/Documents/Claude Test/**)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "mcp__figma-desktop__get_design_context",
+      "mcp__figma-desktop__get_screenshot",
+      "mcp__figma-desktop__get_metadata",
+      "mcp__figma-remote-mcp__generate_figma_design",
+      "mcp__figma-remote-mcp__get_design_context",
+      "Bash(xargs sed:*)"
     ]
   }
 }

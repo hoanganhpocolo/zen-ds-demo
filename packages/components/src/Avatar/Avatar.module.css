@@ -19,7 +19,6 @@
 .square.size-m   { border-radius: var(--radius-base); }
 .square.size-s   { border-radius: var(--radius-small); }
 .square.size-xs  { border-radius: var(--radius-small); }
-.square.size-2xs { border-radius: var(--radius-xsmall); }
 
 /* ── Sizes ── */
 
@@ -29,7 +28,6 @@
 .size-m   { width: var(--image-size-medium);  height: var(--image-size-medium); }
 .size-s   { width: var(--image-size-small);   height: var(--image-size-small); }
 .size-xs  { width: var(--image-size-xsmall);  height: var(--image-size-xsmall); }
-.size-2xs { width: var(--image-size-2xsmall); height: var(--image-size-2xsmall); }
 
 /* ── Inner container ── */
 
@@ -49,7 +47,6 @@
 .square.size-m   .inner { border-radius: calc(var(--radius-base) - 1px); }
 .square.size-s   .inner { border-radius: calc(var(--radius-small) - 1px); }
 .square.size-xs  .inner { border-radius: calc(var(--radius-small) - 1px); }
-.square.size-2xs .inner { border-radius: calc(var(--radius-xsmall) - 1px); }
 
 /* ── Initials (text content) ── */
 
@@ -112,14 +109,6 @@
   letter-spacing: var(--letter-spacing-caption);
 }
 
-.size-2xs .initials {
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-small-label);
-  line-height: var(--line-height-small-label);
-  font-weight: var(--font-weight-secondary);
-  letter-spacing: var(--letter-spacing-small-label);
-}
-
 /* ── Photo (image content) ── */
 
 .photo {
@@ -171,7 +160,6 @@
 .size-m   .status { width: 12px; height: 12px; box-shadow: 0 0 0 2px var(--color-border-inverse); bottom: 0;   right: 0;   }
 .size-s   .status { width: 8px;  height: 8px;  box-shadow: 0 0 0 2px var(--color-border-inverse); bottom: 1px; right: 1px; }
 .size-xs  .status { width: 4px;  height: 4px;  box-shadow: 0 0 0 1px var(--color-border-inverse); bottom: 1px; right: 1px; }
-.size-2xs .status { width: 4px;  height: 4px;  box-shadow: 0 0 0 1px var(--color-border-inverse); bottom: 1px; right: 1px; }
 
 /* ── Avatar Group ── */
 
@@ -189,8 +177,7 @@
   margin-right: -6px;
 }
 
-.group-xs .group-item,
-.group-2xs .group-item {
+.group-xs .group-item {
   margin-right: -4px;
 }
 

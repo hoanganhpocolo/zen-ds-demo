@@ -41,6 +41,7 @@ import { TokenPage } from './TokenPage';
 import { ThemePicker, DEFAULT_HUE, applyBrandHue, type Hue } from './ThemePicker';
 import { OnThisPage } from './OnThisPage';
 import { DemoPage } from './DemoPage';
+import { TestPage } from './TestPage';
 import './docs.css';
 
 type Page = 'tokens' | 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'tab' | 'table' | 'tag' | 'textarea' | 'number' | 'toggle' | 'uploader';
@@ -101,7 +102,7 @@ const sidebarSections = [
 ];
 
 export function App() {
-  const [section, setSection] = useState<'components' | 'demo'>('components');
+  const [section, setSection] = useState<'components' | 'demo' | 'test'>('components');
   const [page, setPage] = useState<Page>('button');
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [radius, setRadius] = useState<'rounded' | 'smooth' | 'standard' | 'luxury'>('rounded');
@@ -161,6 +162,13 @@ export function App() {
           >
             Demo
           </button>
+          <button
+            className="docs-topnav-link text-body-small"
+            data-active={section === 'test'}
+            onClick={() => setSection('test')}
+          >
+            Test
+          </button>
         </nav>
 
         <div className="docs-topnav-spacer" />
@@ -199,7 +207,8 @@ export function App() {
 
       {/* ── Content ── */}
       {section === 'demo' && <DemoPage />}
-      <div className="docs-content" style={{ display: section === 'demo' ? 'none' : undefined }}>
+      {section === 'test' && <TestPage />}
+      <div className="docs-content" style={{ display: section === 'components' ? undefined : 'none' }}>
         {/* ── Sidebar ── */}
         <Sidebar
           background="alternate"

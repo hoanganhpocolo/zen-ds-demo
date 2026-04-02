@@ -2,7 +2,7 @@ import { forwardRef, type HTMLAttributes, type ReactNode } from 'react';
 import styles from './Avatar.module.css';
 
 export type AvatarShape = 'circle' | 'square';
-export type AvatarSize = '2xs' | 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl';
+export type AvatarSize = 'xs' | 's' | 'm' | 'l' | 'xl' | '2xl';
 export type AvatarBackground = 'subtle' | 'solid';
 export type AvatarColor =
   | 'accent'

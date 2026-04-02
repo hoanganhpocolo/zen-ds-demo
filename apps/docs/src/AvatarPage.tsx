@@ -59,7 +59,7 @@ export function AvatarPage() {
           title="Sizes"
           description="7 sizes from 2XSmall (20px) to 2XLarge (100px)."
         >
-          {(['2xl', 'xl', 'l', 'm', 's', 'xs', '2xs'] as const).map((s) => (
+          {(['2xl', 'xl', 'l', 'm', 's', 'xs'] as const).map((s) => (
             <Avatar key={s} size={s} color="accent">A</Avatar>
           ))}
         </DemoBlock>
@@ -69,7 +69,7 @@ export function AvatarPage() {
           title="Photo"
           description="Pass src to display a user's photo instead of initials."
         >
-          {(['2xl', 'xl', 'l', 'm', 's', 'xs', '2xs'] as const).map((s) => (
+          {(['2xl', 'xl', 'l', 'm', 's', 'xs'] as const).map((s) => (
             <Avatar key={s} size={s} src={SAMPLE_PHOTO} alt="User" />
           ))}
         </DemoBlock>
