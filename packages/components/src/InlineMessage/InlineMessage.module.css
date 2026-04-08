@@ -37,11 +37,11 @@
   flex-shrink: 0;
 }
 
-.neutral .icon { color: var(--color-content-neutral-primary); }
-.info    .icon { color: var(--color-content-info-primary); }
-.positive .icon { color: var(--color-content-positive-primary); }
-.warning .icon { color: var(--color-content-warning-primary); }
-.negative .icon { color: var(--color-content-negative-primary); }
+.neutral .icon { color: var(--color-content-neutral-secondary); }
+.info    .icon { color: var(--color-content-info-highlight); }
+.positive .icon { color: var(--color-content-positive-highlight); }
+.warning .icon { color: var(--color-content-warning-highlight); }
+.negative .icon { color: var(--color-content-negative-highlight); }
 
 /* ── Content ── */
 

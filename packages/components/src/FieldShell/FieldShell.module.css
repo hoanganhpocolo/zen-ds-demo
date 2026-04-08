@@ -78,10 +78,17 @@
   gap: var(--input-spacing-small-inside-field-gap);
 }
 
-/* Allow auto-height for textarea */
+/* Allow auto-height for textarea and multi-select.
+   Removes fixed height + vertical padding; child controls vertical spacing. */
 .auto-height .container {
   height: auto;
+  padding-top: 0;
+  padding-bottom: 0;
 }
+.auto-height.size-xl .container { min-height: var(--input-size-xlarge); }
+.auto-height.size-l .container  { min-height: var(--input-size-large); }
+.auto-height.size-m .container  { min-height: var(--input-size-medium); }
+.auto-height.size-s .container  { min-height: var(--input-size-small); }
 
 /* State styles on container */
 .field.default .container {
@@ -130,7 +137,7 @@
   align-items: center;
   flex-shrink: 0;
   gap: var(--gap-xsmall);
-  color: var(--color-content-neutral-primary);
+  color: var(--color-content-neutral-tertiary);
 }
 
 .size-s .addon {

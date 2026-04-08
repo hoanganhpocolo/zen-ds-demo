@@ -86,6 +86,9 @@ export type { SliderProps, SliderTheme, SliderSize } from './Slider';
 export { Search } from './Search';
 export type { SearchProps, SearchTheme, SearchSize } from './Search';
 
+export { SelectField } from './SelectField';
+export type { SelectFieldProps, SelectOption, SelectFieldSize } from './SelectField';
+
 export { Button } from './Button';
 export type { ButtonProps, ButtonVariant, ButtonSize } from './Button';
 

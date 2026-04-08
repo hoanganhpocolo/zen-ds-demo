@@ -121,11 +121,11 @@
 }
 
 .metric-value {
-  font-family: var(--font-family-display);
+  font-family: var(--font-family-sans);
   font-weight: var(--font-weight-primary);
-  font-size: var(--font-size-display-4);
-  line-height: var(--line-height-display-4);
-  letter-spacing: var(--letter-spacing-display-4, -1.6px);
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -1.08px;
   color: var(--color-content-neutral-primary);
   margin: 0;
   width: 100%;

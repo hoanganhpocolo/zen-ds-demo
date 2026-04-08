@@ -1,0 +1,282 @@
+.wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* ── Value display (replaces input) ── */
+
+.value {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+}
+
+.value-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+}
+
+.value-hidden {
+  visibility: hidden;
+}
+
+.value-text-s {
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.value-text-m,
+.value-text-l {
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+}
+
+.value-text-xl {
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--letter-spacing-h4);
+  font-weight: var(--font-weight-primary);
+}
+
+.value-filled {
+  color: var(--color-content-neutral-primary);
+}
+
+.value-placeholder {
+  color: var(--color-content-placeholder);
+}
+
+/* ── Inline search input (Ant Design style) ── */
+
+.search-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-primary);
+  caret-color: var(--color-bg-fill-active-neutral-solid);
+}
+
+.search-input::placeholder {
+  color: var(--color-content-placeholder);
+}
+
+.search-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.search-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Multi-select value container ── */
+
+/* Multi-value container.
+   FieldShell autoHeight sets container height:auto + min-height:size.
+   We eat ALL vertical padding via negative margin, then add our own
+   so tags sit centered when 1 row = exact same height as empty field. */
+/* Multi-value container.
+   FieldShell autoHeight zeros vertical padding on container.
+   .multi-value manages vertical padding only.
+   Empty state: v-padding matches InputField so heights are identical.
+   Has-tags: v-padding = (fieldHeight - tagHeight) / 2 so 1 row = exact same height. */
+.multi-value {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  cursor: pointer;
+  outline: none;
+  padding: var(--mv-pad-v) 0;
+}
+
+/* When tags are present: equal inset on all sides (top = left = bottom).
+   Eat container h-padding via negative margin, re-add tag-pad as padding. */
+.multi-value-has-tags {
+  padding: var(--mv-tag-pad-v) 0 var(--mv-tag-pad-v) var(--mv-tag-pad-v);
+  margin-left: calc(-1 * var(--mv-eat-x));
+}
+
+/* All values account for container border (2px × 2 = 4px) + box-sizing: border-box.
+   Available = fieldHeight - 4px(border).
+   pad-v (empty)    = (available - lineHeight) / 2
+   tag-pad-v (tags) = (available - tagHeight) / 2
+   s: text=body-small(20px), tag=24px(compact), avail=28
+   m: text=body-base(24px), tag=32px, avail=36
+   l: text=body-base(24px), tag=32px, avail=44
+   xl: text=h4(32px), tag=32px, avail=52 */
+.multi-value-s  { --mv-pad-v: 4px;  --mv-tag-pad-v: 2px;  --mv-eat-x: 8px;  }
+.multi-value-m  { --mv-pad-v: 6px;  --mv-tag-pad-v: 2px;  --mv-eat-x: 12px; }
+.multi-value-l  { --mv-pad-v: 10px; --mv-tag-pad-v: 6px;  --mv-eat-x: 16px; }
+.multi-value-xl { --mv-pad-v: 10px; --mv-tag-pad-v: 10px; --mv-eat-x: 16px; }
+
+/* Compact tag only for small size field */
+.compact-tag-s {
+  height: 24px !important;
+  padding: 0 6px !important;
+}
+
+.multi-search-input {
+  flex: 1 1 80px;
+  min-width: 60px;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-primary);
+  caret-color: var(--color-bg-fill-active-neutral-solid);
+}
+
+.multi-search-input::placeholder {
+  color: var(--color-content-placeholder);
+}
+
+/* ── Trailing group (clear + chevron) ── */
+
+.trailing-group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+.clear-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-content-neutral-tertiary);
+  transition: color 150ms ease;
+}
+
+.clear-btn:hover {
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Chevron ── */
+
+.chevron {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform 200ms ease;
+}
+
+.chevron-open {
+  transform: rotate(180deg);
+}
+
+/* ── Dropdown ── */
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  margin-top: var(--gap-2xsmall);
+  animation: dropdown-in 150ms ease-out;
+}
+
+/* Override Popover fixed width to match field width */
+.dropdown > div {
+  width: 100%;
+  min-width: unset;
+}
+
+@keyframes dropdown-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Keyboard highlight ── */
+
+.highlighted {
+  background: var(--color-bg-fill-neutral-ghost-hover);
+  border-radius: var(--radius-small);
+}
+
+/* ── Overflow +N badge ── */
+
+.overflow-badge {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  cursor: default;
+}
+
+/* ── Overflow tooltip (portal, positioned above +N badge) ── */
+
+.overflow-tooltip {
+  position: absolute;
+  z-index: 9999;
+  transform: translateX(-50%) translateY(-100%);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--padding-xsmall) var(--padding-small);
+  border-radius: var(--radius-base);
+  background: var(--color-bg-fill-neutral-solid-default);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  pointer-events: auto;
+  animation: tooltip-fade-in 120ms ease-out;
+}
+
+.overflow-tooltip-item {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  color: var(--color-content-inverse);
+  white-space: nowrap;
+}
+
+@keyframes tooltip-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Create option ── */
+
+.create-option {
+  color: var(--color-content-accent-primary);
+}
+
+/* ── Empty state ── */
+
+.empty {
+  padding: var(--padding-medium);
+  text-align: center;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  color: var(--color-content-neutral-tertiary);
+}

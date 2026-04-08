@@ -1,15 +1,30 @@
-import { useState } from 'react';
-import { Sidebar, SidebarItem, Popover, PopoverItem } from '@zen/components';
+import { useState, useEffect } from 'react';
+import { Sidebar, SidebarItem, PopoverItem } from '@zen/components';
 import type { WorkspaceItem } from '@zen/components';
 import {
   Home03, BarChart01, Users, Settings01, Bell01,
-  Mail01, Calendar, ShoppingCart, Globe01, Heart,
-  CreditCard, FileDoc, Lock01, Activity,
+  ShoppingCart, Calendar, Mail01, Globe01,
+  Activity, CreditCard, FileDoc, Heart, Lock01,
 } from '@zen/icons/line';
+// Icons used by workspace sidebar items
+import { HomePage } from './pages/HomePage';
+import './App.css';
 
-const labelStyle: React.CSSProperties = { color: 'var(--color-content-neutral-secondary)' };
+function DockLogo() {
+  const [dark, setDark] = useState(document.documentElement.getAttribute('data-theme') === 'dark');
 
-function DockSidebarDemo() {
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setDark(document.documentElement.getAttribute('data-theme') === 'dark');
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    return () => observer.disconnect();
+  }, []);
+
+  return <img src={dark ? '/vnggames-logo-dark.svg' : '/vnggames-logo.svg'} alt="VNGGames" width={40} height={28} />;
+}
+
+export function App() {
   const [page, setPage] = useState('dashboard');
   const [ws, setWs] = useState('portal');
 
@@ -26,11 +41,13 @@ function DockSidebarDemo() {
           <SidebarItem icon={<Users size={20} />} label="Users" counter={128} selected={page === 'users'} onClick={() => setPage('users')} />
           <SidebarItem icon={<Mail01 size={20} />} label="Messages" counter={3} selected={page === 'messages'} onClick={() => setPage('messages')} />
           <SidebarItem icon={<Calendar size={20} />} label="Calendar" selected={page === 'calendar'} onClick={() => setPage('calendar')} />
+          <SidebarItem icon={<ShoppingCart size={20} />} label="Orders" selected={page === 'orders'} onClick={() => setPage('orders')} />
+          <SidebarItem icon={<Globe01 size={20} />} label="Website" selected={page === 'website'} onClick={() => setPage('website')} />
         </>
       ),
       footer: (
         <>
-          <SidebarItem icon={<Settings01 size={20} />} label="Settings" onClick={() => setPage('settings')} selected={page === 'settings'} />
+          <SidebarItem icon={<Settings01 size={20} />} label="Settings" selected={page === 'settings'} onClick={() => setPage('settings')} />
           <SidebarItem icon={<Bell01 size={20} />} label="Notifications" counter={5} />
         </>
       ),
@@ -82,68 +99,37 @@ function DockSidebarDemo() {
   const activeWs = workspaces.find(w => w.id === ws);
 
   return (
-    <div style={{ display: 'flex', height: 700, border: '1px solid var(--color-border-neutral-subtle-default)', borderRadius: 'var(--radius-2xlarge)', overflow: 'hidden', background: 'var(--color-bg-canvas-default)' }}>
+    <div className="portal-layout">
       <Sidebar
         variant="dock"
-        background="default"
+        fixed
         defaultExpanded={false}
         workspaces={workspaces}
         activeWorkspace={ws}
         onWorkspaceChange={(id) => { setWs(id); setPage('dashboard'); }}
         onAddWorkspace={() => alert('Add workspace')}
+        dockHeader={<DockLogo />}
         workspaceDropdown={
           <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
             <PopoverItem label="Workspace Settings" noCheck />
             <PopoverItem label="Invite Members" noCheck />
-            <PopoverItem label="Switch Workspace" noCheck />
+            <PopoverItem label="Manage Workspaces" noCheck />
           </div>
         }
       />
 
-      <div style={{ flex: 1, padding: 'var(--padding-2xlarge)', overflow: 'auto' }}>
-        <h2 className="text-h3" style={{ marginBottom: 4 }}>
-          {activeWs?.label ?? 'Workspace'} — {page.charAt(0).toUpperCase() + page.slice(1)}
-        </h2>
-        <p className="text-body-small" style={{ color: 'var(--color-content-neutral-tertiary)', marginBottom: 'var(--gap-large)' }}>
-          Click workspace icons to switch. Each workspace has different sidebar items.
-        </p>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--gap-medium)' }}>
-          {[
-            'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-            'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
-            'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
-            'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
-            'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
-            'linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)',
-          ].map((bg, i) => (
-            <div key={i} style={{
-              width: 180, height: 120,
-              borderRadius: 'var(--radius-large)',
-              background: bg,
-              display: 'flex', alignItems: 'flex-end', padding: 12,
-              color: 'white', fontSize: 13, fontWeight: 600,
-            }}>
-              Card {i + 1}
+      <main className="portal-main">
+        <div className="portal-content">
+          {page === 'dashboard' && <HomePage />}
+          {page !== 'dashboard' && (
+            <div className="portal-empty">
+              <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
+              <p className="text-body-base" style={{ color: 'var(--color-content-neutral-tertiary)' }}>Page coming soon...</p>
             </div>
-          ))}
+          )}
         </div>
-      </div>
+      </main>
     </div>
   );
 }
 
-export function TestPage() {
-  return (
-    <div style={{ padding: 'var(--padding-2xlarge)', maxWidth: 1100, display: 'flex', flexDirection: 'column', gap: 'var(--gap-3xlarge)' }}>
-      <h1 className="text-h2">Sidebar — Dock + Workspaces</h1>
-      <section>
-        <h3 className="text-body-small" style={labelStyle}>
-          Each workspace has its own sidebar items. Click workspace name dropdown for options.
-        </h3>
-        <div style={{ marginTop: 'var(--gap-medium)' }}>
-          <DockSidebarDemo />
-        </div>
-      </section>
-    </div>
-  );
-}

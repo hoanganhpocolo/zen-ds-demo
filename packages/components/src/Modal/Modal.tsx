@@ -39,6 +39,8 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
   onClose?: () => void;
   /** Portal target (defaults to document.body) */
   portalTarget?: HTMLElement;
+  /** Render panel inline without portal or backdrop (for static previews) */
+  inline?: boolean;
 }
 
 const isMultiCol = (layout: ModalLayout) =>
@@ -68,6 +70,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       onSecondary,
       onClose,
       portalTarget,
+      inline = false,
       className,
       ...rest
     },
@@ -99,7 +102,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
       onClose?.();
     }, [onSecondary, onClose]);
 
-    if (!open) return null;
+    if (!open && !inline) return null;
 
     /* ── Header (shared by both single and multi-column) ── */
     const header = (
@@ -194,6 +197,44 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(
         </div>
       </div>
     );
+
+    if (inline) {
+      return (
+        <div
+          ref={(node) => {
+            panelRef.current = node!;
+            if (typeof ref === 'function') ref(node);
+            else if (ref) ref.current = node;
+          }}
+          role="dialog"
+          aria-labelledby="modal-title"
+          tabIndex={-1}
+          className={[styles.panel, styles[`layout-${layout}`], className ?? ''].filter(Boolean).join(' ')}
+          {...rest}
+        >
+          {multi ? (
+            <>
+              <div className={[styles.side, styles[`side-${layout}`]].join(' ')}>
+                <div className={styles['side-contents']}>
+                  {sideSlot ?? <SlotPlaceholder />}
+                </div>
+              </div>
+              <div className={[styles.content, styles[`content-${layout}`]].join(' ')}>
+                {header}
+                {body}
+                {footer}
+              </div>
+            </>
+          ) : (
+            <>
+              {header}
+              {body}
+              {footer}
+            </>
+          )}
+        </div>
+      );
+    }
 
     return createPortal(content, portalTarget ?? document.body);
   },

@@ -50,7 +50,18 @@
   flex-shrink: 0;
   width: 20px;
   height: 20px;
+  border-radius: var(--radius-rounded);
+  overflow: hidden;
   color: var(--color-content-neutral-primary);
+}
+
+/* Force any child (Avatar, icon) to fit 20×20 */
+.leading > * {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: var(--radius-rounded);
 }
 
 .leading-disabled {

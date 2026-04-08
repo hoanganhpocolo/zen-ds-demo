@@ -1,0 +1,275 @@
+/* ── Shared utility classes ── */
+
+.wc-bold { font-weight: var(--font-weight-primary); }
+.wc-secondary-text { color: var(--color-content-neutral-secondary); }
+.wc-tertiary-text { color: var(--color-content-neutral-tertiary); }
+
+/* ── Greeting Widget ── */
+
+.wc-greeting {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+}
+
+.wc-event-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+  margin-top: var(--gap-small);
+}
+
+.wc-event-item {
+  /* border: 1px solid var(--color-border-neutral-subtle-light-default); */
+  border-radius: var(--radius-base);
+  padding: var(--padding-xsmall) var(--padding-medium);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wc-more-events {
+  color: var(--color-content-neutral-tertiary);
+  text-align: center;
+  cursor: pointer;
+}
+
+/* ── Tickets Widget ── */
+
+.wc-ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bg-fill-neutral-subtle-default) transparent;
+}
+
+.wc-ticket-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.wc-ticket-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wc-ticket-list::-webkit-scrollbar-thumb {
+  background: var(--color-bg-fill-neutral-subtle-default);
+  border-radius: var(--radius-rounded);
+}
+
+.wc-ticket-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  padding: var(--padding-small);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: background 120ms ease;
+  flex-shrink: 0;
+}
+
+.wc-ticket-item:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.wc-ticket-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Updates Widget (banner) ── */
+
+.wc-banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-large);
+  display: block;
+}
+
+/* ── Tools Widget ── */
+
+.wc-tool-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+}
+
+.wc-tool-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  padding: var(--padding-small);
+  border-radius: var(--radius-base);
+  transition: background 120ms ease;
+  cursor: pointer;
+}
+
+.wc-tool-item:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.wc-tool-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-base);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.wc-tool-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* ── Analytics Widget ── */
+
+.wc-metrics-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-xsmall);
+}
+
+.wc-metric-mini {
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-base);
+  padding: var(--padding-small) var(--padding-medium);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.wc-metric-value {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  font-size: 28px;
+  line-height: 40px;
+  color: var(--color-content-neutral-primary);
+}
+
+.wc-charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-xsmall);
+  flex: 1;
+}
+
+.wc-chart-card {
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-base);
+  padding: var(--padding-small) var(--padding-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.wc-chart-area {
+  flex: 1;
+  position: relative;
+  min-height: 180px;
+}
+
+.wc-pie-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.wc-chart-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-large);
+}
+
+.wc-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+.wc-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-rounded);
+  flex-shrink: 0;
+}
+
+/* ── Analytics Widget — extra classes ── */
+
+.wc-analytics-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+}
+
+.wc-metric-title {
+  color: var(--color-content-neutral-secondary);
+}
+
+.wc-metric-change {
+  font-weight: var(--font-weight-primary);
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.wc-metric-change-positive {
+  color: var(--color-content-positive-highlight);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.wc-metric-change-negative {
+  color: var(--color-content-negative-highlight);
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.wc-metric-prev {
+  color: var(--color-content-neutral-tertiary);
+  font-weight: var(--font-weight-tertiary);
+}
+
+.wc-chart-title {
+  font-weight: var(--font-weight-secondary);
+}
+
+.wc-pie-total-label {
+  color: var(--color-content-neutral-tertiary);
+}
+
+.wc-pie-total-value {
+  font-weight: var(--font-weight-primary);
+}
+
+.wc-legend-dot-accent {
+  background: var(--color-bg-fill-accent-solid-default);
+}
+
+.wc-legend-dot-info {
+  background: var(--color-bg-fill-info-solid-default);
+}
+
+/* ── Widget Shell extras ── */
+
+.wc-widget-title-text {
+  font-weight: var(--font-weight-primary);
+}

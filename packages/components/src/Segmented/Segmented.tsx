@@ -1,34 +1,30 @@
-import { useState, type HTMLAttributes, type ReactNode } from 'react';
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  type HTMLAttributes,
+  type ReactNode,
+} from 'react';
 import styles from './Segmented.module.css';
 
 export type SegmentedLevel = 'primary' | 'secondary';
 export type SegmentedSize = 'medium' | 'small';
 
 export interface SegmentedItem {
-  /** Unique value for this item */
   value: string;
-  /** Label text */
   label: string;
-  /** Optional leading icon */
   icon?: ReactNode;
-  /** Disable this item */
   disabled?: boolean;
 }
 
 export interface SegmentedProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
-  /** Items to render */
   items: SegmentedItem[];
-  /** Controlled selected value */
   value?: string;
-  /** Uncontrolled default value */
   defaultValue?: string;
-  /** Called when selection changes */
   onChange?: (value: string) => void;
-  /** Visual level */
   level?: SegmentedLevel;
-  /** Size variant */
   size?: SegmentedSize;
-  /** Stretch to fill parent width */
   fullWidth?: boolean;
 }
 
@@ -46,6 +42,35 @@ export function Segmented({
   const isControlled = value !== undefined;
   const [internalValue, setInternalValue] = useState(defaultValue ?? items[0]?.value ?? '');
   const selected = isControlled ? value : internalValue;
+
+  const listRef = useRef<HTMLDivElement>(null);
+  const [indicator, setIndicator] = useState({ left: 0, width: 0, ready: false });
+
+  const updateIndicator = useCallback(() => {
+    if (!listRef.current) return;
+    const buttons = listRef.current.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+    const idx = items.findIndex((i) => i.value === selected);
+    if (idx < 0 || !buttons[idx]) return;
+    const btn = buttons[idx];
+    const listRect = listRef.current.getBoundingClientRect();
+    const btnRect = btn.getBoundingClientRect();
+    setIndicator({
+      left: btnRect.left - listRect.left,
+      width: btnRect.width,
+      ready: true,
+    });
+  }, [items, selected]);
+
+  useEffect(() => {
+    updateIndicator();
+  }, [updateIndicator]);
+
+  // Re-measure on resize
+  useEffect(() => {
+    const ro = new ResizeObserver(updateIndicator);
+    if (listRef.current) ro.observe(listRef.current);
+    return () => ro.disconnect();
+  }, [updateIndicator]);
 
   const handleSelect = (itemValue: string, disabled?: boolean) => {
     if (disabled) return;
@@ -65,7 +90,18 @@ export function Segmented({
 
   return (
     <div className={rootClasses} {...rest}>
-      <div className={styles['item-list']}>
+      <div ref={listRef} className={styles['item-list']}>
+        {/* Sliding indicator */}
+        {indicator.ready && (
+          <div
+            className={[styles.indicator, styles[`indicator-${level}`]].join(' ')}
+            style={{
+              transform: `translateX(${indicator.left}px)`,
+              width: indicator.width,
+            }}
+          />
+        )}
+
         {items.map((item) => {
           const isSelected = selected === item.value;
           const itemClasses = [

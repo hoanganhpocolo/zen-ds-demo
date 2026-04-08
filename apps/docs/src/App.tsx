@@ -27,6 +27,7 @@ import { ProgressPage } from './ProgressPage';
 import { RadioPage } from './RadioPage';
 import { RatingPage } from './RatingPage';
 import { SearchPage } from './SearchPage';
+import { SelectFieldPage } from './SelectFieldPage';
 import { SegmentedPage } from './SegmentedPage';
 import { SidebarPage } from './SidebarPage';
 import { SidePanelPage } from './SidePanelPage';
@@ -44,7 +45,7 @@ import { DemoPage } from './DemoPage';
 import { TestPage } from './TestPage';
 import './docs.css';
 
-type Page = 'tokens' | 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'tab' | 'table' | 'tag' | 'textarea' | 'number' | 'toggle' | 'uploader';
+type Page = 'tokens' | 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'select' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'tab' | 'table' | 'tag' | 'textarea' | 'number' | 'toggle' | 'uploader';
 
 const sidebarSections = [
   {
@@ -86,6 +87,7 @@ const sidebarSections = [
       { id: 'radio', label: 'Radio Button' },
       { id: 'rating', label: 'Rating' },
       { id: 'search', label: 'Search' },
+      { id: 'select', label: 'Select Field' },
       { id: 'segmented', label: 'Segmented Control' },
       { id: 'sidebar', label: 'Sidebar' },
       { id: 'side-panel', label: 'Side Panel' },
@@ -256,6 +258,7 @@ export function App() {
           {page === 'radio' && <RadioPage />}
           {page === 'rating' && <RatingPage />}
           {page === 'search' && <SearchPage />}
+          {page === 'select' && <SelectFieldPage />}
           {page === 'segmented' && <SegmentedPage />}
           {page === 'sidebar' && <SidebarPage />}
           {page === 'side-panel' && <SidePanelPage />}

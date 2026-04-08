@@ -26,8 +26,10 @@ export interface InputFieldProps
   clearable?: boolean;
   /** Help text below the field */
   helpText?: InputFieldHelpText | string;
-  /** Character count display (e.g. "0/100") */
-  charCount?: string;
+  /** Character count display (e.g. "0/100"). When `true`, auto-counts based on value and maxLength. */
+  charCount?: string | boolean;
+  /** Maximum character length. When set with `charCount`, shows "n/max" automatically. */
+  maxLength?: number;
   /** Error state — shows negative border and help text */
   error?: boolean | string;
   /** Controlled value */
@@ -48,6 +50,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       clearable = false,
       helpText,
       charCount,
+      maxLength,
       error,
       disabled,
       readOnly,
@@ -108,6 +111,14 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
       input.focus();
     }, [inputRef, isControlled]);
 
+    // Auto charCount: true → "n/maxLength", string → pass-through
+    const resolvedCharCount =
+      charCount === true && maxLength
+        ? `${currentValue.length}/${maxLength}`
+        : typeof charCount === 'string'
+          ? charCount
+          : undefined;
+
     const clearButton =
       clearable && hasValue && !disabled && !readOnly ? (
         <button
@@ -133,7 +144,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           </>
         }
         helpText={helpText}
-        charCount={charCount}
+        charCount={resolvedCharCount}
         error={error}
         disabled={disabled}
         readOnly={readOnly}
@@ -147,6 +158,7 @@ export const InputField = forwardRef<HTMLInputElement, InputFieldProps>(
           disabled={disabled}
           readOnly={readOnly}
           value={currentValue}
+          maxLength={maxLength}
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
