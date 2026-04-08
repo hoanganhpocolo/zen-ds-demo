@@ -1,5 +1,5 @@
 import { useState, useCallback, useMemo } from 'react';
-import { Button, Modal, Popover, PopoverItem } from '@zen/components';
+import { Button, Modal, Popover, PopoverItem, Segmented } from '@zen/components';
 import { DotsHorizontal, Trash } from '@zen/icons/line';
 import { getWidget, getAllWidgets } from './registry';
 import './widgets.css';
@@ -249,6 +249,7 @@ export function DashboardGrid() {
       {/* Add widget modal */}
       <Modal
         open={showAddPanel}
+        layout="basic"
         title="Add Widget"
         primaryLabel="Reset Layout"
         secondaryLabel="Cancel"
@@ -256,14 +257,29 @@ export function DashboardGrid() {
         onSecondary={() => { setShowAddPanel(false); setAddTargetId(null); }}
         onClose={() => { setShowAddPanel(false); setAddTargetId(null); }}
       >
-        <div className="add-widget-panel">
-          {getAllWidgets().map(def => (
-            <button key={def.id} className="add-widget-option" onClick={() => handleAdd(def.id)}>
-              <span className="add-widget-option-emoji">{def.emoji}</span>
-              <span className="text-body-small wc-bold">{def.title}</span>
-              <span className="text-caption wc-tertiary-text">{def.description}</span>
-            </button>
-          ))}
+        <div className="add-widget-body">
+          <Segmented
+            size="medium"
+            items={[
+              { value: 'home', label: 'Home' },
+              { value: 'apollo', label: 'Apollo' },
+              { value: 'analytics', label: 'Analytics' },
+              { value: 'fpa', label: 'FPA' },
+              { value: 'legal', label: 'Legal' },
+            ]}
+            defaultValue="home"
+          />
+          <div className="add-widget-panel-horizontal">
+            {getAllWidgets().map(def => (
+              <button key={def.id} className="add-widget-option-horizontal" onClick={() => handleAdd(def.id)}>
+                <span className="add-widget-option-emoji">{def.emoji}</span>
+                <div className="add-widget-option-info">
+                  <span className="text-body-small wc-bold">{def.title}</span>
+                  <span className="text-caption wc-tertiary-text">{def.description}</span>
+                </div>
+              </button>
+            ))}
+          </div>
         </div>
       </Modal>
     </div>
