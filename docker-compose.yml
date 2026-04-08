@@ -1,0 +1,16 @@
+services:
+  docs:
+    build:
+      context: .
+      args:
+        APP_NAME: docs
+    ports:
+      - "3001:80"
+
+  portal:
+    build:
+      context: .
+      args:
+        APP_NAME: portal
+    ports:
+      - "3002:80"
