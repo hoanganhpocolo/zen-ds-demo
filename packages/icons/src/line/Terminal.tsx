@@ -1,0 +1,16 @@
+import { forwardRef, type SVGAttributes } from 'react';
+
+export interface IconProps extends SVGAttributes<SVGSVGElement> {
+  size?: number | string;
+}
+
+export const Terminal = forwardRef<SVGSVGElement, IconProps>(
+  ({ size = 24, ...rest }, ref) => {
+    const ariaHidden = !rest['aria-label'];
+    return (
+      <svg ref={ref} {...rest} fill="none" aria-hidden={ariaHidden} viewBox="0 0 24 24" width={size} height={size}><path fill="currentColor" d="M22 20H12v-2h10zM9.707 10.293a1 1 0 0 1 0 1.414L3.414 18 2 16.586 7.586 11 2 5.414 3.414 4z"/></svg>
+    );
+  },
+);
+
+Terminal.displayName = 'Terminal';

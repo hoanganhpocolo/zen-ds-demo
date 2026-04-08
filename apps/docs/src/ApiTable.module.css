@@ -1,0 +1,44 @@
+.wrap {
+  width: 100%;
+}
+
+/* ── Override Table cell defaults for API docs ── */
+
+/* Auto height: let rows grow with multi-line content */
+.wrap td {
+  height: auto !important;
+  min-height: 48px;
+  vertical-align: top;
+}
+
+/* Align flex inner div to top */
+.wrap td > div {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  min-height: unset;
+}
+
+/* Code tokens inside cells */
+.wrap td code,
+.wrap th code {
+  font-family: var(--font-family-dev);
+  font-size: 13px;
+  color: var(--color-content-accent-primary);
+  background: var(--color-bg-fill-neutral-ghost-default);
+  border-radius: var(--radius-2xsmall);
+  padding: 1px var(--padding-2xsmall);
+  white-space: nowrap;
+  display: inline-block;
+  line-height: 1.6;
+}
+
+/* ── Column widths — 4-col layout (Prop / Desc / Type / Default) ── */
+.col-prop    { width: 16%; }
+.col-desc    { width: 30%; }
+.col-type    { width: 38%; }
+.col-default { width: 16%; }
+
+/* ── Column widths — 3-col layout ── */
+.col-3-a { width: 20%; }
+.col-3-b { width: 55%; }
+.col-3-c { width: 25%; }

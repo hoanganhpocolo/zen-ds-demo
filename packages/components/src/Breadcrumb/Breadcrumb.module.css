@@ -1,0 +1,85 @@
+/* ── Breadcrumb container ── */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  flex-wrap: wrap;
+}
+
+/* ── Breadcrumb item ── */
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: clip;
+  padding: var(--padding-3xsmall) var(--padding-xsmall);
+  border-radius: var(--radius-xsmall);
+  background: var(--color-bg-fill-neutral-flat-default);
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  transition: background 150ms ease;
+}
+
+.item:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+/* Master item: tighter left padding for icon */
+.item-master {
+  padding-left: var(--padding-3xsmall);
+  gap: var(--gap-2xsmall);
+}
+
+/* Emphasis */
+.emphasis-default {
+  font-weight: var(--font-weight-tertiary);
+}
+
+.emphasis-medium {
+  font-weight: var(--font-weight-secondary);
+}
+
+/* Current (last) item — no pointer */
+.item-current {
+  cursor: default;
+}
+
+.item-current:hover {
+  background: var(--color-bg-fill-neutral-flat-default);
+}
+
+/* ── Icon wrapper ── */
+
+.icon-wrapper {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-2xsmall);
+  border-radius: var(--radius-2xsmall);
+  flex-shrink: 0;
+}
+
+.item:hover .icon-wrapper {
+  background: var(--color-bg-fill-inverse-solid-default);
+}
+
+.item-current:hover .icon-wrapper {
+  background: transparent;
+}
+
+/* ── Separator ── */
+
+.separator {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-content-neutral-tertiary);
+}

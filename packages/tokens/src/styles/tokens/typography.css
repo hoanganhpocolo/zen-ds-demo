@@ -1,0 +1,406 @@
+/* ==========================================================
+   TYPOGRAPHY TOKENS
+   Scale: Base-16 / ratio 1.14
+   Theme: Zen (Inter + BT Solisiert)
+   ========================================================== */
+
+@font-face {
+  font-family: 'BT Solisiert';
+  src: url('../fonts/BTSolisiert-ExtraBold.otf') format('opentype');
+  font-weight: 600 800;
+  font-display: swap;
+}
+
+:root {
+  /* Font Families */
+  --font-family-button: 'Inter';
+  --font-family-dev: 'Jetbrains Mono';
+  --font-family-display: 'BT Solisiert';
+  --font-family-heading: 'Inter';
+  --font-family-sans: 'Inter';
+
+  /* Font Weights (Emphasis: Medium) */
+  --font-weight-primary: 600;
+  --font-weight-secondary: 500;
+  --font-weight-tertiary: 400;
+
+  /* Font Sizes */
+  --font-size-badge-label-m: 14px;
+  --font-size-badge-label-s: 12px;
+  --font-size-body-base: 16px;
+  --font-size-body-extra: 18px;
+  --font-size-body-small: 14px;
+  --font-size-button-label-l: 16px;
+  --font-size-button-label-m: 16px;
+  --font-size-button-label-s: 16px;
+  --font-size-button-label-xl: 20px;
+  --font-size-button-label-xs: 14px;
+  --font-size-capsline-m: 16px;
+  --font-size-capsline-s: 14px;
+  --font-size-caption: 12px;
+  --font-size-display-1: 60px;
+  --font-size-display-2: 52px;
+  --font-size-display-3: 46px;
+  --font-size-display-4: 40px;
+  --font-size-h1: 36px;
+  --font-size-h2: 32px;
+  --font-size-h3: 28px;
+  --font-size-h4: 24px;
+  --font-size-small-label: 10px;
+  --font-size-subheading: 20px;
+
+  /* Line Heights */
+  --line-height-badge-label-m: 16px;
+  --line-height-badge-label-s: 16px;
+  --line-height-body-base: 24px;
+  --line-height-body-extra: 26px;
+  --line-height-body-small: 20px;
+  --line-height-button-label-l: 24px;
+  --line-height-button-label-m: 24px;
+  --line-height-button-label-s: 24px;
+  --line-height-button-label-xl: 32px;
+  --line-height-button-label-xs: 16px;
+  --line-height-capsline-m: 20px;
+  --line-height-capsline-s: 16px;
+  --line-height-caption: 16px;
+  --line-height-display-1: 68px;
+  --line-height-display-2: 60px;
+  --line-height-display-3: 52px;
+  --line-height-display-4: 48px;
+  --line-height-h1: 44px;
+  --line-height-h2: 40px;
+  --line-height-h3: 36px;
+  --line-height-h4: 32px;
+  --line-height-small-label: 16px;
+  --line-height-subheading: 28px;
+
+  /* Letter Spacing (converted from Figma % values: % × font-size) */
+  --letter-spacing-badge-label-m: 0.14px;    /* 1% */
+  --letter-spacing-badge-label-s: 0.36px;    /* 3% */
+  --letter-spacing-body-base: -0.32px;       /* -2% */
+  --letter-spacing-body-extra: -0.36px;      /* -2% */
+  --letter-spacing-body-small: -0.28px;      /* -2% */
+  --letter-spacing-button-label-l: -0.16px;  /* -1% */
+  --letter-spacing-button-label-m: -0.32px;  /* -2% */
+  --letter-spacing-button-label-s: -0.32px;  /* -2% */
+  --letter-spacing-button-label-xl: -0.4px;  /* -2% */
+  --letter-spacing-button-label-xs: -0.28px; /* -2% */
+  --letter-spacing-capsline-m: 0px;          /* 0% */
+  --letter-spacing-capsline-s: 0px;          /* 0% */
+  --letter-spacing-caption: 0px;             /* 0% */
+  --letter-spacing-display-1: -2.4px;        /* -4% */
+  --letter-spacing-display-2: -2.08px;       /* -4% */
+  --letter-spacing-display-3: -1.84px;       /* -4% */
+  --letter-spacing-display-4: -1.6px;        /* -4% */
+  --letter-spacing-h1: -1.44px;              /* -4% */
+  --letter-spacing-h2: -1.28px;              /* -4% */
+  --letter-spacing-h3: -1.12px;              /* -4% */
+  --letter-spacing-h4: -0.96px;              /* -4% */
+  --letter-spacing-small-label: 0px;         /* 0% */
+  --letter-spacing-subheading: -0.6px;       /* -3% */
+}
+
+/* ==========================================================
+   TEXT STYLE CLASSES — Maps 1:1 to Figma Text Styles
+   ========================================================== */
+
+.text-body-base,
+.text-body-base-tertiary {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-body-base);
+}
+
+.text-body-base-secondary {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-base);
+}
+
+.text-body-base-primary {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-body-base);
+}
+
+.text-body-extra,
+.text-body-extra-tertiary {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-extra);
+  line-height: var(--line-height-body-extra);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-body-extra);
+}
+
+.text-body-extra-secondary {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-extra);
+  line-height: var(--line-height-body-extra);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-extra);
+}
+
+.text-body-extra-primary {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-extra);
+  line-height: var(--line-height-body-extra);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-body-extra);
+}
+
+.text-body-small {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.text-button-label-l {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button-label-l);
+  line-height: var(--line-height-button-label-l);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-l);
+}
+
+.text-button-label-m {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button-label-m);
+  line-height: var(--line-height-button-label-m);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-m);
+}
+
+.text-button-label-s {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button-label-s);
+  line-height: var(--line-height-button-label-s);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-s);
+}
+
+.text-button-label-xl {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button-label-xl);
+  line-height: var(--line-height-button-label-xl);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-xl);
+}
+
+.text-button-label-xs {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-button-label-xs);
+  line-height: var(--line-height-button-label-xs);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-xs);
+}
+
+.text-capsline-m {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-capsline-m);
+  line-height: var(--line-height-capsline-m);
+  font-weight: var(--font-weight-secondary);
+  text-transform: uppercase;
+}
+
+.text-capsline-s {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-capsline-s);
+  line-height: var(--line-height-capsline-s);
+  font-weight: var(--font-weight-secondary);
+  text-transform: uppercase;
+}
+
+.text-caption {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+}
+
+.text-display-1 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display-1);
+  line-height: var(--line-height-display-1);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-display-1);
+}
+
+.text-display-2 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display-2);
+  line-height: var(--line-height-display-2);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-display-2);
+}
+
+.text-display-3 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display-3);
+  line-height: var(--line-height-display-3);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-display-3);
+}
+
+.text-display-4 {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display-4);
+  line-height: var(--line-height-display-4);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-display-4);
+}
+
+.text-h1 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h1);
+}
+
+.text-h2 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h2);
+}
+
+.text-h3 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h3);
+}
+
+.text-h4 {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h4);
+}
+
+.text-small-label {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-small-label);
+  line-height: var(--line-height-small-label);
+  font-weight: var(--font-weight-secondary);
+}
+
+.text-subheading {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-subheading);
+  line-height: var(--line-height-subheading);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-subheading);
+}
+
+.text-badge-label-s {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-badge-label-s);
+  line-height: var(--line-height-badge-label-s);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-badge-label-s);
+}
+
+.text-badge-label-m {
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-badge-label-m);
+  line-height: var(--line-height-badge-label-m);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-badge-label-m);
+}
+
+/* ==========================================================
+   BASE 14 MODE — activated via data-base-font="14" on <html>
+   Shifts the entire type scale down one step.
+   Typescale: 1.200, base shifted from 16px to 14px.
+   ========================================================== */
+
+[data-base-font="14"] {
+  /* Font Sizes — Base 14 */
+  --font-size-badge-label-m: 12px;
+  --font-size-badge-label-s: 10px;
+  --font-size-body-base: 14px;
+  --font-size-body-extra: 16px;
+  --font-size-body-small: 12px;
+  --font-size-button-label-l: 14px;
+  --font-size-button-label-m: 14px;
+  --font-size-button-label-s: 14px;
+  --font-size-button-label-xl: 18px;
+  --font-size-button-label-xs: 12px;
+  --font-size-capsline-m: 14px;
+  --font-size-capsline-s: 12px;
+  --font-size-caption: 10px;
+  --font-size-display-1: 52px;
+  --font-size-display-2: 46px;
+  --font-size-display-3: 40px;
+  --font-size-display-4: 36px;
+  --font-size-h1: 32px;
+  --font-size-h2: 28px;
+  --font-size-h3: 24px;
+  --font-size-h4: 20px;
+  --font-size-small-label: 8px;
+  --font-size-subheading: 18px;
+
+  /* Line Heights — Base 14 */
+  --line-height-badge-label-m: 16px;
+  --line-height-badge-label-s: 12px;
+  --line-height-body-base: 20px;
+  --line-height-body-extra: 24px;
+  --line-height-body-small: 16px;
+  --line-height-button-label-l: 20px;
+  --line-height-button-label-m: 20px;
+  --line-height-button-label-s: 16px;
+  --line-height-button-label-xl: 24px;
+  --line-height-button-label-xs: 12px;
+  --line-height-capsline-m: 16px;
+  --line-height-capsline-s: 16px;
+  --line-height-caption: 16px;
+  --line-height-display-1: 60px;
+  --line-height-display-2: 52px;
+  --line-height-display-3: 48px;
+  --line-height-display-4: 44px;
+  --line-height-h1: 36px;
+  --line-height-h2: 36px;
+  --line-height-h3: 32px;
+  --line-height-h4: 28px;
+  --line-height-small-label: 12px;
+  --line-height-subheading: 26px;
+
+  /* Letter Spacing — Base 14 (same % ratios, recalculated with Base 14 font sizes) */
+  --letter-spacing-badge-label-m: 0.12px;    /* 1% × 12px */
+  --letter-spacing-badge-label-s: 0.3px;     /* 3% × 10px */
+  --letter-spacing-body-base: -0.28px;       /* -2% × 14px */
+  --letter-spacing-body-extra: -0.32px;      /* -2% × 16px */
+  --letter-spacing-body-small: -0.24px;      /* -2% × 12px */
+  --letter-spacing-button-label-l: -0.2px;   /* JSON: -0.20 */
+  --letter-spacing-button-label-m: -0.28px;  /* JSON: -0.28 */
+  --letter-spacing-button-label-s: -0.28px;  /* JSON: -0.28 */
+  --letter-spacing-button-label-xl: -0.2px;  /* JSON: -0.20 */
+  --letter-spacing-button-label-xs: -0.24px; /* JSON: -0.24 */
+  --letter-spacing-capsline-m: 0px;          /* 0% */
+  --letter-spacing-capsline-s: 0px;          /* 0% */
+  --letter-spacing-caption: -0.1px;          /* JSON: -0.10 */
+  --letter-spacing-display-1: -2.08px;       /* -4% × 52px */
+  --letter-spacing-display-2: -1.84px;       /* -4% × 46px */
+  --letter-spacing-display-3: -1.6px;        /* -4% × 40px */
+  --letter-spacing-display-4: -1.44px;       /* -4% × 36px */
+  --letter-spacing-h1: -1.28px;              /* -4% × 32px */
+  --letter-spacing-h2: -1.12px;              /* -4% × 28px */
+  --letter-spacing-h3: -0.96px;              /* -4% × 24px */
+  --letter-spacing-h4: -0.8px;               /* -4% × 20px */
+  --letter-spacing-small-label: 0px;         /* 0% */
+  --letter-spacing-subheading: -0.48px;      /* JSON: -0.48 */
+}
+

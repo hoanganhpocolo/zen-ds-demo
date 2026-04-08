@@ -1,0 +1,14 @@
+.tabBar {
+  display: flex;
+  padding: var(--padding-small) var(--padding-xlarge);
+}
+
+.codePane {
+  padding: var(--padding-medium);
+  background: var(--color-bg-surface-default);
+  overflow: hidden;
+}
+
+.codePane>* {
+  border-radius: var(--radius-small);
+}

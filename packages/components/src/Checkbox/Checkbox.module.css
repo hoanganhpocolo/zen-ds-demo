@@ -1,0 +1,146 @@
+/* ── Root ── */
+
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--gap-xsmall);
+}
+
+/* ── Container (row with checkbox + label) ── */
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  cursor: pointer;
+}
+
+.container-disabled {
+  cursor: default;
+}
+
+/* ── Hidden native input ── */
+
+.native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Check wrapper ── */
+
+.check-wrapper {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-3xsmall) 0;
+  flex-shrink: 0;
+}
+
+/* ── Check box ── */
+
+.check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-xsmall);
+  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light, rgba(0, 0, 0, 0.04));
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+/* Unselected */
+.check-unselected {
+  background: var(--comp-checkbox-color-bg-unselected-default);
+  border: 1px solid var(--comp-checkbox-color-border-default);
+}
+
+.container:hover .check-unselected {
+  border-color: var(--comp-checkbox-color-border-hover);
+}
+
+/* Selected */
+.check-selected {
+  background: var(--comp-checkbox-color-bg-selected-default);
+  border: 1px solid transparent;
+}
+
+.container:hover .check-selected {
+  background: var(--comp-checkbox-color-bg-selected-hover);
+}
+
+/* Disabled unselected */
+.check-disabled-unselected {
+  background: var(--comp-checkbox-color-bg-unselected-default);
+  border: 1px solid var(--color-border-disabled);
+}
+
+/* Disabled selected */
+.check-disabled-selected {
+  background: var(--color-bg-fill-disabled);
+  border: 1px solid transparent;
+}
+
+/* ── Focus ring ── */
+
+.native:focus-visible ~ .container .check::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--color-border-focused-accent-solid);
+  border-radius: var(--radius-small);
+  pointer-events: none;
+}
+
+/* ── Check icon ── */
+
+.check-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--comp-checkbox-color-icon-check-default);
+}
+
+.check-disabled-selected .check-icon {
+  color: var(--comp-checkbox-color-icon-check-default);
+  opacity: 0.5;
+}
+
+/* ── Label ── */
+
+.label {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  user-select: none;
+}
+
+.label-disabled {
+  color: var(--color-content-disabled);
+}
+
+/* ── Caption ── */
+
+.caption {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-neutral-tertiary);
+}
+
+.caption-disabled {
+  color: var(--color-content-disabled);
+}

@@ -1,0 +1,183 @@
+/* ── Root ── */
+
+.root {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+}
+
+/* ── Prev / Next nav button ── */
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  padding: var(--padding-xsmall);
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-ghost-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  box-shadow: 0px 1px 1px 0px var(--color-shadow-neutral-1);
+  color: var(--color-content-neutral-primary);
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: var(--color-bg-fill-neutral-ghost-hover);
+}
+
+.nav-btn:active:not(:disabled) {
+  background: var(--color-bg-fill-neutral-ghost-pressed);
+}
+
+.nav-btn:disabled {
+  border-color: var(--color-border-disabled);
+  color: var(--color-content-disabled);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ── Page list ── */
+
+.pages {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+/* ── Page number button ── */
+
+.page-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-rounded);
+  background: transparent;
+  border: none;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+  color: var(--color-content-neutral-primary);
+  cursor: pointer;
+  transition: background 100ms ease;
+}
+
+.page-btn:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.page-btn:active {
+  background: var(--color-bg-fill-neutral-flat-pressed);
+}
+
+/* Primary active — black fill */
+.page-btn-active-primary {
+  background: var(--color-bg-fill-active-neutral-solid);
+  color: var(--color-content-inverse);
+}
+
+.page-btn-active-primary:hover {
+  background: var(--color-bg-fill-active-neutral-solid);
+}
+
+/* Secondary active — subtle grey fill */
+.page-btn-active-secondary {
+  background: var(--color-bg-fill-active-neutral-subtle);
+  color: var(--color-content-neutral-primary);
+}
+
+.page-btn-active-secondary:hover {
+  background: var(--color-bg-fill-active-neutral-subtle);
+}
+
+/* ── Ellipsis ── */
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-small);
+  color: var(--color-content-neutral-primary);
+  user-select: none;
+}
+
+/* ── Inline: chip selector ── */
+
+.inline-chip {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  height: 40px;
+  padding-left: var(--padding-medium);
+  padding-right: var(--padding-xsmall);
+  padding-top: var(--padding-xsmall);
+  padding-bottom: var(--padding-xsmall);
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-ghost-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  box-shadow: 0px 1px 1px 0px var(--color-shadow-neutral-1);
+  flex-shrink: 0;
+}
+
+.inline-select {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  background: transparent;
+}
+
+.inline-chip span {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: -0.32px;
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.inline-chevron {
+  color: var(--color-content-neutral-primary);
+  flex-shrink: 0;
+  pointer-events: none;
+}
+
+/* ── Inline: range label ── */
+
+.inline-range {
+  flex: 1;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-tertiary);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+  color: var(--color-content-neutral-primary);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* ── Inline: navigator (prev/next pair) ── */
+
+.inline-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  flex-shrink: 0;
+}

@@ -1,0 +1,186 @@
+/* ── Avatar root ── */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: visible;
+  border: 1px solid var(--color-border-inverse);
+}
+
+/* ── Shape ── */
+
+.circle { border-radius: var(--radius-rounded); }
+.square.size-2xl { border-radius: var(--radius-xlarge); }
+.square.size-xl  { border-radius: var(--radius-large); }
+.square.size-l   { border-radius: var(--radius-base); }
+.square.size-m   { border-radius: var(--radius-base); }
+.square.size-s   { border-radius: var(--radius-small); }
+.square.size-xs  { border-radius: var(--radius-small); }
+
+/* ── Sizes ── */
+
+.size-2xl { width: var(--image-size-2xlarge); height: var(--image-size-2xlarge); border-width: 2px; }
+.size-xl  { width: var(--image-size-xlarge);  height: var(--image-size-xlarge);  border-width: 2px; }
+.size-l   { width: var(--image-size-large);   height: var(--image-size-large); }
+.size-m   { width: var(--image-size-medium);  height: var(--image-size-medium); }
+.size-s   { width: var(--image-size-small);   height: var(--image-size-small); }
+.size-xs  { width: var(--image-size-xsmall);  height: var(--image-size-xsmall); }
+
+/* ── Inner container ── */
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.circle .inner { border-radius: var(--radius-rounded); }
+.square.size-2xl .inner { border-radius: calc(var(--radius-xlarge) - 2px); }
+.square.size-xl  .inner { border-radius: calc(var(--radius-large) - 2px); }
+.square.size-l   .inner { border-radius: calc(var(--radius-base) - 1px); }
+.square.size-m   .inner { border-radius: calc(var(--radius-base) - 1px); }
+.square.size-s   .inner { border-radius: calc(var(--radius-small) - 1px); }
+.square.size-xs  .inner { border-radius: calc(var(--radius-small) - 1px); }
+
+/* ── Initials (text content) ── */
+
+.avatar:not(.photo) .inner {
+  background: var(--avatar-bg);
+  color: var(--avatar-color);
+  backdrop-filter: blur(50px);
+}
+
+.initials {
+  text-align: center;
+  user-select: none;
+}
+
+.size-2xl .initials {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-display-4);
+  line-height: var(--line-height-display-4);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-display-4);
+}
+
+.size-xl .initials {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h2);
+}
+
+.size-l .initials {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h4);
+}
+
+.size-m .initials {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-subheading);
+  line-height: var(--line-height-subheading);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-subheading);
+}
+
+.size-s .initials {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.size-xs .initials {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-caption);
+}
+
+/* ── Photo (image content) ── */
+
+.photo {
+  background: var(--color-bg-surface-default);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.circle .image { border-radius: var(--radius-rounded); }
+
+/* ── "More" overflow indicator ── */
+
+.more .inner {
+  background: var(--color-bg-fill-neutral-subtle-default);
+  color: var(--color-content-neutral-primary);
+  backdrop-filter: blur(50px);
+}
+
+/* ── Focus ring ── */
+
+.avatar:focus-visible {
+  outline: 3px solid var(--color-border-active-primary-solid);
+  outline-offset: 4px;
+}
+
+/* ── Status indicator ── */
+
+.status {
+  position: absolute;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-positive-solid-default);
+}
+
+/* Status color variants */
+.status-active   { background: var(--color-bg-fill-positive-solid-default); }
+.status-pending  { background: var(--color-bg-fill-warning-solid-default); }
+.status-inactive { background: var(--color-bg-fill-negative-solid-default); }
+.status-disabled { background: var(--color-bg-fill-disabled); }
+
+/* Size × position — dot size from Figma, box-shadow = outside stroke */
+.size-2xl .status { width: 16px; height: 16px; box-shadow: 0 0 0 3px var(--color-border-inverse); bottom: 8px; right: 8px; }
+.size-xl  .status { width: 16px; height: 16px; box-shadow: 0 0 0 3px var(--color-border-inverse); bottom: 6px; right: 6px; }
+.size-l   .status { width: 16px; height: 16px; box-shadow: 0 0 0 3px var(--color-border-inverse); bottom: 0;   right: 0;   }
+.size-m   .status { width: 12px; height: 12px; box-shadow: 0 0 0 2px var(--color-border-inverse); bottom: 0;   right: 0;   }
+.size-s   .status { width: 8px;  height: 8px;  box-shadow: 0 0 0 2px var(--color-border-inverse); bottom: 1px; right: 1px; }
+.size-xs  .status { width: 4px;  height: 4px;  box-shadow: 0 0 0 1px var(--color-border-inverse); bottom: 1px; right: 1px; }
+
+/* ── Avatar Group ── */
+
+.group {
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+}
+
+.group-item {
+  margin-right: -8px;
+}
+
+.group-s .group-item {
+  margin-right: -6px;
+}
+
+.group-xs .group-item {
+  margin-right: -4px;
+}
+
+.group-item:last-child {
+  margin-right: 0;
+}

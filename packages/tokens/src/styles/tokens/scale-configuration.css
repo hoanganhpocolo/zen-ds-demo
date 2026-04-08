@@ -1,0 +1,466 @@
+/* ==========================================================
+   SCALE CONFIGURATION
+   Component sizing & spacing tokens.
+   Switch via: <html data-base-font="16|14">
+   References Global Dimensions (--dm-*).
+   ========================================================== */
+
+/* ── Base 16 (default) ── */
+
+:root {
+
+  /* ── Icon Size ── */
+  --icon-size-3xlarge: var(--dm-56);
+  --icon-size-2xlarge: var(--dm-48);
+  --icon-size-xlarge: var(--dm-40);
+  --icon-size-large: var(--dm-32);
+  --icon-size-medium: var(--dm-28);
+  --icon-size-base: var(--dm-24);
+  --icon-size-small: var(--dm-20);
+  --icon-size-xsmall: var(--dm-16);
+  --icon-size-2xsmall: var(--dm-12);
+
+  /* Icon Size — File */
+  --icon-file-width: var(--dm-32);
+  --icon-file-height: var(--dm-40);
+
+  /* ── Image Size ── */
+  --image-size-2xlarge: var(--dm-100);
+  --image-size-xlarge: var(--dm-80);
+  --image-size-large: var(--dm-60);
+  --image-size-medium: var(--dm-40);
+  --image-size-small: var(--dm-32);
+  --image-size-xsmall: var(--dm-24);
+  --image-size-2xsmall: var(--dm-20);
+
+  /* ── Button Size (height) ── */
+  --button-size-xlarge: var(--dm-56);
+  --button-size-large: var(--dm-48);
+  --button-size-medium: var(--dm-40);
+  --button-size-small: var(--dm-32);
+  --button-size-xsmall: var(--dm-24);
+  --button-size-2xsmall: var(--dm-16);
+
+  /* ── Button Spacing ── */
+  /* XLarge */
+  --button-spacing-xlarge-h-padding: var(--dm-16);
+  --button-spacing-xlarge-v-padding: var(--dm-16);
+  --button-spacing-xlarge-gap: var(--dm-4);
+  --button-spacing-xlarge-text-wrapper-padding: var(--dm-4);
+  /* Large */
+  --button-spacing-large-h-padding: var(--dm-16);
+  --button-spacing-large-v-padding: var(--dm-16);
+  --button-spacing-large-gap: var(--dm-2);
+  --button-spacing-large-text-wrapper-padding: var(--dm-4);
+  /* Medium */
+  --button-spacing-medium-h-padding: var(--dm-12);
+  --button-spacing-medium-v-padding: var(--dm-12);
+  --button-spacing-medium-gap: var(--dm-2);
+  --button-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --button-spacing-small-h-padding: var(--dm-8);
+  --button-spacing-small-v-padding: var(--dm-8);
+  --button-spacing-small-gap: var(--dm-2);
+  --button-spacing-small-text-wrapper-padding: var(--dm-4);
+  /* XSmall */
+  --button-spacing-xsmall-h-padding: var(--dm-4);
+  --button-spacing-xsmall-v-padding: var(--dm-4);
+  --button-spacing-xsmall-gap: var(--dm-2);
+  --button-spacing-xsmall-text-wrapper-padding: var(--dm-4);
+
+  /* ── Input Size (height) ── */
+  --input-size-xlarge: var(--dm-56);
+  --input-size-large: var(--dm-48);
+  --input-size-medium: var(--dm-40);
+  --input-size-small: var(--dm-32);
+  --input-size-heading-h1: var(--dm-36);
+  --input-size-heading-h2: var(--dm-32);
+
+  /* ── Input Spacing ── */
+  /* XLarge */
+  --input-spacing-xlarge-h-padding: var(--dm-16);
+  --input-spacing-xlarge-v-padding: var(--dm-16);
+  --input-spacing-xlarge-inside-field-gap: var(--dm-8);
+  --input-spacing-xlarge-outside-field-gap: var(--dm-8);
+  /* Large */
+  --input-spacing-large-h-padding: var(--dm-16);
+  --input-spacing-large-v-padding: var(--dm-12);
+  --input-spacing-large-inside-field-gap: var(--dm-8);
+  --input-spacing-large-outside-field-gap: var(--dm-8);
+  /* Medium */
+  --input-spacing-medium-h-padding: var(--dm-12);
+  --input-spacing-medium-v-padding: 10px;
+  --input-spacing-medium-inside-field-gap: var(--dm-8);
+  --input-spacing-medium-outside-field-gap: var(--dm-4);
+  /* Small */
+  --input-spacing-small-h-padding: var(--dm-8);
+  --input-spacing-small-v-padding: 6px;
+  --input-spacing-small-inside-field-gap: var(--dm-8);
+  --input-spacing-small-outside-field-gap: var(--dm-4);
+
+  /* ── Text-Area Size (height) ── */
+  --textarea-size-large: 104px;
+  --textarea-size-medium: var(--dm-96);
+  --textarea-size-small: var(--dm-80);
+
+  /* ── Text-Area Spacing ── */
+  /* Large */
+  --textarea-spacing-large-h-padding: var(--dm-16);
+  --textarea-spacing-large-v-padding: var(--dm-16);
+  --textarea-spacing-large-gap: var(--dm-8);
+  /* Medium */
+  --textarea-spacing-medium-h-padding: var(--dm-16);
+  --textarea-spacing-medium-v-padding: var(--dm-12);
+  --textarea-spacing-medium-gap: var(--dm-8);
+  /* Small */
+  --textarea-spacing-small-h-padding: var(--dm-12);
+  --textarea-spacing-small-v-padding: var(--dm-8);
+  --textarea-spacing-small-gap: var(--dm-8);
+
+  /* ── Chip Size (height) ── */
+  --chip-size-medium: var(--dm-40);
+  --chip-size-small: var(--dm-32);
+
+  /* ── Chip Spacing ── */
+  /* Medium */
+  --chip-spacing-medium-h-padding: var(--dm-16);
+  --chip-spacing-medium-v-padding: var(--dm-12);
+  --chip-spacing-medium-gap: var(--dm-8);
+  --chip-spacing-medium-customized-padding: var(--dm-12);
+  --chip-spacing-medium-minimum-padding: 6px;
+  /* Small */
+  --chip-spacing-small-h-padding: var(--dm-12);
+  --chip-spacing-small-v-padding: var(--dm-4);
+  --chip-spacing-small-gap: var(--dm-4);
+  --chip-spacing-small-customized-padding: var(--dm-8);
+  --chip-spacing-small-minimum-padding: var(--dm-4);
+
+  /* ── Badge Size (height) ── */
+  --badge-size-medium: var(--dm-32);
+  --badge-size-small: var(--dm-24);
+
+  /* ── Badge Spacing ── */
+  /* Medium */
+  --badge-spacing-medium-h-padding: 6px;
+  --badge-spacing-medium-v-padding: var(--dm-4);
+  --badge-spacing-medium-gap: var(--dm-2);
+  --badge-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --badge-spacing-small-h-padding: var(--dm-4);
+  --badge-spacing-small-v-padding: var(--dm-2);
+  --badge-spacing-small-gap: 0px;
+  --badge-spacing-small-text-wrapper-padding: var(--dm-4);
+
+  /* ── Tag Size (height) ── */
+  --tag-size-medium: var(--dm-32);
+  --tag-size-small: var(--dm-24);
+
+  /* ── Tag Spacing ── */
+  /* Medium */
+  --tag-spacing-medium-h-padding: 6px;
+  --tag-spacing-medium-v-padding: var(--dm-4);
+  --tag-spacing-medium-gap: var(--dm-2);
+  --tag-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --tag-spacing-small-h-padding: var(--dm-4);
+  --tag-spacing-small-v-padding: var(--dm-4);
+  --tag-spacing-small-gap: var(--dm-2);
+  --tag-spacing-small-text-wrapper-padding: var(--dm-4);
+
+  /* ── Checkbox ── */
+  --checkbox-size-medium: var(--dm-20);
+  --checkbox-gap-medium: var(--dm-8);
+
+  /* ── Radio Button ── */
+  --radio-size-medium: var(--dm-20);
+  --radio-gap-medium: var(--dm-8);
+
+  /* ── Toggle (item size) ── */
+  --toggle-size-large: var(--dm-24);
+  --toggle-size-medium: var(--dm-20);
+  --toggle-size-small: var(--dm-16);
+
+  /* ── Select Item Size (height) ── */
+  --select-item-size-medium: var(--dm-40);
+  --select-item-size-small: var(--dm-32);
+
+  /* ── Segmented Corner Radius ── */
+  --segmented-item-radius-medium: var(--dm-12);
+  --segmented-container-radius-medium: var(--dm-16);
+  --segmented-item-radius-small: 1000px;
+  --segmented-container-radius-small: 1000px;
+
+  /* ── Segmented Size (height) ── */
+  --segmented-size-medium: var(--dm-40);
+  --segmented-size-small: var(--dm-32);
+  --segmented-size-xsmall: var(--dm-24);
+
+  /* ── Segmented Spacing ── */
+  /* Medium */
+  --segmented-spacing-medium-h-padding: var(--dm-8);
+  --segmented-spacing-medium-v-padding: var(--dm-8);
+  --segmented-spacing-medium-gap: var(--dm-4);
+  --segmented-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --segmented-spacing-small-h-padding: 6px;
+  --segmented-spacing-small-v-padding: var(--dm-4);
+  --segmented-spacing-small-gap: var(--dm-2);
+  --segmented-spacing-small-text-wrapper-padding: var(--dm-4);
+  /* XSmall */
+  --segmented-spacing-xsmall-h-padding: var(--dm-4);
+  --segmented-spacing-xsmall-v-padding: var(--dm-4);
+  --segmented-spacing-xsmall-gap: 0px;
+  --segmented-spacing-xsmall-text-wrapper-padding: var(--dm-4);
+
+  /* ── Tab Item ── */
+  /* Size (min-width) */
+  --tab-item-size-medium: var(--dm-40);
+  --tab-item-size-small: var(--dm-36);
+  /* Spacing */
+  --tab-item-spacing-medium-h-padding: 0px;
+  --tab-item-spacing-medium-v-padding: var(--dm-8);
+  --tab-item-spacing-medium-gap: var(--dm-8);
+  --tab-item-spacing-small-h-padding: 0px;
+  --tab-item-spacing-small-v-padding: var(--dm-8);
+  --tab-item-spacing-small-gap: var(--dm-8);
+
+  /* ── Table ── */
+  --table-cell-size: var(--dm-56);
+  --table-header-size: var(--dm-40);
+
+  /* ── Metric Card ── */
+  --metric-card-master-min-width: 214px;
+  --metric-card-master-height: 214px;
+  --metric-card-sub-min-width: 164px;
+  --metric-card-sub-height: 164px;
+
+  /* ── Sidebar ── */
+  --sidebar-width: 280px;
+
+  /* ── Global Control Bar ── */
+  --global-control-bar-size: var(--dm-80);
+}
+
+/* ── Base 14 ── */
+
+[data-base-font="14"] {
+
+  /* ── Icon Size ── */
+  --icon-size-3xlarge: var(--dm-52);
+  --icon-size-2xlarge: var(--dm-44);
+  --icon-size-xlarge: var(--dm-36);
+  --icon-size-large: var(--dm-28);
+  --icon-size-medium: var(--dm-24);
+  --icon-size-base: var(--dm-20);
+  --icon-size-small: var(--dm-16);
+  --icon-size-xsmall: var(--dm-12);
+  --icon-size-2xsmall: var(--dm-12);
+
+  /* Icon Size — File */
+  --icon-file-width: var(--dm-28);
+  --icon-file-height: 35px;
+
+  /* ── Image Size ── */
+  --image-size-2xlarge: var(--dm-100);
+  --image-size-xlarge: var(--dm-84);
+  --image-size-large: var(--dm-60);
+  --image-size-medium: var(--dm-44);
+  --image-size-small: var(--dm-28);
+  --image-size-xsmall: var(--dm-20);
+  --image-size-2xsmall: var(--dm-16);
+
+  /* ── Button Size (height) ── */
+  --button-size-xlarge: var(--dm-56);
+  --button-size-large: var(--dm-48);
+  --button-size-medium: var(--dm-40);
+  --button-size-small: var(--dm-32);
+  --button-size-xsmall: var(--dm-24);
+  --button-size-2xsmall: var(--dm-16);
+
+  /* ── Button Spacing ── */
+  /* XLarge */
+  --button-spacing-xlarge-h-padding: var(--dm-16);
+  --button-spacing-xlarge-v-padding: var(--dm-16);
+  --button-spacing-xlarge-gap: var(--dm-4);
+  --button-spacing-xlarge-text-wrapper-padding: var(--dm-4);
+  /* Large */
+  --button-spacing-large-h-padding: var(--dm-16);
+  --button-spacing-large-v-padding: var(--dm-16);
+  --button-spacing-large-gap: var(--dm-2);
+  --button-spacing-large-text-wrapper-padding: var(--dm-4);
+  /* Medium */
+  --button-spacing-medium-h-padding: var(--dm-12);
+  --button-spacing-medium-v-padding: var(--dm-12);
+  --button-spacing-medium-gap: var(--dm-2);
+  --button-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --button-spacing-small-h-padding: var(--dm-8);
+  --button-spacing-small-v-padding: var(--dm-8);
+  --button-spacing-small-gap: var(--dm-2);
+  --button-spacing-small-text-wrapper-padding: var(--dm-4);
+  /* XSmall */
+  --button-spacing-xsmall-h-padding: var(--dm-4);
+  --button-spacing-xsmall-v-padding: var(--dm-4);
+  --button-spacing-xsmall-gap: var(--dm-2);
+  --button-spacing-xsmall-text-wrapper-padding: var(--dm-4);
+
+  /* ── Input Size (height) ── */
+  --input-size-xlarge: var(--dm-56);
+  --input-size-large: var(--dm-48);
+  --input-size-medium: var(--dm-40);
+  --input-size-small: var(--dm-32);
+  --input-size-heading-h1: var(--dm-36);
+  --input-size-heading-h2: var(--dm-32);
+
+  /* ── Input Spacing ── */
+  /* XLarge */
+  --input-spacing-xlarge-h-padding: var(--dm-16);
+  --input-spacing-xlarge-v-padding: var(--dm-16);
+  --input-spacing-xlarge-inside-field-gap: var(--dm-8);
+  --input-spacing-xlarge-outside-field-gap: var(--dm-8);
+  /* Large */
+  --input-spacing-large-h-padding: var(--dm-16);
+  --input-spacing-large-v-padding: var(--dm-12);
+  --input-spacing-large-inside-field-gap: var(--dm-8);
+  --input-spacing-large-outside-field-gap: var(--dm-8);
+  /* Medium */
+  --input-spacing-medium-h-padding: var(--dm-12);
+  --input-spacing-medium-v-padding: 10px;
+  --input-spacing-medium-inside-field-gap: var(--dm-8);
+  --input-spacing-medium-outside-field-gap: var(--dm-4);
+  /* Small */
+  --input-spacing-small-h-padding: var(--dm-8);
+  --input-spacing-small-v-padding: 6px;
+  --input-spacing-small-inside-field-gap: var(--dm-8);
+  --input-spacing-small-outside-field-gap: var(--dm-4);
+
+  /* ── Text-Area Size (height) ── */
+  --textarea-size-large: var(--dm-88);
+  --textarea-size-medium: var(--dm-80);
+  --textarea-size-small: var(--dm-64);
+
+  /* ── Text-Area Spacing ── */
+  /* Large */
+  --textarea-spacing-large-h-padding: var(--dm-16);
+  --textarea-spacing-large-v-padding: var(--dm-12);
+  --textarea-spacing-large-gap: var(--dm-8);
+  /* Medium */
+  --textarea-spacing-medium-h-padding: var(--dm-12);
+  --textarea-spacing-medium-v-padding: var(--dm-12);
+  --textarea-spacing-medium-gap: var(--dm-8);
+  /* Small */
+  --textarea-spacing-small-h-padding: var(--dm-8);
+  --textarea-spacing-small-v-padding: 6px;
+  --textarea-spacing-small-gap: var(--dm-8);
+
+  /* ── Chip Size (height) ── */
+  --chip-size-medium: var(--dm-40);
+  --chip-size-small: var(--dm-32);
+
+  /* ── Chip Spacing ── */
+  /* Medium */
+  --chip-spacing-medium-h-padding: var(--dm-16);
+  --chip-spacing-medium-v-padding: var(--dm-12);
+  --chip-spacing-medium-gap: var(--dm-8);
+  --chip-spacing-medium-customized-padding: 10px;
+  --chip-spacing-medium-minimum-padding: 6px;
+  /* Small */
+  --chip-spacing-small-h-padding: var(--dm-12);
+  --chip-spacing-small-v-padding: var(--dm-4);
+  --chip-spacing-small-gap: var(--dm-4);
+  --chip-spacing-small-customized-padding: 6px;
+  --chip-spacing-small-minimum-padding: var(--dm-2);
+
+  /* ── Badge Size (height) ── */
+  --badge-size-medium: var(--dm-28);
+  --badge-size-small: var(--dm-20);
+
+  /* ── Badge Spacing ── */
+  /* Medium */
+  --badge-spacing-medium-h-padding: 6px;
+  --badge-spacing-medium-v-padding: var(--dm-4);
+  --badge-spacing-medium-gap: var(--dm-2);
+  --badge-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --badge-spacing-small-h-padding: var(--dm-4);
+  --badge-spacing-small-v-padding: var(--dm-2);
+  --badge-spacing-small-gap: 0px;
+  --badge-spacing-small-text-wrapper-padding: var(--dm-4);
+
+  /* ── Tag Size (height) ── */
+  --tag-size-medium: var(--dm-28);
+  --tag-size-small: var(--dm-20);
+
+  /* ── Tag Spacing ── */
+  /* Medium */
+  --tag-spacing-medium-h-padding: 6px;
+  --tag-spacing-medium-v-padding: var(--dm-4);
+  --tag-spacing-medium-gap: var(--dm-2);
+  --tag-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --tag-spacing-small-h-padding: var(--dm-4);
+  --tag-spacing-small-v-padding: var(--dm-4);
+  --tag-spacing-small-gap: var(--dm-2);
+  --tag-spacing-small-text-wrapper-padding: var(--dm-4);
+
+  /* ── Checkbox ── */
+  --checkbox-size-medium: var(--dm-16);
+  --checkbox-gap-medium: var(--dm-8);
+
+  /* ── Radio Button ── */
+  --radio-size-medium: var(--dm-16);
+  --radio-gap-medium: var(--dm-8);
+
+  /* ── Toggle (item size) ── */
+  --toggle-size-large: var(--dm-20);
+  --toggle-size-medium: var(--dm-16);
+  --toggle-size-small: var(--dm-12);
+
+  /* ── Select Item Size (height) ── */
+  --select-item-size-medium: var(--dm-32);
+  --select-item-size-small: var(--dm-24);
+
+  /* ── Segmented Size (height) ── */
+  --segmented-size-medium: var(--dm-32);
+  --segmented-size-small: var(--dm-24);
+  --segmented-size-xsmall: var(--dm-16);
+
+  /* ── Segmented Spacing ── */
+  /* Medium */
+  --segmented-spacing-medium-h-padding: var(--dm-8);
+  --segmented-spacing-medium-v-padding: var(--dm-8);
+  --segmented-spacing-medium-gap: var(--dm-4);
+  --segmented-spacing-medium-text-wrapper-padding: var(--dm-4);
+  /* Small */
+  --segmented-spacing-small-h-padding: var(--dm-4);
+  --segmented-spacing-small-v-padding: var(--dm-4);
+  --segmented-spacing-small-gap: var(--dm-2);
+  --segmented-spacing-small-text-wrapper-padding: var(--dm-4);
+  /* XSmall */
+  --segmented-spacing-xsmall-h-padding: var(--dm-4);
+  --segmented-spacing-xsmall-v-padding: var(--dm-2);
+  --segmented-spacing-xsmall-gap: 0px;
+  --segmented-spacing-xsmall-text-wrapper-padding: var(--dm-4);
+
+  /* ── Tab Item ── */
+  --tab-item-size-medium: var(--dm-36);
+  --tab-item-size-small: var(--dm-32);
+  --tab-item-spacing-medium-gap: var(--dm-8);
+  --tab-item-spacing-small-gap: var(--dm-4);
+
+  /* ── Table ── */
+  --table-cell-size: var(--dm-48);
+  --table-header-size: var(--dm-36);
+
+  /* ── Metric Card ── */
+  --metric-card-master-min-width: 188px;
+  --metric-card-master-height: 188px;
+  --metric-card-sub-min-width: 152px;
+  --metric-card-sub-height: 152px;
+
+  /* ── Sidebar ── */
+  --sidebar-width: 240px;
+
+  /* ── Global Control Bar ── */
+  --global-control-bar-size: var(--dm-68);
+}

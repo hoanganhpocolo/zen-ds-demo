@@ -1,0 +1,16 @@
+import { forwardRef, type SVGAttributes } from 'react';
+
+export interface IconProps extends SVGAttributes<SVGSVGElement> {
+  size?: number | string;
+}
+
+export const CloudMoon = forwardRef<SVGSVGElement, IconProps>(
+  ({ size = 24, ...rest }, ref) => {
+    const ariaHidden = !rest['aria-label'];
+    return (
+      <svg ref={ref} {...rest} fill="none" aria-hidden={ariaHidden} viewBox="0 0 24 24" width={size} height={size}><path fill="currentColor" d="M11.47 1.377a.98.98 0 0 1 .992-.353c.372.084.66.374.74.744.854 4.026 5.128 6.105 8.477 4.864a.99.99 0 0 1 1.029.216.96.96 0 0 1 .235 1.013c-.71 1.966-2.373 3.487-4.441 4.034 2.314.74 4.009 2.825 4.009 5.329 0 2.846-2.222 5.423-5.139 5.77l-.058.006H6.197l-.058-.007C3.22 22.647 1 20.07 1 17.223c0-2.882 2.249-5.21 5.1-5.569.59-2.045 2.347-3.601 4.514-4.011q-.072-.258-.134-.529c-.1-.44-.191-.957-.191-1.384 0-.679.073-1.466.247-2.218.171-.739.457-1.524.934-2.135m.833 3.38c-.04.336-.059.668-.059.973 0 .207.052.553.145.957.078.343.174.675.255.914 1.759.256 3.275 1.264 4.158 2.685v-.104a4.6 4.6 0 0 0 3.183-1.266c-3.006.125-6.051-1.438-7.682-4.16"/></svg>
+    );
+  },
+);
+
+CloudMoon.displayName = 'CloudMoon';

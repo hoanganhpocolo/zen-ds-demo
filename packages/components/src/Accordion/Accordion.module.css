@@ -1,0 +1,170 @@
+/* ── Root ── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+}
+
+/* Theme: Divider */
+.theme-divider {
+  border-top: 1px solid var(--color-border-neutral-subtle-default);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+.theme-divider.size-m,
+.theme-divider.size-l {
+  padding: var(--padding-medium);
+}
+
+.theme-divider.size-xl {
+  padding: var(--padding-xlarge);
+}
+
+/* Theme: Box */
+.theme-box {
+  background: var(--color-bg-surface-alt);
+}
+
+.theme-box.size-m,
+.theme-box.size-l {
+  padding: var(--padding-medium);
+  border-radius: var(--radius-large);
+}
+
+.theme-box.size-xl {
+  padding: var(--padding-xlarge);
+  border-radius: var(--radius-2xlarge);
+}
+
+/* ── Header (trigger row) ── */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  width: 100%;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  color: inherit;
+}
+
+/* ── Title ── */
+
+.title {
+  flex: 1;
+  min-width: 0;
+  color: var(--color-content-neutral-primary);
+}
+
+.title-m {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-subheading);
+  line-height: var(--line-height-subheading);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-subheading);
+}
+
+.title-l {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h4);
+}
+
+.title-xl {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h3);
+}
+
+/* ── Chevron wrapper ── */
+
+.chevron-wrapper {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.chevron-wrapper.size-m,
+.chevron-wrapper.size-l {
+  padding: var(--padding-3xsmall) 0;
+}
+
+.chevron-wrapper.size-xl {
+  padding: var(--padding-2xsmall) 0;
+}
+
+/* ── Chevron icon ── */
+
+.chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-content-neutral-primary);
+  transition: transform 250ms ease;
+}
+
+.chevron-expanded {
+  transform: rotate(180deg);
+}
+
+/* ── Content ── */
+
+.content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 250ms ease;
+}
+
+.content-expanded {
+  grid-template-rows: 1fr;
+}
+
+.content-inner {
+  overflow: hidden;
+}
+
+.content-body {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-content-neutral-secondary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-body-base);
+}
+
+/* Content spacing (gap between title and content) */
+.size-m .content-body {
+  padding-top: var(--gap-xsmall);
+}
+
+.size-l .content-body {
+  padding-top: var(--gap-small);
+}
+
+.size-xl .content-body {
+  padding-top: var(--gap-medium);
+}
+
+/* ── Accordion Group ── */
+
+.group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Divider items in group: collapse double borders */
+.group-divider .root.theme-divider + .root.theme-divider {
+  border-top: none;
+}

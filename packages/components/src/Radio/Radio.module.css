@@ -1,0 +1,175 @@
+/* ── Root ── */
+
+.root {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+  cursor: pointer;
+}
+
+/* Border card variant */
+.root-border {
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-medium);
+  background: var(--color-bg-surface-default);
+  transition: border-color 150ms ease;
+}
+
+.root-border-selected {
+  border-width: 2px;
+  border-color: var(--color-border-active-secondary-solid);
+  /* Compensate 1px → 2px border to avoid layout shift */
+  padding: calc(var(--padding-medium) - 1px);
+}
+
+/* ── Hidden native input ── */
+
+.native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Row (radio mark + content) ── */
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gap-xsmall);
+}
+
+.row-border {
+  align-items: center;
+  gap: var(--gap-small);
+}
+
+/* ── Mark wrapper ── */
+
+.mark-wrapper {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-3xsmall) 0;
+  flex-shrink: 0;
+}
+
+/* ── Radio mark circle ── */
+
+.mark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-rounded);
+  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light, rgba(0, 0, 0, 0.04));
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+/* Unselected */
+.mark-unselected {
+  background: var(--comp-radio-button-color-bg-unselected-default);
+  border: 1px solid var(--comp-radio-button-color-border-default);
+}
+
+.row:hover .mark-unselected {
+  border-color: var(--comp-radio-button-color-border-hover);
+}
+
+/* Selected */
+.mark-selected {
+  background: var(--color-bg-fill-active-neutral-solid);
+  border: 1px solid transparent;
+}
+
+.row:hover .mark-selected {
+  background: var(--color-bg-fill-neutral-solid-hover);
+}
+
+/* Disabled unselected */
+.mark-disabled-unselected {
+  background: var(--comp-radio-button-color-bg-unselected-default);
+  border: 1px solid var(--color-border-disabled);
+  cursor: not-allowed;
+}
+
+/* Disabled selected */
+.mark-disabled-selected {
+  background: var(--color-bg-fill-disabled);
+  border: 1px solid transparent;
+  cursor: not-allowed;
+}
+
+/* ── Focus ring ── */
+
+.native:focus-visible ~ .row .mark::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  border: 2px solid var(--color-border-focused-accent-solid);
+  border-radius: var(--radius-rounded);
+  pointer-events: none;
+}
+
+/* ── Inner dot (selected indicator) ── */
+
+.mark-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-content-inverse);
+}
+
+.mark-disabled-selected .mark-dot {
+  opacity: 0.6;
+}
+
+/* ── Content area ── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+  flex: 1;
+  min-width: 0;
+}
+
+/* ── Label ── */
+
+.label {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  user-select: none;
+}
+
+.label-disabled {
+  color: var(--color-content-disabled);
+}
+
+/* ── Caption ── */
+
+.caption {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-neutral-tertiary);
+  user-select: none;
+}
+
+.caption-disabled {
+  color: var(--color-content-disabled);
+}

@@ -1,0 +1,130 @@
+/* ==========================================================
+   CORNER RADIUS TOKENS
+   Switch via: <html data-radius="rounded|smooth|standard|luxury">
+   ========================================================== */
+
+/* ── Base Corner-Radius ── */
+
+:root, [data-radius="rounded"] {
+  --radius-2xsmall: 2px;
+  --radius-xsmall: 4px;
+  --radius-small: 8px;
+  --radius-base: 12px;
+  --radius-large: 16px;
+  --radius-xlarge: 20px;
+  --radius-2xlarge: 24px;
+  --radius-3xlarge: 28px;
+  --radius-giant: 36px;
+  --radius-rounded: 1000px;
+
+  /* Action (buttons) — all pill in Rounded mode */
+  --radius-action-xlarge: 1000px;
+  --radius-action-large: 1000px;
+  --radius-action-medium: 1000px;
+  --radius-action-small: 1000px;
+  --radius-action-xsmall: 1000px;
+  --radius-action-focus-xlarge: 1000px;
+  --radius-action-focus-large: 1000px;
+  --radius-action-focus-medium: 1000px;
+  --radius-action-focus-small: 1000px;
+  --radius-action-focus-xsmall: 1000px;
+
+  /* Input */
+  --radius-input-xlarge: 16px;
+  --radius-input-large: 16px;
+  --radius-input-medium: 12px;
+  --radius-input-small: 12px;
+}
+
+[data-radius="smooth"] {
+  --radius-2xsmall: 2px;
+  --radius-xsmall: 4px;
+  --radius-small: 8px;
+  --radius-base: 12px;
+  --radius-large: 16px;
+  --radius-xlarge: 20px;
+  --radius-2xlarge: 24px;
+  --radius-3xlarge: 28px;
+  --radius-giant: 36px;
+  --radius-rounded: 1000px;
+
+  /* Action (buttons) */
+  --radius-action-xlarge: 16px;
+  --radius-action-large: 16px;
+  --radius-action-medium: 12px;
+  --radius-action-small: 12px;
+  --radius-action-xsmall: 1000px;
+  --radius-action-focus-xlarge: 22px;
+  --radius-action-focus-large: 22px;
+  --radius-action-focus-medium: 18px;
+  --radius-action-focus-small: 18px;
+  --radius-action-focus-xsmall: 1000px;
+
+  /* Input */
+  --radius-input-xlarge: 16px;
+  --radius-input-large: 16px;
+  --radius-input-medium: 12px;
+  --radius-input-small: 12px;
+}
+
+[data-radius="standard"] {
+  --radius-2xsmall: 0px;
+  --radius-xsmall: 2px;
+  --radius-small: 4px;
+  --radius-base: 8px;
+  --radius-large: 12px;
+  --radius-xlarge: 16px;
+  --radius-2xlarge: 20px;
+  --radius-3xlarge: 24px;
+  --radius-giant: 32px;
+  --radius-rounded: 1000px;
+
+  /* Action (buttons) */
+  --radius-action-xlarge: 12px;
+  --radius-action-large: 12px;
+  --radius-action-medium: 8px;
+  --radius-action-small: 8px;
+  --radius-action-xsmall: 1000px;
+  --radius-action-focus-xlarge: 18px;
+  --radius-action-focus-large: 18px;
+  --radius-action-focus-medium: 14px;
+  --radius-action-focus-small: 14px;
+  --radius-action-focus-xsmall: 1000px;
+
+  /* Input */
+  --radius-input-xlarge: 12px;
+  --radius-input-large: 12px;
+  --radius-input-medium: 8px;
+  --radius-input-small: 8px;
+}
+
+[data-radius="luxury"] {
+  --radius-2xsmall: 0px;
+  --radius-xsmall: 0px;
+  --radius-small: 0px;
+  --radius-base: 0px;
+  --radius-large: 0px;
+  --radius-xlarge: 0px;
+  --radius-2xlarge: 0px;
+  --radius-3xlarge: 0px;
+  --radius-giant: 0px;
+  --radius-rounded: 0px;
+
+  /* Action (buttons) */
+  --radius-action-xlarge: 0px;
+  --radius-action-large: 0px;
+  --radius-action-medium: 0px;
+  --radius-action-small: 0px;
+  --radius-action-xsmall: 0px;
+  --radius-action-focus-xlarge: 0px;
+  --radius-action-focus-large: 0px;
+  --radius-action-focus-medium: 0px;
+  --radius-action-focus-small: 0px;
+  --radius-action-focus-xsmall: 0px;
+
+  /* Input */
+  --radius-input-xlarge: 0px;
+  --radius-input-large: 0px;
+  --radius-input-medium: 0px;
+  --radius-input-small: 0px;
+}

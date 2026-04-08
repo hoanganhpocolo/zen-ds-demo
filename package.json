@@ -1,0 +1,20 @@
+{
+  "name": "zen-design-system",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/docs",
+    "build": "npm run build --workspaces",
+    "build:tokens": "npm run build --workspace=packages/tokens",
+    "build:components": "npm run build --workspace=packages/components",
+    "lint": "npm run lint --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "storybook": "npm run storybook --workspace=apps/docs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

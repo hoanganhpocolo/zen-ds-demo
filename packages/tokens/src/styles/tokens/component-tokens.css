@@ -1,0 +1,201 @@
+/* ==========================================================
+   COMPONENT TOKENS — Per-component color mapping
+   References Mode Color tokens.
+   Switchable via [data-component-theme] attribute.
+   ========================================================== */
+
+/* ── Brand Color Emphasis (default) ── */
+:root, [data-component-theme="brand"] {
+
+  /* Button-Accent */
+  --comp-button-accent-color-bg-default: var(--color-bg-fill-neutral-solid-default);
+  --comp-button-accent-color-bg-hover: var(--color-bg-fill-neutral-solid-hover);
+  --comp-button-accent-color-bg-pressed: var(--color-bg-fill-neutral-solid-pressed);
+  --comp-button-accent-color-content: var(--color-content-inverse);
+
+  /* Button-Primary */
+  --comp-button-primary-color-bg-default: var(--color-bg-fill-accent-solid-default);
+  --comp-button-primary-color-bg-hover: var(--color-bg-fill-accent-solid-hover);
+  --comp-button-primary-color-bg-pressed: var(--color-bg-fill-accent-solid-pressed);
+  --comp-button-primary-color-content: var(--color-content-on-accent);
+  --comp-button-primary-color-border-focused: var(--color-border-focused-accent-solid);
+
+  /* Button-Accent (focus) */
+  --comp-button-accent-color-border-focused: var(--color-border-focused-neutral-solid);
+
+  /* Checkbox */
+  --comp-checkbox-color-bg-selected-default: var(--color-bg-fill-active-accent-solid);
+  --comp-checkbox-color-bg-selected-hover: var(--color-bg-fill-accent-solid-hover);
+  --comp-checkbox-color-bg-unselected-default: var(--color-bg-fill-neutral-ghost-default);
+  --comp-checkbox-color-bg-unselected-hover: var(--color-bg-fill-neutral-ghost-hover);
+  --comp-checkbox-color-border-default: var(--color-border-neutral-subtle-default);
+  --comp-checkbox-color-border-hover: var(--color-border-neutral-subtle-hover);
+  --comp-checkbox-color-icon-check-default: var(--color-content-on-accent);
+
+  /* Chip-Primary */
+  --comp-chip-primary-color-bg-selected-default: var(--color-bg-fill-active-accent-solid);
+  --comp-chip-primary-color-bg-selected-hover: var(--color-bg-fill-accent-solid-hover);
+  --comp-chip-primary-color-bg-unselected-default: var(--color-bg-fill-neutral-ghost-default);
+  --comp-chip-primary-color-bg-unselected-hover: var(--color-bg-fill-neutral-ghost-hover);
+  --comp-chip-primary-color-border-default: var(--color-border-neutral-subtle-default);
+  --comp-chip-primary-color-border-hover: var(--color-border-neutral-subtle-hover);
+  --comp-chip-primary-color-content-selected: var(--color-content-on-accent);
+
+  /* Chip-Secondary */
+  --comp-chip-secondary-color-bg-selected-default: var(--color-bg-surface-default);
+  --comp-chip-secondary-color-bg-selected-hover: var(--color-bg-fill-accent-ghost-hover);
+  --comp-chip-secondary-color-bg-unselected-default: var(--color-bg-fill-neutral-ghost-default);
+  --comp-chip-secondary-color-bg-unselected-hover: var(--color-bg-fill-neutral-ghost-hover);
+  --comp-chip-secondary-color-border-default: var(--color-border-neutral-subtle-default);
+  --comp-chip-secondary-color-border-hover: var(--color-border-neutral-subtle-hover);
+  --comp-chip-secondary-color-border-selected: var(--color-border-active-primary-solid);
+  --comp-chip-secondary-color-content-selected: var(--color-content-accent-secondary);
+
+  /* Date-Picker-Item */
+  --comp-date-picker-item-color-bg-selected-in-range-default: var(--color-bg-fill-active-accent-subtle);
+  --comp-date-picker-item-color-bg-selected-in-range-hover: var(--color-bg-fill-accent-subtle-hover);
+  --comp-date-picker-item-color-bg-selected-default: var(--color-bg-fill-active-accent-solid);
+  --comp-date-picker-item-color-bg-selected-hover: var(--color-bg-fill-accent-solid-hover);
+  --comp-date-picker-item-color-bg-unselected-default: var(--color-bg-fill-neutral-flat-default);
+  --comp-date-picker-item-color-bg-unselected-hover: var(--color-bg-fill-neutral-flat-hover);
+  --comp-date-picker-item-color-border-today: var(--color-border-active-primary-subtle);
+  --comp-date-picker-item-color-content-selected: var(--color-content-on-accent);
+
+  /* Radio-Button */
+  --comp-radio-button-color-bg-selected-default: var(--color-bg-fill-active-accent-solid);
+  --comp-radio-button-color-bg-selected-hover: var(--color-bg-fill-accent-solid-hover);
+  --comp-radio-button-color-bg-unselected-default: var(--color-bg-surface-default);
+  --comp-radio-button-color-bg-unselected-hover: var(--color-bg-surface-default);
+  --comp-radio-button-color-border-default: var(--color-border-neutral-subtle-default);
+  --comp-radio-button-color-border-hover: var(--color-border-neutral-subtle-hover);
+  --comp-radio-button-color-border-pressed: var(--color-border-neutral-subtle-pressed);
+  --comp-radio-button-color-icon-radio-default: var(--color-content-on-accent);
+
+  /* Segmented-Item-Primary */
+  --comp-segmented-item-primary-color-bg-selected-default: var(--color-bg-fill-active-accent-solid);
+  --comp-segmented-item-primary-color-bg-unselected-default: var(--color-bg-fill-neutral-flat-default);
+  --comp-segmented-item-primary-color-bg-unselected-hover: var(--color-bg-fill-neutral-flat-hover);
+  --comp-segmented-item-primary-color-content-selected: var(--color-content-on-accent);
+
+  /* Segmented-Item-Secondary */
+  --comp-segmented-item-secondary-color-bg-selected-default: var(--color-bg-fill-inverse-solid-default);
+  --comp-segmented-item-secondary-color-bg-unselected-default: var(--color-bg-fill-neutral-flat-default);
+  --comp-segmented-item-secondary-color-bg-unselected-hover: var(--color-bg-fill-neutral-flat-hover);
+  --comp-segmented-item-secondary-color-border-default: var(--color-border-neutral-subtle-default);
+  --comp-segmented-item-secondary-color-border-hover: var(--color-border-neutral-subtle-hover);
+  --comp-segmented-item-secondary-color-border-selected: var(--color-border-active-primary-solid);
+  --comp-segmented-item-secondary-color-content-selected: var(--color-content-neutral-primary);
+
+  /* Tab — Indicator */
+  --comp-tab-indicator-color-bg-default: var(--color-bg-fill-neutral-flat-default);
+  --comp-tab-indicator-color-bg-hover: var(--color-bg-fill-neutral-flat-hover);
+  --comp-tab-indicator-color-bg-selected: var(--color-bg-fill-neutral-flat-default);
+  --comp-tab-indicator-color-border-selected: var(--color-border-active-primary-solid);
+  --comp-tab-indicator-color-content-default: var(--color-content-neutral-tertiary);
+  --comp-tab-indicator-color-content-hover: var(--color-content-neutral-secondary);
+  --comp-tab-indicator-color-content-selected: var(--color-content-neutral-primary);
+
+  /* Tab — Subtle */
+  --comp-tab-subtle-color-bg-default: var(--color-bg-fill-neutral-flat-default);
+  --comp-tab-subtle-color-bg-hover: var(--color-bg-fill-neutral-flat-hover);
+  --comp-tab-subtle-color-bg-selected: var(--color-bg-fill-active-accent-subtle);
+  --comp-tab-subtle-color-content-default: var(--color-content-neutral-tertiary);
+  --comp-tab-subtle-color-content-hover: var(--color-content-neutral-secondary);
+  --comp-tab-subtle-color-content-selected: var(--color-content-accent-primary);
+
+  /* Table-Cell */
+  --comp-table-cell-color-bg-default: var(--color-bg-fill-neutral-flat-default);
+  --comp-table-cell-color-bg-hover: var(--color-bg-fill-neutral-subtle-light-default);
+  --comp-table-cell-color-bg-selected: var(--color-bg-fill-active-accent-subtle);
+
+  /* Tag */
+  --comp-tag-color-bg-default: var(--color-bg-fill-neutral-ghost-default);
+  --comp-tag-color-bg-hover: var(--color-bg-fill-neutral-ghost-hover);
+  --comp-tag-color-border-default: var(--color-border-neutral-subtle-default);
+  --comp-tag-color-border-hover: var(--color-border-neutral-subtle-hover);
+  --comp-tag-color-content-selected: var(--color-content-inverse);
+
+  /* Toggle — Bar */
+  --comp-toggle-bar-color-bg-selected-default: var(--color-bg-fill-active-accent-solid);
+  --comp-toggle-bar-color-bg-selected-disabled: var(--color-bg-fill-disabled);
+  --comp-toggle-bar-color-bg-unselected-default: var(--color-bg-fill-neutral-subtle-heavy-default);
+  --comp-toggle-bar-color-bg-unselected-disabled: var(--color-bg-fill-neutral-subtle-default);
+  --comp-toggle-bar-color-bg-unselected-hover: var(--color-bg-fill-neutral-subtle-heavy-hover);
+
+  /* Toggle — Dot */
+  --comp-toggle-dot-color-bg-selected-default: var(--color-bg-fill-white-solid-default);
+  --comp-toggle-dot-color-bg-selected-disabled: var(--color-bg-fill-inverse-solid-default);
+  --comp-toggle-dot-color-bg-unselected-default: var(--color-bg-fill-inverse-solid-default);
+  --comp-toggle-dot-color-bg-unselected-disabled: var(--color-bg-fill-inverse-solid-default);
+}
+
+/* ── Neutral Color Emphasis ── */
+[data-component-theme="neutral"] {
+
+  /* Button-Accent */
+  --comp-button-accent-color-bg-default: var(--color-bg-fill-accent-solid-default);
+  --comp-button-accent-color-bg-hover: var(--color-bg-fill-accent-solid-hover);
+  --comp-button-accent-color-bg-pressed: var(--color-bg-fill-accent-solid-pressed);
+  --comp-button-accent-color-content: var(--color-content-on-accent);
+
+  /* Button-Primary */
+  --comp-button-primary-color-bg-default: var(--color-bg-fill-neutral-solid-default);
+  --comp-button-primary-color-bg-hover: var(--color-bg-fill-neutral-solid-hover);
+  --comp-button-primary-color-bg-pressed: var(--color-bg-fill-neutral-solid-pressed);
+  --comp-button-primary-color-content: var(--color-content-inverse);
+  --comp-button-primary-color-border-focused: var(--color-border-focused-neutral-solid);
+
+  /* Button-Accent (focus) */
+  --comp-button-accent-color-border-focused: var(--color-border-focused-accent-solid);
+
+  /* Checkbox */
+  --comp-checkbox-color-bg-selected-default: var(--color-bg-fill-active-neutral-solid);
+  --comp-checkbox-color-bg-selected-hover: var(--color-bg-fill-neutral-solid-hover);
+  --comp-checkbox-color-icon-check-default: var(--color-content-inverse);
+
+  /* Chip-Primary */
+  --comp-chip-primary-color-bg-selected-default: var(--color-bg-fill-active-neutral-solid);
+  --comp-chip-primary-color-bg-selected-hover: var(--color-bg-fill-neutral-solid-hover);
+  --comp-chip-primary-color-content-selected: var(--color-content-inverse);
+
+  /* Chip-Secondary */
+  --comp-chip-secondary-color-bg-selected-hover: var(--color-bg-fill-neutral-ghost-hover);
+  --comp-chip-secondary-color-border-selected: var(--color-border-active-secondary-solid);
+  --comp-chip-secondary-color-content-selected: var(--color-content-neutral-primary);
+
+  /* Date-Picker-Item */
+  --comp-date-picker-item-color-bg-selected-in-range-default: var(--color-bg-fill-active-neutral-subtle);
+  --comp-date-picker-item-color-bg-selected-in-range-hover: var(--color-bg-fill-neutral-subtle-hover);
+  --comp-date-picker-item-color-bg-selected-default: var(--color-bg-fill-active-neutral-solid);
+  --comp-date-picker-item-color-bg-selected-hover: var(--color-bg-fill-neutral-solid-hover);
+  --comp-date-picker-item-color-border-today: var(--color-border-active-secondary-subtle);
+  --comp-date-picker-item-color-content-selected: var(--color-content-inverse);
+
+  /* Radio-Button */
+  --comp-radio-button-color-bg-selected-default: var(--color-bg-fill-active-neutral-solid);
+  --comp-radio-button-color-bg-selected-hover: var(--color-bg-fill-neutral-solid-hover);
+  --comp-radio-button-color-icon-radio-default: var(--color-content-inverse);
+
+  /* Segmented-Item-Primary */
+  --comp-segmented-item-primary-color-bg-selected-default: var(--color-bg-fill-active-neutral-solid);
+  --comp-segmented-item-primary-color-content-selected: var(--color-content-inverse);
+
+  /* Segmented-Item-Secondary */
+  --comp-segmented-item-secondary-color-border-selected: var(--color-border-active-secondary-solid);
+
+  /* Tab — Indicator */
+  --comp-tab-indicator-color-border-selected: var(--color-border-active-secondary-solid);
+
+  /* Tab — Subtle */
+  --comp-tab-subtle-color-bg-selected: var(--color-bg-fill-active-neutral-subtle);
+  --comp-tab-subtle-color-content-selected: var(--color-content-neutral-primary);
+
+  /* Table-Cell */
+  --comp-table-cell-color-bg-selected: var(--color-bg-fill-active-neutral-subtle);
+
+  /* Toggle — Bar */
+  --comp-toggle-bar-color-bg-selected-default: var(--color-bg-fill-active-neutral-solid);
+
+  /* Toggle — Dot */
+  --comp-toggle-dot-color-bg-selected-default: var(--color-bg-fill-inverse-solid-default);
+}

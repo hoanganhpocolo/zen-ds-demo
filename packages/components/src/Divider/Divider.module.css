@@ -1,0 +1,33 @@
+.root {
+  border: none;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+/* ── Orientation ── */
+
+.horizontal {
+  width: 100%;
+  height: 0;
+  border-top: 1px solid;
+}
+
+.vertical {
+  height: 100%;
+  width: 0;
+  border-left: 1px solid;
+}
+
+/* ── Color ── */
+
+.default {
+  border-color: var(--color-border-neutral-subtle-light-default);
+}
+
+.medium {
+  border-color: var(--color-border-neutral-subtle-default);
+}
+
+.high {
+  border-color: var(--color-border-neutral-solid-default);
+}

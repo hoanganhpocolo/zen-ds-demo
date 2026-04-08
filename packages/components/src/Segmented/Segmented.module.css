@@ -1,0 +1,168 @@
+/* ── Root (track / container) ── */
+
+.root {
+  display: inline-flex;
+  align-items: center;
+  background: var(--color-bg-fill-neutral-subtle-light-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-2xsmall);
+}
+
+.full-width {
+  display: flex;
+  width: 100%;
+}
+
+.full-width .item-list {
+  flex: 1;
+}
+
+.full-width .item {
+  flex: 1;
+}
+
+/* ── Item list ── */
+
+.item-list {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* ── Sliding indicator ── */
+
+.indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: var(--radius-base);
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.indicator-secondary {
+  background: var(--comp-segmented-item-secondary-color-bg-selected-default);
+  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light, rgba(0, 0, 0, 0.04));
+}
+
+.indicator-primary {
+  background: var(--comp-segmented-item-primary-color-bg-selected-default);
+  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light, rgba(0, 0, 0, 0.04));
+}
+
+.size-small .indicator {
+  border-radius: var(--radius-rounded);
+}
+
+/* ── Item button ── */
+
+.item {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  transition: color 150ms ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+  background: transparent;
+}
+
+/* ── Sizes ── */
+
+.size-medium .item {
+  height: 32px;
+  padding: var(--padding-xsmall);
+  gap: var(--gap-2xsmall);
+}
+
+.size-small .item {
+  height: 24px;
+  padding: var(--padding-2xsmall);
+  gap: var(--gap-3xsmall);
+  border-radius: var(--radius-rounded);
+}
+
+/* ── Label Wrapper ── */
+
+.label-wrapper {
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+}
+
+/* ── Label ── */
+
+.item-label {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.size-medium .item-label {
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+.size-small .item-label {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+}
+
+/* ── Icon ── */
+
+.item-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.size-medium .item-icon { width: 20px; height: 20px; }
+.size-small  .item-icon { width: 16px; height: 16px; }
+
+/* ── Unselected ── */
+
+.item-unselected {
+  color: var(--color-content-neutral-tertiary);
+  transition: background 200ms ease, color 200ms ease;
+}
+
+/* ── Level: Secondary (unselected hover) ── */
+
+.level-secondary .item-unselected:hover {
+  background: var(--comp-segmented-item-secondary-color-bg-unselected-hover);
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Level: Primary (unselected hover) ── */
+
+.level-primary .item-unselected:hover {
+  background: var(--comp-segmented-item-primary-color-bg-unselected-hover);
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Selected — text color only (background via indicator) ── */
+
+.level-secondary .item-selected {
+  color: var(--comp-segmented-item-secondary-color-content-selected);
+}
+
+.level-primary .item-selected {
+  color: var(--comp-segmented-item-primary-color-content-selected);
+}
+
+/* ── Disabled ── */
+
+.item-disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}

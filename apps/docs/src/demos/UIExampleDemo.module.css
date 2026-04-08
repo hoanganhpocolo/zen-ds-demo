@@ -1,0 +1,135 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding: var(--padding-xlarge);
+  background: var(--color-bg-canvas-default);
+  min-height: 100%;
+}
+
+/* ── Top Bar ── */
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-large);
+  padding-bottom: var(--padding-small);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+.topBarActions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  margin-left: auto;
+}
+
+/* ── Metric Row ── */
+
+.metricRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-medium);
+}
+
+.metricCard {
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+}
+
+.metricHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+}
+
+.metricValue {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+/* ── Main Grid: 1 card + 2 free columns ── */
+
+.mainGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--gap-medium);
+  align-items: stretch;
+}
+
+/* ── Card ── */
+
+.card {
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+/* ── Free Sections ── */
+
+.freeSection {
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+/* ── Shared form helpers ── */
+
+.formSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.settingsRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--gap-medium);
+}
+
+/* ── Activity items ── */
+
+.activityItem {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  padding: var(--padding-xsmall) 0;
+}
+
+/* ── Bottom Row ── */
+
+.bottomRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding-top: var(--padding-small);
+  border-top: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+.filterGroup {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  flex-wrap: wrap;
+}
+
+.bottomActions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-medium);
+  justify-content: space-between;
+}

@@ -1,0 +1,232 @@
+/* ── Dashboard Grid — 3 columns, equal row height ── */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-small);
+  /* align-items: start; */
+}
+
+.dashboard-cell-1 {
+  grid-column: span 1;
+}
+
+.dashboard-cell-2 {
+  grid-column: span 2;
+}
+
+.dashboard-cell-3 {
+  grid-column: span 3;
+}
+
+/* ── Widget Shell ── */
+
+.widget-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-xlarge);
+  overflow: hidden;
+}
+
+.widget-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-small);
+  padding: var(--padding-small) var(--padding-medium);
+  flex-shrink: 0;
+}
+
+.widget-title {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  min-width: 0;
+}
+
+.widget-title-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--color-content-neutral-secondary);
+}
+
+.widget-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  flex-shrink: 0;
+}
+
+/* When no title, actions fill full width */
+.widget-header:only-child .widget-actions,
+.widget-actions:first-child {
+  flex: 1;
+}
+
+.widget-body {
+  flex: 1;
+  min-height: 0;
+  padding: 0 var(--padding-medium) var(--padding-medium);
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.widget-body-flush {
+  flex: 1;
+  min-height: 0;
+  padding: 0 var(--padding-xsmall) var(--padding-xsmall);
+  overflow: hidden;
+}
+
+/* ── Widget menu (inline in header) ── */
+
+.widget-menu-wrap {
+  position: relative;
+}
+
+.widget-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 19;
+}
+
+/* Dropdown container — positions Popover */
+.widget-menu-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 4px;
+  z-index: 20;
+}
+
+/* Size preview columns inside PopoverItem leading */
+.widget-size-preview {
+  display: flex;
+  gap: 2px;
+  height: 16px;
+}
+
+.widget-size-col {
+  width: 6px;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+.widget-size-col-fill {
+  background: var(--color-content-neutral-tertiary);
+  border: 1px solid var(--color-border-focused-neutral-subtle);
+}
+
+/* Disabled resize option */
+.widget-menu-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Remove item — red text */
+.widget-menu-danger {
+  color: var(--color-content-negative-highlight) !important;
+}
+
+/* ── Add Widget Cell ── */
+
+.add-widget-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 200px;
+  border: 2px dashed var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-xlarge);
+  cursor: pointer;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+
+.add-widget-cell:hover {
+  border-color: var(--color-border-neutral-default);
+  background: var(--color-bg-fill-neutral-subtle-light-default);
+}
+
+.add-widget-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  border: 2px dashed var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-xlarge);
+  color: var(--color-content-neutral-tertiary);
+  transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+}
+
+.add-widget-cell:hover .add-widget-btn {
+  border-color: var(--color-border-neutral-default);
+  color: var(--color-content-neutral-primary);
+  background: var(--color-bg-fill-neutral-ghost-hover);
+}
+
+/* ── Add Widget Panel (modal) ── */
+
+.dashboard-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(4px);
+}
+
+.dashboard-modal {
+  background: var(--color-bg-surface-default);
+  border-radius: var(--radius-2xlarge);
+  padding: var(--padding-xlarge);
+  width: 480px;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.add-widget-panel {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--gap-small);
+}
+
+.add-widget-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  padding: var(--padding-medium);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-large);
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+  background: none;
+  text-align: center;
+}
+
+.add-widget-option:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+  border-color: var(--color-border-accent-default);
+}
+
+.add-widget-option-emoji {
+  font-size: 28px;
+}
+
+.add-widget-panel-title {
+  margin-bottom: var(--gap-medium);
+}
+
+.add-widget-panel-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--gap-medium);
+}

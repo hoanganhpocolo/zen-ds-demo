@@ -1,0 +1,53 @@
+/* ==========================================================
+   SPACING TOKENS — Gap & Padding scale
+   ========================================================== */
+
+:root {
+  /* Full names (from Figma) */
+  --spacing-gap-2xgiant: 144px;
+  --spacing-gap-2xlarge: 40px;
+  --spacing-gap-2xsmall: 4px;
+  --spacing-gap-3xlarge: 48px;
+  --spacing-gap-3xsmall: 2px;
+  --spacing-gap-giant: 64px;
+  --spacing-gap-large: 24px;
+  --spacing-gap-medium: 16px;
+  --spacing-gap-small: 12px;
+  --spacing-gap-xgiant: 88px;
+  --spacing-gap-xlarge: 32px;
+  --spacing-gap-xsmall: 8px;
+  --spacing-padding-2xlarge: 32px;
+  --spacing-padding-2xsmall: 4px;
+  --spacing-padding-3xlarge: 40px;
+  --spacing-padding-3xsmall: 2px;
+  --spacing-padding-4xlarge: 48px;
+  --spacing-padding-large: 20px;
+  --spacing-padding-medium: 16px;
+  --spacing-padding-small: 12px;
+  --spacing-padding-xlarge: 24px;
+  --spacing-padding-xsmall: 8px;
+
+  /* Short aliases (used in components) */
+  --gap-3xsmall: var(--spacing-gap-3xsmall);
+  --gap-2xsmall: var(--spacing-gap-2xsmall);
+  --gap-xsmall: var(--spacing-gap-xsmall);
+  --gap-small: var(--spacing-gap-small);
+  --gap-medium: var(--spacing-gap-medium);
+  --gap-large: var(--spacing-gap-large);
+  --gap-xlarge: var(--spacing-gap-xlarge);
+  --gap-2xlarge: var(--spacing-gap-2xlarge);
+  --gap-3xlarge: var(--spacing-gap-3xlarge);
+  --gap-giant: var(--spacing-gap-giant);
+  --gap-xgiant: var(--spacing-gap-xgiant);
+  --gap-2xgiant: var(--spacing-gap-2xgiant);
+  --padding-3xsmall: var(--spacing-padding-3xsmall);
+  --padding-2xsmall: var(--spacing-padding-2xsmall);
+  --padding-xsmall: var(--spacing-padding-xsmall);
+  --padding-small: var(--spacing-padding-small);
+  --padding-medium: var(--spacing-padding-medium);
+  --padding-large: var(--spacing-padding-large);
+  --padding-xlarge: var(--spacing-padding-xlarge);
+  --padding-2xlarge: var(--spacing-padding-2xlarge);
+  --padding-3xlarge: var(--spacing-padding-3xlarge);
+  --padding-4xlarge: var(--spacing-padding-4xlarge);
+}

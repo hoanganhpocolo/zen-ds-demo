@@ -1,0 +1,128 @@
+/* ─────────────────────────────────────────
+   Progress Bar
+───────────────────────────────────────── */
+
+.bar-root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.bar-track {
+  position: relative;
+  flex: 1;
+  min-width: 80px;
+  height: 8px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  overflow: hidden;
+}
+
+.bar-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: var(--radius-rounded);
+  transition: width 300ms ease;
+}
+
+/* Accent theme */
+.bar-fill-accent {
+  background: var(--color-bg-fill-active-accent-solid);
+}
+
+/* Neutral theme */
+.bar-fill-neutral {
+  background: var(--color-bg-fill-active-neutral-solid);
+}
+
+/* Status theme — low (≤25%) */
+.bar-fill-status-low {
+  background: var(--color-bg-fill-negative-solid-default);
+}
+
+/* Status theme — medium (26–60%) */
+.bar-fill-status-medium {
+  background: var(--color-bg-fill-warning-solid-default);
+}
+
+/* Status theme — high (>60%) */
+.bar-fill-status-high {
+  background: var(--color-bg-fill-positive-solid-default);
+}
+
+.bar-label {
+  flex-shrink: 0;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-tertiary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────
+   Progress Circle
+───────────────────────────────────────── */
+
+.circle-root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+/* SVG wrapper */
+.circle-svg {
+  flex-shrink: 0;
+  display: block;
+}
+
+.circle-svg-accent {
+  --_circle-track: var(--color-bg-fill-accent-subtle-default);
+  --_circle-fill: var(--color-bg-fill-active-accent-solid);
+}
+
+.circle-svg-neutral {
+  --_circle-track: var(--color-bg-fill-neutral-subtle-default);
+  --_circle-fill: var(--color-bg-fill-active-neutral-solid);
+}
+
+/* Done state — filled circle with check */
+.circle-done {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.circle-done-m {
+  width: 32px;
+  height: 32px;
+}
+
+.circle-done-s {
+  width: 20px;
+  height: 20px;
+}
+
+.circle-done-accent {
+  background: var(--color-bg-fill-active-accent-solid);
+  color: var(--color-content-on-accent);
+}
+
+.circle-done-neutral {
+  background: var(--color-bg-fill-active-neutral-solid);
+  color: var(--color-content-inverse);
+}
+
+.circle-label {
+  flex-shrink: 0;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-tertiary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+}

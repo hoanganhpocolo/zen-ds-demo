@@ -1,0 +1,219 @@
+/* ── Selection ring (drawn over the viewport, no layout impact) ── */
+.ring {
+  position: fixed;
+  border: 2px solid var(--color-border-accent-default);
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 9999;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-border-accent-default) 18%, transparent);
+  transition: top 80ms ease, left 80ms ease, width 80ms ease, height 80ms ease;
+}
+
+/* ── Props panel ── */
+.panel {
+  position: fixed;
+  top: 72px;
+  right: -296px;
+  width: 272px;
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-large);
+  box-shadow:
+    0 2px 8px var(--color-shadow-neutral-1),
+    0 8px 24px var(--color-shadow-neutral-2);
+  z-index: 9998;
+  overflow: hidden;
+  transition: right 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--font-family-sans);
+}
+
+.panelOpen {
+  right: 16px;
+}
+
+/* ── Header ── */
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-small) var(--padding-medium);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-default);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  gap: var(--gap-xsmall);
+}
+
+.panelTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.panelComp {
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-primary);
+}
+
+.panelId {
+  font-size: var(--font-size-caption);
+  color: var(--color-content-neutral-tertiary);
+  font-family: var(--font-family-dev);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.closeBtn {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: var(--color-content-neutral-tertiary);
+  cursor: pointer;
+  border-radius: var(--radius-xsmall);
+  font-size: 13px;
+  transition: background 100ms ease, color 100ms ease;
+}
+
+.closeBtn:hover {
+  background: var(--color-bg-fill-neutral-ghost-hover);
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Body ── */
+.panelBody {
+  padding: var(--padding-small);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+}
+
+/* ── Prop row ── */
+.propRow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.propLabel {
+  font-size: 10px;
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* Select */
+.propSelect {
+  height: 30px;
+  padding: 0 var(--padding-xsmall);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-small);
+  background: var(--color-bg-canvas-default);
+  color: var(--color-content-neutral-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 100ms ease;
+  width: 100%;
+}
+
+.propSelect:hover {
+  border-color: var(--color-border-neutral-default);
+}
+
+.propSelect:focus {
+  border-color: var(--color-border-focused-primary);
+}
+
+/* Text input */
+.propInput {
+  height: 30px;
+  padding: 0 var(--padding-xsmall);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-small);
+  background: var(--color-bg-canvas-default);
+  color: var(--color-content-neutral-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  outline: none;
+  width: 100%;
+  transition: border-color 100ms ease;
+}
+
+.propInput:focus {
+  border-color: var(--color-border-focused-primary);
+}
+
+/* Boolean toggle */
+.boolRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.boolLabel {
+  font-size: 10px;
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.boolBtn {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-3xsmall);
+  height: 24px;
+  padding: 0 var(--padding-xsmall);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  border-radius: var(--radius-small);
+  background: var(--color-bg-canvas-default);
+  color: var(--color-content-neutral-secondary);
+  font-family: var(--font-family-dev);
+  font-size: var(--font-size-caption);
+  cursor: pointer;
+  transition: background 100ms ease, color 100ms ease, border-color 100ms ease;
+  white-space: nowrap;
+}
+
+.boolBtn:hover {
+  border-color: var(--color-border-neutral-default);
+  color: var(--color-content-neutral-primary);
+}
+
+.boolBtnOn {
+  background: var(--color-bg-fill-accent-subtle-default);
+  color: var(--color-content-accent-primary);
+  border-color: var(--color-border-accent-subtle-default);
+}
+
+.boolDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+/* Empty state */
+.noProps {
+  font-size: var(--font-size-body-small);
+  color: var(--color-content-neutral-tertiary);
+  padding: var(--padding-xsmall) 0;
+  text-align: center;
+}
+
+/* Divider between prop groups */
+.divider {
+  height: 1px;
+  background: var(--color-border-neutral-subtle-default);
+  margin: var(--gap-3xsmall) 0;
+}

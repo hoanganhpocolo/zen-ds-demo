@@ -1,0 +1,112 @@
+/* ── Backdrop ── */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  padding: var(--padding-xlarge);
+  animation: backdrop-in 200ms ease-out;
+}
+
+@keyframes backdrop-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Panel ── */
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 440px;
+  max-width: 100%;
+  border-radius: var(--radius-giant);
+  overflow: hidden;
+  background: var(--color-bg-container, rgba(255, 255, 255, 0.91));
+  border: 1px solid var(--color-border-container-default, rgba(0, 0, 0, 0.06));
+  box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  outline: none;
+  animation: panel-in 220ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ── Content area ── */
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  padding: var(--padding-xlarge);
+}
+
+/* ── Icon ── */
+
+.icon-wrapper {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.icon-default  { color: var(--color-content-neutral-primary); }
+.icon-info     { color: var(--color-content-info-highlight); }
+.icon-positive { color: var(--color-content-positive-highlight); }
+.icon-warning  { color: var(--color-content-warning-highlight); }
+.icon-negative { color: var(--color-content-negative-highlight); }
+
+/* ── Text ── */
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+}
+
+.title {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--letter-spacing-h4, -0.72px);
+  color: var(--color-content-neutral-primary);
+  margin: 0;
+}
+
+.description {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-tertiary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-secondary);
+  margin: 0;
+}
+
+/* ── Actions ── */
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-small);
+  padding: var(--padding-xlarge);
+  padding-top: 0;
+}

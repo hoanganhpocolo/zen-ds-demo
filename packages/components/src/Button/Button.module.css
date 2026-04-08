@@ -1,0 +1,403 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+  border-radius: var(--radius-action-medium);
+  font-family: var(--font-family-button);
+  box-shadow: var(--shadow-action-level-1);
+}
+
+/* ── Disabled (shared) ── */
+
+.button:disabled {
+  cursor: not-allowed;
+}
+
+/* ── Focus ring ── */
+
+.button:focus-visible {
+  outline: 3px solid var(--button-focus-color, var(--color-border-focused-neutral-solid));
+  outline-offset: 3px;
+}
+
+/* ── Variants ── */
+
+/* Primary — uses component tokens (swaps with data-component-theme) */
+.primary {
+  background: var(--comp-button-primary-color-bg-default);
+  color: var(--comp-button-primary-color-content);
+  --button-focus-color: var(--comp-button-primary-color-border-focused);
+}
+.primary:hover:not(:disabled) {
+  background: var(--comp-button-primary-color-bg-hover);
+}
+.primary:active:not(:disabled) {
+  background: var(--comp-button-primary-color-bg-pressed);
+}
+.primary:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+  box-shadow: none;
+}
+
+/* Accent — uses component tokens (swaps with data-component-theme) */
+.accent {
+  background: var(--comp-button-accent-color-bg-default);
+  color: var(--comp-button-accent-color-content);
+  --button-focus-color: var(--comp-button-accent-color-border-focused);
+}
+.accent:hover:not(:disabled) {
+  background: var(--comp-button-accent-color-bg-hover);
+}
+.accent:active:not(:disabled) {
+  background: var(--comp-button-accent-color-bg-pressed);
+}
+.accent:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+  box-shadow: none;
+}
+
+/* Secondary — accent subtle fill, no shadow */
+.secondary {
+  background: var(--color-bg-fill-accent-subtle-default);
+  color: var(--color-content-accent-secondary);
+  box-shadow: none;
+  --button-focus-color: var(--color-border-focused-accent-subtle);
+}
+.secondary:hover:not(:disabled) {
+  background: var(--color-bg-fill-accent-subtle-hover);
+}
+.secondary:active:not(:disabled) {
+  background: var(--color-bg-fill-accent-subtle-pressed);
+}
+.secondary:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+}
+
+/* Tertiary — neutral ghost fill with border + shadow */
+.tertiary {
+  background: var(--color-bg-fill-neutral-ghost-default);
+  color: var(--color-content-neutral-primary);
+  box-shadow: inset 0 0 0 1px var(--color-border-neutral-subtle-default), var(--shadow-action-level-1);
+  --button-focus-color: var(--color-border-focused-neutral-subtle);
+}
+.tertiary:hover:not(:disabled) {
+  background: var(--color-bg-fill-neutral-ghost-hover);
+  box-shadow: inset 0 0 0 1px var(--color-border-neutral-subtle-hover), var(--shadow-action-level-1);
+}
+.tertiary:active:not(:disabled) {
+  background: var(--color-bg-fill-neutral-ghost-pressed);
+}
+.tertiary:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+  box-shadow: inset 0 0 0 1px var(--color-border-disabled);
+}
+
+/* Danger — negative solid fill */
+.danger {
+  background: var(--color-bg-fill-negative-solid-default);
+  color: var(--color-content-on-colors);
+  --button-focus-color: var(--color-border-focused-negative-solid);
+}
+.danger:hover:not(:disabled) {
+  background: var(--color-bg-fill-negative-solid-hover);
+}
+.danger:active:not(:disabled) {
+  background: var(--color-bg-fill-negative-solid-pressed);
+}
+.danger:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+  box-shadow: none;
+}
+
+/* Danger Subtle — negative subtle fill, no shadow */
+.danger-subtle {
+  background: var(--color-bg-fill-negative-subtle-default);
+  color: var(--color-content-negative-highlight);
+  box-shadow: none;
+  --button-focus-color: var(--color-border-focused-negative-subtle);
+}
+.danger-subtle:hover:not(:disabled) {
+  background: var(--color-bg-fill-negative-subtle-hover);
+}
+.danger-subtle:active:not(:disabled) {
+  background: var(--color-bg-fill-negative-subtle-pressed);
+}
+.danger-subtle:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+}
+
+/* Positive — positive solid fill */
+.positive {
+  background: var(--color-bg-fill-positive-solid-default);
+  color: var(--color-content-on-colors);
+  --button-focus-color: var(--color-border-focused-positive-solid);
+}
+.positive:hover:not(:disabled) {
+  background: var(--color-bg-fill-positive-solid-hover);
+}
+.positive:active:not(:disabled) {
+  background: var(--color-bg-fill-positive-solid-pressed);
+}
+.positive:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+  box-shadow: none;
+}
+
+/* Positive Subtle — positive subtle fill, no shadow */
+.positive-subtle {
+  background: var(--color-bg-fill-positive-subtle-default);
+  color: var(--color-content-positive-highlight);
+  box-shadow: none;
+  --button-focus-color: var(--color-border-focused-positive-subtle);
+}
+.positive-subtle:hover:not(:disabled) {
+  background: var(--color-bg-fill-positive-subtle-hover);
+}
+.positive-subtle:active:not(:disabled) {
+  background: var(--color-bg-fill-positive-subtle-pressed);
+}
+.positive-subtle:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+}
+
+/* ── Flat Variants (transparent default, visible on hover) ── */
+
+/* Flat Primary — neutral flat fill, no shadow */
+.flat-primary {
+  background: var(--color-bg-fill-neutral-flat-default);
+  color: var(--color-content-neutral-primary);
+  box-shadow: none;
+  --button-focus-color: var(--color-border-focused-accent-solid);
+}
+.flat-primary:hover:not(:disabled) {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+.flat-primary:active:not(:disabled) {
+  background: var(--color-bg-fill-neutral-flat-pressed);
+}
+.flat-primary:disabled {
+  background: var(--color-bg-fill-neutral-flat-default);
+  color: var(--color-content-disabled);
+}
+
+/* Flat Accent — accent flat fill, no shadow */
+.flat-accent {
+  background: var(--color-bg-fill-accent-flat-default);
+  color: var(--color-content-accent-secondary);
+  box-shadow: none;
+  --button-focus-color: var(--color-border-focused-accent-solid);
+}
+.flat-accent:hover:not(:disabled) {
+  background: var(--color-bg-fill-accent-flat-hover);
+}
+.flat-accent:active:not(:disabled) {
+  background: var(--color-bg-fill-accent-flat-pressed);
+}
+.flat-accent:disabled {
+  background: var(--color-bg-fill-accent-flat-default);
+  color: var(--color-content-disabled);
+}
+
+/* ── Overlay Variants (for use on images/colored backgrounds) ── */
+
+/* Inverse — white solid fill, adapts to theme */
+.inverse {
+  background: var(--color-bg-fill-inverse-solid-default);
+  color: var(--color-content-neutral-primary);
+  box-shadow: none;
+  --button-focus-color: var(--color-border-focused-accent-solid);
+}
+.inverse:hover:not(:disabled) {
+  background: var(--color-bg-fill-inverse-solid-hover);
+}
+.inverse:active:not(:disabled) {
+  background: var(--color-bg-fill-inverse-solid-pressed);
+}
+.inverse:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-inverse);
+}
+
+/* White — always white solid fill, always black text */
+.white {
+  background: var(--color-bg-fill-white-solid-default);
+  color: var(--color-black);
+  box-shadow: none;
+  --button-focus-color: var(--color-border-focused-accent-solid);
+}
+.white:hover:not(:disabled) {
+  background: var(--color-bg-fill-white-solid-hover);
+}
+.white:active:not(:disabled) {
+  background: var(--color-bg-fill-white-solid-pressed);
+}
+.white:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-inverse);
+}
+
+/* White Overlay — semi-transparent white with blur + glass border */
+.white-overlay {
+  background: var(--color-bg-fill-white-overlay-default);
+  color: var(--color-white);
+  box-shadow: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  --button-focus-color: var(--color-border-focused-accent-solid);
+}
+.white-overlay:hover:not(:disabled) {
+  background: var(--color-bg-fill-white-overlay-hover);
+}
+.white-overlay:active:not(:disabled) {
+  background: var(--color-bg-fill-white-overlay-pressed);
+}
+.white-overlay:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+  border-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Black Overlay — semi-transparent black with blur + glass border */
+.black-overlay {
+  background: var(--color-bg-fill-black-overlay-default);
+  color: var(--color-white);
+  box-shadow: none;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  --button-focus-color: var(--color-border-focused-accent-solid);
+}
+.black-overlay:hover:not(:disabled) {
+  background: var(--color-bg-fill-black-overlay-hover);
+}
+.black-overlay:active:not(:disabled) {
+  background: var(--color-bg-fill-black-overlay-pressed);
+}
+.black-overlay:disabled {
+  background: var(--color-bg-fill-disabled);
+  color: var(--color-content-disabled);
+  border-color: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* ── Sizes ── */
+
+.size-2xs {
+  height: var(--button-size-2xsmall);
+  padding: var(--padding-2xsmall);
+  gap: 0;
+  border-radius: var(--radius-action-xsmall);
+  font-size: var(--font-size-button-label-xs);
+  line-height: var(--line-height-button-label-xs);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-xs);
+}
+
+.size-xs {
+  height: var(--button-size-xsmall);
+  padding: var(--button-spacing-xsmall-v-padding) var(--button-spacing-xsmall-h-padding);
+  gap: var(--button-spacing-xsmall-gap);
+  border-radius: var(--radius-action-xsmall);
+  font-size: var(--font-size-button-label-xs);
+  line-height: var(--line-height-button-label-xs);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-xs);
+}
+
+.size-s {
+  height: var(--button-size-small);
+  padding: var(--button-spacing-small-v-padding) var(--button-spacing-small-h-padding);
+  gap: var(--button-spacing-small-gap);
+  border-radius: var(--radius-action-small);
+  font-size: var(--font-size-button-label-s);
+  line-height: var(--line-height-button-label-s);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-s);
+}
+
+.size-m {
+  height: var(--button-size-medium);
+  padding: var(--button-spacing-medium-v-padding) var(--button-spacing-medium-h-padding);
+  gap: var(--button-spacing-medium-gap);
+  border-radius: var(--radius-action-medium);
+  font-size: var(--font-size-button-label-m);
+  line-height: var(--line-height-button-label-m);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-m);
+}
+
+.size-l {
+  height: var(--button-size-large);
+  padding: var(--button-spacing-large-v-padding) var(--button-spacing-large-h-padding);
+  gap: var(--button-spacing-large-gap);
+  border-radius: var(--radius-action-large);
+  font-size: var(--font-size-button-label-l);
+  line-height: var(--line-height-button-label-l);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-l);
+}
+
+.size-xl {
+  height: var(--button-size-xlarge);
+  padding: var(--button-spacing-xlarge-v-padding) var(--button-spacing-xlarge-h-padding);
+  gap: var(--button-spacing-xlarge-gap);
+  border-radius: var(--radius-action-xlarge);
+  font-size: var(--font-size-button-label-xl);
+  line-height: var(--line-height-button-label-xl);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-button-label-xl);
+}
+
+/* ── Icon-only (square aspect) ── */
+
+.icon-only {
+  aspect-ratio: 1;
+  padding: 0;
+}
+
+/* ── Icon & Spinner ── */
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.label-wrapper {
+  white-space: nowrap;
+  padding: 0 4px;
+}
+
+.spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 600ms linear infinite;
+}
+
+.loading {
+  pointer-events: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

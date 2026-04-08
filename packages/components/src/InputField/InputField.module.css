@@ -1,0 +1,70 @@
+/* ── Native input ── */
+
+.input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  color: var(--color-content-neutral-primary);
+  caret-color: var(--color-bg-fill-active-neutral-solid);
+}
+
+.input::placeholder {
+  color: var(--color-content-placeholder);
+}
+
+.input:disabled {
+  color: var(--color-content-disabled);
+  cursor: default;
+}
+
+.input:disabled::placeholder {
+  color: var(--color-content-disabled);
+}
+
+/* Input typography per size */
+.input-xl {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  font-weight: var(--font-weight-primary);
+  letter-spacing: var(--letter-spacing-h4);
+}
+
+.input-l,
+.input-m {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-base);
+}
+
+.input-s {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-small);
+}
+
+/* ── Clear button ── */
+
+.clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-content-neutral-tertiary);
+  transition: color 150ms ease;
+}
+
+.clear:hover {
+  color: var(--color-content-neutral-primary);
+}

@@ -1,0 +1,128 @@
+/* ── Tag ── */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: var(--padding-2xsmall) 6px;
+  gap: var(--gap-3xsmall);
+  border-radius: var(--radius-rounded);
+  border: 1px solid var(--comp-tag-color-border-default);
+  background: var(--comp-tag-color-bg-default);
+  box-shadow: 0 1px 1px var(--color-shadow-neutral-light);
+  overflow: hidden;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.tag:hover:not(.tag-disabled):not(.tag-error) {
+  background: var(--comp-tag-color-bg-hover);
+  border-color: var(--comp-tag-color-border-hover);
+}
+
+.tag:focus-within:not(.tag-disabled):not(.tag-error) {
+  background: var(--color-bg-surface-default);
+  border: 2px solid var(--color-border-focused-accent-solid);
+  box-shadow: none;
+}
+
+/* ── Error state ── */
+
+.tag-error {
+  background: var(--color-bg-fill-negative-subtle-default);
+  border-color: var(--color-border-negative-solid-default);
+}
+
+/* ── Disabled state ── */
+
+.tag-disabled {
+  background: var(--comp-tag-color-bg-default);
+  border-color: var(--color-border-disabled);
+  box-shadow: 0 1px 1px var(--color-shadow-neutral-light);
+  cursor: not-allowed;
+}
+
+/* ── Leading element (icon / photo) ── */
+
+.leading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-rounded);
+  overflow: hidden;
+  color: var(--color-content-neutral-primary);
+}
+
+/* Force any child (Avatar, icon) to fit 20×20 */
+.leading > * {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px;
+  min-height: 20px;
+  border-radius: var(--radius-rounded);
+}
+
+.leading-disabled {
+  opacity: 0.5;
+}
+
+/* ── Label ── */
+
+.label {
+  padding: 0 var(--padding-2xsmall);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.label-disabled {
+  color: var(--color-content-disabled);
+}
+
+.label-error {
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Remove button ── */
+
+.remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-content-neutral-secondary);
+  border-radius: var(--radius-rounded);
+  outline: none;
+  transition: color 150ms ease;
+}
+
+.remove:hover {
+  color: var(--color-content-neutral-primary);
+}
+
+.remove-error {
+  color: var(--color-content-negative-primary);
+}
+
+.remove-error:hover {
+  color: var(--color-content-negative-highlight);
+}
+
+.remove-disabled {
+  color: var(--color-content-disabled);
+  cursor: not-allowed;
+  pointer-events: none;
+}

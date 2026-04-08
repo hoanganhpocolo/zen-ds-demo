@@ -1,0 +1,164 @@
+/* ─────────────────────────────────────────
+   Theme fill colors
+───────────────────────────────────────── */
+
+.theme-neutral { --_fill: var(--color-bg-fill-neutral-solid-default); }
+.theme-accent  { --_fill: var(--color-bg-fill-accent-solid-default); }
+.theme-white   { --_fill: #ffffff; }
+.disabled      { --_fill: var(--color-bg-fill-disabled); }
+
+/* ─────────────────────────────────────────
+   Size tokens
+   --_track-h  outer track / container height
+   --_thumb    thumb diameter (= track-h for medium/large)
+   --_inset    fill inset (1px top/bottom gives the "inner pill" look)
+───────────────────────────────────────── */
+
+.size-small  { --_track-h: 10px; --_thumb: 16px; --_inset: 1px; }
+.size-medium { --_track-h: 24px; --_thumb: 24px; --_inset: 1px; }
+.size-large  { --_track-h: 32px; --_thumb: 32px; --_inset: 1px; }
+
+/* ─────────────────────────────────────────
+   Root
+───────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+  width: 100%;
+}
+
+/* ─────────────────────────────────────────
+   Track — the outer gray pill
+   Inset by half the thumb width on each side so the thumb
+   never overflows the root bounding box.
+───────────────────────────────────────── */
+
+.track {
+  position: relative;
+  height: var(--_track-h);
+  /* Center the visual track, leaving room for the thumb at edges */
+  margin-inline: calc(var(--_thumb) / 2);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  border-radius: var(--radius-rounded);
+}
+
+/* ─────────────────────────────────────────
+   Fill — colored portion from left edge to thumb
+   right: calc(100% - var(--_percent)) places right edge exactly at the
+   percentage position, matching the thumb center.
+───────────────────────────────────────── */
+
+.fill {
+  position: absolute;
+  left: var(--_inset);
+  top: var(--_inset);
+  bottom: var(--_inset);
+  right: calc(100% - var(--_percent));
+  background: var(--_fill);
+  border-radius: var(--radius-rounded);
+  pointer-events: none;
+  min-width: 0;
+}
+
+/* ─────────────────────────────────────────
+   Thumb — white circle, centered at percent position.
+   transform: translateX(-50%) centers it on the fill's right edge.
+───────────────────────────────────────── */
+
+.thumb {
+  position: absolute;
+  top: 50%;
+  left: var(--_percent);
+  transform: translateX(-50%) translateY(-50%);
+  width: var(--_thumb);
+  height: var(--_thumb);
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow:
+    0 1px 3px 0 var(--color-shadow-neutral-medium),
+    0 0 0 1px var(--color-shadow-neutral-light);
+  pointer-events: none;
+  z-index: 1;
+  transition: box-shadow 120ms ease, transform 120ms ease;
+}
+
+/* ─────────────────────────────────────────
+   Invisible input — covers track + thumb overhang for interaction.
+   Expands vertically to cover the thumb even when thumb > track height.
+───────────────────────────────────────── */
+
+.input {
+  position: absolute;
+  left: calc(var(--_thumb) / -2);
+  right: calc(var(--_thumb) / -2);
+  top: calc((var(--_track-h) - var(--_thumb)) / 2);
+  height: var(--_thumb);
+  opacity: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  z-index: 2;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+}
+
+/* ── Hover ── */
+.input:hover ~ .thumb {
+  box-shadow:
+    0 2px 8px 0 var(--color-shadow-neutral-strong),
+    0 0 0 1px var(--color-shadow-neutral-medium);
+}
+
+/* ── Active / Press ── */
+.input:active ~ .thumb {
+  box-shadow:
+    0 1px 2px 0 var(--color-shadow-neutral-light),
+    0 0 0 1px var(--color-shadow-neutral-light);
+  transform: translateX(-50%) translateY(-50%) scale(0.92);
+}
+
+/* ── Focus ring ── */
+.input:focus-visible ~ .thumb {
+  box-shadow:
+    0 0 0 3px var(--color-border-focused-primary),
+    0 1px 3px 0 var(--color-shadow-neutral-medium);
+}
+
+/* ── Disabled ── */
+.disabled .thumb {
+  background: var(--color-bg-fill-neutral-subtle-default);
+  box-shadow: none;
+}
+.disabled .input:hover ~ .thumb {
+  box-shadow: none;
+}
+
+/* ─────────────────────────────────────────
+   Labels — min / max below the track
+   Aligned to the full root width (including thumb overhang)
+───────────────────────────────────────── */
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-tertiary);
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  letter-spacing: var(--letter-spacing-caption);
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+}
+
+.disabled .labels {
+  color: var(--color-content-disabled);
+}

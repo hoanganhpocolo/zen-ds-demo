@@ -1,0 +1,273 @@
+/* ── Root (popover container) ── */
+.root {
+  display: inline-flex;
+  background: var(--color-bg-popover-glass);
+  backdrop-filter: blur(60px);
+  -webkit-backdrop-filter: blur(60px);
+  border: 1px solid var(--color-border-popover-default);
+  border-radius: var(--radius-3xlarge);
+  padding: var(--padding-medium);
+  box-shadow: 0 12px 28px var(--color-shadow-neutral-2);
+}
+
+/* ── Container ── */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  width: 280px;
+}
+
+/* ── Header (nav row) ── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.header-label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-2xsmall);
+  height: 40px;
+  border: none;
+  background: var(--color-bg-fill-neutral-flat-default);
+  border-radius: var(--radius-small);
+  cursor: pointer;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: -0.32px;
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+  padding: 0;
+  transition: background 150ms ease;
+}
+
+.header-label:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+/* ── Header label (focused / month-year mode) ── */
+.header-label-focused {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--padding-medium);
+  border: none;
+  background: var(--color-bg-fill-neutral-flat-hover);
+  border-radius: var(--radius-base);
+  cursor: pointer;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: -0.32px;
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+}
+
+/* ── Calendar Table ── */
+.table {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+}
+
+/* Day header row (M T W T F S S) */
+.day-headers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-2xsmall) 0;
+}
+
+.day-header {
+  flex: 1 0 0;
+  min-width: 0;
+  text-align: center;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small, -0.28px);
+  color: var(--color-content-neutral-tertiary);
+}
+
+/* Day row */
+.row {
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-xsmall);
+  overflow: clip;
+}
+
+/* ── Day Cell ── */
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: var(--radius-rounded);
+  border: 2px solid transparent;
+  background: var(--comp-date-picker-item-color-bg-unselected-default);
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small, -0.28px);
+  color: var(--color-content-neutral-primary);
+  cursor: default;
+  padding: 0;
+}
+
+.cell-interactive {
+  cursor: pointer;
+  transition: background 150ms ease;
+}
+
+.cell-interactive:hover {
+  background: var(--comp-date-picker-item-color-bg-unselected-hover);
+}
+
+/* Selected */
+.cell-selected {
+  background: var(--comp-date-picker-item-color-bg-selected-default);
+  color: var(--comp-date-picker-item-color-content-selected);
+  border-color: transparent;
+}
+
+.cell-selected:hover {
+  background: var(--comp-date-picker-item-color-bg-selected-hover);
+}
+
+/* Today (not selected) */
+.cell-today {
+  border-color: var(--comp-date-picker-item-color-border-today);
+}
+
+/* Weekend */
+.cell-weekend {
+  color: var(--color-content-neutral-tertiary);
+}
+
+/* Disabled */
+.cell-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Event dot */
+.event-dot {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-content-accent-highlight);
+}
+
+/* ── Divider ── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border-neutral-subtle-default);
+}
+
+/* ── Time Section ── */
+.time-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+
+.period-toggle {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  height: 40px;
+  padding: 0 var(--padding-xsmall);
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-secondary);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+}
+
+.period-toggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* ── Month/Year Picker ── */
+.month-year-list {
+  display: flex;
+  gap: var(--gap-3xsmall);
+}
+
+.month-year-col {
+  flex: 1 0 0;
+  /* 5 visible items: 5 × 32px line-height + 4 × 4px gap */
+  height: 176px;
+  overflow: hidden;
+  position: relative;
+  user-select: none;
+  cursor: grab;
+  touch-action: none;
+}
+
+.month-year-col:active {
+  cursor: grabbing;
+}
+
+.month-year-col-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+  padding: var(--padding-2xsmall) 0;
+  will-change: transform;
+}
+
+.month-year-col-right {
+  text-align: right;
+}
+
+.month-year-item {
+  font-family: var(--font-family-sans);
+  font-weight: var(--font-weight-primary);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--letter-spacing-h4, -0.72px);
+  color: var(--color-content-neutral-primary);
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: inherit;
+  flex-shrink: 0;
+}
+
+/* ── Action Buttons ── */
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--gap-xsmall);
+}
+

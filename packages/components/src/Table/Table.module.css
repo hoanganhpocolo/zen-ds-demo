@@ -1,0 +1,542 @@
+/* ── Table container (scrollable wrapper) ── */
+
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+}
+
+/* ── Table root ── */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-family-sans);
+}
+
+/* ── Header Cell ── */
+
+.th {
+  height: 40px;
+  padding: var(--padding-small) var(--padding-medium);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+  background: transparent;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  transition: background 150ms ease;
+}
+
+.th:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.th-sorted {
+  background: var(--comp-table-cell-color-bg-hover);
+}
+
+.th-sorted:hover {
+  background: var(--comp-table-cell-color-bg-hover);
+}
+
+.th-static {
+  cursor: default;
+}
+
+.th-left {
+  text-align: left;
+}
+
+.th-right {
+  text-align: right;
+}
+
+.th-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  width: 100%;
+}
+
+.th-inner-right {
+  justify-content: flex-end;
+}
+
+.th-label {
+  font-size: var(--font-size-capsline-s);
+  line-height: var(--line-height-capsline-s);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-capsline-s);
+  text-transform: uppercase;
+  color: var(--color-content-neutral-tertiary);
+  transition: color 150ms ease;
+}
+
+.th:hover .th-label {
+  color: var(--color-content-neutral-primary);
+}
+
+.th-sort-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-content-neutral-tertiary);
+  flex-shrink: 0;
+  transition: color 150ms ease;
+}
+
+.th:hover .th-sort-icon {
+  color: var(--color-content-neutral-primary);
+}
+
+/* Sort arrow path colors */
+.sort-active,
+.sort-inactive {
+  fill: currentColor;
+}
+
+/* Brand theme: active arrow uses accent color */
+:global([data-component-theme='brand']) .th-sorted .sort-active {
+  fill: var(--color-content-accent-primary);
+}
+
+.th-leading-icon {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  color: var(--color-content-neutral-tertiary);
+}
+
+.th:hover .th-leading-icon {
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Body Cell ── */
+
+.td {
+  height: 56px;
+  padding: var(--padding-small) var(--padding-medium);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+  background: var(--comp-table-cell-color-bg-default);
+  vertical-align: middle;
+  transition: background 150ms ease;
+  position: relative;
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  color: var(--color-content-neutral-primary);
+}
+
+.td-left {
+  text-align: left;
+}
+
+.td-right {
+  text-align: right;
+}
+
+.tr:hover .td,
+.td-hover {
+  background: var(--comp-table-cell-color-bg-hover);
+}
+
+.td-sorted {
+  background: var(--comp-table-cell-color-bg-hover);
+}
+
+.tr:hover .td-sorted {
+  background: var(--comp-table-cell-color-bg-hover);
+}
+
+.td-selected {
+  background: var(--comp-table-cell-color-bg-selected);
+}
+
+.td-focused {
+  background: var(--comp-table-cell-color-bg-default);
+  outline: 3px solid var(--color-border-focused-accent-subtle);
+  outline-offset: -3px;
+}
+
+.td-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  width: 100%;
+}
+
+.td-inner-right {
+  justify-content: flex-end;
+}
+
+/* ── Row ── */
+
+.tr {
+  display: table-row;
+}
+
+/* ── Cell content primitives ── */
+
+/* TextCell */
+.cell-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+  justify-content: center;
+  min-width: 0;
+  flex: 1;
+}
+
+.cell-text-primary {
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-tertiary);
+  color: var(--color-content-neutral-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cell-text-primary-bold {
+  font-weight: var(--font-weight-primary);
+}
+
+.cell-text-caption {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: var(--font-weight-tertiary);
+  color: var(--color-content-neutral-tertiary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Leading content cells (avatar / photo / icon) */
+.cell-leading {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  min-width: 0;
+}
+
+.cell-leading-media {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cell-dock-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Trend cell */
+.cell-trend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gap-3xsmall);
+  height: 32px;
+  min-width: 32px;
+  padding: var(--padding-2xsmall) 6px;
+  border-radius: var(--radius-rounded);
+}
+
+.cell-trend-up {
+  background: var(--color-bg-fill-positive-subtle-default);
+  color: var(--color-content-positive-primary);
+}
+
+.cell-trend-down {
+  background: var(--color-bg-fill-negative-subtle-default);
+  color: var(--color-content-negative-primary);
+}
+
+.cell-trend-neutral {
+  background: var(--color-bg-fill-neutral-subtle-default);
+  color: var(--color-content-neutral-primary);
+}
+
+.cell-trend-label {
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-secondary);
+  letter-spacing: var(--letter-spacing-body-base);
+  white-space: nowrap;
+}
+
+/* Action cell */
+.cell-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-rounded);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-content-neutral-secondary);
+  transition: background 150ms ease, color 150ms ease;
+  flex-shrink: 0;
+}
+
+.cell-action-btn:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+  color: var(--color-content-neutral-primary);
+}
+
+/* ── Expand / Collapse ── */
+
+.td-toggle {
+  width: 40px;
+  min-width: 40px;
+  padding: var(--padding-small) var(--padding-2xsmall);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-light-default);
+  background: var(--comp-table-cell-color-bg-default);
+  vertical-align: middle;
+  text-align: center;
+  transition: background 150ms ease;
+}
+
+.tr:hover .td-toggle {
+  background: var(--comp-table-cell-color-bg-hover);
+}
+
+.td-toggle.td-hover    { background: var(--comp-table-cell-color-bg-hover); }
+.td-toggle.td-selected { background: var(--comp-table-cell-color-bg-selected); }
+.td-toggle.td-focused  { background: var(--comp-table-cell-color-bg-default); }
+.td-toggle.td-sorted   { background: var(--comp-table-cell-color-bg-hover); }
+
+/* Depth indentation — shifts chevron right to indicate nesting level */
+.td-toggle-depth-1 { padding-left: calc(var(--padding-2xsmall) + var(--gap-large)); }
+.td-toggle-depth-2 { padding-left: calc(var(--padding-2xsmall) + var(--gap-large) * 2); }
+.td-toggle-depth-3 { padding-left: calc(var(--padding-2xsmall) + var(--gap-large) * 3); }
+
+/* Expand button */
+.expand-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-xsmall);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--color-content-neutral-tertiary);
+  transition: background 150ms ease, color 150ms ease;
+  flex-shrink: 0;
+}
+
+.expand-btn:hover {
+  background: var(--color-bg-fill-neutral-subtle-default);
+  color: var(--color-content-neutral-primary);
+}
+
+/* Expand icon — animated +/- */
+.expand-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  position: relative;
+}
+
+.expand-icon-bar-h,
+.expand-icon-bar-v {
+  position: absolute;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.expand-icon-bar-h {
+  width: 10px;
+  height: 2px;
+}
+
+.expand-icon-bar-v {
+  width: 2px;
+  height: 10px;
+  transition: transform 200ms ease;
+}
+
+.expand-icon-expanded .expand-icon-bar-v {
+  transform: rotate(90deg);
+}
+
+/* Child rows — distinct background */
+.tr-child .td,
+.tr-child .td-toggle {
+  background: var(--color-bg-fill-neutral-subtle-light-default);
+}
+
+.tr-child:hover .td,
+.tr-child:hover .td-toggle {
+  background: var(--comp-table-cell-color-bg-hover);
+}
+
+/* Child row fade-in animation */
+@keyframes expand-row-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tr-child {
+  animation: expand-row-in 150ms ease;
+}
+
+/* ── Sticky columns ── */
+
+.th-sticky-left,
+.td-sticky-left {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.th-sticky-right,
+.td-sticky-right {
+  position: sticky;
+  right: 0;
+  z-index: 1;
+}
+
+/* Header sticky cells sit above body sticky cells */
+.th-sticky-left,
+.th-sticky-right {
+  z-index: 2;
+  background: var(--color-bg-surface-default);
+}
+
+/*
+ * Body sticky cells use ::before for all background rendering.
+ *
+ * Why two separate properties instead of background shorthand:
+ *   background-color: always surface-default → opaque, always blocks scrolled content
+ *   background-image: state color as gradient → sits on top, may be semi-transparent
+ *
+ * CSS background shorthand does not allow color values in non-final layers,
+ * so background-color + background-image must be set separately.
+ *
+ * z-index: -1 paints ::before above td's own background (step 1 of the
+ * stacking context) but below td's content (steps 3-7), which is correct.
+ */
+.td-sticky-left::before,
+.td-sticky-right::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-bg-surface-default);
+  background-image: var(--_sticky-overlay, none);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* State: row hover */
+.tr:hover .td-sticky-left,
+.tr:hover .td-sticky-right,
+.td-sticky-left.td-hover,
+.td-sticky-right.td-hover {
+  --_sticky-overlay: linear-gradient(
+    var(--comp-table-cell-color-bg-hover),
+    var(--comp-table-cell-color-bg-hover)
+  );
+}
+
+/* State: row selected */
+.td-sticky-left.td-selected,
+.td-sticky-right.td-selected {
+  --_sticky-overlay: linear-gradient(
+    var(--comp-table-cell-color-bg-selected),
+    var(--comp-table-cell-color-bg-selected)
+  );
+}
+
+/* State: sort column highlight */
+.td-sticky-left.td-sorted,
+.td-sticky-right.td-sorted {
+  --_sticky-overlay: linear-gradient(
+    var(--comp-table-cell-color-bg-hover),
+    var(--comp-table-cell-color-bg-hover)
+  );
+}
+
+/* State: child row */
+.tr-child .td-sticky-left,
+.tr-child .td-sticky-right {
+  --_sticky-overlay: linear-gradient(
+    var(--color-bg-fill-neutral-subtle-light-default),
+    var(--color-bg-fill-neutral-subtle-light-default)
+  );
+}
+
+.tr-child:hover .td-sticky-left,
+.tr-child:hover .td-sticky-right {
+  --_sticky-overlay: linear-gradient(
+    var(--comp-table-cell-color-bg-hover),
+    var(--comp-table-cell-color-bg-hover)
+  );
+}
+
+/* Shadow: gradient ::after extending into the adjacent column */
+
+.th-sticky-left::after,
+.td-sticky-left::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 16px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.08), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.th-sticky-right::after,
+.td-sticky-right::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 16px;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.08), transparent);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+/* Shadows appear only when there is content to scroll in that direction */
+.scroll-shadow-left .th-sticky-left::after,
+.scroll-shadow-left .td-sticky-left::after {
+  opacity: 1;
+}
+
+.scroll-shadow-right .th-sticky-right::after,
+.scroll-shadow-right .td-sticky-right::after {
+  opacity: 1;
+}
+
+/* ── Popover anchor (for action menus) ── */
+
+.cell-action-anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+.cell-action-popover {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  z-index: 100;
+}

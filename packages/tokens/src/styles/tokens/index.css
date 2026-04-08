@@ -1,0 +1,41 @@
+/* ==========================================================
+   ZEN DESIGN SYSTEM TOKENS
+   Auto-generated from Figma variables
+   
+   Architecture:
+   ┌─────────────────────────────────────────────────────┐
+   │  Tier 1: primitives.css                             │
+   │  Raw palette — 1058 colors (22 hues × Light/Dark)   │
+   ├─────────────────────────────────────────────────────┤
+   │  Tier 2: semantic-colors.css                        │
+   │  Brand aliases — Brand→Zen, Neutral→Gray, etc.      │
+   ├─────────────────────────────────────────────────────┤
+   │  Tier 3: mode-colors.css                            │
+   │  UI tokens — Content, Background, Border, Shadow    │
+   │  Auto-switches Light↔Dark via [data-theme]          │
+   ├─────────────────────────────────────────────────────┤
+   │  Tier 4: component-tokens.css                       │
+   │  Per-component colors — Button, Checkbox, Input...  │
+   └─────────────────────────────────────────────────────┘
+   
+   Config layers:
+   - typography.css       [data-scale, data-type-theme]
+   - corner-radius.css    [data-radius]
+   - spacing.css
+   - breakpoints.css
+   
+   Usage:
+   <html data-theme="light" data-radius="rounded">
+   ========================================================== */
+
+@import './primitives.css';
+@import './semantic-colors.css';
+@import './mode-colors.css';
+@import './component-tokens.css';
+@import './global-dimensions.css';
+@import './typography.css';
+@import './spacing.css';
+@import './corner-radius.css';
+@import './scale-configuration.css';
+@import './effects.css';
+@import './breakpoints.css';

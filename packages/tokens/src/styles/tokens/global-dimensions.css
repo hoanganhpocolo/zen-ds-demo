@@ -1,0 +1,37 @@
+/* ==========================================================
+   GLOBAL DIMENSIONS
+   Base measurement tokens referenced by Scale-Configuration.
+   Pattern: --dm-{N} = Npx
+   ========================================================== */
+
+:root {
+  --dm-2: 2px;
+  --dm-4: 4px;
+  --dm-8: 8px;
+  --dm-12: 12px;
+  --dm-16: 16px;
+  --dm-20: 20px;
+  --dm-24: 24px;
+  --dm-28: 28px;
+  --dm-32: 32px;
+  --dm-36: 36px;
+  --dm-40: 40px;
+  --dm-44: 44px;
+  --dm-48: 48px;
+  --dm-52: 52px;
+  --dm-56: 56px;
+  --dm-60: 60px;
+  --dm-64: 64px;
+  --dm-68: 68px;
+  --dm-72: 72px;
+  --dm-76: 76px;
+  --dm-80: 80px;
+  --dm-84: 84px;
+  --dm-88: 88px;
+  --dm-92: 92px;
+  --dm-96: 96px;
+  --dm-100: 100px;
+  --dm-112: 112px;
+  --dm-128: 128px;
+  --dm-144: 144px;
+}
