@@ -137,8 +137,10 @@
 
 .add-widget-cell {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: var(--gap-small);
   height: 100%;
   min-height: 200px;
   border: 2px dashed var(--color-border-neutral-subtle-default);
@@ -152,45 +154,28 @@
   background: var(--color-bg-fill-neutral-subtle-light-default);
 }
 
-.add-widget-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.add-widget-illustration {
   width: 96px;
   height: 96px;
-  border: 2px dashed var(--color-border-neutral-subtle-default);
-  border-radius: var(--radius-xlarge);
+  object-fit: contain;
+  opacity: 0.6;
+  transition: opacity 150ms ease;
+}
+
+.add-widget-cell:hover .add-widget-illustration {
+  opacity: 0.8;
+}
+
+.add-widget-label {
   color: var(--color-content-neutral-tertiary);
-  transition: border-color 150ms ease, color 150ms ease, background 150ms ease;
+  transition: color 150ms ease;
 }
 
-.add-widget-cell:hover .add-widget-btn {
-  border-color: var(--color-border-neutral-default);
-  color: var(--color-content-neutral-primary);
-  background: var(--color-bg-fill-neutral-ghost-hover);
+.add-widget-cell:hover .add-widget-label {
+  color: var(--color-content-neutral-secondary);
 }
 
-/* ── Add Widget Panel (modal) ── */
-
-.dashboard-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.24);
-  backdrop-filter: blur(4px);
-}
-
-.dashboard-modal {
-  background: var(--color-bg-surface-default);
-  border-radius: var(--radius-2xlarge);
-  padding: var(--padding-xlarge);
-  width: 480px;
-  max-height: 80vh;
-  overflow: auto;
-}
+/* ── Add Widget Panel (inside Modal body) ── */
 
 .add-widget-panel {
   display: grid;
@@ -219,14 +204,4 @@
 
 .add-widget-option-emoji {
   font-size: 28px;
-}
-
-.add-widget-panel-title {
-  margin-bottom: var(--gap-medium);
-}
-
-.add-widget-panel-footer {
-  display: flex;
-  justify-content: space-between;
-  margin-top: var(--gap-medium);
 }

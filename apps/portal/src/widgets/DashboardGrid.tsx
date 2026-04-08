@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
-import { Button, Popover, PopoverItem } from '@zen/components';
-import { Plus, DotsHorizontal, Trash } from '@zen/icons/line';
+import { Button, Modal, Popover, PopoverItem } from '@zen/components';
+import { DotsHorizontal, Trash } from '@zen/icons/line';
 import { getWidget, getAllWidgets } from './registry';
 import './widgets.css';
 import './widget-content.css';
@@ -219,9 +219,8 @@ export function DashboardGrid() {
                   className="add-widget-cell"
                   onClick={() => { setAddTargetId(slot.id); setShowAddPanel(true); }}
                 >
-                  <div className="add-widget-btn">
-                    <Plus size={24} />
-                  </div>
+                  <img src="/empty widget.png" alt="" className="add-widget-illustration" />
+                  <span className="text-body-small add-widget-label">Add widget</span>
                 </div>
               </div>
             );
@@ -247,27 +246,26 @@ export function DashboardGrid() {
         })}
       </div>
 
-      {/* Add widget panel */}
-      {showAddPanel && (
-        <div className="dashboard-modal-backdrop" onClick={() => { setShowAddPanel(false); setAddTargetId(null); }}>
-          <div className="dashboard-modal" onClick={e => e.stopPropagation()}>
-            <h3 className="text-h4 add-widget-panel-title">Add Widget</h3>
-            <div className="add-widget-panel">
-              {getAllWidgets().map(def => (
-                <button key={def.id} className="add-widget-option" onClick={() => handleAdd(def.id)}>
-                  <span className="add-widget-option-emoji">{def.emoji}</span>
-                  <span className="text-body-small wc-bold">{def.title}</span>
-                  <span className="text-caption wc-tertiary-text">{def.description}</span>
-                </button>
-              ))}
-            </div>
-            <div className="add-widget-panel-footer">
-              <Button variant="flat-primary" size="m" onClick={handleReset}>Reset Layout</Button>
-              <Button variant="tertiary" size="m" onClick={() => { setShowAddPanel(false); setAddTargetId(null); }}>Cancel</Button>
-            </div>
-          </div>
+      {/* Add widget modal */}
+      <Modal
+        open={showAddPanel}
+        title="Add Widget"
+        primaryLabel="Reset Layout"
+        secondaryLabel="Cancel"
+        onPrimary={handleReset}
+        onSecondary={() => { setShowAddPanel(false); setAddTargetId(null); }}
+        onClose={() => { setShowAddPanel(false); setAddTargetId(null); }}
+      >
+        <div className="add-widget-panel">
+          {getAllWidgets().map(def => (
+            <button key={def.id} className="add-widget-option" onClick={() => handleAdd(def.id)}>
+              <span className="add-widget-option-emoji">{def.emoji}</span>
+              <span className="text-body-small wc-bold">{def.title}</span>
+              <span className="text-caption wc-tertiary-text">{def.description}</span>
+            </button>
+          ))}
         </div>
-      )}
+      </Modal>
     </div>
   );
 }
