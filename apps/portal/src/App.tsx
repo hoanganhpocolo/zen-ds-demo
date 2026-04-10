@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { Sidebar, SidebarItem, PopoverItem } from '@zen/components';
 import type { WorkspaceItem } from '@zen/components';
 import {
@@ -8,25 +8,18 @@ import {
 } from '@zen/icons/line';
 import { getApp } from './app-registry';
 import { AppIcon } from './AppIcon';
+import { useDarkMode } from './useDarkMode';
 import { HomePage } from './pages/HomePage';
 import './App.css';
 
 function DockLogo() {
-  const [dark, setDark] = useState(document.documentElement.getAttribute('data-theme') === 'dark');
-
-  useEffect(() => {
-    const observer = new MutationObserver(() => {
-      setDark(document.documentElement.getAttribute('data-theme') === 'dark');
-    });
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
-    return () => observer.disconnect();
-  }, []);
-
+  const { dark } = useDarkMode();
   return <img src={dark ? '/vnggames-logo-dark.svg' : '/vnggames-logo.svg'} alt="VNGGames" width={40} height={28} />;
 }
 
 function dockIcon(appId: string) {
-  const app = getApp(appId)!;
+  const app = getApp(appId);
+  if (!app) return null;
   return <AppIcon icon={app.icon} semantic={app.semantic} size="md" />;
 }
 

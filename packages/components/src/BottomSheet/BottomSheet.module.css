@@ -73,7 +73,7 @@
 .top-indicator-bar {
   width: 40px;
   height: 4px;
-  border-radius: 1000px;
+  border-radius: var(--radius-rounded);
   background: var(--color-bg-fill-neutral-subtle-default);
 }
 
@@ -93,7 +93,7 @@
 .bottom-indicator-bar {
   width: 121px;
   height: 4px;
-  border-radius: 1000px;
+  border-radius: var(--radius-rounded);
   background: var(--color-bg-fill-neutral-subtle-default);
 }
 
@@ -103,7 +103,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-medium);
-  padding: 20px;
+  padding: var(--padding-large);
   width: 100%;
   flex-shrink: 0;
 }
@@ -190,8 +190,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  padding: var(--padding-medium) 20px;
-  border-top: 1px solid var(--color-border-neutral-subtle-light-default, #f0f0f0);
+  padding: var(--padding-medium) var(--padding-large);
+  border-top: 1px solid var(--color-border-neutral-subtle-light-default);
   width: 100%;
   flex-shrink: 0;
 }

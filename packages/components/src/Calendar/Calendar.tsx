@@ -61,7 +61,8 @@ const MONTH_NAMES = [
   'July', 'August', 'September', 'October', 'November', 'December',
 ];
 
-const DAY_HEADERS = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const DAY_HEADERS_MON = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+const DAY_HEADERS_SUN = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
 function isSameDay(a: Date, b: Date): boolean {
   return (
@@ -84,10 +85,10 @@ function getDaysInMonth(year: number, month: number): number {
   return new Date(year, month + 1, 0).getDate();
 }
 
-function getFirstDayOfMonth(year: number, month: number): number {
+function getFirstDayOfMonth(year: number, month: number, mondayStart: boolean): number {
   const day = new Date(year, month, 1).getDay();
-  // Convert to Monday-based (Mon=0, Sun=6)
-  return day === 0 ? 6 : day - 1;
+  if (mondayStart) return day === 0 ? 6 : day - 1;
+  return day;
 }
 
 function hasEvent(date: Date, eventDates: Date[]): boolean {
@@ -192,7 +193,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
 
     // Build calendar grid
     const calendarGrid = useMemo(() => {
-      const firstDay = getFirstDayOfMonth(viewYear, viewMonth);
+      const firstDay = getFirstDayOfMonth(viewYear, viewMonth, weekStartsOnMonday);
       const daysInMonth = getDaysInMonth(viewYear, viewMonth);
       const rows: (Date | null)[][] = [];
       let currentRow: (Date | null)[] = [];
@@ -220,7 +221,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       }
 
       return rows;
-    }, [viewYear, viewMonth]);
+    }, [viewYear, viewMonth, weekStartsOnMonday]);
 
     // ── Drag-scroll state for month/year columns ──
     const ITEM_HEIGHT = 36; // line-height-h4 (32) + gap (4)
@@ -439,7 +440,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
               <div className={styles.table}>
                 {/* Day headers */}
                 <div className={styles['day-headers']}>
-                  {DAY_HEADERS.map((d, i) => (
+                  {(weekStartsOnMonday ? DAY_HEADERS_MON : DAY_HEADERS_SUN).map((d, i) => (
                     <span key={i} className={styles['day-header']}>
                       {d}
                     </span>

@@ -15,7 +15,7 @@
 
 .size-m {
   height: 28px;
-  padding: 0 6px;
+  padding: 0 var(--padding-2xsmall);
   gap: 2px;
   font-size: var(--font-size-body-small);
   line-height: var(--line-height-body-small);
@@ -23,7 +23,7 @@
 
 .size-s {
   height: 20px;
-  padding: 0 4px;
+  padding: 0 var(--padding-2xsmall);
   gap: 0;
   font-size: var(--font-size-caption);
   line-height: var(--line-height-caption);
@@ -71,7 +71,7 @@
 .text-wrapper {
   display: flex;
   align-items: center;
-  padding: 0 4px;
+  padding: 0 var(--padding-2xsmall);
 }
 
 /* ── Remove button ── */

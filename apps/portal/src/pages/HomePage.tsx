@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import { Avatar, Button, Search } from '@zen/components';
 import { Bell01, ChevronDown, Sun, Moon01, Menu01 } from '@zen/icons/line';
+import { useDarkMode } from '../useDarkMode';
 import { DashboardGrid } from '../widgets/DashboardGrid';
 import './HomePage.css';
 
@@ -14,14 +14,8 @@ function getGreeting(): { text: string; icon: string } {
 }
 
 function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
-  const [dark, setDark] = useState(document.documentElement.getAttribute('data-theme') === 'dark');
+  const { dark, toggle } = useDarkMode();
   const greeting = getGreeting();
-
-  const toggleTheme = () => {
-    const next = dark ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    setDark(!dark);
-  };
 
   return (
     <div className="home-topbar">
@@ -37,7 +31,7 @@ function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
         <div className="home-topbar-search">
           <Search size="default" placeholder="Search" />
         </div>
-        <Button variant="flat-primary" size="m" icon={dark ? <Sun size={20} /> : <Moon01 size={20} />} onClick={toggleTheme} />
+        <Button variant="flat-primary" size="m" icon={dark ? <Sun size={20} /> : <Moon01 size={20} />} onClick={toggle} />
         <Button variant="flat-primary" size="m" icon={<Bell01 size={20} />} />
         <div className="home-topbar-lang">
           <span className="text-body-small">VN</span>

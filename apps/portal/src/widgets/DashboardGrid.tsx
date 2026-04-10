@@ -204,7 +204,7 @@ export function DashboardGrid() {
       const empties = Array.from({ length: released }, () => makeEmpty());
       next.splice(widgetIdx + 1, 0, ...empties);
     }
-    (next[widgetIdx] as any).size = newSize;
+    next[widgetIdx] = { ...(next[widgetIdx] as Extract<GridSlot, { type: 'widget' }>), size: newSize };
     commit(next);
   }, [slots, commit]);
 

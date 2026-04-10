@@ -121,7 +121,7 @@
 .homeIndicatorPill {
   width: 134px;
   height: 5px;
-  border-radius: 1000px;
+  border-radius: var(--radius-rounded);
   background: var(--color-bg-fill-neutral-subtle-default);
 }
 

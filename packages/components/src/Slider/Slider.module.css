@@ -4,7 +4,7 @@
 
 .theme-neutral { --_fill: var(--color-bg-fill-neutral-solid-default); }
 .theme-accent  { --_fill: var(--color-bg-fill-accent-solid-default); }
-.theme-white   { --_fill: #ffffff; }
+.theme-white   { --_fill: var(--color-white); }
 .disabled      { --_fill: var(--color-bg-fill-disabled); }
 
 /* ─────────────────────────────────────────
