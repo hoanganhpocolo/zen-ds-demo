@@ -1,0 +1,257 @@
+/* ─────────────────────────────────────────
+   Root — fixed 390px, matches mobile viewport
+───────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  flex-shrink: 0;
+}
+
+.theme-default {
+  background: var(--color-bg-surface-default);
+}
+
+.theme-overlay {
+  background: transparent;
+}
+
+/* ─────────────────────────────────────────
+   Status Bar — 44px iOS style
+───────────────────────────────────────── */
+
+.statusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding-inline: 31px 15.67px;
+  flex-shrink: 0;
+}
+
+.statusTime {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: normal;
+  letter-spacing: 0;
+}
+
+.statusIcons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ─────────────────────────────────────────
+   Control Bar — 56px
+───────────────────────────────────────── */
+
+.controlBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+.controlLeading {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding-inline: 20px;
+  gap: 0;
+}
+
+.controlTrailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 56px;
+  padding-inline: 20px;
+  gap: 0;
+}
+
+/* Center heading — sub collapsed mode, 20px gap from leading button */
+.controlCenter {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.controlHeading {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: 24px;
+  font-weight: var(--font-weight-primary);
+  letter-spacing: -0.36px;
+  color: var(--color-content-neutral-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.controlHeadingOverlay {
+  color: var(--color-content-white-overlay-primary);
+}
+
+/* ─────────────────────────────────────────
+   Main Bar — pt:12px, gap:12px
+───────────────────────────────────────── */
+
+.mainBar {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-top: 12px;
+  flex-shrink: 0;
+}
+
+.mainHeading {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 20px;
+}
+
+.headingText {
+  margin: 0;
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-h1);           /* 32px */
+  line-height: var(--line-height-h1);       /* 40px */
+  font-weight: var(--font-weight-primary);  /* 600 */
+  letter-spacing: var(--letter-spacing-h1); /* -1.44px */
+  color: var(--color-content-neutral-primary);
+}
+
+.headingOverlay {
+  color: var(--color-content-white-overlay-primary);
+}
+
+/* Trailing — fixed 80px wide */
+.mainTrailing {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  flex-shrink: 0;
+  width: 80px;
+  padding-inline: 20px;
+}
+
+/* ─────────────────────────────────────────
+   Addition Block — 72px
+───────────────────────────────────────── */
+
+.additionBlock {
+  display: flex;
+  height: 72px;
+  flex-shrink: 0;
+}
+
+.additionInner {
+  display: flex;
+  align-items: center;
+  flex: 1 0 0;
+  align-self: stretch;
+  padding: 16px 20px;
+}
+
+.additionSlot {
+  flex: 1 0 0;
+  min-width: 0;
+  height: 40px;
+}
+
+/* ─────────────────────────────────────────
+   Action Button — 40×40 circle
+───────────────────────────────────────── */
+
+.actionWrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+  border-radius: 1000px;
+  cursor: pointer;
+  transition: background 120ms ease;
+  flex-shrink: 0;
+}
+
+/* Default: white bg, #e0e0e0 border, 0 1px 1px shadow, blur 20px */
+.actionBtn-default {
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.actionBtn-default:hover {
+  background: var(--color-bg-fill-neutral-ghost-hover);
+}
+
+.actionBtn-default:active {
+  background: var(--color-bg-fill-neutral-ghost-pressed);
+}
+
+/* Overlay: rgba(255,255,255,0.3) + white border 16% + blur 50px */
+.actionBtn-overlay {
+  background: var(--color-bg-fill-white-overlay-default);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+}
+
+.actionBtn-overlay:hover {
+  background: var(--color-bg-fill-white-overlay-hover);
+}
+
+.actionBtn-overlay:active {
+  background: var(--color-bg-fill-white-overlay-pressed);
+}
+
+.actionIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+}
+
+.actionIcon-default {
+  color: var(--color-content-neutral-primary);
+}
+
+.actionIcon-overlay {
+  color: var(--color-content-white-overlay-primary);
+}
+
+/* ─────────────────────────────────────────
+   Notification dot
+───────────────────────────────────────── */
+
+.notiDot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 1000px;
+  background: var(--color-bg-fill-negative-solid-default);
+  border: 2px solid var(--color-border-inverse);
+}
