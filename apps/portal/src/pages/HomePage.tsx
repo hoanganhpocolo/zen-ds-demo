@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Avatar, Button, Search } from '@zen/components';
-import { Bell01, ChevronDown, Sun, Moon01 } from '@zen/icons/line';
+import { Bell01, ChevronDown, Sun, Moon01, Menu01 } from '@zen/icons/line';
 import { DashboardGrid } from '../widgets/DashboardGrid';
 import './HomePage.css';
 
@@ -13,7 +13,7 @@ function getGreeting(): { text: string; icon: string } {
   return { text: 'Good night', icon: '/Night.png' };
 }
 
-function TopBar() {
+function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const [dark, setDark] = useState(document.documentElement.getAttribute('data-theme') === 'dark');
   const greeting = getGreeting();
 
@@ -21,14 +21,17 @@ function TopBar() {
     const next = dark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', next);
     setDark(!dark);
-    import('../brand').then(({ applyBrandHue }) => applyBrandHue('orange'));
   };
 
   return (
     <div className="home-topbar">
+      <div className="home-topbar-mobile-left">
+        <Button variant="flat-primary" size="m" icon={<Menu01 size={20} />} onClick={onMenuClick} />
+        <img src={dark ? '/vnggames-logo-dark.svg' : '/vnggames-logo.svg'} alt="VNGGames" width={34} height={24} />
+      </div>
       <div className="home-topbar-greeting">
         <img src={greeting.icon} alt="" width={65} height={65} />
-        <h2 className="text-h4">{greeting.text}! Luna,</h2>
+        <h2 className="text-h4">{greeting.text}! Nhan,</h2>
       </div>
       <div className="home-topbar-right">
         <div className="home-topbar-search">
@@ -40,17 +43,17 @@ function TopBar() {
           <span className="text-body-small">VN</span>
           <ChevronDown size={16} />
         </div>
-        <Avatar size="m" color="blue">L</Avatar>
+        <Avatar size="m" color="blue">N</Avatar>
       </div>
     </div>
   );
 }
 
 /* ── Main Page ── */
-export function HomePage() {
+export function HomePage({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
     <div className="home-page">
-      <TopBar />
+      <TopBar onMenuClick={onMenuClick} />
       <DashboardGrid />
     </div>
   );

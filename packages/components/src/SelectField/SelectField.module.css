@@ -246,7 +246,7 @@
   padding: var(--padding-xsmall) var(--padding-small);
   border-radius: var(--radius-base);
   background: var(--color-bg-fill-neutral-solid-default);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 12px var(--color-shadow-neutral-2);
   pointer-events: auto;
   animation: tooltip-fade-in 120ms ease-out;
 }

@@ -252,7 +252,7 @@
   background: var(--color-bg-fill-white-overlay-default);
   color: var(--color-white);
   box-shadow: none;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid var(--overlay-white-8);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   --button-focus-color: var(--color-border-focused-accent-solid);
@@ -276,7 +276,7 @@
   background: var(--color-bg-fill-black-overlay-default);
   color: var(--color-white);
   box-shadow: none;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--overlay-black-8);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
   --button-focus-color: var(--color-border-focused-accent-solid);

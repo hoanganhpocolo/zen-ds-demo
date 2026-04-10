@@ -1,17 +1,13 @@
 import { Heart } from '@zen/icons/line';
 import { WidgetShell } from './WidgetShell';
 import { registerWidget } from './registry';
+import { APP_REGISTRY } from '../app-registry';
+import { AppIcon } from '../AppIcon';
 import './widget-content.css';
 
-const tools = [
-  { name: 'Nexus Tickets', desc: 'Centralized ticket management for requests', color: '#eff6ff', icon: '📋' },
-  { name: 'Apollo', desc: 'Targeted campaigns that hit', color: '#fef3c7', icon: '🚀' },
-  { name: 'Analytics', desc: 'Track game performance and measure key metrics.', color: '#f5f3ff', icon: '📊' },
-  { name: 'SDK Management', desc: 'Manage and configure your game SDK integrations.', color: '#ecfdf5', icon: 'SDK' },
-  { name: 'GiGi Chat', desc: 'AI-powered chat assistant', color: '#f0fdf4', icon: '💬' },
-];
+const tools = APP_REGISTRY.filter(a => a.id !== 'home' && a.id !== 'docs').slice(0, 5);
 
-export function ToolsWidget({ onRemove, menu }: { onRemove?: () => void; menu?: React.ReactNode }) {
+export function ToolsWidget({ menu }: { menu?: React.ReactNode }) {
   return (
     <WidgetShell
       title="Favourited Tools"
@@ -19,11 +15,9 @@ export function ToolsWidget({ onRemove, menu }: { onRemove?: () => void; menu?: 
       menu={menu}
     >
       <div className="wc-tool-list">
-        {tools.map((tool, i) => (
-          <div key={i} className="wc-tool-item">
-            <div className="wc-tool-icon" style={{ background: tool.color }}>
-              <span>{tool.icon}</span>
-            </div>
+        {tools.map(tool => (
+          <div key={tool.id} className="wc-tool-item">
+            <AppIcon icon={tool.icon} semantic={tool.semantic} size="lg" />
             <div className="wc-tool-info">
               <p className="text-body-small wc-bold">{tool.name}</p>
               <p className="text-caption wc-tertiary-text">{tool.desc}</p>

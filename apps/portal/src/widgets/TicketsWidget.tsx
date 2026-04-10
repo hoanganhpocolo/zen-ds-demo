@@ -12,7 +12,7 @@ const tickets = [
   { id: '#414053', date: '28 Oct', title: 'SDK integration issue', status: 'In progress', statusColor: 'yellow' as const, name: 'An Vo', color: 'orange' as const },
 ];
 
-export function TicketsWidget({ onRemove, menu }: { onRemove?: () => void; menu?: React.ReactNode }) {
+export function TicketsWidget({ menu }: { menu?: React.ReactNode }) {
   return (
     <WidgetShell
       title="Your Tickets"
@@ -25,7 +25,7 @@ export function TicketsWidget({ onRemove, menu }: { onRemove?: () => void; menu?
           <div key={i} className="wc-ticket-item">
             <Avatar size="m" color={t.color}>{t.name.charAt(0)}</Avatar>
             <div className="wc-ticket-info">
-              <p className="text-body-small wc-bold">{t.title}</p>
+              <p className="text-body-small wc-bold wc-truncate">{t.title}</p>
               <p className="text-caption wc-tertiary-text">{t.id} · {t.date} · {t.name}</p>
             </div>
             <Badge label={t.status} size="m" color={t.statusColor} variant="subtle" dot={false} />

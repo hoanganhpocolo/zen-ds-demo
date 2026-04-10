@@ -32,15 +32,15 @@ const metrics = [
 ];
 
 const tooltipStyle = {
-  borderRadius: 12,
+  borderRadius: 'var(--radius-base)',
   border: '1px solid var(--color-border-neutral-subtle-light-default)',
-  boxShadow: '0 4px 12px rgba(0,0,0,0.06)',
+  boxShadow: '0 4px 12px var(--color-shadow-neutral-1)',
   background: 'var(--color-bg-surface-default)',
-  fontSize: 12,
-  padding: '8px 12px',
+  fontSize: 'var(--font-size-caption)',
+  padding: 'var(--padding-xsmall) var(--padding-small)',
 };
 
-export function AnalyticsWidget({ onRemove, menu }: { onRemove?: () => void; menu?: React.ReactNode }) {
+export function AnalyticsWidget({ menu }: { menu?: React.ReactNode }) {
   return (
     <WidgetShell
       title=""
@@ -57,17 +57,19 @@ export function AnalyticsWidget({ onRemove, menu }: { onRemove?: () => void; men
         />
       }
       actions={
-        <SelectField
-          size="m"
-          placeholder="Select game"
-          defaultValue="jxmax"
-          options={[
-            { value: 'jxmax', label: 'Võ Lâm Truyền Kỳ MAX (JXMAX)' },
-            { value: 'pubgm', label: 'PUBG Mobile' },
-            { value: 'lol', label: 'League of Legends' },
-            { value: 'valorant', label: 'Valorant' },
-          ]}
-        />
+        <span className="wc-analytics-actions">
+          <SelectField
+            size="m"
+            placeholder="Select game"
+            defaultValue="jxmax"
+            options={[
+              { value: 'jxmax', label: 'Võ Lâm Truyền Kỳ MAX (JXMAX)' },
+              { value: 'pubgm', label: 'PUBG Mobile' },
+              { value: 'lol', label: 'League of Legends' },
+              { value: 'valorant', label: 'Valorant' },
+            ]}
+          />
+        </span>
       }
       menu={menu}
     >

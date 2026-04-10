@@ -14,7 +14,11 @@ import styles from './Calendar.module.css';
 
 /* ── Types ── */
 
+export type CalendarVariant = 'popover' | 'inline';
+
 export interface CalendarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange' | 'defaultValue' | 'onSubmit'> {
+  /** Visual variant: 'popover' (default, with border/shadow/glass) or 'inline' (flat, no decoration) */
+  variant?: CalendarVariant;
   /** Selected date */
   value?: Date | null;
   /** Default selected date (uncontrolled) */
@@ -95,6 +99,7 @@ function hasEvent(date: Date, eventDates: Date[]): boolean {
 export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
   (
     {
+      variant = 'popover',
       value: controlledValue,
       defaultValue,
       onChange,
@@ -397,7 +402,7 @@ export const Calendar = forwardRef<HTMLDivElement, CalendarProps>(
       };
     }, [viewMode]);
 
-    const rootClassNames = [styles.root, className ?? ''].filter(Boolean).join(' ');
+    const rootClassNames = [styles.root, variant === 'inline' ? styles['root-inline'] : '', className ?? ''].filter(Boolean).join(' ');
 
     return (
       <div ref={ref} className={rootClassNames} {...rest}>

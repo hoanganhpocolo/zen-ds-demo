@@ -1,0 +1,38 @@
+/* ── App Icon — shared across dock & widgets ── */
+
+.app-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-base);
+  flex-shrink: 0;
+}
+
+/* ── Sizes ── */
+.app-icon-sm { width: 32px; height: 32px; }
+.app-icon-md { width: 40px; height: 40px; }
+.app-icon-lg { width: 48px; height: 48px; }
+
+/* ── Semantic colors: bg solid + icon white ── */
+.app-icon-neutral  { background: var(--color-bg-fill-neutral-solid-default);  color: var(--color-white); }
+.app-icon-accent   { background: var(--color-bg-fill-accent-solid-default);   color: var(--color-content-on-accent); }
+.app-icon-info     { background: var(--color-bg-fill-info-solid-default);     color: var(--color-content-on-accent); }
+.app-icon-positive { background: var(--color-bg-fill-positive-solid-default); color: var(--color-content-on-accent); }
+.app-icon-negative { background: var(--color-bg-fill-negative-solid-default); color: var(--color-content-on-accent); }
+.app-icon-warning  { background: var(--color-bg-fill-warning-solid-default);  color: var(--color-content-on-accent); }
+
+/* ── Support colors: bg solid + icon always white ── */
+.app-icon-yellow   { background: var(--color-bg-fill-support-yellow-solid);   color: var(--color-white); }
+.app-icon-orange   { background: var(--color-bg-fill-support-orange-solid);   color: var(--color-white); }
+.app-icon-red      { background: var(--color-bg-fill-support-red-solid);      color: var(--color-white); }
+.app-icon-crimson  { background: var(--color-bg-fill-support-crimson-solid);  color: var(--color-white); }
+.app-icon-pink     { background: var(--color-bg-fill-support-pink-solid);     color: var(--color-white); }
+.app-icon-plum     { background: var(--color-bg-fill-support-plum-solid);     color: var(--color-white); }
+.app-icon-purple   { background: var(--color-bg-fill-support-purple-solid);   color: var(--color-white); }
+.app-icon-violet   { background: var(--color-bg-fill-support-violet-solid);   color: var(--color-white); }
+.app-icon-indigo   { background: var(--color-bg-fill-support-indigo-solid);   color: var(--color-white); }
+.app-icon-blue     { background: var(--color-bg-fill-support-blue-solid);     color: var(--color-white); }
+.app-icon-cyan     { background: var(--color-bg-fill-support-cyan-solid);     color: var(--color-white); }
+.app-icon-teal     { background: var(--color-bg-fill-support-teal-solid);     color: var(--color-white); }
+.app-icon-green    { background: var(--color-bg-fill-support-green-solid);    color: var(--color-white); }
+.app-icon-brown    { background: var(--color-bg-fill-support-brown-solid);    color: var(--color-white); }

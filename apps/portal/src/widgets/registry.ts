@@ -12,7 +12,7 @@ export interface WidgetDef {
   /** Min row span */
   minH?: number;
   /** Component to render */
-  component: ComponentType<{ onRemove?: () => void; menu?: React.ReactNode }>;
+  component: ComponentType<{ menu?: React.ReactNode; widgetSize?: 1 | 2 | 3 }>;
   /** Emoji or icon for add panel */
   emoji?: string;
   /** Description for add panel */

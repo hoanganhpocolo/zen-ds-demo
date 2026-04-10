@@ -1,0 +1,70 @@
+/* ═══════════════════════════════════════════════════════════
+   VNGGames Portal — Custom brand scale based on #f05a22
+   Generated following Radix UI color scale principles:
+
+   1  App background          7  UI element border
+   2  Subtle background       8  Hovered border
+   3  UI element bg           9  Solid background ← #f05a22
+   4  Hovered UI element bg  10  Hovered solid
+   5  Active UI element bg   11  Low-contrast text
+   6  Subtle border          12  High-contrast text
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Light theme ── */
+:root,
+[data-theme="light"] {
+  --color-brand-1: #fffcfb;
+  --color-brand-2: #fff5f0;
+  --color-brand-3: #ffe9db;
+  --color-brand-4: #ffdac4;
+  --color-brand-5: #ffcaad;
+  --color-brand-6: #f9b597;
+  --color-brand-7: #ed9b78;
+  --color-brand-8: #e07b4e;
+  --color-brand-9: #f05a22;
+  --color-brand-10: #dd4e18;
+  --color-brand-11: #c2410c;
+  --color-brand-12: #581c00;
+
+  --color-brand-alpha-1: rgba(240, 90, 34, 0.02);
+  --color-brand-alpha-2: rgba(240, 90, 34, 0.06);
+  --color-brand-alpha-3: rgba(240, 90, 34, 0.14);
+  --color-brand-alpha-4: rgba(240, 90, 34, 0.23);
+  --color-brand-alpha-5: rgba(240, 90, 34, 0.32);
+  --color-brand-alpha-6: rgba(240, 90, 34, 0.40);
+  --color-brand-alpha-7: rgba(240, 90, 34, 0.52);
+  --color-brand-alpha-8: rgba(240, 90, 34, 0.69);
+  --color-brand-alpha-9: rgba(240, 90, 34, 0.87);
+  --color-brand-alpha-10: rgba(221, 78, 24, 0.91);
+  --color-brand-alpha-11: rgba(194, 65, 12, 0.95);
+  --color-brand-alpha-12: rgba(88, 28, 0, 0.98);
+}
+
+/* ── Dark theme ── */
+[data-theme="dark"] {
+  --color-brand-1: #170f0b;
+  --color-brand-2: #1f1410;
+  --color-brand-3: #331a0e;
+  --color-brand-4: #461f04;
+  --color-brand-5: #552808;
+  --color-brand-6: #653616;
+  --color-brand-7: #7e4624;
+  --color-brand-8: #a45a30;
+  --color-brand-9: #f05a22;
+  --color-brand-10: #e04f18;
+  --color-brand-11: #ff9265;
+  --color-brand-12: #fdddd0;
+
+  --color-brand-alpha-1: rgba(240, 90, 34, 0.05);
+  --color-brand-alpha-2: rgba(240, 90, 34, 0.09);
+  --color-brand-alpha-3: rgba(240, 90, 34, 0.17);
+  --color-brand-alpha-4: rgba(240, 90, 34, 0.25);
+  --color-brand-alpha-5: rgba(240, 90, 34, 0.31);
+  --color-brand-alpha-6: rgba(240, 90, 34, 0.38);
+  --color-brand-alpha-7: rgba(240, 90, 34, 0.48);
+  --color-brand-alpha-8: rgba(240, 90, 34, 0.63);
+  --color-brand-alpha-9: rgba(240, 90, 34, 0.87);
+  --color-brand-alpha-10: rgba(224, 79, 24, 0.91);
+  --color-brand-alpha-11: rgba(255, 146, 101, 0.93);
+  --color-brand-alpha-12: rgba(253, 221, 208, 0.96);
+}

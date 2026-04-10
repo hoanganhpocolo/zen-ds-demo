@@ -123,9 +123,9 @@
 .metric-value {
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-primary);
-  font-size: 36px;
-  line-height: 44px;
-  letter-spacing: -1.08px;
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  letter-spacing: var(--letter-spacing-h1, -1.08px);
   color: var(--color-content-neutral-primary);
   margin: 0;
   width: 100%;

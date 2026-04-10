@@ -1,5 +1,5 @@
-import { useState, useCallback, type HTMLAttributes, type ReactNode } from 'react';
-import { LayoutLeft, Plus } from '@zen/icons/line';
+import { useState, useCallback, useEffect, useRef, type HTMLAttributes, type ReactNode } from 'react';
+import { LayoutLeft, Plus, XSmall } from '@zen/icons/line';
 import { Button } from '../Button';
 import { SidebarContext } from './SidebarContext';
 import styles from './Sidebar.module.css';
@@ -46,6 +46,10 @@ export interface SidebarProps extends Omit<HTMLAttributes<HTMLDivElement>, 'chil
   dockHeader?: ReactNode;
   /** Dropdown content when clicking workspace name in panel header */
   workspaceDropdown?: ReactNode;
+  /** Show close button instead of pin button in dock panel header */
+  closeButton?: boolean;
+  /** Called when close button is clicked */
+  onClose?: () => void;
 }
 
 export function Sidebar({
@@ -65,6 +69,8 @@ export function Sidebar({
   onAddWorkspace,
   dockHeader,
   workspaceDropdown,
+  closeButton,
+  onClose,
   ...rest
 }: SidebarProps) {
   const isControlled = expanded !== undefined;
@@ -107,6 +113,8 @@ export function Sidebar({
         onAddWorkspace={onAddWorkspace}
         dockHeader={dockHeader}
         workspaceDropdown={workspaceDropdown}
+        closeButton={closeButton}
+        onClose={onClose}
       >
         {children}
       </DockSidebar>
@@ -223,6 +231,8 @@ function DockSidebar({
   onAddWorkspace,
   dockHeader,
   workspaceDropdown,
+  closeButton,
+  onClose,
 }: {
   background: SidebarBackground;
   fixed: boolean;
@@ -242,8 +252,23 @@ function DockSidebar({
   onAddWorkspace?: () => void;
   dockHeader?: ReactNode;
   workspaceDropdown?: ReactNode;
+  closeButton?: boolean;
+  onClose?: () => void;
 }) {
   const [showWsDropdown, setShowWsDropdown] = useState(false);
+  const wsDropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showWsDropdown) return;
+    const handleClickOutside = (e: MouseEvent) => {
+      if (wsDropdownRef.current && !wsDropdownRef.current.contains(e.target as Node)) {
+        setShowWsDropdown(false);
+      }
+    };
+    document.addEventListener('pointerdown', handleClickOutside);
+    return () => document.removeEventListener('pointerdown', handleClickOutside);
+  }, [showWsDropdown]);
+
   const activeWs = workspaces.find((w) => w.id === activeWorkspace);
   const rootClasses = [
     styles['dock-root'],
@@ -308,11 +333,10 @@ function DockSidebar({
                 {onAddWorkspace && (
                   <Button
                     variant="tertiary"
-                    size="s"
+                    size="m"
                     icon={<Plus size={20} />}
                     onClick={onAddWorkspace}
                     aria-label="Add workspace"
-                    className={styles['workspace-add']}
                   />
                 )}
               </div>
@@ -335,17 +359,27 @@ function DockSidebar({
                   <ChevronDownIcon size={20} />
                 </button>
                 <span style={{ flex: 1 }} />
-                <Button
-                  variant="flat-primary"
-                  size="m"
-                  icon={<LayoutLeft size={20} />}
-                  onClick={(e) => { e.stopPropagation(); togglePin(); }}
-                  aria-label={isPinned ? 'Collapse sidebar' : 'Pin sidebar'}
-                />
+                {closeButton ? (
+                  <Button
+                    variant="flat-primary"
+                    size="m"
+                    icon={<XSmall size={20} />}
+                    onClick={(e) => { e.stopPropagation(); onClose?.(); }}
+                    aria-label="Close sidebar"
+                  />
+                ) : (
+                  <Button
+                    variant="flat-primary"
+                    size="m"
+                    icon={<LayoutLeft size={20} />}
+                    onClick={(e) => { e.stopPropagation(); togglePin(); }}
+                    aria-label={isPinned ? 'Collapse sidebar' : 'Pin sidebar'}
+                  />
+                )}
               </div>
               {/* Workspace dropdown */}
               {showWsDropdown && workspaceDropdown && (
-                <div className={styles['ws-dropdown']} onClick={() => setShowWsDropdown(false)}>
+                <div ref={wsDropdownRef} className={styles['ws-dropdown']} onClick={() => setShowWsDropdown(false)}>
                   {workspaceDropdown}
                 </div>
               )}

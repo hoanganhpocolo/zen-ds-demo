@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Sidebar, SidebarItem, PopoverItem } from '@zen/components';
 import type { WorkspaceItem } from '@zen/components';
 import {
@@ -6,7 +6,8 @@ import {
   ShoppingCart, Calendar, Mail01, Globe01,
   Activity, CreditCard, FileDoc, Heart, Lock01,
 } from '@zen/icons/line';
-// Icons used by workspace sidebar items
+import { getApp } from './app-registry';
+import { AppIcon } from './AppIcon';
 import { HomePage } from './pages/HomePage';
 import './App.css';
 
@@ -24,16 +25,30 @@ function DockLogo() {
   return <img src={dark ? '/vnggames-logo-dark.svg' : '/vnggames-logo.svg'} alt="VNGGames" width={40} height={28} />;
 }
 
+function dockIcon(appId: string) {
+  const app = getApp(appId)!;
+  return <AppIcon icon={app.icon} semantic={app.semantic} size="md" />;
+}
+
 export function App() {
   const [page, setPage] = useState('dashboard');
   const [ws, setWs] = useState('portal');
+  const [mobileSidebar, setMobileSidebar] = useState(false);
+  const [mobileSidebarClosing, setMobileSidebarClosing] = useState(false);
+
+  const closeMobileSidebar = useCallback(() => {
+    setMobileSidebarClosing(true);
+    setTimeout(() => {
+      setMobileSidebar(false);
+      setMobileSidebarClosing(false);
+    }, 250);
+  }, []);
 
   const workspaces: WorkspaceItem[] = [
     {
       id: 'portal',
       label: 'Portal',
-      color: '#ad7f58',
-      icon: <Home03 size={20} color="white" />,
+      icon: dockIcon('home'),
       children: (
         <>
           <SidebarItem icon={<Home03 size={20} />} label="Dashboard" selected={page === 'dashboard'} onClick={() => setPage('dashboard')} />
@@ -55,7 +70,7 @@ export function App() {
     {
       id: 'billing',
       label: 'Billing',
-      color: '#4858e5',
+      icon: dockIcon('docs'),
       children: (
         <>
           <SidebarItem icon={<CreditCard size={20} />} label="Invoices" selected={page === 'invoices'} onClick={() => setPage('invoices')} />
@@ -71,7 +86,7 @@ export function App() {
     {
       id: 'crm',
       label: 'CRM',
-      color: '#e5486a',
+      icon: dockIcon('apollo'),
       children: (
         <>
           <SidebarItem icon={<Users size={20} />} label="Contacts" selected={page === 'contacts'} onClick={() => setPage('contacts')} />
@@ -85,7 +100,7 @@ export function App() {
     {
       id: 'hr',
       label: 'Human Resources',
-      color: '#48b5e5',
+      icon: dockIcon('analytics'),
       children: (
         <>
           <SidebarItem icon={<Users size={20} />} label="Employees" selected={page === 'employees'} onClick={() => setPage('employees')} />
@@ -100,36 +115,62 @@ export function App() {
 
   return (
     <div className="portal-layout">
-      <Sidebar
-        variant="dock"
-        fixed
-        defaultExpanded={false}
-        workspaces={workspaces}
-        activeWorkspace={ws}
-        onWorkspaceChange={(id) => { setWs(id); setPage('dashboard'); }}
-        onAddWorkspace={() => alert('Add workspace')}
-        dockHeader={<DockLogo />}
-        workspaceDropdown={
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-            <PopoverItem label="Workspace Settings" noCheck />
-            <PopoverItem label="Invite Members" noCheck />
-            <PopoverItem label="Manage Workspaces" noCheck />
-          </div>
-        }
-      />
+      <div className="portal-sidebar">
+        <Sidebar
+          variant="dock"
+          fixed
+          defaultExpanded={false}
+          workspaces={workspaces}
+          activeWorkspace={ws}
+          onWorkspaceChange={(id) => { setWs(id); setPage('dashboard'); }}
+          onAddWorkspace={() => alert('Add workspace')}
+          dockHeader={<DockLogo />}
+          workspaceDropdown={
+            <div className="portal-ws-dropdown">
+              <PopoverItem label="Workspace Settings" noCheck />
+              <PopoverItem label="Invite Members" noCheck />
+              <PopoverItem label="Manage Workspaces" noCheck />
+            </div>
+          }
+        />
+      </div>
 
       <main className="portal-main">
         <div className="portal-content">
-          {page === 'dashboard' && <HomePage />}
+          {page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}
           {page !== 'dashboard' && (
             <div className="portal-empty">
               <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
-              <p className="text-body-base" style={{ color: 'var(--color-content-neutral-tertiary)' }}>Page coming soon...</p>
+              <p className="text-body-base portal-empty-text">Page coming soon...</p>
             </div>
           )}
         </div>
       </main>
+
+      {/* Mobile sidebar overlay */}
+      {mobileSidebar && (
+        <div className={`portal-mobile-overlay ${mobileSidebarClosing ? 'portal-mobile-closing' : ''}`} onClick={closeMobileSidebar}>
+          <div className={`portal-mobile-sidebar ${mobileSidebarClosing ? 'portal-mobile-sidebar-closing' : ''}`} onClick={e => e.stopPropagation()}>
+            <Sidebar
+              variant="dock"
+              expanded={true}
+              workspaces={workspaces}
+              activeWorkspace={ws}
+              onWorkspaceChange={(id) => { setWs(id); setPage('dashboard'); }}
+              dockHeader={<DockLogo />}
+              closeButton
+              onClose={closeMobileSidebar}
+              workspaceDropdown={
+                <div className="portal-ws-dropdown">
+                  <PopoverItem label="Workspace Settings" noCheck />
+                  <PopoverItem label="Invite Members" noCheck />
+                  <PopoverItem label="Manage Workspaces" noCheck />
+                </div>
+              }
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
-

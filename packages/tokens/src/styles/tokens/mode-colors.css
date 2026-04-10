@@ -1197,3 +1197,8 @@
   /* ── White ── */
   --color-white: #ffffff;
 }
+
+/* ── Brand contrast override for dark theme ── */
+[data-theme="dark"][data-brand-bright="false"] {
+  --color-content-on-accent: #ffffff;
+}

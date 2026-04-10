@@ -10,11 +10,12 @@ export interface WidgetShellProps {
   menu?: ReactNode;
   children: ReactNode;
   flush?: boolean;
+  maxHeight?: number;
 }
 
-export function WidgetShell({ title, icon, actions, menu, children, flush }: WidgetShellProps) {
+export function WidgetShell({ title, icon, actions, menu, children, flush, maxHeight }: WidgetShellProps) {
   return (
-    <div className="widget-shell">
+    <div className={`widget-shell${maxHeight ? ' widget-shell-maxh' : ''}`}>
       <div className="widget-header">
         {(title || icon) && (
           <div className="widget-title">

@@ -496,7 +496,7 @@
   bottom: 0;
   left: 100%;
   width: 16px;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.08), transparent);
+  background: linear-gradient(to right, var(--color-shadow-neutral-medium), transparent);
   pointer-events: none;
   opacity: 0;
   transition: opacity 200ms ease;
@@ -510,7 +510,7 @@
   bottom: 0;
   right: 100%;
   width: 16px;
-  background: linear-gradient(to left, rgba(0, 0, 0, 0.08), transparent);
+  background: linear-gradient(to left, var(--color-shadow-neutral-medium), transparent);
   pointer-events: none;
   opacity: 0;
   transition: opacity 200ms ease;

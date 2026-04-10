@@ -24,7 +24,7 @@
   border-radius: var(--radius-rounded);
   border: 1px solid var(--comp-chip-secondary-color-border-default);
   background: var(--comp-chip-secondary-color-bg-unselected-default);
-  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light, rgba(0, 0, 0, 0.04));
+  box-shadow: 0 1px 1px 0 var(--color-shadow-neutral-light);
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-primary);
   font-size: var(--font-size-body-base);

@@ -124,6 +124,24 @@ function adjacentEmptiesAfter(slots: GridSlot[], idx: number): number {
   return count;
 }
 
+/** Count consecutive empties before `idx` in the same row */
+function adjacentEmptiesBefore(slots: GridSlot[], idx: number): number {
+  const positions = getPositions(slots);
+  const wRow = positions[idx].row;
+  let count = 0;
+  for (let i = idx - 1; i >= 0; i--) {
+    if (positions[i].row !== wRow) break;
+    if (slots[i].type !== 'empty') break;
+    count++;
+  }
+  return count;
+}
+
+/** Total empties available (left + right) in the same row */
+function totalAdjacentEmpties(slots: GridSlot[], idx: number): number {
+  return adjacentEmptiesBefore(slots, idx) + adjacentEmptiesAfter(slots, idx);
+}
+
 /* ═══════════════════════════════════════════════════ */
 /* ── DashboardGrid                                 ── */
 /* ═══════════════════════════════════════════════════ */
@@ -159,20 +177,34 @@ export function DashboardGrid() {
 
     const next = [...slots];
 
+    let widgetIdx = idx;
+
     if (newSize > w.size) {
       const needed = newSize - w.size;
-      if (adjacentEmptiesAfter(slots, idx) < needed) return; // can't fit
+      const rightAvail = adjacentEmptiesAfter(slots, idx);
+      const leftAvail = adjacentEmptiesBefore(slots, idx);
+      if (rightAvail + leftAvail < needed) return;
+
+      // Consume right empties first
+      const takeRight = Math.min(needed, rightAvail);
       let removed = 0;
-      for (let i = idx + 1; removed < needed;) {
+      for (let i = widgetIdx + 1; removed < takeRight;) {
         if (next[i].type === 'empty') { next.splice(i, 1); removed++; }
         else i++;
+      }
+
+      // Then consume left empties
+      const takeLeft = needed - takeRight;
+      removed = 0;
+      for (let i = widgetIdx - 1; removed < takeLeft; i--) {
+        if (next[i].type === 'empty') { next.splice(i, 1); removed++; widgetIdx--; }
       }
     } else {
       const released = w.size - newSize;
       const empties = Array.from({ length: released }, () => makeEmpty());
-      next.splice(idx + 1, 0, ...empties);
+      next.splice(widgetIdx + 1, 0, ...empties);
     }
-    (next[idx] as any).size = newSize;
+    (next[widgetIdx] as any).size = newSize;
     commit(next);
   }, [slots, commit]);
 
@@ -202,7 +234,7 @@ export function DashboardGrid() {
     for (let i = 0; i < slots.length; i++) {
       const s = slots[i];
       if (s.type === 'widget') {
-        map[s.id] = Math.min(3, s.size + adjacentEmptiesAfter(slots, i)) as WidgetSize;
+        map[s.id] = Math.min(3, s.size + totalAdjacentEmpties(slots, i)) as WidgetSize;
       }
     }
     return map;
@@ -232,6 +264,7 @@ export function DashboardGrid() {
           return (
             <div key={slot.id} className={`dashboard-cell dashboard-cell-${slot.size}`}>
               <Comp
+                widgetSize={slot.size}
                 menu={
                   <WidgetMenu
                     size={slot.size}
@@ -313,25 +346,27 @@ function WidgetMenu({
         <>
           <div className="widget-menu-backdrop" onClick={() => setShowMenu(false)} />
           <div className="widget-menu-dropdown">
-            <Popover label="Widget size">
-              {([1, 2, 3] as WidgetSize[]).map(s => (
-                <PopoverItem
-                  key={s}
-                  label={s === 1 ? '1/3 column' : s === 2 ? '2/3 columns' : 'Full width'}
-                  selected={s === size}
-                  leading={
-                    <span className="widget-size-preview">
-                      {Array.from({ length: 3 }).map((_, i) => (
-                        <span key={i} className={`widget-size-col ${i < s ? 'widget-size-col-fill' : ''}`} />
-                      ))}
-                    </span>
-                  }
-                  onClick={() => {
-                    if (s <= maxSize) { onResize(s); setShowMenu(false); }
-                  }}
-                  className={s > maxSize ? 'widget-menu-disabled' : undefined}
-                />
-              ))}
+            <Popover>
+              <div className="widget-size-options">
+                {([1, 2, 3] as WidgetSize[]).map(s => (
+                  <PopoverItem
+                    key={s}
+                    label={s === 1 ? '1/3 column' : s === 2 ? '2/3 columns' : 'Full width'}
+                    selected={s === size}
+                    leading={
+                      <span className="widget-size-preview">
+                        {Array.from({ length: 3 }).map((_, i) => (
+                          <span key={i} className={`widget-size-col ${i < s ? 'widget-size-col-fill' : ''}`} />
+                        ))}
+                      </span>
+                    }
+                    onClick={() => {
+                      if (s <= maxSize) { onResize(s); setShowMenu(false); }
+                    }}
+                    className={s > maxSize ? 'widget-menu-disabled' : undefined}
+                  />
+                ))}
+              </div>
               <PopoverItem
                 label="Remove widget"
                 leading={<Trash size={16} />}

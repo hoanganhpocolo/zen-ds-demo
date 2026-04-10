@@ -64,7 +64,7 @@
   font-weight: var(--font-weight-primary);
   font-size: var(--font-size-body-base);
   line-height: var(--line-height-body-base);
-  letter-spacing: -0.32px;
+  letter-spacing: var(--letter-spacing-body-base);
   margin: 0;
 }
 

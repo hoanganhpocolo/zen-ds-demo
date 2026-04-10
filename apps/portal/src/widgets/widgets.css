@@ -31,6 +31,10 @@
   overflow: hidden;
 }
 
+.widget-shell-maxh {
+  max-height: 418px;
+}
+
 .widget-header {
   display: flex;
   align-items: center;
@@ -38,6 +42,8 @@
   gap: var(--gap-small);
   padding: var(--padding-small) var(--padding-medium);
   flex-shrink: 0;
+  min-width: 0;
+  flex-wrap: wrap;
 }
 
 .widget-title {
@@ -50,7 +56,13 @@
 .widget-title-icon {
   display: flex;
   align-items: center;
-  flex-shrink: 0;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.widget-title-icon::-webkit-scrollbar {
+  display: none;
   color: var(--color-content-neutral-secondary);
 }
 
@@ -59,6 +71,7 @@
   align-items: center;
   gap: var(--gap-2xsmall);
   flex-shrink: 0;
+  min-width: 0;
 }
 
 /* When no title, actions fill full width */
@@ -71,8 +84,7 @@
   flex: 1;
   min-height: 0;
   padding: 0 var(--padding-medium) var(--padding-medium);
-  overflow-y: auto;
-  scrollbar-width: thin;
+  overflow: hidden;
 }
 
 .widget-body-flush {
@@ -201,6 +213,7 @@
   cursor: pointer;
   transition: background 120ms ease, border-color 120ms ease;
   background: var(--color-bg-fill-neutral-flat-default);
+  color: var(--color-content-neutral-primary);
   text-align: left;
 }
 
@@ -219,4 +232,47 @@
   flex-direction: column;
   gap: 2px;
   min-width: 0;
+}
+
+/* ── Responsive — Tablet ── */
+
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 2/3 → full, 1/3 → 1/2 */
+  .dashboard-cell-2 {
+    grid-column: span 2;
+  }
+
+  .dashboard-cell-3 {
+    grid-column: span 2;
+  }
+}
+
+/* ── Responsive — Mobile ── */
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* All widgets full width */
+  .dashboard-cell-1,
+  .dashboard-cell-2,
+  .dashboard-cell-3 {
+    grid-column: span 1;
+    min-width: 0;
+  }
+
+  /* Hide widget size options, keep only remove */
+  .widget-size-options {
+    display: none;
+  }
+
+  /* Only show first empty add-widget cell */
+  .dashboard-cell-1:has(.add-widget-cell) ~ .dashboard-cell-1:has(.add-widget-cell) {
+    display: none;
+  }
 }

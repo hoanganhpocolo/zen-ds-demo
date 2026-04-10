@@ -4,7 +4,7 @@ import { WidgetShell } from './WidgetShell';
 import { registerWidget } from './registry';
 import './widget-content.css';
 
-export function UpdatesWidget({ onRemove, menu }: { onRemove?: () => void; menu?: React.ReactNode }) {
+export function UpdatesWidget({ menu }: { menu?: React.ReactNode }) {
   return (
     <WidgetShell
       title="Recent Updates"

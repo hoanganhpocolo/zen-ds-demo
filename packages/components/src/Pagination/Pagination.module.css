@@ -147,7 +147,7 @@
   font-weight: var(--font-weight-primary);
   font-size: var(--font-size-body-base);
   line-height: var(--line-height-body-base);
-  letter-spacing: -0.32px;
+  letter-spacing: var(--letter-spacing-body-base);
   color: var(--color-content-neutral-primary);
   white-space: nowrap;
   pointer-events: none;
