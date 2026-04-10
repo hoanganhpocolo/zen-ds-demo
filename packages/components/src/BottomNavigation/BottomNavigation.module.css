@@ -1,0 +1,165 @@
+/* ─────────────────────────────────────────
+   Root — fixed 390px, matches mobile viewport
+───────────────────────────────────────── */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 390px;
+  flex-shrink: 0;
+  background: var(--color-bg-surface-default);
+  border-top: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+/* Active icon/label color + action button colors scoped per theme */
+.theme-accent {
+  --bottom-nav-active-color: var(--color-content-accent-secondary);
+  --bottom-nav-action-circle-bg: var(--color-bg-fill-accent-solid-default);
+  --bottom-nav-action-icon-color: var(--color-content-on-accent);
+}
+
+.theme-neutral {
+  --bottom-nav-active-color: var(--color-content-neutral-primary);
+  --bottom-nav-action-circle-bg: var(--color-bg-fill-neutral-solid-default);
+  --bottom-nav-action-icon-color: var(--color-content-inverse);
+}
+
+/* ─────────────────────────────────────────
+   Tab Bar — 56px
+───────────────────────────────────────── */
+
+.bar {
+  display: flex;
+  align-items: stretch;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   Tab Item
+───────────────────────────────────────── */
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--padding-2xsmall) 0 var(--padding-xsmall);
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 120ms ease;
+}
+
+.item-default {
+  color: var(--color-content-placeholder);
+}
+
+.item-default:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.item-default:active {
+  background: var(--color-bg-fill-neutral-flat-pressed);
+}
+
+.item-active {
+  color: var(--bottom-nav-active-color);
+}
+
+.item-active:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.item-active:active {
+  background: var(--color-bg-fill-neutral-flat-pressed);
+}
+
+/* ─────────────────────────────────────────
+   Icon — 24px, inherits currentColor
+───────────────────────────────────────── */
+
+.iconWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* ─────────────────────────────────────────
+   Label — inherits color from .item
+───────────────────────────────────────── */
+
+.label {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-caption);      /* 12px */
+  line-height: var(--line-height-caption);  /* 16px */
+  font-weight: var(--font-weight-secondary); /* 500 */
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+
+/* ─────────────────────────────────────────
+   Home Indicator — iOS 34px
+───────────────────────────────────────── */
+
+.homeIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.homeIndicatorPill {
+  width: 134px;
+  height: 5px;
+  border-radius: 1000px;
+  background: var(--color-bg-fill-neutral-subtle-default);
+}
+
+/* ─────────────────────────────────────────
+   Action Item — 48×48 circle button
+───────────────────────────────────────── */
+
+.item-action {
+  justify-content: center;
+  gap: 0;
+  padding: 0;
+}
+
+.item-action:hover {
+  background: transparent;
+}
+
+.item-action:active {
+  background: transparent;
+}
+
+.actionCircle {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-rounded);
+  background: var(--bottom-nav-action-circle-bg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bottom-nav-action-icon-color);
+  flex-shrink: 0;
+  transition: opacity 120ms ease;
+}
+
+.item-action:hover .actionCircle {
+  opacity: 0.88;
+}
+
+.item-action:active .actionCircle {
+  opacity: 0.76;
+}
