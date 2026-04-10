@@ -225,8 +225,8 @@
   background: var(--color-bg-fill-inverse-solid-pressed);
 }
 .inverse:disabled {
-  background: var(--color-bg-fill-disabled);
-  color: var(--color-content-inverse);
+  background: var(--color-bg-fill-white-overlay-disabled);
+  color: var(--color-content-white-overlay-disabled);
 }
 
 /* White — always white solid fill, always black text */
@@ -243,8 +243,8 @@
   background: var(--color-bg-fill-white-solid-pressed);
 }
 .white:disabled {
-  background: var(--color-bg-fill-disabled);
-  color: var(--color-content-inverse);
+  background: var(--color-bg-fill-white-overlay-disabled);
+  color: var(--color-content-white-overlay-disabled);
 }
 
 /* White Overlay — semi-transparent white with blur + glass border */
@@ -264,11 +264,9 @@
   background: var(--color-bg-fill-white-overlay-pressed);
 }
 .white-overlay:disabled {
-  background: var(--color-bg-fill-disabled);
-  color: var(--color-content-disabled);
+  background: var(--color-bg-fill-white-overlay-disabled);
+  color: var(--color-content-white-overlay-disabled);
   border-color: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 /* Black Overlay — semi-transparent black with blur + glass border */
@@ -288,11 +286,9 @@
   background: var(--color-bg-fill-black-overlay-pressed);
 }
 .black-overlay:disabled {
-  background: var(--color-bg-fill-disabled);
-  color: var(--color-content-disabled);
+  background: var(--color-bg-fill-white-overlay-disabled);
+  color: var(--color-content-white-overlay-disabled);
   border-color: transparent;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 /* ── Sizes ── */

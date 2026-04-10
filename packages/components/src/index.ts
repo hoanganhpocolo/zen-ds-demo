@@ -83,6 +83,12 @@ export type { SidePanelProps, SidePanelVariant } from './SidePanel';
 export { Slider } from './Slider';
 export type { SliderProps, SliderTheme, SliderSize } from './Slider';
 
+export { TopNavigationMobile, TopNavActionButton } from './TopNavigationMobile';
+export type { TopNavigationMobileProps, TopNavMobileTheme, TopNavActionButtonProps } from './TopNavigationMobile';
+
+export { BottomNavigation } from './BottomNavigation';
+export type { BottomNavigationProps, BottomNavTheme, BottomNavItemData } from './BottomNavigation';
+
 export { Search } from './Search';
 export type { SearchProps, SearchTheme, SearchSize } from './Search';
 

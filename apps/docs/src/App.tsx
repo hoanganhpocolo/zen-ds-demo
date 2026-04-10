@@ -32,6 +32,8 @@ import { SegmentedPage } from './SegmentedPage';
 import { SidebarPage } from './SidebarPage';
 import { SidePanelPage } from './SidePanelPage';
 import { SliderPage } from './SliderPage';
+import { TopNavigationMobilePage } from './TopNavigationMobilePage';
+import { BottomNavigationMobilePage } from './BottomNavigationMobilePage';
 import { StepperPage } from './StepperPage';
 import { TabPage } from './TabPage';
 import { TagPage } from './TagPage';
@@ -45,7 +47,7 @@ import { DemoPage } from './DemoPage';
 import { TestPage } from './TestPage';
 import './docs.css';
 
-type Page = 'tokens' | 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'select' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'tab' | 'table' | 'tag' | 'textarea' | 'number' | 'toggle' | 'uploader';
+type Page = 'tokens' | 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'select' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'tab' | 'table' | 'tag' | 'textarea' | 'number' | 'toggle' | 'uploader' | 'top-nav-mobile' | 'bottom-nav-mobile';
 
 const sidebarSections = [
   {
@@ -98,6 +100,8 @@ const sidebarSections = [
       { id: 'textarea', label: 'Text Area' },
       { id: 'tag', label: 'Tag' },
       { id: 'toggle', label: 'Toggle' },
+      { id: 'top-nav-mobile', label: 'Top Navigation (Mobile)' },
+      { id: 'bottom-nav-mobile', label: 'Bottom Navigation (Mobile)' },
       { id: 'uploader', label: 'File Uploader' },
     ],
   },
@@ -272,6 +276,8 @@ export function App() {
           {page === 'textarea' && <TextAreaPage />}
           {page === 'number' && <NumberFieldPage />}
           {page === 'toggle' && <TogglePage />}
+          {page === 'top-nav-mobile' && <TopNavigationMobilePage />}
+          {page === 'bottom-nav-mobile' && <BottomNavigationMobilePage />}
           {page === 'uploader' && <UploaderPage />}
         </main>
 

@@ -5,6 +5,7 @@ import styles from './OnThisPage.module.css';
 interface TocItem {
   id: string;
   label: string;
+  level: 'master' | 'child';
 }
 
 interface OnThisPageProps {
@@ -26,15 +27,25 @@ export function OnThisPage({ page }: OnThisPageProps) {
   // Scan headings after each page navigation
   useEffect(() => {
     const timer = setTimeout(() => {
-      const headings = document.querySelectorAll<HTMLElement>('.docs-section-title');
+      const headings = document.querySelectorAll<HTMLElement>(
+        '.docs-section-title, .docs-subsection-title',
+      );
       const tocItems: TocItem[] = [];
+      const seenSlugs = new Map<string, number>();
 
       headings.forEach((el) => {
         const text = el.textContent?.trim() || '';
         if (!text) return;
-        const id = slugify(text);
+        const base = slugify(text);
+        const count = seenSlugs.get(base) ?? 0;
+        seenSlugs.set(base, count + 1);
+        const id = count === 0 ? base : `${base}-${count + 1}`;
         el.id = id;
-        tocItems.push({ id, label: text });
+        tocItems.push({
+          id,
+          label: text,
+          level: el.classList.contains('docs-subsection-title') ? 'child' : 'master',
+        });
       });
 
       setItems(tocItems);
@@ -79,7 +90,7 @@ export function OnThisPage({ page }: OnThisPageProps) {
               key={item.id}
               label={item.label}
               selected={activeId === item.id}
-              level="child"
+              level={item.level}
               onClick={() => {
                 document.getElementById(item.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 setActiveId(item.id);

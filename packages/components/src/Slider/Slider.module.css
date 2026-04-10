@@ -10,13 +10,13 @@
 /* ─────────────────────────────────────────
    Size tokens
    --_track-h  outer track / container height
-   --_thumb    thumb diameter (= track-h for medium/large)
+   --_thumb    thumb diameter
    --_inset    fill inset (1px top/bottom gives the "inner pill" look)
 ───────────────────────────────────────── */
 
-.size-small  { --_track-h: 10px; --_thumb: 16px; --_inset: 1px; }
-.size-medium { --_track-h: 24px; --_thumb: 24px; --_inset: 1px; }
-.size-large  { --_track-h: 32px; --_thumb: 32px; --_inset: 1px; }
+.size-small  { --_track-h: 10px; --_thumb: 16px; --_inset: 1px; --_thumb-bg: var(--_fill); }
+.size-medium { --_track-h: 24px; --_thumb: 20px; --_inset: 1px; --_thumb-bg: var(--color-bg-fill-inverse-solid-default); }
+.size-large  { --_track-h: 32px; --_thumb: 28px; --_inset: 1px; --_thumb-bg: var(--color-bg-fill-inverse-solid-default); }
 
 /* ─────────────────────────────────────────
    Root
@@ -38,16 +38,13 @@
 .track {
   position: relative;
   height: var(--_track-h);
-  /* Center the visual track, leaving room for the thumb at edges */
   margin-inline: calc(var(--_thumb) / 2);
   background: var(--color-bg-fill-neutral-subtle-default);
   border-radius: var(--radius-rounded);
 }
 
 /* ─────────────────────────────────────────
-   Fill — colored portion from left edge to thumb
-   right: calc(100% - var(--_percent)) places right edge exactly at the
-   percentage position, matching the thumb center.
+   Fill — colored portion from left edge to thumb center
 ───────────────────────────────────────── */
 
 .fill {
@@ -62,9 +59,14 @@
   min-width: 0;
 }
 
+/* Medium/Large: fill extends 1px past thumb's right edge — equal 1px spacing on top/bottom/right */
+.size-medium .fill,
+.size-large .fill {
+  right: max(0px, calc(100% - var(--_percent) - calc(var(--_thumb) / 2) - var(--_inset)));
+}
+
 /* ─────────────────────────────────────────
-   Thumb — white circle, centered at percent position.
-   transform: translateX(-50%) centers it on the fill's right edge.
+   Thumb — white circle, centered at percent position
 ───────────────────────────────────────── */
 
 .thumb {
@@ -74,7 +76,7 @@
   transform: translateX(-50%) translateY(-50%);
   width: var(--_thumb);
   height: var(--_thumb);
-  background: #ffffff;
+  background: var(--_thumb-bg, #ffffff);
   border-radius: 50%;
   box-shadow:
     0 1px 3px 0 var(--color-shadow-neutral-medium),
@@ -85,8 +87,7 @@
 }
 
 /* ─────────────────────────────────────────
-   Invisible input — covers track + thumb overhang for interaction.
-   Expands vertically to cover the thumb even when thumb > track height.
+   Invisible input — covers track + thumb overhang for interaction
 ───────────────────────────────────────── */
 
 .input {
@@ -135,7 +136,7 @@
 
 /* ── Disabled ── */
 .disabled .thumb {
-  background: var(--color-bg-fill-neutral-subtle-default);
+  background: var(--color-bg-fill-disabled);
   box-shadow: none;
 }
 .disabled .input:hover ~ .thumb {
@@ -144,7 +145,6 @@
 
 /* ─────────────────────────────────────────
    Labels — min / max below the track
-   Aligned to the full root width (including thumb overhang)
 ───────────────────────────────────────── */
 
 .labels {
