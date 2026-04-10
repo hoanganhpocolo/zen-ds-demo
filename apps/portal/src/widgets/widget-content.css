@@ -229,8 +229,8 @@
 .wc-metric-value {
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-primary);
-  font-size: 28px;
-  line-height: 40px;
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
   color: var(--color-content-neutral-primary);
 }
 
@@ -382,7 +382,7 @@
   }
 
   .wc-metric-value {
-    font-size: 22px;
-    line-height: 32px;
+    font-size: var(--font-size-h4);
+    line-height: var(--line-height-h4);
   }
 }

@@ -14,13 +14,11 @@ const events = [
   { title: '1-on-1 with Manager', time: '11:00 AM', location: 'Room B2', day: 15 },
 ];
 
-/* Build eventDates for Calendar component */
-const now = new Date();
-const eventDates = [...new Set(events.map(e => e.day))].map(
-  d => new Date(now.getFullYear(), now.getMonth(), d)
-);
-
-function getCalendarInfo() {
+function useCalendarInfo() {
+  const now = new Date();
+  const eventDates = [...new Set(events.map(e => e.day))].map(
+    d => new Date(now.getFullYear(), now.getMonth(), d)
+  );
   const month = now.toLocaleString('en', { month: 'long' });
   const monthShort = now.toLocaleString('en', { month: 'short' }).toUpperCase();
   const year = now.getFullYear();
@@ -28,7 +26,7 @@ function getCalendarInfo() {
   const firstDay = new Date(now.getFullYear(), now.getMonth(), 1);
   const lastDay = new Date(now.getFullYear(), now.getMonth() + 1, 0);
   const fmt = (d: Date) => d.toLocaleDateString('en', { month: 'short', day: 'numeric', year: 'numeric' });
-  return { month, monthShort, year, day, range: `${fmt(firstDay)} – ${fmt(lastDay)}` };
+  return { month, monthShort, year, day, range: `${fmt(firstDay)} – ${fmt(lastDay)}`, eventDates };
 }
 
 function EventList() {
@@ -45,7 +43,7 @@ function EventList() {
 }
 
 export function GreetingWidget({ menu, widgetSize }: { menu?: React.ReactNode; widgetSize?: WidgetSize }) {
-  const cal = getCalendarInfo();
+  const cal = useCalendarInfo();
   const isWide = (widgetSize ?? 1) >= 2;
 
   return (
@@ -81,7 +79,7 @@ export function GreetingWidget({ menu, widgetSize }: { menu?: React.ReactNode; w
           <Calendar
             variant="inline"
             defaultValue={new Date()}
-            eventDates={eventDates}
+            eventDates={cal.eventDates}
           />
           <div className="wc-calendar-wide-events">
             <EventList />

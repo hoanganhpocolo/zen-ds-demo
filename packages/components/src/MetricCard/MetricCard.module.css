@@ -140,7 +140,7 @@
   gap: 0;
   height: 24px;
   min-width: 24px;
-  padding: 2px var(--padding-2xsmall);
+  padding: var(--padding-3xsmall) var(--padding-2xsmall);
   border-radius: var(--radius-rounded);
   align-self: flex-start;
 }

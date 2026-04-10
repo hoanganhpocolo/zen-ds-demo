@@ -94,7 +94,7 @@
 .label-wrapper {
   display: flex;
   align-items: center;
-  padding: 0 4px;
+  padding: 0 var(--padding-2xsmall);
 }
 
 /* ── Label ── */

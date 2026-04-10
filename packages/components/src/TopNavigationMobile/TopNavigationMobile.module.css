@@ -87,9 +87,9 @@
 .controlHeading {
   font-family: var(--font-family-sans);
   font-size: var(--font-size-body-base);
-  line-height: 24px;
+  line-height: var(--line-height-body-base);
   font-weight: var(--font-weight-primary);
-  letter-spacing: -0.36px;
+  letter-spacing: var(--letter-spacing-body-base);
   color: var(--color-content-neutral-primary);
   white-space: nowrap;
   overflow: hidden;
@@ -185,8 +185,8 @@
   justify-content: center;
   width: 40px;
   height: 40px;
-  padding: 12px;
-  border-radius: 1000px;
+  padding: var(--padding-small);
+  border-radius: var(--radius-rounded);
   cursor: pointer;
   transition: background 120ms ease;
   flex-shrink: 0;
@@ -196,7 +196,7 @@
 .actionBtn-default {
   background: var(--color-bg-surface-default);
   border: 1px solid var(--color-border-neutral-subtle-default);
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 1px 1px var(--color-shadow-neutral-light);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
@@ -212,7 +212,7 @@
 /* Overlay: rgba(255,255,255,0.3) + white border 16% + blur 50px */
 .actionBtn-overlay {
   background: var(--color-bg-fill-white-overlay-default);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--overlay-white-7);
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
 }
@@ -251,7 +251,7 @@
   right: 0;
   width: 12px;
   height: 12px;
-  border-radius: 1000px;
+  border-radius: var(--radius-rounded);
   background: var(--color-bg-fill-negative-solid-default);
   border: 2px solid var(--color-border-inverse);
 }
