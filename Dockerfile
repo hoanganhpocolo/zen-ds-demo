@@ -30,10 +30,14 @@ RUN npm run build --workspace=apps/${APP_NAME}
 FROM nginx:alpine AS production
 
 ARG APP_NAME=portal
+# docs → 81, portal → 80 (override at build time with --build-arg PORT=...)
+ARG PORT=80
+ENV PORT=${PORT}
 
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY docker/nginx.conf /etc/nginx/templates/default.conf.template
 COPY --from=build /app/apps/${APP_NAME}/dist /usr/share/nginx/html
 
-EXPOSE 80
+EXPOSE ${PORT}
 
-CMD ["nginx", "-g", "daemon off;"]
+# envsubst replaces ${PORT} in the template before nginx starts
+CMD ["/bin/sh", "-c", "envsubst '$PORT' < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]

@@ -4,13 +4,15 @@ services:
       context: .
       args:
         APP_NAME: docs
+        PORT: 81
     ports:
-      - "3001:80"
+      - "81:81"
 
   portal:
     build:
       context: .
       args:
         APP_NAME: portal
+        PORT: 80
     ports:
-      - "3002:80"
+      - "80:80"
