@@ -354,3 +354,68 @@ import { Heart as HeartSolid } from '@zen/icons/solid';
 
 Icons use `currentColor` — they inherit text color from parent.
 To regenerate after adding new SVGs: `cd packages/icons && npm run generate`
+
+### 10. Component Usage Rules
+
+**ALWAYS check if a Zen component exists before building a new one.** If a component covers your use case, use it — even if it needs minor prop additions. Only build custom components when Zen DS genuinely doesn't have what you need.
+
+#### Available components (import from `@zen/components`):
+
+**Layout & Navigation:**
+Sidebar, SidebarItem, BottomNavigation, TopNavigationMobile, Breadcrumb, Pagination, Accordion
+
+**Data Entry:**
+Button, InputField, SelectField, Search, Checkbox, Radio, Toggle, Slider, Rating
+
+**Data Display:**
+Badge, Avatar, Tag, Chip, MetricCard, Table, Calendar, ListItem, Divider
+
+**Feedback & Overlay:**
+Modal, Dialog, BottomSheet, Popover, PopoverItem, InlineMessage
+
+#### Prefer Zen components over custom HTML:
+
+```tsx
+// ✅ DO — use Zen components
+<Button variant="primary" size="m">Submit</Button>
+<InputField size="m" label="Email" />
+<Badge label="Active" color="green" variant="subtle" />
+<Modal open={show} title="Confirm" onClose={...}>...</Modal>
+<Avatar size="m" color="blue">N</Avatar>
+
+// ❌ DON'T — rebuild what Zen already provides
+<button className="my-custom-btn">Submit</button>
+<input className="my-input" />
+<span className="my-badge">Active</span>
+<div className="my-modal-backdrop"><div className="my-modal">...</div></div>
+<div className="my-avatar">N</div>
+```
+
+#### When building a new component:
+
+1. Search existing components first: `ls packages/components/src/`
+2. If a similar component exists, extend it with new props instead of creating a duplicate
+3. New components MUST use Zen tokens for all styling (see rules 1-8)
+4. Place new components in `packages/components/src/{ComponentName}/`
+5. Export from `packages/components/src/index.ts`
+
+### 11. Typography — Always use text style classes
+
+**NEVER hardcode `font-size`, `font-weight`, or `line-height`.** Use the provided text style classes:
+
+```tsx
+// ✅ DO
+<h2 className="text-h4">Title</h2>
+<p className="text-body-base">Body text</p>
+<span className="text-caption">Small label</span>
+
+// ❌ DON'T
+<h2 style={{ fontSize: 24, fontWeight: 600 }}>Title</h2>
+<p style={{ fontSize: 16 }}>Body text</p>
+```
+
+Quick reference:
+- Headings: `.text-h1` (36px) → `.text-h4` (24px)
+- Body: `.text-body-extra` (18px), `.text-body-base` (16px), `.text-body-small` (14px)
+- Small: `.text-caption` (12px), `.text-small-label` (10px)
+- Font weight via token: `var(--font-weight-primary)` (600), `var(--font-weight-secondary)` (500), `var(--font-weight-tertiary)` (400)
