@@ -1,97 +1,141 @@
 import { useState } from 'react';
 import { Slider } from '@zen/components';
+import { DemoBlock } from './DemoBlock';
 import { ApiTable } from './ApiTable';
 
 export function SliderPage() {
   const [val, setVal] = useState(40);
 
   return (
-    <div className="docs-page-body">
-      <div className="docs-page-header" style={{ marginBottom: 'var(--gap-3xlarge)' }}>
-        <h1 className="text-h1 docs-page-title">Slider</h1>
-        <p className="text-body-base docs-page-description">
-          A horizontal range input for selecting a numeric value within a range. Available in 3 sizes and 3 themes.
-        </p>
-      </div>
-
-      {/* Sizes */}
-      <h2 className="text-h3 docs-section-title">Sizes</h2>
-      <div className="docs-demo-grid" style={{ marginBottom: 'var(--gap-3xlarge)' }}>
-        {(['small', 'medium', 'large'] as const).map((size) => (
-          <div key={size} className="docs-demo" data-full-width="true">
-            <div className="docs-demo-preview" style={{ padding: 'var(--padding-3xlarge) var(--padding-4xlarge)' }}>
-              <Slider size={size} defaultValue={60} showLabels style={{ maxWidth: 400, width: '100%' }} />
-            </div>
-            <div className="docs-demo-meta">
-              <p className="text-body-small docs-demo-title" style={{ fontWeight: 'var(--font-weight-secondary)', textTransform: 'capitalize' }}>{size}</p>
-            </div>
+    <>
+      {/* ── Header ── */}
+      <div className="docs-page-header">
+        <div className="docs-page-header-top">
+          <div className="docs-page-header-breadcrumb">
+            <span className="text-subheading">
+              <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
+              <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
+            </span>
           </div>
-        ))}
-      </div>
-
-      {/* Themes */}
-      <h2 className="text-h3 docs-section-title">Themes</h2>
-      <div className="docs-demo-grid" style={{ marginBottom: 'var(--gap-3xlarge)' }}>
-        <div className="docs-demo" data-full-width="true">
-          <div className="docs-demo-preview" style={{ flexDirection: 'column', alignItems: 'stretch', padding: 'var(--padding-3xlarge) var(--padding-4xlarge)', gap: 'var(--gap-xlarge)' }}>
-            <Slider theme="neutral" defaultValue={50} showLabels />
-            <Slider theme="accent" defaultValue={65} showLabels />
-            <div style={{ background: 'var(--color-bg-fill-neutral-solid-default)', borderRadius: 'var(--radius-large)', padding: 'var(--padding-xlarge)' }}>
-              <Slider theme="white" defaultValue={40} showLabels />
-            </div>
-          </div>
-          <div className="docs-demo-meta">
-            <p className="text-body-small docs-demo-title" style={{ fontWeight: 'var(--font-weight-secondary)' }}>neutral / accent / white</p>
-          </div>
+        </div>
+        <div className="docs-page-header-divider" />
+        <h1 className="docs-page-title text-display-1">Slider</h1>
+        <div className="docs-page-text">
+          <p className="docs-page-description text-subheading">
+            A horizontal range input for selecting a numeric value within a range. Available in 3 sizes and 3 themes.
+          </p>
         </div>
       </div>
 
-      {/* Controlled */}
-      <h2 className="text-h3 docs-section-title">Controlled</h2>
-      <div className="docs-demo-grid" style={{ marginBottom: 'var(--gap-3xlarge)' }}>
-        <div className="docs-demo" data-full-width="true">
-          <div className="docs-demo-preview" style={{ flexDirection: 'column', alignItems: 'center', gap: 'var(--gap-medium)', padding: 'var(--padding-3xlarge) var(--padding-4xlarge)' }}>
-            <Slider value={val} onChange={setVal} showLabels style={{ maxWidth: 400, width: '100%' }} />
+      {/* ── Body ── */}
+      <div className="docs-page-body">
+
+        {/* ── When to Use ── */}
+        <div className="docs-when-to-use">
+          <h3 className="text-body-base-primary" style={{ marginBottom: 'var(--gap-small)' }}>When to use</h3>
+          <ul className="text-body-small">
+            <li>To let users select a value within a continuous or stepped range.</li>
+            <li>Use <strong>Small</strong> for compact UIs where space is limited.</li>
+            <li>Use <strong>Medium</strong> as the default for most interfaces.</li>
+            <li>Use <strong>Large</strong> for prominent controls or touch-first interfaces.</li>
+            <li>Use <strong>White</strong> theme on dark or image backgrounds.</li>
+          </ul>
+        </div>
+
+        {/* ── Examples ── */}
+        <h2 className="docs-section-title text-h3">Examples</h2>
+
+        <div className="docs-demo-grid">
+
+          {/* Size */}
+          <DemoBlock
+            title="Size"
+            description="3 sizes: Small (10px track), Medium (24px), Large (32px). Default is Medium."
+            fullWidth
+            direction="column"
+            code={`<Slider size="small" defaultValue={60} showLabels />
+<Slider size="medium" defaultValue={60} showLabels />
+<Slider size="large" defaultValue={60} showLabels />`}
+          >
+            <Slider size="small" defaultValue={60} showLabels style={{ maxWidth: 480, width: '100%' }} />
+            <Slider size="medium" defaultValue={60} showLabels style={{ maxWidth: 480, width: '100%' }} />
+            <Slider size="large" defaultValue={60} showLabels style={{ maxWidth: 480, width: '100%' }} />
+          </DemoBlock>
+
+          {/* Theme */}
+          <DemoBlock
+            title="Theme"
+            description="3 fill themes: Neutral, Accent, and White (for dark backgrounds)."
+            fullWidth
+            direction="column"
+            code={`<Slider theme="neutral" defaultValue={50} showLabels />
+<Slider theme="accent" defaultValue={65} showLabels />
+
+{/* White theme — use on dark backgrounds */}
+<Slider theme="white" defaultValue={40} showLabels />`}
+          >
+            <Slider theme="neutral" defaultValue={50} showLabels style={{ maxWidth: 480, width: '100%' }} />
+            <Slider theme="accent" defaultValue={65} showLabels style={{ maxWidth: 480, width: '100%' }} />
+            <Slider theme="white" defaultValue={40} showLabels style={{ maxWidth: 480, width: '100%' }} />
+          </DemoBlock>
+
+          {/* Controlled */}
+          <DemoBlock
+            title="Controlled"
+            description="Pass value and onChange to control the slider externally."
+            fullWidth
+            direction="column"
+            code={`const [val, setVal] = useState(40);
+
+<Slider value={val} onChange={setVal} showLabels />
+<p>Value: <strong>{val}</strong></p>`}
+          >
+            <Slider value={val} onChange={setVal} showLabels style={{ maxWidth: 480, width: '100%' }} />
             <p className="text-body-small" style={{ color: 'var(--color-content-neutral-secondary)' }}>
               Value: <strong style={{ color: 'var(--color-content-neutral-primary)' }}>{val}</strong>
             </p>
-          </div>
-          <div className="docs-demo-meta">
-            <p className="text-body-small docs-demo-title" style={{ fontWeight: 'var(--font-weight-secondary)' }}>Controlled</p>
-          </div>
-        </div>
-      </div>
+          </DemoBlock>
 
-      {/* Disabled */}
-      <h2 className="text-h3 docs-section-title">Disabled</h2>
-      <div className="docs-demo-grid" style={{ marginBottom: 'var(--gap-3xlarge)' }}>
-        <div className="docs-demo" data-full-width="true">
-          <div className="docs-demo-preview" style={{ padding: 'var(--padding-3xlarge) var(--padding-4xlarge)' }}>
-            <Slider defaultValue={45} disabled showLabels style={{ maxWidth: 400, width: '100%' }} />
-          </div>
-          <div className="docs-demo-meta">
-            <p className="text-body-small docs-demo-title" style={{ fontWeight: 'var(--font-weight-secondary)' }}>Disabled</p>
-          </div>
-        </div>
-      </div>
+          {/* Disabled */}
+          <DemoBlock
+            title="Disabled — Medium"
+            description="Disabled sliders use dedicated disabled tokens and block all interaction."
+            fullWidth
+            code={`<Slider defaultValue={45} disabled showLabels />`}
+          >
+            <Slider defaultValue={45} disabled showLabels style={{ maxWidth: 480, width: '100%' }} />
+          </DemoBlock>
 
-      {/* API */}
-      <h2 className="text-h3 docs-section-title">API</h2>
-      <ApiTable
-        columns={['Prop', 'Type', 'Default', 'Description']}
-        rows={[
-          [<code>value</code>, <code>number</code>, '—', 'Controlled value'],
-          [<code>defaultValue</code>, <code>number</code>, <code>50</code>, 'Uncontrolled default'],
-          [<code>min</code>, <code>number</code>, <code>0</code>, 'Minimum value'],
-          [<code>max</code>, <code>number</code>, <code>100</code>, 'Maximum value'],
-          [<code>step</code>, <code>number</code>, <code>1</code>, 'Step increment'],
-          [<code>onChange</code>, <code>(value: number) =&gt; void</code>, '—', 'Called when value changes'],
-          [<code>theme</code>, <><code>'neutral'</code> | <code>'accent'</code> | <code>'white'</code></>, <code>'neutral'</code>, 'Fill color theme'],
-          [<code>size</code>, <><code>'small'</code> | <code>'medium'</code> | <code>'large'</code></>, <code>'medium'</code>, 'Track and thumb size'],
-          [<code>showLabels</code>, <code>boolean</code>, <code>false</code>, 'Show min/max labels below track'],
-          [<code>disabled</code>, <code>boolean</code>, <code>false</code>, 'Disabled state'],
-        ]}
-      />
-    </div>
+          <DemoBlock
+            title="Disabled — Small"
+            description="Small disabled: container keeps neutral-subtle, fill and thumb use disabled-neutral-solid."
+            fullWidth
+            code={`<Slider size="small" defaultValue={45} disabled showLabels />`}
+          >
+            <Slider size="small" defaultValue={45} disabled showLabels style={{ maxWidth: 480, width: '100%' }} />
+          </DemoBlock>
+
+        </div>
+
+        {/* ── API ── */}
+        <h2 className="docs-section-title text-h3">API</h2>
+        <ApiTable
+          columns={['Property', 'Description', 'Type', 'Default']}
+          rows={[
+            [<code>value</code>, 'Controlled value', <code>number</code>, '—'],
+            [<code>defaultValue</code>, 'Uncontrolled default value', <code>number</code>, <code>50</code>],
+            [<code>min</code>, 'Minimum value', <code>number</code>, <code>0</code>],
+            [<code>max</code>, 'Maximum value', <code>number</code>, <code>100</code>],
+            [<code>step</code>, 'Step increment', <code>number</code>, <code>1</code>],
+            [<code>onChange</code>, 'Called when value changes', <code>(value: number) =&gt; void</code>, '—'],
+            [<code>theme</code>, 'Fill color theme', <><code>'neutral'</code> | <code>'accent'</code> | <code>'white'</code></>, <code>'neutral'</code>],
+            [<code>size</code>, 'Track and thumb size', <><code>'small'</code> | <code>'medium'</code> | <code>'large'</code></>, <code>'medium'</code>],
+            [<code>showLabels</code>, 'Show min/max labels below track', <code>boolean</code>, <code>false</code>],
+            [<code>disabled</code>, 'Disabled state', <code>boolean</code>, <code>false</code>],
+          ]}
+        />
+
+      </div>
+    </>
   );
 }

@@ -1,4 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react';
+import { Button } from '../Button';
 import styles from './TopNavigationMobile.module.css';
 
 export type TopNavMobileTheme = 'default' | 'overlay';
@@ -63,18 +64,10 @@ export function TopNavActionButton({
   notiDot = false,
   theme = 'default',
 }: TopNavActionButtonProps) {
+  const variant = theme === 'overlay' ? 'white-overlay' : 'tertiary';
   return (
     <div className={styles.actionWrap}>
-      <button
-        className={[styles.actionBtn, styles[`actionBtn-${theme}`]].join(' ')}
-        onClick={onClick}
-        aria-label={label}
-        type="button"
-      >
-        <span className={[styles.actionIcon, styles[`actionIcon-${theme}`]].join(' ')}>
-          {icon}
-        </span>
-      </button>
+      <Button variant={variant} size="m" icon={icon} onClick={onClick} aria-label={label} />
       {notiDot && <span className={styles.notiDot} aria-hidden />}
     </div>
   );
@@ -126,9 +119,6 @@ export function TopNavigationMobile({
   return (
     <div className={rootClass} style={style} {...rest}>
 
-      {/* Status Bar */}
-      <StatusBar theme={theme} />
-
       {/* Control Bar (56px) */}
       {showControlBar && (
         <div className={styles.controlBar}>
@@ -136,7 +126,7 @@ export function TopNavigationMobile({
           {/* Sub collapsed: heading centered in control bar */}
           {isCollapsed && (
             <div className={styles.controlCenter}>
-              <span className={[styles.controlHeading, isOverlay ? styles.controlHeadingOverlay : ''].filter(Boolean).join(' ')}>
+              <span className={['text-body-extra-primary', styles.controlHeading, isOverlay ? styles.controlHeadingOverlay : ''].filter(Boolean).join(' ')}>
                 {heading}
               </span>
             </div>
@@ -149,7 +139,7 @@ export function TopNavigationMobile({
       {showMainBar && !isCollapsed && (
         <div className={styles.mainBar}>
           <div className={styles.mainHeading}>
-            <h1 className={[styles.headingText, isOverlay ? styles.headingOverlay : ''].filter(Boolean).join(' ')}>
+            <h1 className={['text-h1', styles.headingText, isOverlay ? styles.headingOverlay : ''].filter(Boolean).join(' ')}>
               {heading}
             </h1>
           </div>

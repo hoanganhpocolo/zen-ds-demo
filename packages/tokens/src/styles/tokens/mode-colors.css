@@ -58,6 +58,8 @@
   /* Light-Color/Neutral/10 */
   --color-bg-fill-disabled: var(--color-neutral-3);
   /* Light-Color/Neutral/3 — #f0f0f0 (matches Figma) */
+  --color-bg-fill-disabled-neutral-solid: var(--color-neutral-7);
+  /* Light-Color/Neutral/5 — #e0e0e0 — Figma: color/background/fill/disabled/neutral/solid */
   --color-bg-fill-info-flat-default: rgba(255, 255, 255, 0);
   --color-bg-fill-info-flat-hover: var(--color-info-alpha-3);
   /* Light-Color/Info-Alpha/3 */
@@ -655,6 +657,8 @@
   /* Light-Color/Neutral/10 */
   --color-bg-fill-disabled: var(--color-neutral-3);
   /* Dark-Color/Neutral/3 (matches Figma) */
+  --color-bg-fill-disabled-neutral-solid: var(--color-neutral-7);
+  /* Dark-Color/Neutral/5 — Figma: color/background/fill/disabled/neutral/solid */
   --color-bg-fill-info-flat-default: rgba(255, 255, 255, 0);
   --color-bg-fill-info-flat-hover: var(--color-info-alpha-3);
   /* Dark-Color/Info-Alpha/3 */

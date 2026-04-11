@@ -3,6 +3,7 @@ import { BottomNavigation } from '@zen/components';
 import type { BottomNavItemData } from '@zen/components';
 import { HomeSmile, Image, HorizontalBarChart02, ImageCircle } from '@zen/icons/line';
 import { HomeSmile as HomeSmileSolid, Image as ImageSolid, HorizontalBarChart02 as HorizontalBarChart02Solid, ImageCircle as ImageCircleSolid } from '@zen/icons/solid';
+import { DemoBlock } from './DemoBlock';
 import { ApiTable } from './ApiTable';
 
 const MobileFrame = ({ children }: { children: React.ReactNode }) => (
@@ -13,6 +14,7 @@ const MobileFrame = ({ children }: { children: React.ReactNode }) => (
     background: 'var(--color-bg-canvas-default)',
     borderRadius: 'var(--radius-large)',
     overflow: 'hidden',
+    padding: '32px 0',
   }}>
     {children}
   </div>
@@ -33,53 +35,46 @@ const ACTION_ITEMS: BottomNavItemData[] = [
   { id: 'profile', icon: <ImageCircle size={24} />,          activeIcon: <ImageCircleSolid size={24} />,          label: 'Profile' },
 ];
 
-function AccentExamples() {
+function DefaultAccentDemo() {
   const [active, setActive] = useState('home');
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-medium)' }}>
-      <MobileFrame>
-        <BottomNavigation theme="accent" items={DEFAULT_ITEMS} activeId={active} onItemClick={setActive} />
-      </MobileFrame>
-    </div>
+    <MobileFrame>
+      <BottomNavigation theme="accent" items={DEFAULT_ITEMS} activeId={active} onItemClick={setActive} />
+    </MobileFrame>
   );
 }
 
-function NeutralExamples() {
+function DefaultNeutralDemo() {
   const [active, setActive] = useState('home');
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-medium)' }}>
-      <MobileFrame>
-        <BottomNavigation theme="neutral" items={DEFAULT_ITEMS} activeId={active} onItemClick={setActive} />
-      </MobileFrame>
-    </div>
+    <MobileFrame>
+      <BottomNavigation theme="neutral" items={DEFAULT_ITEMS} activeId={active} onItemClick={setActive} />
+    </MobileFrame>
   );
 }
 
-function ActionAccentExamples() {
+function ActionAccentDemo() {
   const [active, setActive] = useState('home');
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-medium)' }}>
-      <MobileFrame>
-        <BottomNavigation theme="accent" items={ACTION_ITEMS} activeId={active} onItemClick={setActive} />
-      </MobileFrame>
-    </div>
+    <MobileFrame>
+      <BottomNavigation theme="accent" items={ACTION_ITEMS} activeId={active} onItemClick={setActive} />
+    </MobileFrame>
   );
 }
 
-function ActionNeutralExamples() {
+function ActionNeutralDemo() {
   const [active, setActive] = useState('home');
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-medium)' }}>
-      <MobileFrame>
-        <BottomNavigation theme="neutral" items={ACTION_ITEMS} activeId={active} onItemClick={setActive} />
-      </MobileFrame>
-    </div>
+    <MobileFrame>
+      <BottomNavigation theme="neutral" items={ACTION_ITEMS} activeId={active} onItemClick={setActive} />
+    </MobileFrame>
   );
 }
 
 export function BottomNavigationMobilePage() {
   return (
     <>
+      {/* ── Header ── */}
       <div className="docs-page-header">
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
@@ -94,51 +89,111 @@ export function BottomNavigationMobilePage() {
         <div className="docs-page-text">
           <p className="docs-page-description text-subheading">
             Mobile bottom tab bar (390px) with iOS home indicator.
-            Two types: Default (icon + label tabs) and Action (circle button).
-            Two themes each: Accent (brand color) and Neutral.
+            Two types: Default (icon + label tabs) and Action (circle button in center).
+            Two themes: Accent (brand color active state) and Neutral.
           </p>
         </div>
       </div>
 
+      {/* ── Body ── */}
       <div className="docs-page-body">
 
-        <h2 className="docs-section-title text-h3">Default</h2>
+        {/* ── When to Use ── */}
+        <div className="docs-when-to-use">
+          <h3 className="text-body-base-primary" style={{ marginBottom: 'var(--gap-small)' }}>When to use</h3>
+          <ul className="text-body-small">
+            <li>Use as the primary navigation bar at the bottom of mobile screens.</li>
+            <li>Use <strong>Default</strong> type for 3–5 destination tabs with icon and label.</li>
+            <li>Use <strong>Action</strong> type to add a prominent center action button (e.g. create, compose).</li>
+            <li>Use <strong>Accent</strong> theme to highlight the active tab with brand color.</li>
+            <li>Use <strong>Neutral</strong> theme for a more subdued active state.</li>
+          </ul>
+        </div>
 
-        <h3 className="docs-subsection-title text-h4">Accent</h3>
-        <AccentExamples />
+        {/* ── Examples ── */}
+        <h2 className="docs-section-title text-h3">Examples</h2>
 
-        <h3 className="docs-subsection-title text-h4" style={{ marginTop: 'var(--gap-large)' }}>Neutral</h3>
-        <NeutralExamples />
+        <div className="docs-demo-grid">
 
-        <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-2xlarge)' }}>Action</h2>
+          {/* Default / Accent */}
+          <DemoBlock
+            title="Default — Accent"
+            description="Standard tab bar with icon + label. Active tab uses brand accent color."
+            fullWidth
+            code={`const items = [
+  { id: 'home',    icon: <HomeSmile size={24} />,            activeIcon: <HomeSmileSolid size={24} />,            label: 'Home' },
+  { id: 'gallery', icon: <Image size={24} />,                activeIcon: <ImageSolid size={24} />,                label: 'Gallery' },
+  { id: 'stats',   icon: <HorizontalBarChart02 size={24} />, activeIcon: <HorizontalBarChart02Solid size={24} />, label: 'Stats' },
+  { id: 'profile', icon: <ImageCircle size={24} />,          activeIcon: <ImageCircleSolid size={24} />,          label: 'Profile' },
+];
 
-        <h3 className="docs-subsection-title text-h4">Accent</h3>
-        <ActionAccentExamples />
+<BottomNavigation theme="accent" items={items} activeId={active} onItemClick={setActive} />`}
+          >
+            <DefaultAccentDemo />
+          </DemoBlock>
 
-        <h3 className="docs-subsection-title text-h4" style={{ marginTop: 'var(--gap-large)' }}>Neutral</h3>
-        <ActionNeutralExamples />
+          {/* Default / Neutral */}
+          <DemoBlock
+            title="Default — Neutral"
+            description="Standard tab bar with neutral active state color."
+            fullWidth
+            code={`<BottomNavigation theme="neutral" items={items} activeId={active} onItemClick={setActive} />`}
+          >
+            <DefaultNeutralDemo />
+          </DemoBlock>
 
-        <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-2xlarge)' }}>API — BottomNavigation</h2>
+          {/* Action / Accent */}
+          <DemoBlock
+            title="Action — Accent"
+            description="Center action button (48×48 circle with Plus icon). Remaining tabs use accent active color."
+            fullWidth
+            code={`const items = [
+  { id: 'home',    icon: <HomeSmile size={24} />,            activeIcon: <HomeSmileSolid size={24} />,            label: 'Home' },
+  { id: 'gallery', icon: <Image size={24} />,                activeIcon: <ImageSolid size={24} />,                label: 'Gallery' },
+  { id: 'action',  type: 'action',                                                                                label: 'Add' },
+  { id: 'stats',   icon: <HorizontalBarChart02 size={24} />, activeIcon: <HorizontalBarChart02Solid size={24} />, label: 'Stats' },
+  { id: 'profile', icon: <ImageCircle size={24} />,          activeIcon: <ImageCircleSolid size={24} />,          label: 'Profile' },
+];
+
+<BottomNavigation theme="accent" items={items} activeId={active} onItemClick={setActive} />`}
+          >
+            <ActionAccentDemo />
+          </DemoBlock>
+
+          {/* Action / Neutral */}
+          <DemoBlock
+            title="Action — Neutral"
+            description="Center action button with neutral theme. Circle uses neutral solid fill."
+            fullWidth
+            code={`<BottomNavigation theme="neutral" items={items} activeId={active} onItemClick={setActive} />`}
+          >
+            <ActionNeutralDemo />
+          </DemoBlock>
+
+        </div>
+
+        {/* ── API ── */}
+        <h2 className="docs-section-title text-h3">API — BottomNavigation</h2>
         <ApiTable
-          columns={['Prop', 'Type', 'Default', 'Description']}
+          columns={['Property', 'Description', 'Type', 'Default']}
           rows={[
-            [<code>items</code>, <code>BottomNavItemData[]</code>, '—', 'Array of tab items'],
-            [<code>activeId</code>, <code>string</code>, '—', 'ID of the currently active tab'],
-            [<code>onItemClick</code>, <code>(id: string) =&gt; void</code>, '—', 'Callback when a tab is clicked'],
-            [<code>theme</code>, <><code>'accent'</code> | <code>'neutral'</code></>, <code>'accent'</code>, 'Color of the active tab — brand accent or neutral'],
-            [<code>showHomeIndicator</code>, <code>boolean</code>, <code>true</code>, 'Show iOS home indicator (34px) below the bar'],
+            [<code>items</code>, 'Array of tab items', <code>BottomNavItemData[]</code>, '—'],
+            [<code>activeId</code>, 'ID of the currently active tab', <code>string</code>, '—'],
+            [<code>onItemClick</code>, 'Callback when a tab is clicked', <code>(id: string) =&gt; void</code>, '—'],
+            [<code>theme</code>, 'Color of the active tab — brand accent or neutral', <><code>'accent'</code> | <code>'neutral'</code></>, <code>'accent'</code>],
+            [<code>showHomeIndicator</code>, 'Show iOS home indicator (34px) below the bar', <code>boolean</code>, <code>true</code>],
           ]}
         />
 
         <h2 className="docs-section-title text-h3" style={{ marginTop: 'var(--gap-2xlarge)' }}>API — BottomNavItemData</h2>
         <ApiTable
-          columns={['Prop', 'Type', 'Default', 'Description']}
+          columns={['Property', 'Description', 'Type', 'Default']}
           rows={[
-            [<code>id</code>, <code>string</code>, '—', 'Unique identifier for the tab'],
-            [<code>type</code>, <><code>'default'</code> | <code>'action'</code></>, <code>'default'</code>, 'Tab type — default shows icon+label; action shows a 48×48 circle with Plus icon'],
-            [<code>icon</code>, <code>ReactNode</code>, '—', 'Icon shown when inactive (line style). Used for type=\'default\' only'],
-            [<code>activeIcon</code>, <code>ReactNode</code>, '—', 'Icon shown when active (solid style). Falls back to icon if not provided'],
-            [<code>label</code>, <code>string</code>, '—', 'Tab label shown below the icon (default type) or used as aria-label (action type)'],
+            [<code>id</code>, 'Unique identifier for the tab', <code>string</code>, '—'],
+            [<code>type</code>, "Tab type — 'default' shows icon+label; 'action' shows a 48×48 circle with Plus icon", <><code>'default'</code> | <code>'action'</code></>, <code>'default'</code>],
+            [<code>icon</code>, 'Icon shown when inactive (line style). Used for type=\'default\' only', <code>ReactNode</code>, '—'],
+            [<code>activeIcon</code>, "Icon shown when active (solid style). Falls back to icon if not provided", <code>ReactNode</code>, '—'],
+            [<code>label</code>, "Tab label below the icon (default type) or aria-label (action type)", <code>string</code>, '—'],
           ]}
         />
 
