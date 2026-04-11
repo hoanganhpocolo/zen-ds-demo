@@ -63,7 +63,7 @@ export function Slider({
     .join(' ');
 
   const cssVars = {
-    '--_percent': `${percent}%`,
+    '--_ratio': `${percent / 100}`,
     ...style,
   } as React.CSSProperties;
 

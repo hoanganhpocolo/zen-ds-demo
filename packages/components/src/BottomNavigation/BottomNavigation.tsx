@@ -64,7 +64,7 @@ function BottomNavItem({ item, active, onClick }: BottomNavItemProps) {
       <span className={styles.iconWrap}>
         {active && item.activeIcon ? item.activeIcon : item.icon}
       </span>
-      <span className={styles.label}>{item.label}</span>
+      <span className={['text-caption', styles.label].join(' ')}>{item.label}</span>
     </button>
   );
 }
