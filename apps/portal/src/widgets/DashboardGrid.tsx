@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useRef } from 'react';
 import { Button, Modal, Popover, PopoverItem, Segmented } from '@zen/components';
 import { DotsHorizontal, Trash } from '@zen/icons/line';
 import { getWidget, getAllWidgets } from './registry';
@@ -307,8 +307,8 @@ export function DashboardGrid() {
               <button key={def.id} className="add-widget-option-horizontal" onClick={() => handleAdd(def.id)}>
                 <span className="add-widget-option-emoji">{def.emoji}</span>
                 <div className="add-widget-option-info">
-                  <span className="text-body-small wc-bold">{def.title}</span>
-                  <span className="text-caption wc-tertiary-text">{def.description}</span>
+                  <span className="text-body-base wc-bold">{def.title}</span>
+                  <span className="text-body-small wc-tertiary-text">{def.description}</span>
                 </div>
               </button>
             ))}
@@ -333,51 +333,51 @@ function WidgetMenu({
   onRemove: () => void;
 }) {
   const [showMenu, setShowMenu] = useState(false);
+  const btnRef = useRef<HTMLButtonElement | null>(null);
 
   return (
     <div className="widget-menu-wrap">
       <Button
+        ref={btnRef}
         variant="tertiary"
         size="m"
         icon={<DotsHorizontal size={20} />}
         onClick={() => setShowMenu(v => !v)}
       />
-      {showMenu && (
-        <>
-          <div className="widget-menu-backdrop" onClick={() => setShowMenu(false)} />
-          <div className="widget-menu-dropdown">
-            <Popover>
-              <div className="widget-size-options">
-                {([1, 2, 3] as WidgetSize[]).map(s => (
-                  <PopoverItem
-                    key={s}
-                    label={s === 1 ? '1/3 column' : s === 2 ? '2/3 columns' : 'Full width'}
-                    selected={s === size}
-                    leading={
-                      <span className="widget-size-preview">
-                        {Array.from({ length: 3 }).map((_, i) => (
-                          <span key={i} className={`widget-size-col ${i < s ? 'widget-size-col-fill' : ''}`} />
-                        ))}
-                      </span>
-                    }
-                    onClick={() => {
-                      if (s <= maxSize) { onResize(s); setShowMenu(false); }
-                    }}
-                    className={s > maxSize ? 'widget-menu-disabled' : undefined}
-                  />
-                ))}
-              </div>
-              <PopoverItem
-                label="Remove widget"
-                leading={<Trash size={16} />}
-                noCheck
-                onClick={() => { onRemove(); setShowMenu(false); }}
-                className="widget-menu-danger"
-              />
-            </Popover>
-          </div>
-        </>
-      )}
+      <Popover
+        open={showMenu}
+        anchorEl={btnRef.current}
+        placement="bottom-end"
+        onClose={() => setShowMenu(false)}
+      >
+        <div className="widget-size-options">
+          {([1, 2, 3] as WidgetSize[]).map(s => (
+            <PopoverItem
+              key={s}
+              label={s === 1 ? '1/3 column' : s === 2 ? '2/3 columns' : 'Full width'}
+              selected={s === size}
+              leading={
+                <span className="widget-size-preview">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <span key={i} className={`widget-size-col ${i < s ? 'widget-size-col-fill' : ''}`} />
+                  ))}
+                </span>
+              }
+              onClick={() => {
+                if (s <= maxSize) { onResize(s); setShowMenu(false); }
+              }}
+              className={s > maxSize ? 'widget-menu-disabled' : undefined}
+            />
+          ))}
+        </div>
+        <PopoverItem
+          label="Remove widget"
+          leading={<Trash size={16} />}
+          noCheck
+          onClick={() => { onRemove(); setShowMenu(false); }}
+          className="widget-menu-danger"
+        />
+      </Popover>
     </div>
   );
 }
