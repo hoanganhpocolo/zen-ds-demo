@@ -16,10 +16,10 @@
 
 .label {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-body-small);
-  line-height: var(--line-height-body-small);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
   font-weight: var(--font-weight-secondary);
-  letter-spacing: var(--letter-spacing-body-small);
+  letter-spacing: var(--letter-spacing-body-base);
   color: var(--color-content-neutral-primary);
 }
 

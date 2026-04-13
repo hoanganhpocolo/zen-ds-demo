@@ -20,7 +20,7 @@ export function WidgetShell({ title, icon, actions, menu, children, flush, maxHe
         {(title || icon) && (
           <div className="widget-title">
             {icon && <span className="widget-title-icon">{icon}</span>}
-            {title && <span className="text-body-base wc-widget-title-text">{title}</span>}
+            {title && <span className="text-body-extra wc-widget-title-text">{title}</span>}
           </div>
         )}
         <div className="widget-actions">

@@ -4,6 +4,11 @@
 
 This project uses the **Zen Design System**, a multi-tier token architecture generated from Figma variables. All styling MUST use design tokens (CSS custom properties). **Never hardcode colors, spacing, font sizes, or border-radius values.**
 
+## Reference docs
+
+- **[docs/figma-workflow.md](docs/figma-workflow.md)** — Figma MCP workflow for AI agents: component recipes, token bindings (variables + text styles), common pitfalls. Read this when building Figma designs from code.
+- **[docs/design-practices.md](docs/design-practices.md)** — Practical rules learned from real usage: icon naming gotchas, default sizes, token color choices, component usage patterns. Read this before writing UI code.
+
 ## Token Architecture
 
 ```

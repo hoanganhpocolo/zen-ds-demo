@@ -131,8 +131,8 @@ export function TicketsWidget({ menu, widgetSize }: { menu?: React.ReactNode; wi
             <div key={i} className="wc-ticket-item">
               <Avatar size="m" color={t.color}>{t.name.charAt(0)}</Avatar>
               <div className="wc-ticket-info">
-                <p className="text-body-small wc-bold wc-truncate">{t.title}</p>
-                <p className="text-caption wc-tertiary-text">{t.id} · {t.date} · {t.name}</p>
+                <p className="text-body-base wc-bold wc-truncate">{t.title}</p>
+                <p className="text-body-small wc-tertiary-text">{t.id} · {t.date} · {t.name}</p>
               </div>
               <Badge label={t.status} size="m" color={t.statusColor} variant="subtle" dot={false} />
               <TicketActions
