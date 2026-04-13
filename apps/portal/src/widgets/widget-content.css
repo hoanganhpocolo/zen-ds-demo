@@ -119,7 +119,7 @@
 }
 
 .wc-event-item:hover {
-  background: var(--color-bg-fill-neutral-flat-hover);
+  background: var(--color-bg-fill-white-solid-hover);
 }
 
 /* ── Tickets Widget ── */
@@ -157,7 +157,7 @@
 }
 
 .wc-ticket-item:hover {
-  background: var(--color-bg-fill-neutral-flat-hover);
+  background: var(--color-bg-fill-white-solid-hover);
 }
 
 .wc-ticket-info {
@@ -166,6 +166,34 @@
   display: flex;
   flex-direction: column;
   gap: 2px;
+}
+
+/* ── Ticket actions popover ── */
+
+
+.wc-ticket-actions-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+
+
+.wc-ticket-action-danger {
+  color: var(--color-content-negative-highlight) !important;
+}
+
+.wc-ticket-requestor {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.wc-ticket-table {
+  width: 100%;
+}
+
+.wc-ticket-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 /* ── Updates Widget (banner) ── */
@@ -197,7 +225,7 @@
 }
 
 .wc-tool-item:hover {
-  background: var(--color-bg-fill-neutral-flat-hover);
+  background: var(--color-bg-fill-white-solid-hover);
 }
 
 
@@ -363,6 +391,7 @@
 /* ── Responsive — Mobile ── */
 
 @media (max-width: 768px) {
+
   /* Calendar wide → stack vertical */
   .wc-calendar-wide {
     flex-direction: column;
