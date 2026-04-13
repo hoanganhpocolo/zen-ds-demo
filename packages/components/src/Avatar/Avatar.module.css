@@ -7,7 +7,6 @@
   justify-content: center;
   flex-shrink: 0;
   overflow: visible;
-  border: 1px solid var(--color-border-inverse);
 }
 
 /* ── Shape ── */
@@ -22,12 +21,16 @@
 
 /* ── Sizes ── */
 
-.size-2xl { width: var(--image-size-2xlarge); height: var(--image-size-2xlarge); border-width: 2px; }
-.size-xl  { width: var(--image-size-xlarge);  height: var(--image-size-xlarge);  border-width: 2px; }
+.size-2xl { width: var(--image-size-2xlarge); height: var(--image-size-2xlarge); }
+.size-xl  { width: var(--image-size-xlarge);  height: var(--image-size-xlarge); }
 .size-l   { width: var(--image-size-large);   height: var(--image-size-large); }
 .size-m   { width: var(--image-size-medium);  height: var(--image-size-medium); }
 .size-s   { width: var(--image-size-small);   height: var(--image-size-small); }
 .size-xs  { width: var(--image-size-xsmall);  height: var(--image-size-xsmall); }
+
+/* Thicker border for large group items */
+.size-2xl.group-item,
+.size-xl.group-item { border-width: 2px; }
 
 /* ── Inner container ── */
 
@@ -171,6 +174,7 @@
 
 .group-item {
   margin-right: -8px;
+  border: 1px solid var(--color-border-inverse);
 }
 
 .group-s .group-item {
