@@ -1,12 +1,21 @@
 import {
   forwardRef,
   useRef,
+  useState,
+  useEffect,
+  useLayoutEffect,
+  useCallback,
   type ChangeEvent,
   type HTMLAttributes,
   type ReactNode,
 } from 'react';
+import { createPortal } from 'react-dom';
 import { SearchMedium } from '@zen/icons/line';
 import styles from './Popover.module.css';
+
+export type PopoverPlacement =
+  | 'bottom-start' | 'bottom-end' | 'bottom-center'
+  | 'top-start'    | 'top-end'    | 'top-center';
 
 export interface PopoverProps extends HTMLAttributes<HTMLDivElement> {
   /** Show search input at the top */
@@ -22,6 +31,57 @@ export interface PopoverProps extends HTMLAttributes<HTMLDivElement> {
   /** Max height of the item list before it scrolls */
   maxHeight?: number;
   children?: ReactNode;
+
+  /** === Controlled / positioned mode === */
+  /** Controls visibility (required when using anchorEl). If omitted, renders inline. */
+  open?: boolean;
+  /** Anchor element — when provided, Popover renders via portal at this position */
+  anchorEl?: HTMLElement | null;
+  /** Placement relative to anchor. Default: bottom-start */
+  placement?: PopoverPlacement;
+  /** Gap between anchor and popover (px). Default: 4 */
+  offset?: number;
+  /** Called when user clicks outside or presses Escape */
+  onClose?: () => void;
+}
+
+const DEFAULT_OFFSET = 4;
+
+function computePosition(
+  anchor: DOMRect,
+  popover: { width: number; height: number },
+  placement: PopoverPlacement,
+  offset: number,
+): { top: number; left: number; placement: PopoverPlacement } {
+  const vw = window.innerWidth;
+  const vh = window.innerHeight;
+
+  // Try preferred placement, flip vertically if no room
+  let side: 'top' | 'bottom' = placement.startsWith('top') ? 'top' : 'bottom';
+  const align: 'start' | 'end' | 'center' = placement.endsWith('start')
+    ? 'start'
+    : placement.endsWith('end')
+      ? 'end'
+      : 'center';
+
+  const spaceBelow = vh - anchor.bottom;
+  const spaceAbove = anchor.top;
+  if (side === 'bottom' && spaceBelow < popover.height + offset && spaceAbove > spaceBelow) side = 'top';
+  if (side === 'top' && spaceAbove < popover.height + offset && spaceBelow > spaceAbove) side = 'bottom';
+
+  const top = side === 'bottom'
+    ? anchor.bottom + offset
+    : anchor.top - popover.height - offset;
+
+  let left: number;
+  if (align === 'start') left = anchor.left;
+  else if (align === 'end') left = anchor.right - popover.width;
+  else left = anchor.left + anchor.width / 2 - popover.width / 2;
+
+  // Clamp horizontally within viewport
+  left = Math.max(8, Math.min(left, vw - popover.width - 8));
+
+  return { top, left, placement: `${side}-${align}` as PopoverPlacement };
 }
 
 export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
@@ -35,17 +95,71 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       maxHeight,
       className,
       children,
+      open,
+      anchorEl,
+      placement = 'bottom-start',
+      offset = DEFAULT_OFFSET,
+      onClose,
       ...rest
     },
     ref,
   ) => {
     const inputRef = useRef<HTMLInputElement>(null);
+    const panelRef = useRef<HTMLDivElement>(null);
+    const [pos, setPos] = useState<{ top: number; left: number } | null>(null);
 
-    return (
+    const isPositioned = anchorEl !== undefined;
+
+    // Compute position when open
+    useLayoutEffect(() => {
+      if (!isPositioned || !open || !anchorEl || !panelRef.current) return;
+      const update = () => {
+        const anchorRect = anchorEl.getBoundingClientRect();
+        const { offsetWidth: w, offsetHeight: h } = panelRef.current!;
+        const { top, left } = computePosition(anchorRect, { width: w, height: h }, placement, offset);
+        setPos({ top, left });
+      };
+      update();
+      window.addEventListener('resize', update);
+      window.addEventListener('scroll', update, true);
+      return () => {
+        window.removeEventListener('resize', update);
+        window.removeEventListener('scroll', update, true);
+      };
+    }, [isPositioned, open, anchorEl, placement, offset]);
+
+    // Click outside + Escape
+    const handleClose = useCallback(() => { onClose?.(); }, [onClose]);
+
+    useEffect(() => {
+      if (!isPositioned || !open) return;
+      const onClickOutside = (e: MouseEvent) => {
+        const target = e.target as Node;
+        if (panelRef.current?.contains(target)) return;
+        if (anchorEl?.contains(target)) return;
+        handleClose();
+      };
+      const onKey = (e: KeyboardEvent) => {
+        if (e.key === 'Escape') handleClose();
+      };
+      document.addEventListener('pointerdown', onClickOutside);
+      document.addEventListener('keydown', onKey);
+      return () => {
+        document.removeEventListener('pointerdown', onClickOutside);
+        document.removeEventListener('keydown', onKey);
+      };
+    }, [isPositioned, open, anchorEl, handleClose]);
+
+    const content = (
       <div
-        ref={ref}
+        ref={(node) => {
+          panelRef.current = node;
+          if (typeof ref === 'function') ref(node);
+          else if (ref) ref.current = node;
+        }}
         className={[styles.root, className ?? ''].filter(Boolean).join(' ')}
         role="listbox"
+        style={isPositioned && pos ? { position: 'fixed', top: pos.top, left: pos.left, zIndex: 1001 } : undefined}
         {...rest}
       >
         {/* ── Search ── */}
@@ -84,6 +198,15 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         </div>
       </div>
     );
+
+    // Positioned mode — portal to body
+    if (isPositioned) {
+      if (!open) return null;
+      return createPortal(content, document.body);
+    }
+
+    // Inline mode — backward compatible
+    return content;
   },
 );
 
