@@ -7,6 +7,34 @@
 .theme-white   { --_fill: var(--color-white); }
 .disabled      { --_fill: var(--color-bg-fill-disabled); }
 
+/* ── White theme overrides ── */
+
+/* Fill spans full inner width to act as the white track base */
+.theme-white .fill {
+  background: #ffffff;
+  right: var(--_inset);
+}
+
+.theme-white .thumb {
+  background: #ffffff;
+  box-shadow: 0 2px 4px 0 var(--color-shadow-neutral-strong);
+}
+
+.theme-white .input:hover ~ .thumb {
+  box-shadow: 0 3px 8px 0 var(--color-shadow-neutral-strong);
+}
+
+.theme-white .input:active ~ .thumb {
+  box-shadow: 0 1px 4px 0 var(--color-shadow-neutral-strong);
+  transform: translateX(-50%) translateY(-50%) scale(0.92);
+}
+
+.theme-white .input:focus-visible ~ .thumb {
+  box-shadow:
+    0 0 0 3px var(--color-border-focused-primary),
+    0 2px 4px 0 var(--color-shadow-neutral-strong);
+}
+
 /* ─────────────────────────────────────────
    Size tokens
    --_track-h  outer track / container height
@@ -16,7 +44,7 @@
 
 .size-small  { --_track-h: 10px; --_thumb: 16px; --_inset: 1px; --_thumb-bg: var(--_fill); }
 .size-medium { --_track-h: 24px; --_thumb: 20px; --_inset: 1px; --_thumb-bg: var(--color-bg-fill-inverse-solid-default); }
-.size-large  { --_track-h: 32px; --_thumb: 28px; --_inset: 1px; --_thumb-bg: var(--color-bg-fill-inverse-solid-default); }
+.size-large  { --_track-h: 32px; --_thumb: 28px; --_inset: 1px; --_thumb-bg: var(--_fill); }
 
 /* ─────────────────────────────────────────
    Root
@@ -30,21 +58,27 @@
 }
 
 /* ─────────────────────────────────────────
-   Track — the outer gray pill
-   Inset by half the thumb width on each side so the thumb
-   never overflows the root bounding box.
+   Track — outer pill
+   Small: thinner than thumb, needs side margins so thumb can overhang
+   Medium/Large: thumb stays inside, root gets padding so thumb has room at edges
 ───────────────────────────────────────── */
 
 .track {
   position: relative;
   height: var(--_track-h);
-  margin-inline: calc(var(--_thumb) / 2);
   background: var(--color-bg-fill-neutral-subtle-default);
   border-radius: var(--radius-rounded);
 }
 
+/* Small: track narrower than thumb — margin lets thumb overhang without clipping */
+.size-small .track {
+  margin-inline: calc(var(--_thumb) / 2);
+}
+
+
+
 /* ─────────────────────────────────────────
-   Fill — colored portion from left edge to thumb center
+   Fill
 ───────────────────────────────────────── */
 
 .fill {
@@ -52,28 +86,31 @@
   left: var(--_inset);
   top: var(--_inset);
   bottom: var(--_inset);
-  right: calc(100% - var(--_percent));
+  /* Small: fill ends at thumb center */
+  right: calc(100% - var(--_ratio) * 100%);
   background: var(--_fill);
   border-radius: var(--radius-rounded);
   pointer-events: none;
   min-width: 0;
 }
 
-/* Medium/Large: fill extends 1px past thumb's right edge — equal 1px spacing on top/bottom/right */
+/* Medium/Large: fill right = 1px from thumb right edge (same inset as base from container)
+   right = 100% - 3*inset - thumb - ratio*(100% - 4*inset - thumb) */
 .size-medium .fill,
 .size-large .fill {
-  right: max(0px, calc(100% - var(--_percent) - calc(var(--_thumb) / 2) - var(--_inset)));
+  right: max(
+    var(--_inset),
+    calc(100% - 3 * var(--_inset) - var(--_thumb) - var(--_ratio) * (100% - 4 * var(--_inset) - var(--_thumb)))
+  );
 }
 
 /* ─────────────────────────────────────────
-   Thumb — white circle, centered at percent position
+   Thumb
 ───────────────────────────────────────── */
 
 .thumb {
   position: absolute;
   top: 50%;
-  left: var(--_percent);
-  transform: translateX(-50%) translateY(-50%);
   width: var(--_thumb);
   height: var(--_thumb);
   background: var(--_thumb-bg, #ffffff);
@@ -86,16 +123,27 @@
   transition: box-shadow 120ms ease, transform 120ms ease;
 }
 
+/* Small: thumb center at ratio * track-width, translateX(-50%) centers it on that point */
+.size-small .thumb {
+  left: calc(var(--_ratio) * 100%);
+  transform: translateX(-50%) translateY(-50%);
+}
+
+/* Medium/Large: thumb center travels from 2*inset+thumb/2 → 100%-2*inset-thumb/2
+   At ratio=0: center=12px → left edge=2px (1px from base edge) ✓
+   At ratio=1: center=100%-12px → right edge=100%-2px (1px from base edge) ✓ */
+.size-medium .thumb,
+.size-large .thumb {
+  left: calc(2 * var(--_inset) + var(--_thumb) / 2 + var(--_ratio) * (100% - 4 * var(--_inset) - var(--_thumb)));
+  transform: translateX(-50%) translateY(-50%);
+}
+
 /* ─────────────────────────────────────────
-   Invisible input — covers track + thumb overhang for interaction
+   Invisible input
 ───────────────────────────────────────── */
 
 .input {
   position: absolute;
-  left: calc(var(--_thumb) / -2);
-  right: calc(var(--_thumb) / -2);
-  top: calc((var(--_track-h) - var(--_thumb)) / 2);
-  height: var(--_thumb);
   opacity: 0;
   cursor: pointer;
   margin: 0;
@@ -108,8 +156,28 @@
   z-index: 2;
 }
 
+/* Small: input extends beyond track to cover thumb overhang */
+.size-small .input {
+  left: calc(var(--_thumb) / -2);
+  right: calc(var(--_thumb) / -2);
+  top: calc((var(--_track-h) - var(--_thumb)) / 2);
+  height: var(--_thumb);
+}
+
+/* Medium/Large: input covers the full track */
+.size-medium .input,
+.size-large .input {
+  inset: 0;
+}
+
 .input:disabled {
   cursor: not-allowed;
+}
+
+/* Large: thumb = inverse-solid at 12% alpha on hover/press */
+.size-large .input:hover ~ .thumb,
+.size-large .input:active ~ .thumb {
+  background: color-mix(in srgb, var(--color-bg-fill-inverse-solid-default) 12%, transparent);
 }
 
 /* ── Hover ── */
@@ -127,6 +195,24 @@
   transform: translateX(-50%) translateY(-50%) scale(0.92);
 }
 
+/* Medium: stroke outside 2px + drop shadow on press */
+.size-medium .input:active ~ .thumb {
+  box-shadow:
+    0 2px 4px 0 var(--color-shadow-neutral-strong),
+    0 0 0 1px var(--color-shadow-neutral-light),
+    0 0 0 3px var(--color-border-focused-neutral-subtle);
+  transform: translateX(-50%) translateY(-50%) scale(0.92);
+}
+
+/* Small: stroke outside 2px on press */
+.size-small .input:active ~ .thumb {
+  box-shadow:
+    0 1px 2px 0 var(--color-shadow-neutral-light),
+    0 0 0 1px var(--color-shadow-neutral-light),
+    0 0 0 3px var(--color-border-focused-neutral-subtle);
+  transform: translateX(-50%) translateY(-50%) scale(0.92);
+}
+
 /* ── Focus ring ── */
 .input:focus-visible ~ .thumb {
   box-shadow:
@@ -141,6 +227,28 @@
 }
 .disabled .input:hover ~ .thumb {
   box-shadow: none;
+}
+
+/* Small disabled: fill color = disabled-neutral-solid (container keeps neutral-subtle-default) */
+.size-small.disabled .fill {
+  background: var(--color-bg-fill-disabled-neutral-solid);
+}
+
+/* Small disabled: thumb matches track base color */
+.size-small.disabled .thumb {
+  background: var(--color-bg-fill-disabled-neutral-solid);
+}
+
+/* Medium/Large disabled: fill color = disabled-neutral-solid (normal position) */
+.size-medium.disabled .fill,
+.size-large.disabled .fill {
+  background: var(--color-bg-fill-disabled-neutral-solid);
+}
+
+/* Medium/Large disabled: thumb matches track base color */
+.size-medium.disabled .thumb,
+.size-large.disabled .thumb {
+  background: var(--color-bg-fill-disabled-neutral-solid);
 }
 
 /* ─────────────────────────────────────────

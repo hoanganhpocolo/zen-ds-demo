@@ -85,11 +85,14 @@
 }
 
 .controlHeading {
+<<<<<<< HEAD
   font-family: var(--font-family-sans);
   font-size: var(--font-size-body-base);
   line-height: var(--line-height-body-base);
   font-weight: var(--font-weight-primary);
   letter-spacing: var(--letter-spacing-body-base);
+=======
+>>>>>>> 8b0df83b2cf538894ae8dd0a80b0c1ec96ab66b7
   color: var(--color-content-neutral-primary);
   white-space: nowrap;
   overflow: hidden;
@@ -123,11 +126,6 @@
 
 .headingText {
   margin: 0;
-  font-family: var(--font-family-sans);
-  font-size: var(--font-size-h1);           /* 32px */
-  line-height: var(--line-height-h1);       /* 40px */
-  font-weight: var(--font-weight-primary);  /* 600 */
-  letter-spacing: var(--letter-spacing-h1); /* -1.44px */
   color: var(--color-content-neutral-primary);
 }
 
@@ -171,7 +169,7 @@
 }
 
 /* ─────────────────────────────────────────
-   Action Button — 40×40 circle
+   Action Button wrapper (notiDot positioning)
 ───────────────────────────────────────── */
 
 .actionWrap {
@@ -179,6 +177,7 @@
   flex-shrink: 0;
 }
 
+<<<<<<< HEAD
 .actionBtn {
   display: flex;
   align-items: center;
@@ -241,6 +240,8 @@
   color: var(--color-content-white-overlay-primary);
 }
 
+=======
+>>>>>>> 8b0df83b2cf538894ae8dd0a80b0c1ec96ab66b7
 /* ─────────────────────────────────────────
    Notification dot
 ───────────────────────────────────────── */
@@ -253,5 +254,5 @@
   height: 12px;
   border-radius: var(--radius-rounded);
   background: var(--color-bg-fill-negative-solid-default);
-  border: 2px solid var(--color-border-inverse);
+  border: 2px solid var(--color-bg-surface-default);
 }
