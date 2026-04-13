@@ -62,10 +62,10 @@ export function BottomSheetPage() {
             description="Are you sure you want to proceed? This action cannot be undone once confirmed."
             footer={
               <>
-                <Button variant="secondary" onClick={() => setModalOpen(false)}>
+                <Button variant="tertiary" onClick={() => setModalOpen(false)}>
                   Cancel
                 </Button>
-                <Button onClick={() => setModalOpen(false)}>
+                <Button variant="primary" onClick={() => setModalOpen(false)}>
                   Confirm
                 </Button>
               </>
@@ -157,10 +157,10 @@ export function BottomSheetPage() {
             description="Fill in the details below to create a new item."
             footer={
               <>
-                <Button variant="secondary" onClick={() => setFormOpen(false)}>
+                <Button variant="tertiary" onClick={() => setFormOpen(false)}>
                   Cancel
                 </Button>
-                <Button onClick={() => setFormOpen(false)}>Save</Button>
+                <Button variant="primary" onClick={() => setFormOpen(false)}>Save</Button>
               </>
             }
           >

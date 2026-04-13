@@ -113,9 +113,26 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
 
     /* ── State ── */
     const [open, setOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+    const [closing, setClosing] = useState(false);
     const [search, setSearch] = useState('');
     const [highlightIndex, setHighlightIndex] = useState(-1);
     const [createdOptions, setCreatedOptions] = useState<SelectOption[]>([]);
+
+    // Mount/unmount with closing animation
+    useEffect(() => {
+      if (open) {
+        setMounted(true);
+        setClosing(false);
+      } else if (mounted) {
+        setClosing(true);
+        const t = setTimeout(() => {
+          setMounted(false);
+          setClosing(false);
+        }, 100);
+        return () => clearTimeout(t);
+      }
+    }, [open, mounted]);
 
     // Single mode state
     const [singleInternal, setSingleInternal] = useState<string>(
@@ -465,8 +482,8 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
         </FieldShell>
 
         {/* ── Dropdown ── */}
-        {open && (
-          <div ref={dropdownRef} className={styles.dropdown}>
+        {mounted && (
+          <div ref={dropdownRef} className={[styles.dropdown, closing ? styles['dropdown-closing'] : ''].filter(Boolean).join(' ')}>
             <Popover maxHeight={240}>
               {filteredOptions.length === 0 && !canCreate && (
                 <div className={styles.empty}>No results</div>

@@ -110,9 +110,28 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
 
     const isPositioned = anchorEl !== undefined;
 
-    // Compute position when open
+    // Mount/closing state for enter/exit animations
+    const [mounted, setMounted] = useState(false);
+    const [closing, setClosing] = useState(false);
+
+    useEffect(() => {
+      if (!isPositioned) return;
+      if (open) {
+        setMounted(true);
+        setClosing(false);
+      } else if (mounted) {
+        setClosing(true);
+        const t = setTimeout(() => {
+          setMounted(false);
+          setClosing(false);
+        }, 100);
+        return () => clearTimeout(t);
+      }
+    }, [open, isPositioned, mounted]);
+
+    // Compute position when open (depends on `mounted` so we re-run after panelRef attaches)
     useLayoutEffect(() => {
-      if (!isPositioned || !open || !anchorEl || !panelRef.current) return;
+      if (!isPositioned || !open || !mounted || !anchorEl || !panelRef.current) return;
       const update = () => {
         const anchorRect = anchorEl.getBoundingClientRect();
         const { offsetWidth: w, offsetHeight: h } = panelRef.current!;
@@ -126,7 +145,7 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
         window.removeEventListener('resize', update);
         window.removeEventListener('scroll', update, true);
       };
-    }, [isPositioned, open, anchorEl, placement, offset]);
+    }, [isPositioned, open, mounted, anchorEl, placement, offset]);
 
     // Click outside + Escape
     const handleClose = useCallback(() => { onClose?.(); }, [onClose]);
@@ -157,9 +176,15 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
           if (typeof ref === 'function') ref(node);
           else if (ref) ref.current = node;
         }}
-        className={[styles.root, className ?? ''].filter(Boolean).join(' ')}
+        className={[styles.root, isPositioned && closing ? styles.closing : '', className ?? ''].filter(Boolean).join(' ')}
         role="listbox"
-        style={isPositioned && pos ? { position: 'fixed', top: pos.top, left: pos.left, zIndex: 1001 } : undefined}
+        style={
+          isPositioned
+            ? pos
+              ? { position: 'fixed', top: pos.top, left: pos.left, zIndex: 1001 }
+              : { position: 'fixed', top: 0, left: 0, zIndex: 1001, visibility: 'hidden' }
+            : undefined
+        }
         {...rest}
       >
         {/* ── Search ── */}
@@ -199,9 +224,9 @@ export const Popover = forwardRef<HTMLDivElement, PopoverProps>(
       </div>
     );
 
-    // Positioned mode — portal to body
+    // Positioned mode — portal to body with enter/exit animation
     if (isPositioned) {
-      if (!open) return null;
+      if (!mounted) return null;
       return createPortal(content, document.body);
     }
 
