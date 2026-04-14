@@ -19,8 +19,8 @@ export function ToolsWidget({ menu }: { menu?: React.ReactNode }) {
           <div key={tool.id} className="wc-tool-item">
             <AppIcon icon={tool.icon} semantic={tool.semantic} size="lg" />
             <div className="wc-tool-info">
-              <p className="text-body-small wc-bold">{tool.name}</p>
-              <p className="text-caption wc-tertiary-text">{tool.desc}</p>
+              <p className="text-body-base wc-bold">{tool.name}</p>
+              <p className="text-body-small wc-tertiary-text">{tool.desc}</p>
             </div>
           </div>
         ))}

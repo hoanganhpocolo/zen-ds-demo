@@ -197,7 +197,12 @@
   width: 100%;
   z-index: 100;
   margin-top: var(--gap-2xsmall);
-  animation: dropdown-in 150ms ease-out;
+  animation: dropdown-in 100ms ease-out;
+  transform-origin: top;
+}
+
+.dropdown-closing {
+  animation: dropdown-out 100ms ease-in forwards;
 }
 
 /* Override Popover fixed width to match field width */
@@ -214,6 +219,17 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes dropdown-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-4px);
   }
 }
 
@@ -253,8 +269,8 @@
 
 .overflow-tooltip-item {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-body-small);
-  line-height: var(--line-height-body-small);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
   color: var(--color-content-inverse);
   white-space: nowrap;
 }

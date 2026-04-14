@@ -34,8 +34,8 @@ function EventList() {
     <div className="wc-event-list">
       {events.map((e, i) => (
         <div key={i} className="wc-event-item">
-          <p className="text-body-small wc-bold">{e.title}</p>
-          <p className="text-caption wc-tertiary-text">{e.time}  ·  {e.location}</p>
+          <p className="text-body-base wc-bold">{e.title}</p>
+          <p className="text-body-small wc-tertiary-text">{e.time}  ·  {e.location}</p>
         </div>
       ))}
     </div>
@@ -57,7 +57,7 @@ export function GreetingWidget({ menu, widgetSize }: { menu?: React.ReactNode; w
             <span className="text-body-base wc-bold wc-calendar-icon-day">{cal.day}</span>
           </div>
           <div className="wc-calendar-header-info">
-            <span className="text-body-base wc-widget-title-text wc-calendar-title">{cal.month} {cal.year}</span>
+            <span className="text-body-extra wc-widget-title-text wc-calendar-title">{cal.month} {cal.year}</span>
           </div>
         </div>
       }

@@ -106,15 +106,15 @@
 }
 
 .size-medium .item-label {
-  font-size: var(--font-size-body-small);
-  line-height: var(--line-height-body-small);
-  letter-spacing: var(--letter-spacing-body-small);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
 }
 
 .size-small .item-label {
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
-  letter-spacing: var(--letter-spacing-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
 }
 
 /* ── Icon ── */

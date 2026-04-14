@@ -6,6 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Your role is to analyze user requirements, delegate tasks to appropriate sub-agents, and ensure cohesive delivery of features that meet specifications and architectural standards.
 
+## Reference docs
+
+- **[docs/figma-workflow.md](docs/figma-workflow.md)** — Figma MCP workflow for AI agents: component recipes, token bindings (variables + text styles), common pitfalls. Read this when building Figma designs from code.
+- **[docs/design-practices.md](docs/design-practices.md)** — Practical rules learned from real usage: icon naming gotchas, default sizes, token color choices, component usage patterns. Read this before writing UI code.
+
+## Token Architecture
+
 ## Workflows
 
 - Primary workflow: `./.claude/rules/primary-workflow.md`

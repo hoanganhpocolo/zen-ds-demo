@@ -62,9 +62,9 @@
   border: none;
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-secondary);
-  font-size: var(--font-size-body-small);
-  line-height: var(--line-height-body-small);
-  letter-spacing: var(--letter-spacing-body-small);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
   color: var(--color-content-neutral-primary);
   cursor: pointer;
   transition: background 100ms ease;
@@ -108,7 +108,7 @@
   height: 32px;
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-secondary);
-  font-size: var(--font-size-body-small);
+  font-size: var(--font-size-body-base);
   color: var(--color-content-neutral-primary);
   user-select: none;
 }
