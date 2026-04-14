@@ -1,23 +1,117 @@
 {
-  "permissions": {
-    "allow": [
-      "mcp__figma-console__figma_list_open_files",
-      "Bash(gh issue:*)",
-      "WebFetch(domain:github.com)",
-      "Read(//Users/lap16506/.figma-console-mcp/**)",
-      "Read(//Users/lap16506/**)",
-      "Read(//Users/lap16506/.claude/**)",
-      "mcp__figma-console__figma_get_design_system_summary",
-      "mcp__figma-console__figma_get_component_for_development",
-      "mcp__figma-console__figma_get_component_details",
-      "mcp__figma-console__figma_audit_design_system",
-      "mcp__figma-console__figma_check_design_parity",
-      "mcp__figma-console__figma_generate_component_doc",
-      "mcp__figma-console__figma_execute",
-      "mcp__figma-console__figma_take_screenshot"
+  "includeCoAuthoredBy": false,
+  "statusLine": {
+    "type": "command",
+    "command": "node .claude/statusline.cjs",
+    "padding": 0
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup|resume|clear|compact",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/session-init.cjs"
+          }
+        ]
+      }
     ],
-    "additionalDirectories": [
-      "/Users/lap16506/.npm/_npx/b547afed9fcf6dcb/node_modules/figma-console-mcp/dist/core"
+    "SubagentStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/subagent-init.cjs"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/team-context-inject.cjs"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "matcher": "Plan",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/cook-after-plan-reminder.cjs"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/dev-rules-reminder.cjs"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/usage-context-awareness.cjs",
+            "timeout": 30
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/descriptive-name.cjs"
+          }
+        ]
+      },
+      {
+        "matcher": "Skill",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/skill-usage-tracker.cjs",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Glob|Grep|Read|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/scout-block.cjs"
+          },
+          {
+            "type": "command",
+            "command": "node .claude/hooks/privacy-block.cjs"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/post-edit-simplify-reminder.cjs"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash|Edit|Write|MultiEdit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/usage-context-awareness.cjs",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   }
 }

@@ -1,0 +1,101 @@
+/* ── Summary Bar ── */
+.summary {
+  display: flex;
+  gap: var(--gap-medium);
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--gap-large);
+}
+
+.summary-score {
+  font-family: var(--font-family-display);
+  font-weight: var(--font-weight-primary);
+  font-size: 36px;
+  line-height: 1;
+}
+
+.summary-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-3xsmall);
+}
+
+/* ── Filter Chips ── */
+.filters {
+  display: flex;
+  gap: var(--gap-2xsmall);
+  margin-bottom: var(--gap-medium);
+}
+
+/* ── Status Cell ── */
+.status-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 22px;
+  border-radius: var(--radius-action-small, 4px);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: default;
+}
+
+.status-pass {
+  background: var(--color-bg-fill-positive-subtle-default);
+  color: var(--color-content-positive-primary);
+}
+
+.status-warn {
+  background: var(--color-bg-fill-warning-subtle-default);
+  color: var(--color-content-warning-primary);
+}
+
+.status-fail {
+  background: var(--color-bg-fill-negative-subtle-default);
+  color: var(--color-content-negative-primary);
+}
+
+.status-na {
+  background: var(--color-bg-fill-neutral-flat-default);
+  color: var(--color-content-neutral-tertiary);
+}
+
+/* ── Component Name Link ── */
+.component-link {
+  cursor: pointer;
+  color: var(--color-content-accent-primary);
+  font-weight: 500;
+}
+
+.component-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Score Bar ── */
+.score-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-3xsmall);
+  min-width: 80px;
+}
+
+.score-fill {
+  height: 6px;
+  border-radius: 3px;
+  flex: 1;
+  background: var(--color-bg-fill-neutral-subtle-default);
+  overflow: hidden;
+}
+
+.score-fill-inner {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.2s;
+}
+
+.score-text {
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 32px;
+  text-align: right;
+}
