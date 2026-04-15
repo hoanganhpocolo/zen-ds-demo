@@ -61,7 +61,7 @@ export function DemoBlock({
 
       <div className="docs-demo-meta">
         <div className="docs-demo-title text-body-base-primary">{title}</div>
-        {description && <div className="docs-demo-description text-caption">{description}</div>}
+        {description && <div className="docs-demo-description text-body-small">{description}</div>}
       </div>
     </div>
   );

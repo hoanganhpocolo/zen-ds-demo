@@ -107,7 +107,7 @@ export function PopoverPage() {
                   key={value}
                   selected={selectedStatus === value}
                   leading={
-                    <Badge label={label} color={color} variant="subtle" size="s" />
+                    <Badge label={label} color={color} variant="subtle" size="m" />
                   }
                   onClick={() => setSelectedStatus(value)}
                 />
@@ -241,7 +241,7 @@ export function PopoverPage() {
               {STATUS_OPTIONS.map(({ value, label, color }) => (
                 <PopoverItem
                   key={value}
-                  leading={<Badge label={label} color={color} variant="ghost" size="s" />}
+                  leading={<Badge label={label} color={color} variant="ghost" size="m" />}
                   onClick={() => {}}
                 />
               ))}
