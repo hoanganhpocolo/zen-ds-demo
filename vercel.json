@@ -2,5 +2,8 @@
   "buildCommand": "npm run build --workspace=packages/components && npm run build --workspace=packages/icons && npm run build --workspace=apps/docs",
   "outputDirectory": "apps/docs/dist",
   "installCommand": "npm install",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
 }

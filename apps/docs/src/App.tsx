@@ -1,6 +1,8 @@
-import { useState } from 'react';
-import { Button, Sidebar, SidebarItem, Badge } from '@zen/components';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { Button, Sidebar, SidebarItem } from '@zen/components';
 import { Settings01, Palette } from '@zen/icons/line';
+import { HomePage } from './HomePage';
 import { ButtonPage } from './ButtonPage';
 import { AlertBannerPage } from './AlertBannerPage';
 import { AvatarPage } from './AvatarPage';
@@ -45,13 +47,14 @@ import { ThemePicker, DEFAULT_HUE, applyBrandHue, type Hue } from './ThemePicker
 import { OnThisPage } from './OnThisPage';
 import { DemoPage } from './DemoPage';
 import { TestPage } from './TestPage';
+import { AuditPage } from './AuditPage';
+import { ComponentsOverviewPage } from './ComponentsOverviewPage';
 import './docs.css';
-
-type Page = 'tokens' | 'accordion' | 'alert-banner' | 'avatar' | 'badge' | 'bottom-sheet' | 'breadcrumb' | 'button' | 'calendar' | 'checkbox' | 'chip' | 'dialog' | 'divider' | 'inline-message' | 'input' | 'input-heading' | 'list-item' | 'metric-card' | 'modal' | 'pagination' | 'popover' | 'progress' | 'radio' | 'rating' | 'search' | 'select' | 'segmented' | 'sidebar' | 'side-panel' | 'slider' | 'stepper' | 'tab' | 'table' | 'tag' | 'textarea' | 'number' | 'toggle' | 'uploader' | 'top-nav-mobile' | 'bottom-nav-mobile';
 
 const sidebarSections = [
   {
     title: 'Getting Started',
+    prefix: '/docs/',
     items: [
       { id: 'introduction', label: 'Introduction' },
       { id: 'installation', label: 'Installation' },
@@ -63,6 +66,7 @@ const sidebarSections = [
   },
   {
     title: 'Components',
+    prefix: '/docs/components/',
     items: [
       { id: 'accordion', label: 'Accordion' },
       { id: 'alert-banner', label: 'Alert Banner' },
@@ -108,14 +112,46 @@ const sidebarSections = [
 ];
 
 export function App() {
-  const [section, setSection] = useState<'components' | 'demo' | 'test'>('components');
-  const [page, setPage] = useState<Page>('button');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const pathname = location.pathname;
+
+  // Derive section + page from pathname
+  const isHome = pathname === '/' || pathname === '/home';
+  const isAudit = pathname === '/audit';
+  const isDemo = pathname === '/docs/demo';
+  const isTest = pathname === '/docs/test';
+  const isOverview = pathname === '/docs/components';
+  const section = isHome
+    ? 'home'
+    : isAudit
+      ? 'audit'
+      : isDemo
+        ? 'demo'
+        : isTest
+          ? 'test'
+          : 'docs';
+
+  // Extract page slug from path
+  let page = '';
+  if (pathname.startsWith('/docs/components/')) {
+    page = pathname.slice('/docs/components/'.length);
+  } else if (pathname.startsWith('/docs/') && !isDemo && !isTest && !isOverview) {
+    page = pathname.slice('/docs/'.length);
+  }
+
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [radius, setRadius] = useState<'rounded' | 'smooth' | 'standard' | 'luxury'>('rounded');
-  const [baseFont, setBaseFont] = useState<'16' | '14'>('16');
-  const [componentTheme, setComponentTheme] = useState<'brand' | 'neutral'>('brand');
+  const [baseFont, setBaseFont] = useState<'16' | '14'>('14');
+  const [componentTheme, setComponentTheme] = useState<'brand' | 'neutral'>('neutral');
   const [brandHue, setBrandHue] = useState<Hue>(DEFAULT_HUE);
   const [showThemePicker, setShowThemePicker] = useState(false);
+
+  // Apply initial defaults to <html>
+  useEffect(() => {
+    document.documentElement.setAttribute('data-base-font', '14');
+    document.documentElement.setAttribute('data-component-theme', 'neutral');
+  }, []);
 
   const toggleBaseFont = () => {
     const next = baseFont === '16' ? '14' : '16';
@@ -147,33 +183,43 @@ export function App() {
     <div className="docs-layout" style={{ position: 'relative' }}>
       {/* ── Top Navigation ── */}
       <header className="docs-topnav">
-        <a className="docs-topnav-logo" href="/">
-          <img src="/zen-mark.svg" alt="Zen" />
-          <span style={{ fontFamily: 'var(--font-family-display)', fontWeight: 'var(--font-weight-primary)', fontSize: '22px', letterSpacing: '-0.5px', lineHeight: 1 }}>Zen</span>
-          <Badge label="Kaiz" color="neutral" variant="subtle" size="s" dot={false} />
+        <a
+          className="docs-topnav-logo"
+          href="/"
+          onClick={(e) => { e.preventDefault(); navigate('/'); }}
+        >
+          <img src="/uiai-mark.svg" alt="UIAI" />
+          <span style={{ fontFamily: 'var(--font-family-display)', fontWeight: 'var(--font-weight-primary)', fontSize: '22px', letterSpacing: '-0.5px', lineHeight: 1 }}>UIAI</span>
         </a>
 
         <nav className="docs-topnav-links">
           <button
             className="docs-topnav-link text-body-small"
-            data-active={section === 'components'}
-            onClick={() => setSection('components')}
+            data-active={section === 'docs'}
+            onClick={() => navigate('/docs/components')}
           >
             Components
           </button>
           <button
             className="docs-topnav-link text-body-small"
             data-active={section === 'demo'}
-            onClick={() => setSection('demo')}
+            onClick={() => navigate('/docs/demo')}
           >
             Demo
           </button>
           <button
             className="docs-topnav-link text-body-small"
             data-active={section === 'test'}
-            onClick={() => setSection('test')}
+            onClick={() => navigate('/docs/test')}
           >
             Test
+          </button>
+          <button
+            className="docs-topnav-link text-body-small"
+            data-active={section === 'audit'}
+            onClick={() => navigate('/audit')}
+          >
+            Audit
           </button>
         </nav>
 
@@ -212,25 +258,27 @@ export function App() {
       )}
 
       {/* ── Content ── */}
+      {section === 'home' && <HomePage />}
       {section === 'demo' && <DemoPage />}
       {section === 'test' && <TestPage />}
-      <div className="docs-content" style={{ display: section === 'components' ? undefined : 'none' }}>
+      {section === 'audit' && <AuditPage onNavigate={(id) => navigate(`/docs/components/${id}`)} />}
+      <div className="docs-content" style={{ display: section === 'docs' ? undefined : 'none' }}>
         {/* ── Sidebar ── */}
         <Sidebar
           background="alternate"
           style={{ position: 'sticky', top: '56px', height: 'calc(100vh - 56px)' }}
           header={null}
         >
-          {sidebarSections.map((section, si) => (
-            <div key={section.title} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-3xsmall)' }}>
+          {sidebarSections.map((sec, si) => (
+            <div key={sec.title} style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-3xsmall)' }}>
               {si > 0 && <div style={{ height: 'var(--gap-small)' }} />}
-              <div className="docs-sidebar-section-label text-capsline-s">{section.title}</div>
-              {section.items.map((item) => (
+              <div className="docs-sidebar-section-label text-capsline-s">{sec.title}</div>
+              {sec.items.map((item) => (
                 <SidebarItem
                   key={item.id}
                   label={item.label}
-                  selected={page === item.id}
-                  onClick={() => setPage(item.id as Page)}
+                  selected={pathname === sec.prefix + item.id}
+                  onClick={() => navigate(sec.prefix + item.id)}
                 />
               ))}
             </div>
@@ -239,6 +287,7 @@ export function App() {
 
         {/* ── Main ── */}
         <main className="docs-main">
+          {isOverview && <ComponentsOverviewPage onNavigate={(id) => navigate(`/docs/components/${id}`)} />}
           {page === 'tokens' && <TokenPage />}
           {page === 'accordion' && <AccordionPage />}
           {page === 'alert-banner' && <AlertBannerPage />}

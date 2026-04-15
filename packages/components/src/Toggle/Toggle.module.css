@@ -71,10 +71,10 @@
 
 .caption {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-tertiary);
 }
 

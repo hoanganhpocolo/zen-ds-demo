@@ -72,7 +72,7 @@ export function RatingPage() {
           <DemoBlock title="Full star">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-medium)' }}>
               <RatingStar value={star} onChange={setStar} />
-              <span className="text-caption" style={{ color: 'var(--color-content-neutral-tertiary)' }}>
+              <span className="text-body-small" style={{ color: 'var(--color-content-neutral-tertiary)' }}>
                 Selected: {star} / 5
               </span>
             </div>
@@ -81,7 +81,7 @@ export function RatingPage() {
           <DemoBlock title="Half star">
             <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--gap-medium)' }}>
               <RatingStar value={starHalf} onChange={setStarHalf} allowHalf />
-              <span className="text-caption" style={{ color: 'var(--color-content-neutral-tertiary)' }}>
+              <span className="text-body-small" style={{ color: 'var(--color-content-neutral-tertiary)' }}>
                 Selected: {starHalf} / 5
               </span>
             </div>

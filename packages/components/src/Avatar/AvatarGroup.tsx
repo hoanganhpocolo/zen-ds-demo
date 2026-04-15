@@ -1,4 +1,4 @@
-import { forwardRef, Children, type HTMLAttributes, type ReactElement } from 'react';
+import { forwardRef, Children, cloneElement, type HTMLAttributes, type ReactElement } from 'react';
 import styles from './Avatar.module.css';
 import type { AvatarProps, AvatarSize } from './Avatar';
 
@@ -27,24 +27,20 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
 
     return (
       <div ref={ref} className={classNames} {...rest}>
-        {visible.map((child, i) => (
-          <div
-            key={child.key ?? i}
-            className={styles['group-item']}
-            style={{ zIndex: visible.length - i + 1 }}
-          >
-            {child}
-          </div>
-        ))}
+        {visible.map((child, i) =>
+          cloneElement(child, {
+            key: child.key ?? i,
+            className: [child.props.className ?? '', styles['group-item']].filter(Boolean).join(' '),
+            style: { ...child.props.style, zIndex: visible.length - i + 1 },
+          } as Partial<AvatarProps>),
+        )}
         {overflow > 0 && (
           <div
-            className={styles['group-item']}
+            className={[styles.avatar, styles.circle, styles[`size-${size}`], styles.more, styles['group-item']].join(' ')}
             style={{ zIndex: 1 }}
           >
-            <div className={[styles.avatar, styles.circle, styles[`size-${size}`], styles.more].join(' ')}>
-              <div className={styles.inner}>
-                <span className={styles.initials}>+{overflow}</span>
-              </div>
+            <div className={styles.inner}>
+              <span className={styles.initials}>+{overflow}</span>
             </div>
           </div>
         )}

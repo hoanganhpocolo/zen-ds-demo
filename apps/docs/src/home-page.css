@@ -1,0 +1,445 @@
+/* ══════════════════════════════════════════════
+   HOME PAGE
+   ══════════════════════════════════════════════ */
+
+.home-page {
+  width: 100%;
+  background: var(--color-bg-canvas-alt);
+  /* Home uses Inter for display headings (overrides BT Solisiert globally) */
+  --font-family-display: var(--font-family-sans);
+}
+
+/* ══════════════════════════════════════════════
+   HERO
+   ══════════════════════════════════════════════ */
+
+.home-hero {
+  position: relative;
+  width: calc(100% - var(--padding-2xlarge) * 2);
+  aspect-ratio: 1448 / 640;
+  max-width: 1448px;
+  min-height: 480px;
+  margin: var(--padding-2xlarge) auto 0;
+  border-radius: var(--radius-2xlarge);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* ── Background layers ── */
+
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.home-hero-bg-solid {
+  position: absolute;
+  inset: 0;
+  background: #F05A22;
+}
+
+.home-hero-bg-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url('/home/noise-burn.png');
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  background-position: top left;
+  mix-blend-mode: color-burn;
+  opacity: 0.4;
+}
+
+/* Noise overlay above horse/sunray so color-burn applies to them too */
+.home-hero-noise-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url('/home/noise-burn.png');
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  background-position: top left;
+  mix-blend-mode: color-burn;
+  opacity: 0.4;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* ── Horse decoration ── */
+
+.home-hero-horse {
+  position: absolute;
+  top: 8%;
+  left: 25.3%;
+  width: 13.1%;
+  max-width: 190px;
+  aspect-ratio: 189 / 197;
+  transform: rotate(30deg);
+  transform-origin: center;
+  pointer-events: none;
+}
+
+/* ── Sunray graphic ── */
+
+.home-hero-sunray {
+  position: absolute;
+  top: 13.4%;
+  right: 11.3%;
+  width: 29%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ── Title (uses .text-display-1 for typography) ── */
+
+.home-hero-title {
+  position: absolute;
+  left: 8.3%;
+  top: 18.4%;
+  margin: 0;
+  z-index: 3;
+  color: #ffffff;
+  text-transform: uppercase;
+  color: var(--Color-Content-Accent-On-Accent, #FFF);
+  leading-trim: both;
+  text-edge: cap;
+  font-family: "BT Solisiert";
+  font-size: 128px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 86%;
+  /* 110.08px */
+  text-transform: uppercase;
+}
+
+/* ── Subtitle (uses .text-h4 for typography) ── */
+
+.home-hero-subtitle {
+  position: absolute;
+  left: 8.3%;
+  top: 80.5%;
+  width: 36.2%;
+  max-width: 524px;
+  margin: 0;
+  z-index: 3;
+  color: #ffffff;
+}
+
+/* ── Meta (uses .text-capsline-m for typography) ── */
+
+.home-hero-meta {
+  position: absolute;
+  right: 8.3%;
+  bottom: 7.5%;
+  z-index: 3;
+  display: flex;
+  gap: var(--gap-2xlarge);
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════
+   HERO ANIMATION — curtain title + fade subtitle/meta
+   Trigger: .home-hero.is-hero-visible (added on mount)
+   ══════════════════════════════════════════════ */
+
+/* Title 3 lines — curtain reveal */
+.home-hero-title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.home-hero-title-line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 600ms ease-out;
+  /* Stagger: each line delayed by 120ms */
+  transition-delay: calc(var(--line-index, 0) * 120ms);
+}
+
+.home-hero.is-hero-visible .home-hero-title-line-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Subtitle — fade + slide up, after title lines (3 × 120ms + 300ms) */
+.home-hero-subtitle {
+  transform: translateY(24px);
+  opacity: 0;
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease-out;
+  transition-delay: 660ms;
+}
+
+.home-hero.is-hero-visible .home-hero-subtitle {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Meta — fade in only, last element */
+.home-hero-meta {
+  opacity: 0;
+  transition: opacity 600ms ease-out;
+  transition-delay: 900ms;
+}
+
+.home-hero.is-hero-visible .home-hero-meta {
+  opacity: 1;
+}
+
+/* Reduced motion — simple fade for all hero elements */
+@media (prefers-reduced-motion: reduce) {
+  .home-hero-title-line-inner,
+  .home-hero-subtitle,
+  .home-hero-meta {
+    transform: none !important;
+    transition: opacity 200ms ease !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SECTION 2 — About UIAI
+   Layout: text block (label + title, gap=4) → 32px gap → buttons.
+   Video is full-bleed background starting below the text.
+   ══════════════════════════════════════════════ */
+
+.home-about {
+  position: relative;
+  width: 100%;
+  margin-top: 160px;
+  padding: 80px 0 640px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Content stack — text + buttons, gap-xlarge (32px) per Figma */
+.home-about-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xlarge);
+  width: 100%;
+  max-width: 764px;
+  margin: 0 auto;
+  padding: 0 var(--padding-xlarge);
+  box-sizing: border-box;
+}
+
+/* Text block — label + title, gap-2xsmall (4px) per Figma */
+.home-about-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  text-align: center;
+  width: 100%;
+}
+
+/* ══════════════════════════════════════════════
+   SUN RAYS — 8 stacked PNG layers, scroll-linked reveal
+   Layer 1 = ring (always visible, fades in first)
+   Layers 2..8 = stripes, revealed sequentially from top to bottom
+   CSS var --sun-progress (0..1) is set by JS based on scroll position.
+   ══════════════════════════════════════════════ */
+
+.home-sun {
+  position: absolute;
+  /* Position roughly behind the text block — Figma has sunray around y=60px
+     within section, slightly above text */
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 420px;
+  max-width: 50vw;
+  aspect-ratio: 1;
+  z-index: 2; /* above video, behind content */
+  pointer-events: none;
+}
+
+.home-sun-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* Per-layer reveal: each stripe fades in over ~15% of total scroll progress.
+     Lower multiplier = slower fade per layer. */
+  --appear: clamp(0, (var(--sun-progress, 0) - var(--appear-start)) * 6, 1);
+  opacity: var(--appear);
+  transform: translateY(calc((1 - var(--appear)) * 24px));
+  transition: none;
+  will-change: opacity, transform;
+}
+
+/* Reveal order — ring first, then stripes 02 → 08 from top to bottom.
+   Spread starts from 0.00 to 0.84 so each layer has breathing room. */
+.home-sun-layer-1 { --appear-start: 0.00; } /* Ring */
+.home-sun-layer-2 { --appear-start: 0.12; }
+.home-sun-layer-3 { --appear-start: 0.24; }
+.home-sun-layer-4 { --appear-start: 0.36; }
+.home-sun-layer-5 { --appear-start: 0.48; }
+.home-sun-layer-6 { --appear-start: 0.60; }
+.home-sun-layer-7 { --appear-start: 0.72; }
+.home-sun-layer-8 { --appear-start: 0.84; }
+
+/* ── Video — full-bleed, behind content ── */
+
+.home-about-video-wrap {
+  position: absolute;
+  top: 280px;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1512 / 843.9;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.home-about-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-about-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url('/home/noise-burn.png');
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  mix-blend-mode: color-burn;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════
+   "About UIAI <3" label — fade + slide up (first element)
+   ══════════════════════════════════════════════ */
+
+.home-about-label {
+  transform: translateY(16px);
+  opacity: 0;
+  transition:
+    transform 500ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 400ms ease-out;
+}
+
+.home-about.is-text-visible .home-about-label {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════
+   Title line-by-line reveal (curtain effect)
+   Each line sits in an overflow:hidden box; inner slides up from below.
+   ══════════════════════════════════════════════ */
+
+.home-about-title-line {
+  display: block;
+  overflow: hidden;
+  /* Tiny vertical breathing so descenders aren't clipped */
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.home-about-title-line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease-out;
+  /* Stagger: label is first (0ms), then each line delayed by 100ms */
+  transition-delay: calc(200ms + var(--line-index, 0) * 100ms);
+}
+
+.home-about.is-text-visible .home-about-title-line-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Word splitting stage (before grouping into lines) — just inline, no styles */
+.home-about-title-word {
+  display: inline;
+}
+
+/* ══════════════════════════════════════════════
+   CTA group — fade up as a whole, after title lines
+   ══════════════════════════════════════════════ */
+
+.home-about-cta {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  transform: translateY(24px);
+  opacity: 0;
+  transition:
+    transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease-out;
+  /* Starts after label + 4 title lines (label 0ms + 200ms gap + 4 × 100ms + 200ms breathing) */
+  transition-delay: 800ms;
+}
+
+.home-about.is-text-visible .home-about-cta {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Reduced motion — no transform, simple fade */
+@media (prefers-reduced-motion: reduce) {
+  .home-about-label,
+  .home-about-title-line-inner,
+  .home-about-cta {
+    transform: none !important;
+    transition: opacity 200ms ease !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   Responsive
+   ══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .home-hero {
+    width: calc(100% - var(--padding-medium) * 2);
+    aspect-ratio: auto;
+    min-height: 560px;
+    margin-top: var(--padding-medium);
+  }
+
+  .home-hero-subtitle {
+    width: auto;
+    right: 8.3%;
+  }
+
+  .home-hero-sunray {
+    opacity: 0.6;
+    width: 45%;
+  }
+
+  .home-hero-horse {
+    display: none;
+  }
+
+  .home-about {
+    margin-top: 80px;
+  }
+
+  .home-about-cta {
+    flex-wrap: wrap;
+  }
+}

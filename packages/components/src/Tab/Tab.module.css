@@ -129,6 +129,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  transition: color 150ms ease;
 }
 
 .icon-m {
@@ -139,6 +140,40 @@
 .icon-s {
   width: 20px;
   height: 20px;
+}
+
+/* Indicator icon colors (mirror label) */
+.icon-indicator {
+  color: var(--comp-tab-indicator-color-content-default);
+}
+
+.outer:hover:not(:disabled) .icon-indicator {
+  color: var(--comp-tab-indicator-color-content-hover);
+}
+
+.icon-indicator-selected {
+  color: var(--comp-tab-indicator-color-content-selected);
+}
+
+.outer:hover:not(:disabled) .icon-indicator-selected {
+  color: var(--comp-tab-indicator-color-content-selected);
+}
+
+/* Subtle icon colors (mirror label) */
+.icon-subtle {
+  color: var(--comp-tab-subtle-color-content-default);
+}
+
+.outer:hover:not(:disabled) .icon-subtle {
+  color: var(--comp-tab-subtle-color-content-hover);
+}
+
+.icon-subtle-selected {
+  color: var(--comp-tab-subtle-color-content-selected);
+}
+
+.outer:hover:not(:disabled) .icon-subtle-selected {
+  color: var(--comp-tab-subtle-color-content-selected);
 }
 
 /* ── Label text ── */
@@ -210,7 +245,11 @@
   color: var(--color-content-disabled);
 }
 
-/* Disabled icon */
-.outer-disabled .icon {
+/* Disabled icon (overrides indicator/subtle colors) */
+.outer-disabled .icon,
+.outer-disabled .icon-indicator,
+.outer-disabled .icon-indicator-selected,
+.outer-disabled .icon-subtle,
+.outer-disabled .icon-subtle-selected {
   color: var(--color-content-disabled);
 }

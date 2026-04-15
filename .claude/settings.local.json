@@ -36,7 +36,22 @@
       "mcp__figma-desktop__get_metadata",
       "mcp__figma-remote-mcp__generate_figma_design",
       "mcp__figma-remote-mcp__get_design_context",
-      "Bash(xargs sed:*)"
+      "Bash(xargs sed:*)",
+      "Bash(wc -l /Users/lap60637/Home/vnggames-portal/by-dokploy/vnggp-design-system/packages/components/src/*/\\\\*.tsx)",
+      "Bash(grep:*)",
+      "Bash(find /Users/lap60637/Home/vnggames-portal/by-dokploy/vnggp-design-system/packages/components/src -name \"*.tsx\" -exec wc -l {} \\\\;)",
+      "Bash(node /Users/lap60637/Home/vnggames-portal/by-dokploy/vnggp-design-system/.claude/scripts/set-active-plan.cjs plans/260414-1006-component-audit-system)",
+      "Bash(ls:*)",
+      "Bash(node scripts/audit-components.mjs)",
+      "Bash(node scripts/audit-components.mjs --check)",
+      "Bash(echo \"EXIT_CODE: $?\")",
+      "Bash(npx vite:*)",
+      "Bash(npm run:*)",
+      "Bash(node:*)",
+      "Bash(curl -s http://localhost:5173/)",
+      "Bash(curl -s http://localhost:5173/#/audit)",
+      "Bash(npm install:*)",
+      "Bash(curl:*)"
     ]
   }
 }

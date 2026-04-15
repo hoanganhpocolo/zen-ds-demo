@@ -16,10 +16,10 @@
 
 .label {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-body-small);
-  line-height: var(--line-height-body-small);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
   font-weight: var(--font-weight-secondary);
-  letter-spacing: var(--letter-spacing-body-small);
+  letter-spacing: var(--letter-spacing-body-base);
   color: var(--color-content-neutral-primary);
 }
 
@@ -33,10 +33,10 @@
 
 .help-text-message {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-tertiary);
   flex: 1;
 }
@@ -143,10 +143,10 @@
 
 .drop-zone-caption {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-tertiary);
 }
 
@@ -235,10 +235,10 @@
 
 .file-item-name {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-body-small);
-  line-height: var(--line-height-body-small);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
   font-weight: var(--font-weight-primary);
-  letter-spacing: var(--letter-spacing-body-small);
+  letter-spacing: var(--letter-spacing-body-base);
   color: var(--color-content-neutral-primary);
   flex: 1;
   min-width: 0;
@@ -286,10 +286,10 @@
 
 .file-item-size {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-tertiary);
   white-space: nowrap;
   flex-shrink: 0;
@@ -305,10 +305,10 @@
 
 .file-item-time {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-tertiary);
   flex: 1;
 }
@@ -331,10 +331,10 @@
 
 .file-item-error-msg {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-secondary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-negative-secondary);
   white-space: nowrap;
 }
@@ -349,10 +349,10 @@
 
 .file-item-error-size {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-negative-primary);
   white-space: nowrap;
   flex-shrink: 0;

@@ -22,6 +22,8 @@ export interface FieldShellProps extends Omit<HTMLAttributes<HTMLDivElement>, 'c
   focused?: boolean;
   /** Allow container height to be auto (for textarea) */
   autoHeight?: boolean;
+  /** Remove vertical padding on auto-height container (child manages its own) */
+  noVPadding?: boolean;
   /** The inner input/textarea element */
   children: ReactNode;
   /** Click handler to focus the inner input */
@@ -62,6 +64,7 @@ export const FieldShell = forwardRef<HTMLDivElement, FieldShellProps>(
       readOnly,
       focused,
       autoHeight,
+      noVPadding,
       children,
       onFieldClick,
       className,
@@ -92,6 +95,7 @@ export const FieldShell = forwardRef<HTMLDivElement, FieldShellProps>(
       styles[`size-${size}`],
       stateClass,
       autoHeight ? styles['auto-height'] : '',
+      noVPadding ? styles['no-v-padding'] : '',
     ]
       .filter(Boolean)
       .join(' ');

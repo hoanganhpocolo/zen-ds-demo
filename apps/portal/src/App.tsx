@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Sidebar, SidebarItem, PopoverItem } from '@zen/components';
 import type { WorkspaceItem } from '@zen/components';
 import {
@@ -24,8 +25,14 @@ function dockIcon(appId: string) {
 }
 
 export function App() {
-  const [page, setPage] = useState('dashboard');
-  const [ws, setWs] = useState('portal');
+  const navigate = useNavigate();
+  const location = useLocation();
+  const parts = location.pathname.replace(/^\//, '').split('/');
+  const ws = parts[0] || 'portal';
+  const page = parts[1] || 'dashboard';
+
+  const setPage = (p: string) => navigate(`/${ws}/${p}`);
+  const setWs = (w: string) => navigate(`/${w}/dashboard`);
   const [mobileSidebar, setMobileSidebar] = useState(false);
   const [mobileSidebarClosing, setMobileSidebarClosing] = useState(false);
 
@@ -115,7 +122,7 @@ export function App() {
           defaultExpanded={false}
           workspaces={workspaces}
           activeWorkspace={ws}
-          onWorkspaceChange={(id) => { setWs(id); setPage('dashboard'); }}
+          onWorkspaceChange={(id) => setWs(id)}
           onAddWorkspace={() => alert('Add workspace')}
           dockHeader={<DockLogo />}
           workspaceDropdown={
@@ -149,7 +156,7 @@ export function App() {
               expanded={true}
               workspaces={workspaces}
               activeWorkspace={ws}
-              onWorkspaceChange={(id) => { setWs(id); setPage('dashboard'); }}
+              onWorkspaceChange={(id) => setWs(id)}
               dockHeader={<DockLogo />}
               closeButton
               onClose={closeMobileSidebar}

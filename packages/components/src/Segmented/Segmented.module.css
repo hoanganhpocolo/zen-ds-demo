@@ -79,7 +79,7 @@
 .size-medium .item {
   height: 32px;
   padding: var(--padding-xsmall);
-  gap: var(--gap-2xsmall);
+  gap: var(--gap-3xsmall);
 }
 
 .size-small .item {
@@ -122,6 +122,7 @@
 .item-icon {
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 

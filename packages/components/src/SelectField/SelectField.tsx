@@ -12,6 +12,7 @@ import { createPortal } from 'react-dom';
 import { FieldShell, type FieldHelpText } from '../FieldShell';
 import { Popover, PopoverItem } from '../Popover';
 import { Tag } from '../Tag';
+import { SearchMedium } from '@zen/icons/line';
 import styles from './SelectField.module.css';
 
 export type SelectFieldSize = 's' | 'm' | 'l' | 'xl';
@@ -162,7 +163,7 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
     const allOptions = [...options, ...createdOptions.filter((co) => !options.some((o) => o.value === co.value))];
 
     const selectedOption = !isMultiple ? allOptions.find((o) => o.value === currentSingle) : undefined;
-    const selectedOptions = isMultiple ? allOptions.filter((o) => currentMulti.includes(o.value)) : [];
+    const selectedOptions = isMultiple ? currentMulti.map((v) => allOptions.find((o) => o.value === v)).filter(Boolean) as SelectOption[] : [];
 
     const filteredOptions = search
       ? allOptions.filter((o) => (o.label ?? o.value).toLowerCase().includes(search.toLowerCase()))
@@ -243,11 +244,17 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
     const handleCreateOption = useCallback(() => {
       if (!canCreate) return;
       const trimmed = search.trim();
+      // Prevent duplicate values
+      const prev = isMultiControlled ? multiControlled : multiInternal;
+      if (prev.includes(trimmed)) {
+        setSearch('');
+        setHighlightIndex(-1);
+        return;
+      }
       const custom = onCreateOption?.(trimmed);
       const newOption: SelectOption = custom ?? { value: trimmed, label: trimmed };
-      setCreatedOptions((prev) => [...prev, newOption]);
-      // Auto-select the new option
-      const prev = isMultiControlled ? multiControlled : multiInternal;
+      // Only add to createdOptions if not already there
+      setCreatedOptions((p) => p.some((o) => o.value === newOption.value) ? p : [...p, newOption]);
       const next = [...prev, newOption.value];
       if (!isMultiControlled) setMultiInternal(next);
       const nextAllOptions = [...allOptions, newOption];
@@ -267,7 +274,7 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
 
     const handleSearchChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value);
-      setHighlightIndex(0);
+      setHighlightIndex(-1);
       if (!open) setOpen(true);
     }, [open]);
 
@@ -288,10 +295,11 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
           case 'ArrowDown': {
             e.preventDefault();
             if (!open) { openDropdown(); return; }
+            const maxIdx = canCreate ? filteredOptions.length : filteredOptions.length - 1;
             setHighlightIndex((prev) => {
               let next = prev + 1;
               while (next < filteredOptions.length && filteredOptions[next]?.disabled) next++;
-              return next < filteredOptions.length ? next : prev;
+              return next <= maxIdx ? next : prev;
             });
             break;
           }
@@ -307,7 +315,10 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
           }
           case 'Enter': {
             e.preventDefault();
-            if (open && highlightIndex >= 0 && highlightIndex < filteredOptions.length) {
+            if (open && canCreate && highlightIndex === filteredOptions.length) {
+              // "Create" item is highlighted
+              handleCreateOption();
+            } else if (open && highlightIndex >= 0 && highlightIndex < filteredOptions.length) {
               handleOptionClick(filteredOptions[highlightIndex]);
               if (!isMultiple) closeDropdown();
             } else if (canCreate) {
@@ -375,8 +386,11 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
             <XCircleIcon size={size === 's' ? 16 : 20} />
           </button>
         )}
-        <span className={[styles.chevron, open ? styles['chevron-open'] : ''].filter(Boolean).join(' ')}>
-          <ChevronDownIcon size={size === 's' ? 16 : 20} />
+        <span className={[styles.chevron, open && !searchable ? styles['chevron-open'] : ''].filter(Boolean).join(' ')}>
+          {searchable && open
+            ? <SearchMedium size={size === 's' ? 16 : 20} />
+            : <ChevronDownIcon size={size === 's' ? 16 : 20} />
+          }
         </span>
       </span>
     );
@@ -402,11 +416,12 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
           readOnly={readOnly}
           focused={open}
           autoHeight={isMultiple}
+          noVPadding={isMultiple}
           onFieldClick={handleToggle}
         >
           {/* ── Single mode ── */}
           {!isMultiple && (
-            <div ref={fieldRef} className={styles.value} role="combobox" aria-expanded={open} tabIndex={disabled ? -1 : 0} onKeyDown={handleKeyDown}>
+            <div ref={fieldRef} className={styles.value} role="combobox" aria-expanded={open} tabIndex={disabled ? -1 : 0} onKeyDown={!searchable ? handleKeyDown : undefined}>
               <span
                 className={[
                   styles['value-text'],
@@ -441,7 +456,7 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
             const overflowCount = overflowTags.length;
 
             return (
-              <div ref={fieldRef} className={[styles['multi-value'], styles[`multi-value-${size}`], currentMulti.length > 0 ? styles['multi-value-has-tags'] : ''].filter(Boolean).join(' ')} role="combobox" aria-expanded={open} tabIndex={disabled ? -1 : 0} onKeyDown={handleKeyDown}>
+              <div ref={fieldRef} className={[styles['multi-value'], styles[`multi-value-${size}`], currentMulti.length > 0 ? styles['multi-value-has-tags'] : ''].filter(Boolean).join(' ')} role="combobox" aria-expanded={open} tabIndex={disabled ? -1 : 0} onKeyDown={!searchable ? handleKeyDown : undefined}>
                 {visibleTags.map((opt) => (
                   <Tag
                     key={opt.value}
@@ -504,10 +519,12 @@ export const SelectField = forwardRef<HTMLDivElement, SelectFieldProps>(
               ))}
               {canCreate && (
                 <PopoverItem
+                  data-index={filteredOptions.length}
                   label={`Create "${search.trim()}"`}
                   noCheck
                   onClick={handleCreateOption}
-                  className={styles['create-option']}
+                  className={[styles['create-option'], highlightIndex === filteredOptions.length ? styles.highlighted : ''].filter(Boolean).join(' ')}
+                  onMouseEnter={() => setHighlightIndex(filteredOptions.length)}
                 />
               )}
             </Popover>
