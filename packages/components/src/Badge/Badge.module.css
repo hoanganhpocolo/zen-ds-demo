@@ -18,7 +18,7 @@
   padding: 0 var(--padding-2xsmall);
   gap: 2px;
   font-size: var(--font-size-body-base);
-  line-height: var(--line-height-body-base);
+  line-height: 1;
 }
 
 .size-s {
@@ -26,7 +26,7 @@
   padding: 0 var(--padding-2xsmall);
   gap: 0;
   font-size: var(--font-size-body-small);
-  line-height: var(--line-height-body-small);
+  line-height: 1;
 }
 
 /* ── Leading slot (frame around dot or icon) ── */

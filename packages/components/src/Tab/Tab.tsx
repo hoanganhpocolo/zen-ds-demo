@@ -63,7 +63,14 @@ export function TabItem({
       <div className={fillClass}>
         <div className={contentClass}>
           {icon && (
-            <span className={[styles.icon, styles[`icon-${size}`]].join(' ')}>
+            <span
+              className={[
+                styles.icon,
+                styles[`icon-${size}`],
+                styles[`icon-${tabStyle}`],
+                selected ? styles[`icon-${tabStyle}-selected`] : '',
+              ].filter(Boolean).join(' ')}
+            >
               {icon}
             </span>
           )}

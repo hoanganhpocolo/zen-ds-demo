@@ -10,8 +10,7 @@
 [data-theme="light"] {
 
   /* ── Bg ── */
-  --color-bg-canvas-alt: var(--color-neutral-1);
-  /* Light-Color/Neutral/1 */
+  --color-bg-canvas-alt: var(--color-white);
   --color-bg-canvas-default: var(--color-neutral-2);
   /* Light-Color/Neutral/2 */
   --color-bg-container: var(--overlay-white-12);

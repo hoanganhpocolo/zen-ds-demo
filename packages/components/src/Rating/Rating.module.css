@@ -59,9 +59,9 @@
 .nps-label {
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-tertiary);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
-  letter-spacing: var(--letter-spacing-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-primary);
   white-space: nowrap;
 }
@@ -147,9 +147,9 @@
 .opinion-label {
   font-family: var(--font-family-sans);
   font-weight: var(--font-weight-tertiary);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
-  letter-spacing: var(--letter-spacing-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-primary);
   text-align: center;
   white-space: nowrap;

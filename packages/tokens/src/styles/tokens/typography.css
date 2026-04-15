@@ -33,7 +33,7 @@
   --font-size-button-label-l: 16px;
   --font-size-button-label-m: 16px;
   --font-size-button-label-s: 16px;
-  --font-size-button-label-xl: 20px;
+  --font-size-button-label-xl: 18px;
   --font-size-button-label-xs: 14px;
   --font-size-capsline-m: 16px;
   --font-size-capsline-s: 14px;
@@ -75,29 +75,52 @@
   --line-height-subheading: 28px;
 
   /* Letter Spacing (converted from Figma % values: % × font-size) */
-  --letter-spacing-badge-label-m: 0.14px;    /* 1% */
-  --letter-spacing-badge-label-s: 0.36px;    /* 3% */
-  --letter-spacing-body-base: -0.32px;       /* -2% */
-  --letter-spacing-body-extra: -0.36px;      /* -2% */
-  --letter-spacing-body-small: -0.28px;      /* -2% */
-  --letter-spacing-button-label-l: -0.16px;  /* -1% */
-  --letter-spacing-button-label-m: -0.32px;  /* -2% */
-  --letter-spacing-button-label-s: -0.32px;  /* -2% */
-  --letter-spacing-button-label-xl: -0.4px;  /* -2% */
-  --letter-spacing-button-label-xs: -0.28px; /* -2% */
-  --letter-spacing-capsline-m: 0px;          /* 0% */
-  --letter-spacing-capsline-s: 0px;          /* 0% */
-  --letter-spacing-caption: 0px;             /* 0% */
-  --letter-spacing-display-1: -2.4px;        /* -4% */
-  --letter-spacing-display-2: -2.08px;       /* -4% */
-  --letter-spacing-display-3: -1.84px;       /* -4% */
-  --letter-spacing-display-4: -1.6px;        /* -4% */
-  --letter-spacing-h1: -1.44px;              /* -4% */
-  --letter-spacing-h2: -1.28px;              /* -4% */
-  --letter-spacing-h3: -1.12px;              /* -4% */
-  --letter-spacing-h4: -0.96px;              /* -4% */
-  --letter-spacing-small-label: 0px;         /* 0% */
-  --letter-spacing-subheading: -0.6px;       /* -3% */
+  --letter-spacing-badge-label-m: 0.14px;
+  /* 1% */
+  --letter-spacing-badge-label-s: 0.36px;
+  /* 3% */
+  --letter-spacing-body-base: -0.32px;
+  /* -2% */
+  --letter-spacing-body-extra: -0.36px;
+  /* -2% */
+  --letter-spacing-body-small: -0.28px;
+  /* -2% */
+  --letter-spacing-button-label-l: -0.16px;
+  /* -1% */
+  --letter-spacing-button-label-m: -0.32px;
+  /* -2% */
+  --letter-spacing-button-label-s: -0.32px;
+  /* -2% */
+  --letter-spacing-button-label-xl: -0.4px;
+  /* -2% */
+  --letter-spacing-button-label-xs: -0.28px;
+  /* -2% */
+  --letter-spacing-capsline-m: 0px;
+  /* 0% */
+  --letter-spacing-capsline-s: 0px;
+  /* 0% */
+  --letter-spacing-caption: 0px;
+  /* 0% */
+  --letter-spacing-display-1: -2.4px;
+  /* -4% */
+  --letter-spacing-display-2: -2.08px;
+  /* -4% */
+  --letter-spacing-display-3: -1.84px;
+  /* -4% */
+  --letter-spacing-display-4: -1.6px;
+  /* -4% */
+  --letter-spacing-h1: -1.44px;
+  /* -4% */
+  --letter-spacing-h2: -1.28px;
+  /* -4% */
+  --letter-spacing-h3: -1.12px;
+  /* -4% */
+  --letter-spacing-h4: -0.96px;
+  /* -4% */
+  --letter-spacing-small-label: 0px;
+  /* 0% */
+  --letter-spacing-subheading: -0.6px;
+  /* -3% */
 }
 
 /* ==========================================================
@@ -337,7 +360,7 @@
   --font-size-button-label-l: 14px;
   --font-size-button-label-m: 14px;
   --font-size-button-label-s: 14px;
-  --font-size-button-label-xl: 18px;
+  --font-size-button-label-xl: 16px;
   --font-size-button-label-xs: 12px;
   --font-size-capsline-m: 14px;
   --font-size-capsline-s: 12px;
@@ -379,28 +402,50 @@
   --line-height-subheading: 26px;
 
   /* Letter Spacing — Base 14 (same % ratios, recalculated with Base 14 font sizes) */
-  --letter-spacing-badge-label-m: 0.12px;    /* 1% × 12px */
-  --letter-spacing-badge-label-s: 0.3px;     /* 3% × 10px */
-  --letter-spacing-body-base: -0.28px;       /* -2% × 14px */
-  --letter-spacing-body-extra: -0.32px;      /* -2% × 16px */
-  --letter-spacing-body-small: -0.24px;      /* -2% × 12px */
-  --letter-spacing-button-label-l: -0.2px;   /* JSON: -0.20 */
-  --letter-spacing-button-label-m: -0.28px;  /* JSON: -0.28 */
-  --letter-spacing-button-label-s: -0.28px;  /* JSON: -0.28 */
-  --letter-spacing-button-label-xl: -0.2px;  /* JSON: -0.20 */
-  --letter-spacing-button-label-xs: -0.24px; /* JSON: -0.24 */
-  --letter-spacing-capsline-m: 0px;          /* 0% */
-  --letter-spacing-capsline-s: 0px;          /* 0% */
-  --letter-spacing-caption: -0.1px;          /* JSON: -0.10 */
-  --letter-spacing-display-1: -2.08px;       /* -4% × 52px */
-  --letter-spacing-display-2: -1.84px;       /* -4% × 46px */
-  --letter-spacing-display-3: -1.6px;        /* -4% × 40px */
-  --letter-spacing-display-4: -1.44px;       /* -4% × 36px */
-  --letter-spacing-h1: -1.28px;              /* -4% × 32px */
-  --letter-spacing-h2: -1.12px;              /* -4% × 28px */
-  --letter-spacing-h3: -0.96px;              /* -4% × 24px */
-  --letter-spacing-h4: -0.8px;               /* -4% × 20px */
-  --letter-spacing-small-label: 0px;         /* 0% */
-  --letter-spacing-subheading: -0.48px;      /* JSON: -0.48 */
+  --letter-spacing-badge-label-m: 0.12px;
+  /* 1% × 12px */
+  --letter-spacing-badge-label-s: 0.3px;
+  /* 3% × 10px */
+  --letter-spacing-body-base: -0.28px;
+  /* -2% × 14px */
+  --letter-spacing-body-extra: -0.32px;
+  /* -2% × 16px */
+  --letter-spacing-body-small: -0.24px;
+  /* -2% × 12px */
+  --letter-spacing-button-label-l: -0.2px;
+  /* JSON: -0.20 */
+  --letter-spacing-button-label-m: -0.28px;
+  /* JSON: -0.28 */
+  --letter-spacing-button-label-s: -0.28px;
+  /* JSON: -0.28 */
+  --letter-spacing-button-label-xl: -0.2px;
+  /* JSON: -0.20 */
+  --letter-spacing-button-label-xs: -0.24px;
+  /* JSON: -0.24 */
+  --letter-spacing-capsline-m: 0px;
+  /* 0% */
+  --letter-spacing-capsline-s: 0px;
+  /* 0% */
+  --letter-spacing-caption: -0.1px;
+  /* JSON: -0.10 */
+  --letter-spacing-display-1: -2.08px;
+  /* -4% × 52px */
+  --letter-spacing-display-2: -1.84px;
+  /* -4% × 46px */
+  --letter-spacing-display-3: -1.6px;
+  /* -4% × 40px */
+  --letter-spacing-display-4: -1.44px;
+  /* -4% × 36px */
+  --letter-spacing-h1: -1.28px;
+  /* -4% × 32px */
+  --letter-spacing-h2: -1.12px;
+  /* -4% × 28px */
+  --letter-spacing-h3: -0.96px;
+  /* -4% × 24px */
+  --letter-spacing-h4: -0.8px;
+  /* -4% × 20px */
+  --letter-spacing-small-label: 0px;
+  /* 0% */
+  --letter-spacing-subheading: -0.48px;
+  /* JSON: -0.48 */
 }
-

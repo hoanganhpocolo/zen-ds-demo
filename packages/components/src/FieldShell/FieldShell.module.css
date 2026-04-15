@@ -16,10 +16,10 @@
 
 .label {
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-body-base);
-  line-height: var(--line-height-body-base);
+  font-size: 14px;
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-secondary);
-  letter-spacing: var(--letter-spacing-body-base);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-primary);
 }
 
@@ -79,11 +79,16 @@
 }
 
 /* Allow auto-height for textarea and multi-select.
-   Removes fixed height + vertical padding; child controls vertical spacing. */
+   Removes fixed height; vertical padding stays for textarea. */
 .auto-height .container {
   height: auto;
+}
+
+/* SelectField multi-select manages its own vertical padding via .multi-value */
+.auto-height.no-v-padding .container {
   padding-top: 0;
   padding-bottom: 0;
+  align-items: center;
 }
 .auto-height.size-xl .container { min-height: var(--input-size-xlarge); }
 .auto-height.size-l .container  { min-height: var(--input-size-large); }
@@ -164,10 +169,10 @@
   flex: 1;
   min-width: 0;
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-tertiary);
 }
 
@@ -185,10 +190,10 @@
 .char-count {
   flex-shrink: 0;
   font-family: var(--font-family-sans);
-  font-size: var(--font-size-caption);
-  line-height: var(--line-height-caption);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
   font-weight: var(--font-weight-tertiary);
-  letter-spacing: var(--letter-spacing-caption);
+  letter-spacing: var(--letter-spacing-body-small);
   color: var(--color-content-neutral-tertiary);
   text-align: right;
   white-space: nowrap;
