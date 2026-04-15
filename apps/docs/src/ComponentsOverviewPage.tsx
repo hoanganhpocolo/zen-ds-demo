@@ -191,8 +191,8 @@ export function ComponentsOverviewPage({ onNavigate }: ComponentsOverviewPagePro
         <div className="docs-page-header-top">
           <div className="docs-page-header-breadcrumb">
             <span className="text-subheading">
-              <span style={{ color: 'var(--color-content-neutral-primary)' }}>Zen Design System </span>
-              <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by Đìzai Studio</span>
+              <span style={{ color: 'var(--color-content-neutral-primary)' }}>UIAI Design System </span>
+              <span style={{ color: 'var(--color-content-neutral-tertiary)' }}>by VNG Game Publishing Platform</span>
             </span>
           </div>
         </div>

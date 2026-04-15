@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Button, Sidebar, SidebarItem, Badge } from '@zen/components';
+import { Button, Sidebar, SidebarItem } from '@zen/components';
 import { Settings01, Palette } from '@zen/icons/line';
+import { HomePage } from './HomePage';
 import { ButtonPage } from './ButtonPage';
 import { AlertBannerPage } from './AlertBannerPage';
 import { AvatarPage } from './AvatarPage';
@@ -115,17 +116,21 @@ export function App() {
   const location = useLocation();
   const pathname = location.pathname;
 
-  // Redirect root to components overview
-  if (pathname === '/' || pathname === '/docs' || pathname === '/docs/') {
-    navigate('/docs/components', { replace: true });
-  }
-
   // Derive section + page from pathname
+  const isHome = pathname === '/' || pathname === '/home';
   const isAudit = pathname === '/audit';
   const isDemo = pathname === '/docs/demo';
   const isTest = pathname === '/docs/test';
   const isOverview = pathname === '/docs/components';
-  const section = isAudit ? 'audit' : isDemo ? 'demo' : isTest ? 'test' : 'docs';
+  const section = isHome
+    ? 'home'
+    : isAudit
+      ? 'audit'
+      : isDemo
+        ? 'demo'
+        : isTest
+          ? 'test'
+          : 'docs';
 
   // Extract page slug from path
   let page = '';
@@ -137,10 +142,16 @@ export function App() {
 
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [radius, setRadius] = useState<'rounded' | 'smooth' | 'standard' | 'luxury'>('rounded');
-  const [baseFont, setBaseFont] = useState<'16' | '14'>('16');
-  const [componentTheme, setComponentTheme] = useState<'brand' | 'neutral'>('brand');
+  const [baseFont, setBaseFont] = useState<'16' | '14'>('14');
+  const [componentTheme, setComponentTheme] = useState<'brand' | 'neutral'>('neutral');
   const [brandHue, setBrandHue] = useState<Hue>(DEFAULT_HUE);
   const [showThemePicker, setShowThemePicker] = useState(false);
+
+  // Apply initial defaults to <html>
+  useEffect(() => {
+    document.documentElement.setAttribute('data-base-font', '14');
+    document.documentElement.setAttribute('data-component-theme', 'neutral');
+  }, []);
 
   const toggleBaseFont = () => {
     const next = baseFont === '16' ? '14' : '16';
@@ -172,10 +183,13 @@ export function App() {
     <div className="docs-layout" style={{ position: 'relative' }}>
       {/* ── Top Navigation ── */}
       <header className="docs-topnav">
-        <a className="docs-topnav-logo" href="/">
-          <img src="/zen-mark.svg" alt="Zen" />
-          <span style={{ fontFamily: 'var(--font-family-display)', fontWeight: 'var(--font-weight-primary)', fontSize: '22px', letterSpacing: '-0.5px', lineHeight: 1 }}>Zen</span>
-          <Badge label="Kaiz" color="neutral" variant="subtle" size="s" dot={false} />
+        <a
+          className="docs-topnav-logo"
+          href="/"
+          onClick={(e) => { e.preventDefault(); navigate('/'); }}
+        >
+          <img src="/uiai-mark.svg" alt="UIAI" />
+          <span style={{ fontFamily: 'var(--font-family-display)', fontWeight: 'var(--font-weight-primary)', fontSize: '22px', letterSpacing: '-0.5px', lineHeight: 1 }}>UIAI</span>
         </a>
 
         <nav className="docs-topnav-links">
@@ -244,6 +258,7 @@ export function App() {
       )}
 
       {/* ── Content ── */}
+      {section === 'home' && <HomePage />}
       {section === 'demo' && <DemoPage />}
       {section === 'test' && <TestPage />}
       {section === 'audit' && <AuditPage onNavigate={(id) => navigate(`/docs/components/${id}`)} />}
