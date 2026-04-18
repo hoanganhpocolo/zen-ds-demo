@@ -1,45 +1,45 @@
 /* ==========================================================
    SEMANTIC COLOR ALIASES — Base Colors
    Maps semantic names to primitive palette colors.
-   
+
    Current brand mapping:
-     Brand    → Zen (magenta/pink)
+     Brand    → VNGG (orange)
      Neutral  → Gray
      Info     → Blue
      Positive → Grass
      Negative → Tomato
      Warning  → Yellow
-   
+
    To change brand: remap Brand aliases to a different hue.
    ========================================================== */
 
 :root, [data-theme="light"] {
 
   /* Color */
-  --color-brand-1: var(--light-color-zen-1);
-  --color-brand-10: var(--light-color-zen-10);
-  --color-brand-11: var(--light-color-zen-11);
-  --color-brand-12: var(--light-color-zen-12);
-  --color-brand-2: var(--light-color-zen-2);
-  --color-brand-3: var(--light-color-zen-3);
-  --color-brand-4: var(--light-color-zen-4);
-  --color-brand-5: var(--light-color-zen-5);
-  --color-brand-6: var(--light-color-zen-6);
-  --color-brand-7: var(--light-color-zen-7);
-  --color-brand-8: var(--light-color-zen-8);
-  --color-brand-9: var(--light-color-zen-9);
-  --color-brand-alpha-1: var(--light-color-zen-alpha-1);
-  --color-brand-alpha-10: var(--light-color-zen-alpha-10);
-  --color-brand-alpha-11: var(--light-color-zen-alpha-11);
-  --color-brand-alpha-12: var(--light-color-zen-alpha-12);
-  --color-brand-alpha-2: var(--light-color-zen-alpha-2);
-  --color-brand-alpha-3: var(--light-color-zen-alpha-3);
-  --color-brand-alpha-4: var(--light-color-zen-alpha-4);
-  --color-brand-alpha-5: var(--light-color-zen-alpha-5);
-  --color-brand-alpha-6: var(--light-color-zen-alpha-6);
-  --color-brand-alpha-7: var(--light-color-zen-alpha-7);
-  --color-brand-alpha-8: var(--light-color-zen-alpha-8);
-  --color-brand-alpha-9: var(--light-color-zen-alpha-9);
+  --color-brand-1: var(--light-color-vngg-1);
+  --color-brand-10: var(--light-color-vngg-10);
+  --color-brand-11: var(--light-color-vngg-11);
+  --color-brand-12: var(--light-color-vngg-12);
+  --color-brand-2: var(--light-color-vngg-2);
+  --color-brand-3: var(--light-color-vngg-3);
+  --color-brand-4: var(--light-color-vngg-4);
+  --color-brand-5: var(--light-color-vngg-5);
+  --color-brand-6: var(--light-color-vngg-6);
+  --color-brand-7: var(--light-color-vngg-7);
+  --color-brand-8: var(--light-color-vngg-8);
+  --color-brand-9: var(--light-color-vngg-9);
+  --color-brand-alpha-1: var(--light-color-vngg-alpha-1);
+  --color-brand-alpha-10: var(--light-color-vngg-alpha-10);
+  --color-brand-alpha-11: var(--light-color-vngg-alpha-11);
+  --color-brand-alpha-12: var(--light-color-vngg-alpha-12);
+  --color-brand-alpha-2: var(--light-color-vngg-alpha-2);
+  --color-brand-alpha-3: var(--light-color-vngg-alpha-3);
+  --color-brand-alpha-4: var(--light-color-vngg-alpha-4);
+  --color-brand-alpha-5: var(--light-color-vngg-alpha-5);
+  --color-brand-alpha-6: var(--light-color-vngg-alpha-6);
+  --color-brand-alpha-7: var(--light-color-vngg-alpha-7);
+  --color-brand-alpha-8: var(--light-color-vngg-alpha-8);
+  --color-brand-alpha-9: var(--light-color-vngg-alpha-9);
   --color-info-1: var(--light-color-blue-1);
   --color-info-10: var(--light-color-blue-10);
   --color-info-11: var(--light-color-blue-11);
@@ -264,30 +264,30 @@
 [data-theme="dark"] {
 
   /* Color */
-  --color-brand-1: var(--dark-color-zen-1);
-  --color-brand-10: var(--dark-color-zen-10);
-  --color-brand-11: var(--dark-color-zen-11);
-  --color-brand-12: var(--dark-color-zen-12);
-  --color-brand-2: var(--dark-color-zen-2);
-  --color-brand-3: var(--dark-color-zen-3);
-  --color-brand-4: var(--dark-color-zen-4);
-  --color-brand-5: var(--dark-color-zen-5);
-  --color-brand-6: var(--dark-color-zen-6);
-  --color-brand-7: var(--dark-color-zen-7);
-  --color-brand-8: var(--dark-color-zen-8);
-  --color-brand-9: var(--dark-color-zen-9);
-  --color-brand-alpha-1: var(--dark-color-zen-alpha-1);
-  --color-brand-alpha-10: var(--dark-color-zen-alpha-10);
-  --color-brand-alpha-11: var(--dark-color-zen-alpha-11);
-  --color-brand-alpha-12: var(--dark-color-zen-alpha-12);
-  --color-brand-alpha-2: var(--dark-color-zen-alpha-2);
-  --color-brand-alpha-3: var(--dark-color-zen-alpha-3);
-  --color-brand-alpha-4: var(--dark-color-zen-alpha-4);
-  --color-brand-alpha-5: var(--dark-color-zen-alpha-5);
-  --color-brand-alpha-6: var(--dark-color-zen-alpha-6);
-  --color-brand-alpha-7: var(--dark-color-zen-alpha-7);
-  --color-brand-alpha-8: var(--dark-color-zen-alpha-8);
-  --color-brand-alpha-9: var(--dark-color-zen-alpha-9);
+  --color-brand-1: var(--dark-color-vngg-1);
+  --color-brand-10: var(--dark-color-vngg-10);
+  --color-brand-11: var(--dark-color-vngg-11);
+  --color-brand-12: var(--dark-color-vngg-12);
+  --color-brand-2: var(--dark-color-vngg-2);
+  --color-brand-3: var(--dark-color-vngg-3);
+  --color-brand-4: var(--dark-color-vngg-4);
+  --color-brand-5: var(--dark-color-vngg-5);
+  --color-brand-6: var(--dark-color-vngg-6);
+  --color-brand-7: var(--dark-color-vngg-7);
+  --color-brand-8: var(--dark-color-vngg-8);
+  --color-brand-9: var(--dark-color-vngg-9);
+  --color-brand-alpha-1: var(--dark-color-vngg-alpha-1);
+  --color-brand-alpha-10: var(--dark-color-vngg-alpha-10);
+  --color-brand-alpha-11: var(--dark-color-vngg-alpha-11);
+  --color-brand-alpha-12: var(--dark-color-vngg-alpha-12);
+  --color-brand-alpha-2: var(--dark-color-vngg-alpha-2);
+  --color-brand-alpha-3: var(--dark-color-vngg-alpha-3);
+  --color-brand-alpha-4: var(--dark-color-vngg-alpha-4);
+  --color-brand-alpha-5: var(--dark-color-vngg-alpha-5);
+  --color-brand-alpha-6: var(--dark-color-vngg-alpha-6);
+  --color-brand-alpha-7: var(--dark-color-vngg-alpha-7);
+  --color-brand-alpha-8: var(--dark-color-vngg-alpha-8);
+  --color-brand-alpha-9: var(--dark-color-vngg-alpha-9);
   --color-info-1: var(--dark-color-blue-1);
   --color-info-10: var(--dark-color-blue-10);
   --color-info-11: var(--dark-color-blue-11);

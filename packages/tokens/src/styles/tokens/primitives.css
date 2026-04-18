@@ -544,31 +544,31 @@
 
   /* Tomato */
   --light-color-tomato-1: #fffcfc;
-  --light-color-tomato-2: #fff8f7;
-  --light-color-tomato-3: #feebe7;
-  --light-color-tomato-4: #ffdcd3;
-  --light-color-tomato-5: #ffcdc1;
-  --light-color-tomato-6: #fdbdae;
-  --light-color-tomato-7: #f5a997;
-  --light-color-tomato-8: #ec8f7a;
-  --light-color-tomato-9: #e54d2e;
-  --light-color-tomato-10: #d73d1d;
-  --light-color-tomato-11: #cf3716;
-  --light-color-tomato-12: #5c281c;
+  --light-color-tomato-2: #fff7f6;
+  --light-color-tomato-3: #ffebe8;
+  --light-color-tomato-4: #ffdbd5;
+  --light-color-tomato-5: #ffccc5;
+  --light-color-tomato-6: #ffbcb4;
+  --light-color-tomato-7: #f9a79f;
+  --light-color-tomato-8: #f18c82;
+  --light-color-tomato-9: #da1e28;
+  --light-color-tomato-10: #ca0018;
+  --light-color-tomato-11: #d61724;
+  --light-color-tomato-12: #671515;
 
   /* Tomato-Alpha */
-  --light-color-tomato-alpha-1: rgba(255, 0, 0, 0.0118);
-  --light-color-tomato-alpha-2: rgba(255, 32, 0, 0.0314);
-  --light-color-tomato-alpha-3: rgba(245, 43, 0, 0.0941);
-  --light-color-tomato-alpha-4: rgba(255, 53, 0, 0.1725);
-  --light-color-tomato-alpha-5: rgba(255, 50, 0, 0.2431);
-  --light-color-tomato-alpha-6: rgba(249, 48, 0, 0.3176);
-  --light-color-tomato-alpha-7: rgba(231, 45, 0, 0.4078);
-  --light-color-tomato-alpha-8: rgba(219, 41, 0, 0.5216);
-  --light-color-tomato-alpha-9: rgba(223, 38, 0, 0.8196);
-  --light-color-tomato-alpha-10: rgba(210, 36, 0, 0.8863);
-  --light-color-tomato-alpha-11: rgba(203, 36, 0, 0.9137);
-  --light-color-tomato-alpha-12: rgba(72, 14, 0, 0.8902);
+  --light-color-tomato-alpha-1: rgba(255, 0, 0, 0.012);
+  --light-color-tomato-alpha-2: rgba(255, 29, 0, 0.035);
+  --light-color-tomato-alpha-3: rgba(255, 34, 0, 0.09);
+  --light-color-tomato-alpha-4: rgba(255, 37, 0, 0.165);
+  --light-color-tomato-alpha-5: rgba(255, 31, 0, 0.227);
+  --light-color-tomato-alpha-6: rgba(255, 28, 1, 0.294);
+  --light-color-tomato-alpha-7: rgba(240, 22, 0, 0.376);
+  --light-color-tomato-alpha-8: rgba(227, 21, 0, 0.49);
+  --light-color-tomato-alpha-9: rgba(213, 0, 11, 0.882);
+  --light-color-tomato-alpha-10: rgba(202, 0, 24, 1);
+  --light-color-tomato-alpha-11: rgba(210, 0, 14, 0.9);
+  --light-color-tomato-alpha-12: rgba(89, 0, 0, 0.918);
 
   /* Violet */
   --light-color-violet-1: #fcfcff;
@@ -626,33 +626,33 @@
   --light-color-yellow-alpha-11: #9b6f00;
   --light-color-yellow-alpha-12: rgba(44, 30, 0, 0.8745);
 
-  /* Zen */
-  --light-color-zen-1: #fffbff;
-  --light-color-zen-2: #fff5fd;
-  --light-color-zen-3: #ffe4fb;
-  --light-color-zen-4: #ffd3f8;
-  --light-color-zen-5: #ffc2f2;
-  --light-color-zen-6: #ffadeb;
-  --light-color-zen-7: #ff93e1;
-  --light-color-zen-8: #ff6bd6;
-  --light-color-zen-9: #ff69d4;
-  --light-color-zen-10: #f245c0;
-  --light-color-zen-11: #d733a8;
-  --light-color-zen-12: #6a0052;
+  /* VNGG — VNG Games Brand Orange */
+  --light-color-vngg-1: #fefcfb;
+  --light-color-vngg-2: #fff6f2;
+  --light-color-vngg-3: #ffeea1;
+  --light-color-vngg-4: #ffd7c6;
+  --light-color-vngg-5: #ffc9b3;
+  --light-color-vngg-6: #ffb99e;
+  --light-color-vngg-7: #fca78b;
+  --light-color-vngg-8: #f18e6e;
+  --light-color-vngg-9: #f05a22;
+  --light-color-vngg-10: #df5018;
+  --light-color-vngg-11: #d44501;
+  --light-color-vngg-12: #592c1d;
 
-  /* Zen-Alpha */
-  --light-color-zen-alpha-1: rgba(255, 0, 255, 0.0157);
-  --light-color-zen-alpha-2: rgba(255, 0, 204, 0.0392);
-  --light-color-zen-alpha-3: rgba(255, 0, 218, 0.1059);
-  --light-color-zen-alpha-4: rgba(255, 0, 215, 0.1725);
-  --light-color-zen-alpha-5: rgba(255, 0, 201, 0.2392);
-  --light-color-zen-alpha-6: rgba(255, 0, 193, 0.3216);
-  --light-color-zen-alpha-7: rgba(255, 0, 185, 0.4235);
-  --light-color-zen-alpha-8: rgba(255, 0, 185, 0.5804);
-  --light-color-zen-alpha-9: rgba(255, 0, 182, 0.5882);
-  --light-color-zen-alpha-10: rgba(237, 0, 169, 0.73);
-  --light-color-zen-alpha-11: rgba(205, 0, 146, 0.8);
-  --light-color-zen-alpha-12: #6a0052;
+  /* VNGG-Alpha */
+  --light-color-vngg-alpha-1: rgba(192, 64, 0, 0.016);
+  --light-color-vngg-alpha-2: rgba(255, 79, 0, 0.051);
+  --light-color-vngg-alpha-3: rgba(255, 77, 0, 0.118);
+  --light-color-vngg-alpha-4: rgba(255, 77, 0, 0.224);
+  --light-color-vngg-alpha-5: rgba(255, 74, 0, 0.298);
+  --light-color-vngg-alpha-6: rgba(255, 71, 0, 0.38);
+  --light-color-vngg-alpha-7: rgba(249, 62, 0, 0.455);
+  --light-color-vngg-alpha-8: rgba(231, 57, 0, 0.569);
+  --light-color-vngg-alpha-9: rgba(238, 65, 0, 0.867);
+  --light-color-vngg-alpha-10: rgba(220, 62, 0, 0.906);
+  --light-color-vngg-alpha-11: rgba(212, 68, 0, 0.996);
+  --light-color-vngg-alpha-12: rgba(68, 17, 0, 0.8902);
 
   /* ═══════════════════════════════════════════════════════
      DARK PALETTE
@@ -1192,31 +1192,31 @@
 
   /* Tomato */
   --dark-color-tomato-1: #160f0e;
-  --dark-color-tomato-2: #1e1512;
-  --dark-color-tomato-3: #381710;
-  --dark-color-tomato-4: #4e160b;
-  --dark-color-tomato-5: #5e1d10;
-  --dark-color-tomato-6: #6d2a1c;
-  --dark-color-tomato-7: #853b2b;
-  --dark-color-tomato-8: #ac4d39;
-  --dark-color-tomato-9: #e54d2e;
-  --dark-color-tomato-10: #d63e1f;
-  --dark-color-tomato-11: #ff9176;
-  --dark-color-tomato-12: #fbd3ca;
+  --dark-color-tomato-2: #201311;
+  --dark-color-tomato-3: #3d100f;
+  --dark-color-tomato-4: #54090b;
+  --dark-color-tomato-5: #651011;
+  --dark-color-tomato-6: #771e1d;
+  --dark-color-tomato-7: #912f2b;
+  --dark-color-tomato-8: #bb3e3a;
+  --dark-color-tomato-9: #da1e28;
+  --dark-color-tomato-10: #b53835;
+  --dark-color-tomato-11: #ff8f85;
+  --dark-color-tomato-12: #ffd1cb;
 
   /* Tomato-Alpha */
-  --dark-color-tomato-alpha-1: rgba(230, 0, 0, 0.0235);
-  --dark-color-tomato-alpha-2: rgba(254, 90, 36, 0.0549);
-  --dark-color-tomato-alpha-3: rgba(254, 54, 11, 0.1647);
-  --dark-color-tomato-alpha-4: rgba(253, 36, 0, 0.2588);
-  --dark-color-tomato-alpha-5: rgba(254, 54, 14, 0.3255);
-  --dark-color-tomato-alpha-6: rgba(254, 82, 46, 0.3882);
-  --dark-color-tomato-alpha-7: rgba(253, 103, 70, 0.4902);
-  --dark-color-tomato-alpha-8: rgba(254, 109, 78, 0.6549);
-  --dark-color-tomato-alpha-9: rgba(254, 84, 49, 0.8941);
-  --dark-color-tomato-alpha-10: rgba(254, 71, 34, 0.8314);
-  --dark-color-tomato-alpha-11: #ff9176;
-  --dark-color-tomato-alpha-12: rgba(255, 214, 205, 0.9843);
+  --dark-color-tomato-alpha-1: rgba(236, 0, 0, 0.027);
+  --dark-color-tomato-alpha-2: rgba(242, 47, 17, 0.067);
+  --dark-color-tomato-alpha-3: rgba(251, 12, 7, 0.188);
+  --dark-color-tomato-alpha-4: rgba(255, 0, 0, 0.282);
+  --dark-color-tomato-alpha-5: rgba(255, 15, 18, 0.353);
+  --dark-color-tomato-alpha-6: rgba(253, 47, 45, 0.431);
+  --dark-color-tomato-alpha-7: rgba(254, 72, 65, 0.541);
+  --dark-color-tomato-alpha-8: rgba(254, 80, 74, 0.718);
+  --dark-color-tomato-alpha-9: rgba(254, 32, 44, 0.847);
+  --dark-color-tomato-alpha-10: rgba(255, 74, 70, 0.69);
+  --dark-color-tomato-alpha-11: rgba(255, 143, 133, 1);
+  --dark-color-tomato-alpha-12: rgba(255, 209, 203, 1);
 
   /* Violet */
   --dark-color-violet-1: #100f1e;
@@ -1274,31 +1274,31 @@
   --dark-color-yellow-alpha-11: #ffcd34;
   --dark-color-yellow-alpha-12: rgba(255, 234, 183, 0.9922);
 
-  /* Zen */
-  --dark-color-zen-1: #170e14;
-  --dark-color-zen-2: #22101c;
-  --dark-color-zen-3: #3a142f;
-  --dark-color-zen-4: #4f0d3f;
-  --dark-color-zen-5: #5d154a;
-  --dark-color-zen-6: #6d2359;
-  --dark-color-zen-7: #87326f;
-  --dark-color-zen-8: #ac408e;
-  --dark-color-zen-9: #ff69d4;
-  --dark-color-zen-10: #f245c0;
-  --dark-color-zen-11: #ff80e1;
-  --dark-color-zen-12: #ffcfee;
+  /* VNGG — VNG Games Brand Orange (Dark) */
+  --dark-color-vngg-1: #160f0d;
+  --dark-color-vngg-2: #1e1512;
+  --dark-color-vngg-3: #37190f;
+  --dark-color-vngg-4: #4d1805;
+  --dark-color-vngg-5: #5c200a;
+  --dark-color-vngg-6: #6c2c17;
+  --dark-color-vngg-7: #843d25;
+  --dark-color-vngg-8: #ab4f31;
+  --dark-color-vngg-9: #f05a22;
+  --dark-color-vngg-10: #e24d0c;
+  --dark-color-vngg-11: #ff946e;
+  --dark-color-vngg-12: #fcd5c9;
 
-  /* Zen-Alpha */
-  --dark-color-zen-alpha-1: rgba(236, 0, 127, 0.0275);
-  --dark-color-zen-alpha-2: rgba(246, 4, 165, 0.0745);
-  --dark-color-zen-alpha-3: rgba(255, 35, 191, 0.1725);
-  --dark-color-zen-alpha-4: rgba(253, 2, 192, 0.2627);
-  --dark-color-zen-alpha-5: rgba(253, 29, 194, 0.3216);
-  --dark-color-zen-alpha-6: rgba(254, 64, 203, 0.3882);
-  --dark-color-zen-alpha-7: rgba(253, 83, 205, 0.498);
-  --dark-color-zen-alpha-8: rgba(254, 89, 208, 0.6549);
-  --dark-color-zen-alpha-9: #ff69d4;
-  --dark-color-zen-alpha-10: rgba(254, 72, 201, 0.95);
-  --dark-color-zen-alpha-11: #ff80e1;
-  --dark-color-zen-alpha-12: #ffcfee;
+  /* VNGG-Alpha (Dark) */
+  --dark-color-vngg-alpha-1: rgba(230, 0, 0, 0.024);
+  --dark-color-vngg-alpha-2: rgba(254, 90, 36, 0.055);
+  --dark-color-vngg-alpha-3: rgba(254, 67, 5, 0.161);
+  --dark-color-vngg-alpha-4: rgba(253, 45, 0, 0.255);
+  --dark-color-vngg-alpha-5: rgba(253, 64, 0, 0.318);
+  --dark-color-vngg-alpha-6: rgba(254, 88, 33, 0.384);
+  --dark-color-vngg-alpha-7: rgba(253, 107, 58, 0.486);
+  --dark-color-vngg-alpha-8: rgba(255, 113, 67, 0.647);
+  --dark-color-vngg-alpha-9: rgba(255, 95, 35, 0.937);
+  --dark-color-vngg-alpha-10: rgba(255, 85, 12, 0.878);
+  --dark-color-vngg-alpha-11: rgba(255, 148, 110, 1);
+  --dark-color-vngg-alpha-12: rgba(255, 216, 203, 0.988);
 }

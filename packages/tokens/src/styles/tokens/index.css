@@ -1,14 +1,14 @@
 /* ==========================================================
-   ZEN DESIGN SYSTEM TOKENS
+   VNGG DESIGN SYSTEM TOKENS
    Auto-generated from Figma variables
-   
+
    Architecture:
    ┌─────────────────────────────────────────────────────┐
    │  Tier 1: primitives.css                             │
-   │  Raw palette — 1058 colors (22 hues × Light/Dark)   │
+   │  Raw palette — 22 hues × Light/Dark × 12 shades     │
    ├─────────────────────────────────────────────────────┤
    │  Tier 2: semantic-colors.css                        │
-   │  Brand aliases — Brand→Zen, Neutral→Gray, etc.      │
+   │  Brand aliases — Brand→VNGG, Neutral→Gray, etc.     │
    ├─────────────────────────────────────────────────────┤
    │  Tier 3: mode-colors.css                            │
    │  UI tokens — Content, Background, Border, Shadow    │
@@ -17,13 +17,13 @@
    │  Tier 4: component-tokens.css                       │
    │  Per-component colors — Button, Checkbox, Input...  │
    └─────────────────────────────────────────────────────┘
-   
+
    Config layers:
    - typography.css       [data-scale, data-type-theme]
    - corner-radius.css    [data-radius]
    - spacing.css
    - breakpoints.css
-   
+
    Usage:
    <html data-theme="light" data-radius="rounded">
    ========================================================== */

@@ -85,12 +85,12 @@
 
 /* Selected */
 .mark-selected {
-  background: var(--color-bg-fill-active-neutral-solid);
+  background: var(--comp-radio-button-color-bg-selected-default);
   border: 1px solid transparent;
 }
 
 .row:hover .mark-selected {
-  background: var(--color-bg-fill-neutral-solid-hover);
+  background: var(--comp-radio-button-color-bg-selected-hover);
 }
 
 /* Disabled unselected */

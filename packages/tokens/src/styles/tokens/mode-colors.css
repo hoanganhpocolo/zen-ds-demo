@@ -477,8 +477,8 @@
   /* Light-Color/Neutral-Alpha/11 */
   --color-content-neutral-tertiary: var(--color-neutral-alpha-9);
   /* Light-Color/Neutral-Alpha/9 */
-  --color-content-on-accent: rgba(0, 0, 0, 0.8);
-  --color-content-on-brights: rgba(0, 0, 0, 0.8);
+  --color-content-on-accent: var(--color-content-inverse);
+  --color-content-on-brights: var(--color-content-inverse);
   --color-content-on-colors: #ffffff;
   --color-content-placeholder: var(--color-neutral-alpha-8);
   /* Light-Color/Neutral-Alpha/8 */
@@ -600,9 +600,9 @@
   --color-white: #ffffff;
 }
 
-/* ── Brand contrast: white text on dark/saturated brand hues ── */
+/* ── Brand contrast: content-inverse on dark/saturated brand hues ── */
 [data-brand-bright="false"] {
-  --color-content-on-accent: #ffffff;
+  --color-content-on-accent: var(--color-content-inverse);
 }
 
 [data-theme="dark"] {
@@ -1082,8 +1082,8 @@
   /* Dark-Color/Neutral-Alpha/11 */
   --color-content-neutral-tertiary: var(--color-neutral-alpha-9);
   /* Dark-Color/Neutral-Alpha/9 */
-  --color-content-on-accent: rgba(0, 0, 0, 0.8);
-  --color-content-on-brights: rgba(0, 0, 0, 0.8);
+  --color-content-on-accent: var(--color-content-inverse);
+  --color-content-on-brights: var(--color-content-inverse);
   --color-content-on-colors: #ffffff;
   --color-content-placeholder: var(--color-neutral-alpha-8);
   /* Dark-Color/Neutral-Alpha/8 */
@@ -1207,5 +1207,5 @@
 
 /* ── Brand contrast override for dark theme ── */
 [data-theme="dark"][data-brand-bright="false"] {
-  --color-content-on-accent: #ffffff;
+  --color-content-on-accent: var(--color-content-inverse);
 }
