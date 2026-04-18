@@ -1,7 +1,7 @@
 {
   "name": "@zen/tokens",
   "version": "0.1.0",
-  "description": "Zen Design System — CSS design tokens",
+  "description": "VNGG Design System — CSS design tokens",
   "type": "module",
   "main": "./src/styles/tokens/index.css",
   "exports": {
@@ -18,6 +18,6 @@
   "files": [
     "src/styles/tokens"
   ],
-  "keywords": ["design-tokens", "css-variables", "zen"],
+  "keywords": ["design-tokens", "css-variables", "vngg"],
   "license": "MIT"
 }
