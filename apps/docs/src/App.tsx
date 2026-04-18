@@ -188,8 +188,8 @@ export function App() {
           href="/"
           onClick={(e) => { e.preventDefault(); navigate('/'); }}
         >
-          <img src="/uiai-mark.svg" alt="UIAI" />
-          <span style={{ fontFamily: 'var(--font-family-display)', fontWeight: 'var(--font-weight-primary)', fontSize: '22px', letterSpacing: '-0.5px', lineHeight: 1 }}>UIAI</span>
+          <img src="/uiai-mark.svg" alt="IUAI" />
+          <span style={{ fontFamily: 'var(--font-family-display)', fontWeight: 'var(--font-weight-primary)', fontSize: '22px', letterSpacing: '-0.5px', lineHeight: 1 }}>IUAI</span>
         </a>
 
         <nav className="docs-topnav-links">
