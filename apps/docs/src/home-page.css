@@ -205,30 +205,13 @@
   opacity: 1;
 }
 
-/* Subtitle — starts while title is still animating */
-.home-hero-subtitle {
-  transform: translateY(24px);
-  opacity: 0;
-  transition:
-    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 500ms ease-out;
-  transition-delay: 250ms;
+/* Subtitle + Meta — use curtain lines (.home-hero-title-line) with higher --line-index offset */
+.home-hero-subtitle .home-hero-title-line-inner {
+  transition-delay: calc((var(--line-index, 0) + 3) * 120ms);
 }
 
-.home-hero.is-hero-visible .home-hero-subtitle {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* Meta — overlaps with subtitle animation */
-.home-hero-meta {
-  opacity: 0;
-  transition: opacity 600ms ease-out;
-  transition-delay: 450ms;
-}
-
-.home-hero.is-hero-visible .home-hero-meta {
-  opacity: 1;
+.home-hero-meta .home-hero-title-line-inner {
+  transition-delay: calc((var(--line-index, 0) + 5) * 120ms);
 }
 
 /* Leaves image — fade in from above, overlaps with meta */
@@ -1058,6 +1041,94 @@
 }
 
 /* ══════════════════════════════════════════════
+   SECTION TEXT REVEAL — generic for showcase + contributors
+   ══════════════════════════════════════════════ */
+
+/* Label — first (0ms) */
+.home-page.is-js .home-showcase-label,
+.home-page.is-js .home-contributors-label {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-page.is-js .is-visible .home-showcase-label,
+.home-page.is-js .is-visible .home-contributors-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtitle — overlaps with title (300ms) */
+.home-page.is-js .home-showcase-subtitle,
+.home-page.is-js .home-contributors-subtitle {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 300ms;
+}
+
+.home-page.is-js .is-visible .home-showcase-subtitle,
+.home-page.is-js .is-visible .home-contributors-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   Section title line-by-line curtain (showcase + contributors)
+   ══════════════════════════════════════════════ */
+
+.home-section-title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.home-section-title-line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease-out;
+  transition-delay: calc(100ms + var(--line-index, 0) * 80ms);
+}
+
+.is-visible .home-section-title-line-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════
+   USP CARD REVEAL — fade up per card on scroll
+   ══════════════════════════════════════════════ */
+
+/* Cards visible by default for no-JS, hidden only when JS marks page as enhanced */
+.home-page.is-js .home-usp-card {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 600ms ease-out,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.home-page.is-js .home-usp-card.is-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .home-showcase-text>*,
+  .home-contributors-content>*,
+  .home-usp-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
    FOOTER — 3 layers: bg + sunray + foreground
    ══════════════════════════════════════════════ */
 
@@ -1065,45 +1136,45 @@
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding-top: 200px;
 }
 
-/* Layer 1: Background */
+/* Layer 1: Background — sets footer height */
 .home-footer-bg {
+  position: relative;
+  z-index: 0;
   width: 100%;
   display: block;
 }
 
-/* Layer 2: Sunray — centered, positioned between bg and front */
+/* Layer 2: Sunray — stacked webp layers, rises from below on scroll */
 .home-footer-sunray {
   position: absolute;
   bottom: 30%;
   left: 50%;
-  transform: translateX(-50%);
+  z-index: 1;
   width: 420px;
   max-width: 40vw;
   aspect-ratio: 1;
-  z-index: 1;
   pointer-events: none;
+  transform: translate(-50%, 60%);
+  opacity: 0;
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1s ease-out;
 }
 
-/* Sunray layers — hidden by default, staggered appear */
-.home-footer-sun-layer {
+.home-footer-sunray img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 800ms ease-out,
-    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--layer-index, 0) * 80ms);
 }
 
-.home-footer.is-footer-visible .home-footer-sun-layer {
+.home-footer.is-footer-visible .home-footer-sunray {
+  transform: translate(-50%, 0);
   opacity: 1;
-  transform: translateY(0);
 }
 
 /* Layer 3: Foreground grass — on top of sunray */

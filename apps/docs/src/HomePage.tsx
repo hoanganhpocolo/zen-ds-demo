@@ -28,8 +28,48 @@ import {
   Cloud as CloudSolid, Sun as SunSolid, Trash as TrashSolid,
 } from '@zen/icons/solid';
 import { Figma } from '@zen/icons/social';
-import { HUES, applyBrandHue, type Hue } from './ThemePicker';
+import { HUES, type Hue } from './ThemePicker';
 import './home-page.css';
+
+/* ── Reusable: split text element into line-by-line curtain spans ── */
+
+function splitTextIntoLines(el: HTMLElement, text: string, lineClass: string, innerClass: string) {
+  el.innerHTML = '';
+  const words = text.split(' ');
+  const wordEls: HTMLSpanElement[] = [];
+  for (const w of words) {
+    const wrap = document.createElement('span');
+    wrap.style.display = 'inline';
+    wrap.textContent = w;
+    el.appendChild(wrap);
+    el.appendChild(document.createTextNode(' '));
+    wordEls.push(wrap);
+  }
+  const lines: string[][] = [];
+  let currentLine: string[] = [];
+  let lastTop = -1;
+  for (const wordEl of wordEls) {
+    const top = wordEl.offsetTop;
+    if (top !== lastTop && currentLine.length > 0) {
+      lines.push(currentLine);
+      currentLine = [];
+    }
+    currentLine.push(wordEl.textContent ?? '');
+    lastTop = top;
+  }
+  if (currentLine.length > 0) lines.push(currentLine);
+  el.innerHTML = '';
+  lines.forEach((wordsInLine, i) => {
+    const line = document.createElement('span');
+    line.className = lineClass;
+    const inner = document.createElement('span');
+    inner.className = innerClass;
+    inner.textContent = wordsInLine.join(' ');
+    inner.style.setProperty('--line-index', String(i));
+    line.appendChild(inner);
+    el.appendChild(line);
+  });
+}
 
 /* Hue → step-9 color (main solid) for circle preview.
    Read dynamically from CSS primitives at runtime instead of hardcoding. */
@@ -304,10 +344,58 @@ export function HomePage() {
   const aboutRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const footerRef = useRef<HTMLElement>(null);
+  const showcaseRef = useRef<HTMLDivElement>(null);
+  const showcaseTitleRef = useRef<HTMLHeadingElement>(null);
+  const contributorsRef = useRef<HTMLDivElement>(null);
+  const contributorsTitleRef = useRef<HTMLHeadingElement>(null);
+  const cardGridRef = useRef<HTMLDivElement>(null);
+
+  // Generic IO: add .is-visible to elements when they enter viewport
+  useEffect(() => {
+    const targets = [
+      { el: showcaseRef.current, cls: 'is-visible' },
+      { el: contributorsRef.current, cls: 'is-visible' },
+    ].filter((t) => t.el);
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        }
+      },
+      { rootMargin: '0px 0px -20% 0px', threshold: 0 },
+    );
+    targets.forEach((t) => io.observe(t.el!));
+
+    // Cards: stagger each card, trigger when 20% from bottom of viewport
+    const cards = cardGridRef.current?.children;
+    if (cards) {
+      const cardIO = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              (entry.target as HTMLElement).classList.add('is-card-visible');
+              cardIO.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: '0px 0px -15% 0px', threshold: 0 },
+      );
+      Array.from(cards).forEach((card) => cardIO.observe(card));
+      return () => { io.disconnect(); cardIO.disconnect(); };
+    }
+    return () => io.disconnect();
+  }, []);
 
   // Lenis smooth scroll — only on home page, cleanup on unmount
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      duration: 1.6,        // slower smooth (default 1.2)
+      wheelMultiplier: 0.8, // reduce wheel speed
+    });
     let rafId = 0;
     const raf = (time: number) => {
       lenis.raf(time);
@@ -407,45 +495,8 @@ export function HomePage() {
     const aboutEl = aboutRef.current;
     if (!titleEl || !aboutEl) return;
 
-    const splitIntoLines = () => {
-      titleEl.innerHTML = '';
-      const words = ABOUT_TITLE.split(' ');
-      const wordEls: HTMLSpanElement[] = [];
-      for (const w of words) {
-        const wrap = document.createElement('span');
-        wrap.className = 'home-about-title-word';
-        wrap.textContent = w;
-        titleEl.appendChild(wrap);
-        titleEl.appendChild(document.createTextNode(' '));
-        wordEls.push(wrap);
-      }
-      const lines: string[][] = [];
-      let currentLine: string[] = [];
-      let lastTop = -1;
-      for (const el of wordEls) {
-        const top = el.offsetTop;
-        if (top !== lastTop && currentLine.length > 0) {
-          lines.push(currentLine);
-          currentLine = [];
-        }
-        currentLine.push(el.textContent ?? '');
-        lastTop = top;
-      }
-      if (currentLine.length > 0) lines.push(currentLine);
-      titleEl.innerHTML = '';
-      lines.forEach((wordsInLine, i) => {
-        const line = document.createElement('span');
-        line.className = 'home-about-title-line';
-        const inner = document.createElement('span');
-        inner.className = 'home-about-title-line-inner';
-        inner.textContent = wordsInLine.join(' ');
-        inner.style.setProperty('--line-index', String(i));
-        line.appendChild(inner);
-        titleEl.appendChild(line);
-      });
-    };
+    const splitIntoLines = () => splitTextIntoLines(titleEl, ABOUT_TITLE, 'home-about-title-line', 'home-about-title-line-inner');
 
-    // Wait for fonts to load before splitting, otherwise offsetTop measurements are wrong
     const doSplit = () => requestAnimationFrame(() => splitIntoLines());
     if (document.fonts?.ready) {
       document.fonts.ready.then(doSplit);
@@ -470,7 +521,7 @@ export function HomePage() {
     return () => { io.disconnect(); window.removeEventListener('resize', onResize); };
   }, []);
 
-  // Footer sunray — staggered appear when footer enters viewport (like hero)
+  // Footer sunray — simple rise animation when footer enters viewport
   useEffect(() => {
     const footerEl = footerRef.current;
     if (!footerEl) return;
@@ -483,19 +534,40 @@ export function HomePage() {
           }
         }
       },
-      { threshold: 0.2 },
+      { threshold: 0.1 },
     );
     io.observe(footerEl);
     return () => io.disconnect();
   }, []);
 
+  // Showcase + Contributors title — line-by-line curtain reveal (like about title)
+  useEffect(() => {
+    const entries: Array<{ el: HTMLElement | null; parent: HTMLElement | null; text: string }> = [
+      { el: showcaseTitleRef.current, parent: showcaseRef.current, text: 'The ultimate Design System' },
+      { el: contributorsTitleRef.current, parent: contributorsRef.current, text: 'Human Contributors' },
+    ];
+
+    const doSplit = () => requestAnimationFrame(() => {
+      for (const { el } of entries) {
+        if (!el) continue;
+        splitTextIntoLines(el, el.textContent ?? '', 'home-section-title-line', 'home-section-title-line-inner');
+      }
+    });
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(doSplit);
+    } else {
+      doSplit();
+    }
+  }, []);
+
   return (
-    <div className="home-page">
+    <div className="home-page is-js">
       <section ref={heroSectionRef} className="home-hero">
         {/* Horse (flipped) — left side */}
         <img
           className="home-hero-horse"
-          src="/home/leaves.png"
+          src="/home/leaves.webp"
           alt=""
           aria-hidden="true"
         />
@@ -509,15 +581,15 @@ export function HomePage() {
 
         {/* Subtitle — left side, below horse */}
         <div className="home-hero-subtitle text-h4">
-          <p>We bring you the ultimate Figma UI kit and React component library.</p>
-          <p>Empowers you to build beautiful and user friendly interfaces quickly and efficiently.</p>
+          <span className="home-hero-title-line"><span className="home-hero-title-line-inner" style={{ ['--line-index' as string]: 0 }}>We bring you the ultimate Figma UI kit and React component library.</span></span>
+          <span className="home-hero-title-line"><span className="home-hero-title-line-inner" style={{ ['--line-index' as string]: 1 }}>Empowers you to build beautiful and user friendly interfaces quickly and efficiently.</span></span>
         </div>
 
         {/* Meta — left side, below subtitle */}
         <div className="home-hero-meta text-capsline-m">
-          <span>VNG GAMES</span>
-          <span>GPP</span>
-          <span>2026</span>
+          <span className="home-hero-title-line"><span className="home-hero-title-line-inner" style={{ ['--line-index' as string]: 0 }}>VNG GAMES</span></span>
+          <span className="home-hero-title-line"><span className="home-hero-title-line-inner" style={{ ['--line-index' as string]: 1 }}>GPP</span></span>
+          <span className="home-hero-title-line"><span className="home-hero-title-line-inner" style={{ ['--line-index' as string]: 2 }}>2026</span></span>
         </div>
       </section>
 
@@ -525,14 +597,14 @@ export function HomePage() {
       <section ref={aboutRef} className="home-about">
         {/* Sunray — inside about section, z-index between video(1) and content(3) */}
         <div ref={heroRef} className="home-about-sunray" aria-hidden="true">
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 0 }} src="/home/Sunray01.png" alt="" />
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 1 }} src="/home/Sunray02.png" alt="" />
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 2 }} src="/home/Sunray03.png" alt="" />
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 3 }} src="/home/Sunray04.png" alt="" />
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 4 }} src="/home/Sunray05.png" alt="" />
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 5 }} src="/home/Sunray06.png" alt="" />
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 6 }} src="/home/Sunray07.png" alt="" />
-          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 7 }} src="/home/Sunray08.png" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 0 }} src="/home/Sunray01.webp" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 1 }} src="/home/Sunray02.webp" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 2 }} src="/home/Sunray03.webp" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 3 }} src="/home/Sunray04.webp" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 4 }} src="/home/Sunray05.webp" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 5 }} src="/home/Sunray06.webp" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 6 }} src="/home/Sunray07.webp" alt="" />
+          <img className="home-hero-sun-layer" style={{ ['--layer-index' as string]: 7 }} src="/home/Sunray08.webp" alt="" />
         </div>
 
         {/* Video background */}
@@ -580,22 +652,22 @@ export function HomePage() {
 
         {/* Mockup image */}
         <div className="home-showcase-mockup">
-          <img src="/home/mokup.png" alt="Component showcase" />
+          <img src="/home/mokup.webp" alt="Component showcase" />
         </div>
 
         {/* Text block */}
-        <div className="home-showcase-text">
+        <div ref={showcaseRef} className="home-showcase-text">
           <p className="text-body-extra home-showcase-label">
             Why You Should Care
           </p>
-          <h2 className="text-display-3">The ultimate Design System</h2>
+          <h2 ref={showcaseTitleRef} className="text-display-3">The ultimate Design System</h2>
           <p className="text-subheading home-showcase-subtitle">
             IUAI is the world's largest Figma UI kit and design system. It contains our project, easy customization, and a massive collection of components.
           </p>
         </div>
 
         {/* USP Cards Grid */}
-        <div className="home-usp-grid">
+        <div ref={cardGridRef} className="home-usp-grid">
           {/* Row 1: 2 cards (6+6) */}
           <UspCard className="home-usp-card-6" icon="Type=Dark theme.png" title="Dark theme" subtitle="Your retinas called — they want a break. Just turn off the light. It smooth, easy-on-the-eyes UI that looks stunning at 2 AM.">
             <DarkThemeSlot />
@@ -649,9 +721,9 @@ export function HomePage() {
 
       {/* ── Section 4 — Human Contributors ── */}
       <section className="home-contributors">
-        <div className="home-contributors-content">
+        <div ref={contributorsRef} className="home-contributors-content">
           <p className="text-body-extra home-contributors-label">Behind the AI</p>
-          <h2 className="text-display-2">Human Contributors</h2>
+          <h2 ref={contributorsTitleRef} className="text-display-2">Human Contributors</h2>
           <p className="text-subheading home-contributors-subtitle">
             That's 100% handcrafted. Real designers debating border radius. Real developers arguing about naming conventions. You know, the fun stuff.
           </p>
@@ -679,18 +751,18 @@ export function HomePage() {
 
       {/* ── Footer — 3 layers: bg + sunray + foreground grass ── */}
       <footer ref={footerRef} className="home-footer">
-        <img className="home-footer-bg" src="/home/Footer back.png" alt="" aria-hidden="true" />
+        <img className="home-footer-bg" src="/home/Footer back.webp" alt="" aria-hidden="true" />
         <div className="home-footer-sunray" aria-hidden="true">
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 0 }} src="/home/Sunray01.png" alt="" />
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 1 }} src="/home/Sunray02.png" alt="" />
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 2 }} src="/home/Sunray03.png" alt="" />
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 3 }} src="/home/Sunray04.png" alt="" />
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 4 }} src="/home/Sunray05.png" alt="" />
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 5 }} src="/home/Sunray06.png" alt="" />
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 6 }} src="/home/Sunray07.png" alt="" />
-          <img className="home-footer-sun-layer" style={{ ['--layer-index' as string]: 7 }} src="/home/Sunray08.png" alt="" />
+          <img src="/home/Sunray01.webp" alt="" />
+          <img src="/home/Sunray02.webp" alt="" />
+          <img src="/home/Sunray03.webp" alt="" />
+          <img src="/home/Sunray04.webp" alt="" />
+          <img src="/home/Sunray05.webp" alt="" />
+          <img src="/home/Sunray06.webp" alt="" />
+          <img src="/home/Sunray07.webp" alt="" />
+          <img src="/home/Sunray08.webp" alt="" />
         </div>
-        <img className="home-footer-front" src="/home/Footer Front.png" alt="" aria-hidden="true" />
+        <img className="home-footer-front" src="/home/Footer Front.webp" alt="" aria-hidden="true" />
       </footer>
     </div>
   );
