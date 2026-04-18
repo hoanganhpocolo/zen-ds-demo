@@ -172,11 +172,11 @@ function DarkThemeSlot() {
       onTouchStart={(e) => { dragging.current = true; handleMove(e.touches[0].clientX); }}
     >
       {/* Light image (full, always visible) */}
-      <img className="usp-dark-slider-img" src="/home/Usp Dark theme 1.png" alt="Light theme" draggable={false} />
+      <img className="usp-dark-slider-img" src="/home/Usp Dark theme 1.webp" alt="Light theme" draggable={false} />
 
       {/* Dark image (clipped by slider position) */}
       <div className="usp-dark-slider-overlay" style={{ clipPath: `inset(0 0 0 ${position}%)` }}>
-        <img className="usp-dark-slider-img" src="/home/Usp Dark theme 2.png" alt="Dark theme" draggable={false} />
+        <img className="usp-dark-slider-img" src="/home/Usp Dark theme 2.webp" alt="Dark theme" draggable={false} />
       </div>
 
       {/* Slider handle */}
@@ -673,12 +673,12 @@ export function HomePage() {
             <DarkThemeSlot />
           </UspCard>
           <UspCard className="home-usp-card-6" icon="Type=Token.png" title="4-Tier Token Architecture" subtitle="Change one value, watch it ripple across your entire system like magic. No more &quot;wait, which blue is this?&quot; moments.">
-            <img src="/home/USP Token.png" alt="Token architecture" />
+            <img src="/home/USP Token.webp" alt="Token architecture" />
           </UspCard>
 
           {/* Row 2: 2 cards (5+7) */}
           <UspCard className="home-usp-card-5" icon="Type=Component 2.png" title="2000+ variants" subtitle="Every component comes with states, sizes, and variants so you never start from scratch again.">
-            <img src="/home/USP Components.png" alt="Component variants" />
+            <img src="/home/USP Components.webp" alt="Component variants" />
           </UspCard>
           <UspCard className="home-usp-card-7" icon="Type=Customize.png" title="Customize your milk tea" subtitle="Swap themes like swap your ex. Light, dark, rounded, sharp — pick a vibe and IUAI adapts instantly. Your brand, your rules. We just make it ridiculously easy.">
             <CustomizeSlot />
@@ -687,7 +687,7 @@ export function HomePage() {
           {/* Row 3: 3 cards (4+4+4) */}
           <UspCard className="home-usp-card-4" icon="Type=Figma.png" title="Figma ↔ Code 1:1" subtitle="Because it coded by the designer">
             <div className="usp-figma-slot">
-              <img className="usp-figma-slot-img" src="/home/USP Figma Code.png" alt="Figma to code" />
+              <img className="usp-figma-slot-img" src="/home/USP Figma Code.webp" alt="Figma to code" />
               {/* CLI window — overlaps bottom of slot */}
               <div className="usp-figma-cli">
                 <div className="usp-figma-cli-header">
@@ -714,7 +714,7 @@ export function HomePage() {
             <IconsSlot />
           </UspCard>
           <UspCard className="home-usp-card-4" icon="Type=Plugin.png" title="Plugin included" subtitle="In the future, but we promise">
-            <img src="/home/USP Plug in.png" alt="Plugin preview" />
+            <img src="/home/USP Plug in.webp" alt="Plugin preview" />
           </UspCard>
         </div>
       </section>
@@ -731,9 +731,9 @@ export function HomePage() {
 
         <div className="home-contributors-grid">
           {[
-            { name: 'Thiên. Trương Vĩ', handle: 'thientv', frame: 'Frame 1.png', avatar: 'Thien.png' },
-            { name: 'Nhân. Lê Đức', handle: 'nhanld', frame: 'Frame 2.png', avatar: 'Nhan.png' },
-            { name: 'Vy. Trần Thanh', handle: 'vytt4', frame: 'Frame 3.png', avatar: 'Vy.png' },
+            { name: 'Thiên. Trương Vĩ', handle: 'thientv', frame: 'Frame 1.webp', avatar: 'Thien.webp' },
+            { name: 'Nhân. Lê Đức', handle: 'nhanld', frame: 'Frame 2.webp', avatar: 'Nhan.webp' },
+            { name: 'Vy. Trần Thanh', handle: 'vytt4', frame: 'Frame 3.webp', avatar: 'Vy.webp' },
           ].map((person) => (
             <div key={person.handle} className="home-contributor">
               <div className="home-contributor-frame">
