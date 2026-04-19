@@ -175,7 +175,7 @@
   z-index: 2;
   display: flex;
   gap: var(--gap-2xlarge);
-  color: #F05A22;
+  color: var(--color-brand-9);
   text-transform: uppercase;
 }
 
@@ -320,7 +320,7 @@
    ══════════════════════════════════════════════ */
 
 .home-about-label {
-  color: #F05A22;
+  color: var(--color-brand-9);
   font-weight: var(--font-weight-primary);
   transform: translateY(16px);
   opacity: 0;
@@ -440,7 +440,7 @@
 
 .home-showcase-label {
   margin: 0;
-  color: #F05A22;
+  color: var(--color-brand-9);
   font-weight: var(--font-weight-primary);
 }
 
@@ -631,7 +631,7 @@
   z-index: 2;
   margin: -20px calc(var(--padding-small) * -1) calc(var(--padding-small) * -1) var(--padding-xlarge);
   border-radius: var(--radius-large);
-  background: #1a1d24;
+  background: var(--color-bg-surface-alt);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 }
@@ -641,7 +641,7 @@
   display: flex;
   gap: 6px;
   padding: var(--padding-small) var(--padding-medium);
-  background: #252830;
+  background: var(--color-bg-fill-neutral-solid-default);
 }
 
 .usp-figma-cli-dot {
@@ -924,7 +924,7 @@
 .usp-dark-slider-line {
   flex: 1;
   width: 2px;
-  background: #F05A22;
+  background: var(--color-brand-9);
 }
 
 .usp-dark-slider-knob {
@@ -934,7 +934,7 @@
   width: 32px;
   height: 32px;
   border-radius: var(--radius-rounded);
-  background: #F05A22;
+  background: var(--color-brand-9);
   border: 3px solid white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
@@ -961,7 +961,7 @@
 
 .home-contributors-label {
   margin: 0;
-  color: #F05A22;
+  color: var(--color-brand-9);
   font-weight: var(--font-weight-primary);
 }
 
