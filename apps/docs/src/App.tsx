@@ -143,14 +143,14 @@ export function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [radius, setRadius] = useState<'rounded' | 'smooth' | 'standard' | 'luxury'>('rounded');
   const [baseFont, setBaseFont] = useState<'16' | '14'>('14');
-  const [componentTheme, setComponentTheme] = useState<'brand' | 'neutral'>('neutral');
+  const [componentTheme, setComponentTheme] = useState<'brand' | 'neutral'>('brand');
   const [brandHue, setBrandHue] = useState<Hue>(DEFAULT_HUE);
   const [showThemePicker, setShowThemePicker] = useState(false);
 
   // Apply initial defaults to <html>
   useEffect(() => {
     document.documentElement.setAttribute('data-base-font', '14');
-    document.documentElement.setAttribute('data-component-theme', 'neutral');
+    document.documentElement.setAttribute('data-component-theme', 'brand');
   }, []);
 
   const toggleBaseFont = () => {

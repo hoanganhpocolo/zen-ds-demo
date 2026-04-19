@@ -10,7 +10,7 @@ export type TopNavMobileTheme = 'default' | 'overlay';
 
 function StatusBar({ theme = 'default' }: { theme?: TopNavMobileTheme }) {
   const isOverlay = theme === 'overlay';
-  const color = isOverlay ? 'rgba(255,255,255,0.93)' : '#141414';
+  const color = isOverlay ? 'var(--color-content-white-overlay-primary)' : 'var(--color-content-neutral-primary)';
 
   return (
     <div className={styles.statusBar}>
