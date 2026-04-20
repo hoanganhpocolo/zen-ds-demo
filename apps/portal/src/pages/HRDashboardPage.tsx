@@ -3,7 +3,9 @@ import { Bell01, ChevronDown, Sun, Moon01, Menu01, DotsHorizontal } from '@zen/i
 import { useDarkMode } from '../useDarkMode';
 import { useState, useRef, useEffect } from 'react';
 import * as echarts from 'echarts';
-// import './HRDashboardPage.css';
+import './HRDashboardPage.css';
+import './HomePage.css';
+import './CentralizedDashboardPage.css';
 
 /* ── Vietnam Flag Icon ── */
 function VietnamFlag({ size = 20 }: { size?: number }) {

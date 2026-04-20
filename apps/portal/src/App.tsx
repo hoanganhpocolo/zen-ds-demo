@@ -15,6 +15,7 @@ import { useDarkMode } from './useDarkMode';
 import { HomePage } from './pages/HomePage';
 import { CentralizedDashboardPage } from './pages/CentralizedDashboardPage';
 import { NexusDocsDetailPage } from './pages/NexusDocsDetailPage';
+import { HRDashboardPage } from './pages/HRDashboardPage';
 import './App.css';
 
 function DockLogo() {
@@ -99,6 +100,7 @@ function buildWorkspaceContent(
           <>
             <SidebarItem icon={<BarChart01 size={20} />} label="Dashboard" selected={sel('centralized-dashboard')} onClick={go('centralized-dashboard')} />
             <SidebarItem icon={<FileDoc size={20} />} label="Docs" selected={sel('docs')} onClick={go('docs')} />
+            <SidebarItem icon={<Users size={20} />} label="HR Dashboard" selected={sel('hr-dashboard')} onClick={go('hr-dashboard')} />
           </>
         ),
       };
@@ -251,6 +253,7 @@ export function App() {
           {ws === 'centralized' && page === 'centralized-dashboard' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
           {ws === 'centralized' && page === 'docs' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} variant="docs" />}
           {ws === 'centralized' && page === 'nexus-docs' && <NexusDocsDetailPage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws === 'centralized' && page === 'hr-dashboard' && <HRDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
           {ws !== 'centralized' && page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}
           {ws !== 'centralized' && page !== 'dashboard' && (
             <div className="portal-empty">
