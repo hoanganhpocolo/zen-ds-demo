@@ -32,7 +32,8 @@
 [data-theme="dark"] .centralized-card-logo img[src*="roblox"],
 [data-theme="dark"] .centralized-card-logo img[src*="studio-global"],
 [data-theme="dark"] .centralized-card-logo img[src*="dreamer"],
-[data-theme="dark"] .centralized-card-logo img[src*="global"] {
+[data-theme="dark"] .centralized-card-logo img[src*="SRM"],
+[data-theme="dark"] .centralized-card-logo img[src*="legal"] {
   filter: brightness(0) invert(1);
 }
 
@@ -157,6 +158,7 @@
 /* ── Content ── */
 .centralized-content {
   padding: 0 var(--padding-xlarge);
+  margin-top: var(--gap-large);
   width: 100%;
   display: flex;
   flex-direction: column;

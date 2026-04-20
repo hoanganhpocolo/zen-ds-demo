@@ -14,6 +14,7 @@ import { AppIcon } from './AppIcon';
 import { useDarkMode } from './useDarkMode';
 import { HomePage } from './pages/HomePage';
 import { CentralizedDashboardPage } from './pages/CentralizedDashboardPage';
+import { CentralizedDocsPage } from './pages/CentralizedDocsPage';
 import { NexusDocsDetailPage } from './pages/NexusDocsDetailPage';
 import { HRDashboardPage } from './pages/HRDashboardPage';
 import './App.css';
@@ -249,9 +250,9 @@ export function App() {
       </div>
 
       <main className="portal-main">
-        <div className="portal-content">
+        <div className={`portal-content ${page === 'nexus-docs' ? 'portal-content--nexus-docs' : ''}`}>
           {ws === 'centralized' && page === 'centralized-dashboard' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
-          {ws === 'centralized' && page === 'docs' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} variant="docs" />}
+          {ws === 'centralized' && page === 'docs' && <CentralizedDocsPage onMenuClick={() => setMobileSidebar(true)} />}
           {ws === 'centralized' && page === 'nexus-docs' && <NexusDocsDetailPage onMenuClick={() => setMobileSidebar(true)} />}
           {ws === 'centralized' && page === 'hr-dashboard' && <HRDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
           {ws !== 'centralized' && page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}

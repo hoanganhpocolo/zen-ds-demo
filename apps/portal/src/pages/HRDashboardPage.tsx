@@ -80,39 +80,28 @@ function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
   const greeting = getGreeting();
 
   return (
-    <header className="centralized-header">
-      <div className="centralized-header-mobile-left">
+    <div className="home-topbar">
+      <div className="home-topbar-mobile-left">
         <Button variant="flat-primary" size="m" icon={<Menu01 size={20} />} onClick={onMenuClick} />
+        <img src={dark ? '/vnggames-logo-dark.svg' : '/vnggames-logo.svg'} alt="VNGGames" width={34} height={24} />
       </div>
-
-      <div className="centralized-header-greeting">
-        <img src={greeting.icon} alt="" className="centralized-header-greeting-img" />
-        <h2 className="text-h2">{greeting.text}! Luna,</h2>
+      <div className="home-topbar-greeting">
+        <img src={greeting.icon} alt="" width={65} height={65} />
+        <h2 className="text-h4">{greeting.text}! Nhan,</h2>
       </div>
-
-      <div className="centralized-header-right">
-        <div className="centralized-header-search">
+      <div className="home-topbar-right">
+        <div className="home-topbar-search">
           <Search size="default" placeholder="Search" />
         </div>
-
-        <button className="centralized-header-action centralized-header-action--blue" type="button">
-          <img src="/gigi-logo.png" alt="Gigi" style={{ width: 20, height: 20 }} />
-        </button>
-
-        <button className="centralized-header-action" type="button" onClick={toggle}>
-          {dark ? <Sun size={20} /> : <Moon01 size={20} />}
-        </button>
-
-        <button className="centralized-header-action centralized-header-action--badge" type="button">
-          <Bell01 size={20} />
-          <span className="centralized-header-badge">8</span>
-        </button>
-
-        <LanguageSelector />
-
+        <Button variant="flat-primary" size="m" icon={dark ? <Sun size={20} /> : <Moon01 size={20} />} onClick={toggle} />
+        <Button variant="flat-primary" size="m" icon={<Bell01 size={20} />} />
+        <div className="home-topbar-lang">
+          <span className="text-body-small">VN</span>
+          <ChevronDown size={16} />
+        </div>
         <Avatar size="m" color="blue">N</Avatar>
       </div>
-    </header>
+    </div>
   );
 }
 
@@ -227,7 +216,7 @@ function EmploymentTypeChart() {
   useEffect(() => {
     if (!chartRef.current) return;
 
-    const chart = echarts.init(chartRef.current, null, { renderer: 'canvas' });
+    const chart = echarts.init(chartRef.current, null, { renderer: 'svg' });
     chartInstance.current = chart;
 
     const chartOption = {
@@ -279,7 +268,7 @@ function EmploymentTypeChart() {
         axisTick: { show: false },
         splitLine: {
           lineStyle: {
-            color: gridColor,
+            color: dark ? '#2a2a2a' : '#f0f0f0',
             type: 'solid',
             width: 1,
           },
@@ -289,7 +278,7 @@ function EmploymentTypeChart() {
           fontFamily: 'var(--font-family-sans)',
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-secondary)',
+          color: '#525252',
         },
       },
       yAxis: {
@@ -302,7 +291,7 @@ function EmploymentTypeChart() {
           fontFamily: 'var(--font-family-sans)',
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-secondary)',
+          color: '#525252',
         },
       },
       series: [
@@ -409,7 +398,7 @@ function RecruitmentPipelineChart() {
   useEffect(() => {
     if (!chartRef.current) return;
 
-    const chart = echarts.init(chartRef.current, null, { renderer: 'canvas' });
+    const chart = echarts.init(chartRef.current, null, { renderer: 'svg' });
     chartInstance.current = chart;
 
     const chartOption = {
@@ -429,7 +418,7 @@ function RecruitmentPipelineChart() {
           fontFamily: 'var(--font-family-sans)',
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-secondary)',
+          color: '#525252',
         },
         formatter: (params: any) => {
           const items = params.map((p: any) => {
@@ -462,7 +451,7 @@ function RecruitmentPipelineChart() {
           fontFamily: 'var(--font-family-sans)',
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-secondary)',
+          color: '#525252',
           margin: 12,
         },
       },
@@ -475,7 +464,7 @@ function RecruitmentPipelineChart() {
         splitLine: {
           show: true,
           lineStyle: {
-            color: gridColor,
+            color: dark ? '#2a2a2a' : '#f0f0f0',
             type: 'dashed',
             width: 1,
           },
@@ -484,7 +473,7 @@ function RecruitmentPipelineChart() {
           fontFamily: 'var(--font-family-sans)',
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-secondary)',
+          color: '#525252',
         },
       },
       series: [
@@ -507,7 +496,7 @@ function RecruitmentPipelineChart() {
             fontWeight: 'var(--font-weight-tertiary)',
             lineHeight: 'var(--line-height-body-small)',
             letterSpacing: 'var(--letter-spacing-body-small)',
-            color: 'var(--color-content-neutral-secondary)',
+            color: '#525252',
           },
         },
         {
@@ -529,7 +518,7 @@ function RecruitmentPipelineChart() {
             fontWeight: 'var(--font-weight-tertiary)',
             lineHeight: 'var(--line-height-body-small)',
             letterSpacing: 'var(--letter-spacing-body-small)',
-            color: 'var(--color-content-neutral-secondary)',
+            color: '#525252',
           },
         },
         {
@@ -551,7 +540,7 @@ function RecruitmentPipelineChart() {
             fontWeight: 'var(--font-weight-tertiary)',
             lineHeight: 'var(--line-height-body-small)',
             letterSpacing: 'var(--letter-spacing-body-small)',
-            color: 'var(--color-content-neutral-secondary)',
+            color: '#525252',
           },
         },
       ],
@@ -614,8 +603,8 @@ function RecruitmentPipelineChart() {
           onClick={() => setExportPopoverOpen(false)}
         />
       </Popover>
-      <div style={{ width: '100%' }}>
-        <div ref={chartRef} style={{ width: '100%', height: 235 }} />
+      <div style={{ width: '100%', height: 220 }}>
+        <div ref={chartRef} style={{ width: '100%', height: '100%' }} />
       </div>
       <div className="hr-bar-chart-legend">
         <div className="hr-bar-legend-row">
@@ -689,9 +678,9 @@ function SeniorityLevelChart() {
               style: {
                 text: 'Total',
                 textAlign: 'center',
-                fill: dark ? 'rgba(255,255,255,0.62)' : 'rgba(0,0,0,0.45)',
-                fontSize: 14,
-                fontWeight: 500,
+                fill: 'var(--color-content-neutral-tertiary)',
+                fontSize: 'var(--font-size-body-small)',
+                fontWeight: 'var(--font-weight-secondary)',
                 fontFamily: 'var(--font-family-sans)',
               },
               top: 0,
@@ -701,12 +690,12 @@ function SeniorityLevelChart() {
               style: {
                 text: newTotal.toLocaleString(),
                 textAlign: 'center',
-                fill: dark ? 'rgba(255,255,255,0.92)' : 'rgba(0,0,0,0.88)',
+                fill: 'var(--color-content-neutral-primary)',
                 fontSize: 24,
-                fontWeight: 600,
+                fontWeight: 'var(--font-weight-primary)',
                 fontFamily: 'var(--font-family-sans)',
               },
-              top: 18,
+              top: 22,
             },
           ],
         }],
@@ -763,9 +752,9 @@ function SeniorityLevelChart() {
               style: {
                 text: 'Total',
                 textAlign: 'center',
-                fill: dark ? 'rgba(255,255,255,0.62)' : 'rgba(0,0,0,0.45)',
-                fontSize: 14,
-                fontWeight: 500,
+                fill: 'var(--color-content-neutral-tertiary)',
+                fontSize: 'var(--font-size-body-small)',
+                fontWeight: 'var(--font-weight-secondary)',
                 fontFamily: 'var(--font-family-sans)',
               },
               top: 0,
@@ -775,19 +764,19 @@ function SeniorityLevelChart() {
               style: {
                 text: visibleTotal.toLocaleString(),
                 textAlign: 'center',
-                fill: dark ? 'rgba(255,255,255,0.92)' : 'rgba(0,0,0,0.88)',
+                fill: 'var(--color-content-neutral-primary)',
                 fontSize: 24,
-                fontWeight: 600,
+                fontWeight: 'var(--font-weight-primary)',
                 fontFamily: 'var(--font-family-sans)',
               },
-              top: 18,
+              top: 22,
             },
           ],
         },
       ],
       series: [{
         type: 'pie',
-        radius: ['65', '100'],
+        radius: ['55', '85'],
         center: ['50%', '50%'],
         padAngle: 4,
         itemStyle: { borderRadius: 6 },
@@ -886,65 +875,58 @@ function HeadcountTrendChart() {
   const tooltipTextSecondary = dark ? 'rgba(255, 255, 255, 0.7)' : 'rgba(0, 0, 0, 0.62)';
   const tooltipTextPrimary = dark ? 'rgba(255, 255, 255, 0.92)' : 'rgba(0, 0, 0, 0.88)';
 
-  // Series colors - brighter variants for dark mode
+  // Series colors - from design system tokens
   const headcountColors = {
-    Engineering: dark ? '#fb923c' : '#f05a22',    // orange
-    Sales: dark ? '#60a5fa' : '#0087ff',            // blue
-    Marketing: dark ? '#a78bfa' : '#7c3aed',         // purple
-    Operations: dark ? '#86efac' : '#22c55e',      // green
+    Engineering: '#f88a0d',    // orange-9
+    Sales: '#0087ff',           // blue-9
+    Marketing: '#8e4ec6',       // purple-9
+    Operations: '#44a948',     // grass-9
   };
 
   const toggleSeries = (seriesName: keyof typeof visibleSeries) => {
-    const newVisible = { ...visibleSeries, [seriesName]: !visibleSeries[seriesName] };
-    setVisibleSeries(newVisible);
-    if (chartInstance.current) {
-      chartInstance.current.dispatchAction({
-        type: 'legendToggleSelect',
-        name: seriesName,
-      });
-    }
+    setVisibleSeries(prev => ({ ...prev, [seriesName]: !prev[seriesName] }));
   };
 
   useEffect(() => {
     if (!chartRef.current) return;
 
-    const chart = echarts.init(chartRef.current, null, { renderer: 'canvas' });
+    const chart = echarts.init(chartRef.current, null, { renderer: 'svg' });
     chartInstance.current = chart;
 
-    // Gradients for dark mode
+    // Gradients - using design system token colors
     const engineeringGradientDark = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      { offset: 0.05, color: 'rgba(251, 146, 60, 0.6)' },
-      { offset: 0.95, color: 'rgba(251, 146, 60, 0.1)' },
+      { offset: 0.05, color: 'rgba(248, 138, 13, 0.6)' },
+      { offset: 0.95, color: 'rgba(248, 138, 13, 0.1)' },
     ]);
     const salesGradientDark = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      { offset: 0.05, color: 'rgba(96, 165, 250, 0.6)' },
-      { offset: 0.95, color: 'rgba(96, 165, 250, 0.1)' },
+      { offset: 0.05, color: 'rgba(0, 135, 255, 0.6)' },
+      { offset: 0.95, color: 'rgba(0, 135, 255, 0.1)' },
     ]);
     const marketingGradientDark = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      { offset: 0.05, color: 'rgba(167, 139, 250, 0.6)' },
-      { offset: 0.95, color: 'rgba(167, 139, 250, 0.1)' },
+      { offset: 0.05, color: 'rgba(142, 78, 198, 0.6)' },
+      { offset: 0.95, color: 'rgba(142, 78, 198, 0.1)' },
     ]);
     const operationsGradientDark = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      { offset: 0.05, color: 'rgba(134, 239, 172, 0.6)' },
-      { offset: 0.95, color: 'rgba(134, 239, 172, 0.1)' },
+      { offset: 0.05, color: 'rgba(68, 169, 72, 0.6)' },
+      { offset: 0.95, color: 'rgba(68, 169, 72, 0.1)' },
     ]);
 
     // Gradients for light mode
     const engineeringGradientLight = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      { offset: 0.05, color: 'rgba(240, 90, 34, 0.6)' },
-      { offset: 0.95, color: 'rgba(240, 90, 34, 0.1)' },
+      { offset: 0.05, color: 'rgba(248, 138, 13, 0.6)' },
+      { offset: 0.95, color: 'rgba(248, 138, 13, 0.1)' },
     ]);
     const salesGradientLight = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
       { offset: 0.05, color: 'rgba(0, 135, 255, 0.6)' },
       { offset: 0.95, color: 'rgba(0, 135, 255, 0.1)' },
     ]);
     const marketingGradientLight = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      { offset: 0.05, color: 'rgba(124, 58, 237, 0.6)' },
-      { offset: 0.95, color: 'rgba(124, 58, 237, 0.1)' },
+      { offset: 0.05, color: 'rgba(142, 78, 198, 0.6)' },
+      { offset: 0.95, color: 'rgba(142, 78, 198, 0.1)' },
     ]);
     const operationsGradientLight = new echarts.graphic.LinearGradient(0, 0, 0, 1, [
-      { offset: 0.05, color: 'rgba(34, 197, 94, 0.6)' },
-      { offset: 0.95, color: 'rgba(34, 197, 94, 0.1)' },
+      { offset: 0.05, color: 'rgba(68, 169, 72, 0.6)' },
+      { offset: 0.95, color: 'rgba(68, 169, 72, 0.1)' },
     ]);
 
     const chartOption = {
@@ -959,6 +941,10 @@ function HeadcountTrendChart() {
       },
       legend: {
         show: false,
+        data: ['Engineering', 'Sales', 'Marketing', 'Operations'],
+        animation: true,
+        animationDuration: 350,
+        animationEasing: 'cubicOut',
       },
       tooltip: {
         trigger: 'axis',
@@ -1000,12 +986,12 @@ function HeadcountTrendChart() {
           fontFamily: 'var(--font-family-sans)',
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-tertiary)',
+          color: '#525252',
         },
         splitLine: {
           show: true,
           lineStyle: {
-            color: gridColor,
+            color: dark ? '#2a2a2a' : '#f0f0f0',
             type: 'dashed',
             width: 1,
           },
@@ -1014,19 +1000,19 @@ function HeadcountTrendChart() {
       yAxis: {
         type: 'value',
         min: 0,
-        max: 1600,
+        max: 700,
         axisLine: false,
         axisTick: false,
         axisLabel: {
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-tertiary)',
+          color: '#525252',
           fontFamily: 'var(--font-family-sans)',
         },
         splitLine: {
           show: true,
           lineStyle: {
-            color: gridColor,
+            color: dark ? '#2a2a2a' : '#f0f0f0',
             type: 'dashed',
             width: 1,
           },
@@ -1037,10 +1023,10 @@ function HeadcountTrendChart() {
           name: 'Engineering',
           type: 'line',
           symbol: 'none',
-          data: headcountData.map(d => d.engineering),
+          data: visibleSeries.Engineering ? headcountData.map(d => d.engineering) : [],
           lineStyle: {
             width: 2,
-            color: dark ? '#fb923c' : '#f05a22',
+            color: '#f88a0d',
           },
           areaStyle: {
             color: dark ? engineeringGradientDark : engineeringGradientLight,
@@ -1053,10 +1039,10 @@ function HeadcountTrendChart() {
           name: 'Sales',
           type: 'line',
           symbol: 'none',
-          data: headcountData.map(d => d.sales),
+          data: visibleSeries.Sales ? headcountData.map(d => d.sales) : [],
           lineStyle: {
             width: 2,
-            color: dark ? '#60a5fa' : '#0087ff',
+            color: '#0087ff',
           },
           areaStyle: {
             color: dark ? salesGradientDark : salesGradientLight,
@@ -1069,10 +1055,10 @@ function HeadcountTrendChart() {
           name: 'Marketing',
           type: 'line',
           symbol: 'none',
-          data: headcountData.map(d => d.marketing),
+          data: visibleSeries.Marketing ? headcountData.map(d => d.marketing) : [],
           lineStyle: {
             width: 2,
-            color: dark ? '#a78bfa' : '#7c3aed',
+            color: '#8e4ec6',
           },
           areaStyle: {
             color: dark ? marketingGradientDark : marketingGradientLight,
@@ -1085,10 +1071,10 @@ function HeadcountTrendChart() {
           name: 'Operations',
           type: 'line',
           symbol: 'none',
-          data: headcountData.map(d => d.operations),
+          data: visibleSeries.Operations ? headcountData.map(d => d.operations) : [],
           lineStyle: {
             width: 2,
-            color: dark ? '#86efac' : '#22c55e',
+            color: '#44a948',
           },
           areaStyle: {
             color: dark ? operationsGradientDark : operationsGradientLight,
@@ -1115,7 +1101,7 @@ function HeadcountTrendChart() {
       resizeObserver.disconnect();
       chart.dispose();
     };
-  }, [dark, gridColor, labelColor, tooltipBg, tooltipBorder, tooltipTextSecondary, tooltipTextPrimary, headcountColors]);
+  }, [dark, gridColor, labelColor, tooltipBg, tooltipBorder, tooltipTextSecondary, tooltipTextPrimary, headcountColors, visibleSeries]);
 
   return (
     <>
@@ -1144,7 +1130,7 @@ function HeadcountTrendChart() {
           <PopoverItem label="Ask GiGi" noCheck onClick={() => setExportPopoverOpen(false)} />
         </Popover>
         <div style={{ width: '100%' }}>
-          <div ref={chartRef} style={{ width: '100%', height: 235 }} />
+          <div ref={chartRef} style={{ width: '100%', height: 220 }} />
         </div>
         <div className="hr-bar-chart-legend">
           <div className="hr-bar-legend-row">
@@ -1193,6 +1179,7 @@ function LeaveUsageChart() {
   const chartRef = useRef<HTMLDivElement>(null);
   const chartInstance = useRef<echarts.ECharts | null>(null);
   const { dark } = useDarkMode();
+  const [visibleLeave, setVisibleLeave] = useState({ annual: true, sick: true, unpaid: true, total: true });
 
   const gridColor = dark ? 'rgba(255, 255, 255, 0.12)' : '#e5e5e5';
   const labelColor = dark ? 'rgba(255, 255, 255, 0.62)' : 'rgba(0, 0, 0, 0.45)';
@@ -1210,10 +1197,14 @@ function LeaveUsageChart() {
     unpaid: dark ? '#facc15' : '#ffca2f',        // yellow
   };
 
+  const toggleLeave = (leaveKey: 'annual' | 'sick' | 'unpaid' | 'total') => {
+    setVisibleLeave(prev => ({ ...prev, [leaveKey]: !prev[leaveKey] }));
+  };
+
   useEffect(() => {
     if (!chartRef.current) return;
 
-    const chart = echarts.init(chartRef.current, null, { renderer: 'canvas' });
+    const chart = echarts.init(chartRef.current, null, { renderer: 'svg' });
     chartInstance.current = chart;
 
     const chartOption = {
@@ -1241,8 +1232,9 @@ function LeaveUsageChart() {
         formatter: (params: any) => {
           const items = params.map((p: any) => {
             const isLine = p.seriesType === 'line';
+            const lineColor = p.seriesName === 'Total Trend' ? neutralSolidDefaultColor : p.color;
             const marker = isLine
-              ? `<span style="display: inline-block; width: 16px; height: 3px; background: ${p.color}; border-radius: 1px; margin-right: 4px;"></span>`
+              ? `<span style="display: inline-block; width: 16px; height: 3px; background: ${lineColor}; border-radius: 1px; margin-right: 4px;"></span>`
               : `<span style="display: inline-block; width: 10px; height: 10px; background: ${p.color}; border-radius: 2px; margin-right: 4px;"></span>`;
             return `<div style="padding: 4px 0;">${marker}${p.seriesName}: <span style="font-weight: var(--font-weight-secondary); color: ${tooltipTextPrimary};">${p.value}</span></div>`;
           }).join('');
@@ -1253,8 +1245,8 @@ function LeaveUsageChart() {
         show: false,
       },
       grid: {
-        left: 0,
-        right: 0,
+        left: 16,
+        right: 16,
         top: 16,
         bottom: 60,
         containLabel: true,
@@ -1268,7 +1260,7 @@ function LeaveUsageChart() {
           fontFamily: 'var(--font-family-sans)',
           fontSize: 'var(--font-size-body-base)',
           fontWeight: 'var(--font-weight-tertiary)',
-          color: 'var(--color-content-neutral-tertiary)',
+          color: '#525252',
         },
       },
       yAxis: [
@@ -1278,7 +1270,7 @@ function LeaveUsageChart() {
           axisTick: { show: false },
           splitLine: {
             lineStyle: {
-              color: gridColor,
+              color: dark ? '#2a2a2a' : '#f0f0f0',
               type: 'solid',
               width: 1,
             },
@@ -1287,7 +1279,7 @@ function LeaveUsageChart() {
             fontFamily: 'var(--font-family-sans)',
             fontSize: 'var(--font-size-body-base)',
             fontWeight: 'var(--font-weight-tertiary)',
-            color: 'var(--color-content-neutral-tertiary)',
+            color: '#525252',
           },
         },
         {
@@ -1299,11 +1291,11 @@ function LeaveUsageChart() {
             fontFamily: 'var(--font-family-sans)',
             fontSize: 'var(--font-size-body-base)',
             fontWeight: 'var(--font-weight-tertiary)',
-            color: 'var(--color-content-neutral-tertiary)',
+            color: '#525252',
             interval: 30,
           },
           min: 120,
-          max: 280,
+          max: 270,
         },
       ],
       series: [
@@ -1312,7 +1304,7 @@ function LeaveUsageChart() {
           type: 'bar',
           stack: 'leave',
           yAxisIndex: 0,
-          data: leaveUsageData.map(d => d.annual),
+          data: visibleLeave.annual ? leaveUsageData.map(d => d.annual) : [],
           itemStyle: {
             color: leaveUsageColors.annual,
             borderRadius: [0, 0, 0, 0],
@@ -1324,7 +1316,7 @@ function LeaveUsageChart() {
           type: 'bar',
           stack: 'leave',
           yAxisIndex: 0,
-          data: leaveUsageData.map(d => d.sick),
+          data: visibleLeave.sick ? leaveUsageData.map(d => d.sick) : [],
           itemStyle: {
             color: leaveUsageColors.sick,
           },
@@ -1335,7 +1327,7 @@ function LeaveUsageChart() {
           type: 'bar',
           stack: 'leave',
           yAxisIndex: 0,
-          data: leaveUsageData.map(d => d.unpaid),
+          data: visibleLeave.unpaid ? leaveUsageData.map(d => d.unpaid) : [],
           itemStyle: {
             color: leaveUsageColors.unpaid,
             borderRadius: [4, 4, 0, 0],
@@ -1346,7 +1338,7 @@ function LeaveUsageChart() {
           name: 'Total Trend',
           type: 'line',
           yAxisIndex: 1,
-          data: leaveUsageData.map(d => d.total),
+          data: visibleLeave.total ? leaveUsageData.map(d => d.total) : [],
           smooth: false,
           showSymbol: false,
           lineStyle: {
@@ -1372,7 +1364,7 @@ function LeaveUsageChart() {
       resizeObserver.disconnect();
       chart.dispose();
     };
-  }, [dark, gridColor, labelColor, tooltipBg, tooltipBorder, tooltipTextSecondary, tooltipTextPrimary, leaveUsageColors]);
+  }, [dark, gridColor, labelColor, tooltipBg, tooltipBorder, tooltipTextSecondary, tooltipTextPrimary, leaveUsageColors, visibleLeave]);
 
   return (
     <ChartCard
@@ -1399,27 +1391,43 @@ function LeaveUsageChart() {
         <PopoverItem label="Export data" noCheck onClick={() => setExportPopoverOpen(false)} />
         <PopoverItem label="Ask GiGi" noCheck onClick={() => setExportPopoverOpen(false)} />
       </Popover>
-      <div style={{ width: '100%' }}>
-        <div ref={chartRef} style={{ width: '100%', height: 235 }} />
-      </div>
-      <div className="hr-bar-chart-legend">
-        <div className="hr-bar-legend-row">
-          <span className="hr-bar-legend-item">
-            <span className="hr-bar-legend-color" style={{ background: leaveUsageColors.annual }} />
-            Annual Leave
-          </span>
-          <span className="hr-bar-legend-item">
-            <span className="hr-bar-legend-color" style={{ background: leaveUsageColors.sick }} />
-            Sick Leave
-          </span>
-          <span className="hr-bar-legend-item">
-            <span className="hr-bar-legend-color" style={{ background: leaveUsageColors.unpaid }} />
-            Unpaid Leave
-          </span>
-          <span className="hr-bar-legend-item">
-            <span className="hr-line-legend-color" style={{ background: neutralSolidDefaultColor }} />
-            Total Trend
-          </span>
+      <div style={{ width: '100%', height: 260, position: 'relative' }}>
+        <div ref={chartRef} style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }} />
+        <div className="hr-bar-chart-legend" style={{ position: 'absolute', bottom: 'var(--gap-small)', left: 0, right: 0 }}>
+          <div className="hr-bar-legend-row">
+            <span
+              className="hr-bar-legend-item"
+              onClick={() => toggleLeave('annual')}
+              style={{ cursor: 'pointer', opacity: visibleLeave.annual ? 1 : 0.4 }}
+            >
+              <span className="hr-bar-legend-color" style={{ background: leaveUsageColors.annual }} />
+              Annual Leave
+            </span>
+            <span
+              className="hr-bar-legend-item"
+              onClick={() => toggleLeave('sick')}
+              style={{ cursor: 'pointer', opacity: visibleLeave.sick ? 1 : 0.4 }}
+            >
+              <span className="hr-bar-legend-color" style={{ background: leaveUsageColors.sick }} />
+              Sick Leave
+            </span>
+            <span
+              className="hr-bar-legend-item"
+              onClick={() => toggleLeave('unpaid')}
+              style={{ cursor: 'pointer', opacity: visibleLeave.unpaid ? 1 : 0.4 }}
+            >
+              <span className="hr-bar-legend-color" style={{ background: leaveUsageColors.unpaid }} />
+              Unpaid Leave
+            </span>
+            <span
+              className="hr-bar-legend-item"
+              onClick={() => toggleLeave('total')}
+              style={{ cursor: 'pointer', opacity: visibleLeave.total ? 1 : 0.4 }}
+            >
+              <span className="hr-line-legend-color" style={{ background: neutralSolidDefaultColor }} />
+              Total Trend
+            </span>
+          </div>
         </div>
       </div>
     </ChartCard>
