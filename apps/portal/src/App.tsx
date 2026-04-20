@@ -5,7 +5,8 @@ import type { WorkspaceItem } from '@zen/components';
 import {
   Home03, BarChart01, Users, Settings01, Bell01,
   ShoppingCart, Calendar, Mail01, Globe01,
-  Activity, CreditCard, FileDoc, Heart, Lock01,
+  Activity, FileDoc, Lock01, BookOpen, FileSearch,
+  LineChartUp, PieChart01, HeartHand, Clock, Briefcase,
 } from '@zen/icons/line';
 import { getApp } from './app-registry';
 import { AppIcon } from './AppIcon';
@@ -28,7 +29,7 @@ export function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const parts = location.pathname.replace(/^\//, '').split('/');
-  const ws = parts[0] || 'portal';
+  const ws = parts[0] || 'home';
   const page = parts[1] || 'dashboard';
 
   const setPage = (p: string) => navigate(`/${ws}/${p}`);
@@ -46,14 +47,14 @@ export function App() {
 
   const workspaces: WorkspaceItem[] = [
     {
-      id: 'portal',
-      label: 'Portal',
+      id: 'home',
+      label: 'Home',
       icon: dockIcon('home'),
       children: (
         <>
           <SidebarItem icon={<Home03 size={20} />} label="Dashboard" selected={page === 'dashboard'} onClick={() => setPage('dashboard')} />
-          <SidebarItem icon={<BarChart01 size={20} />} label="Analytics" selected={page === 'analytics'} onClick={() => setPage('analytics')} />
-          <SidebarItem icon={<Users size={20} />} label="Users" counter={128} selected={page === 'users'} onClick={() => setPage('users')} />
+          <SidebarItem icon={<BarChart01 size={20} />} label="Overview" selected={page === 'overview'} onClick={() => setPage('overview')} />
+          <SidebarItem icon={<Users size={20} />} label="Team" counter={128} selected={page === 'team'} onClick={() => setPage('team')} />
           <SidebarItem icon={<Mail01 size={20} />} label="Messages" counter={3} selected={page === 'messages'} onClick={() => setPage('messages')} />
           <SidebarItem icon={<Calendar size={20} />} label="Calendar" selected={page === 'calendar'} onClick={() => setPage('calendar')} />
           <SidebarItem icon={<ShoppingCart size={20} />} label="Orders" selected={page === 'orders'} onClick={() => setPage('orders')} />
@@ -68,43 +69,44 @@ export function App() {
       ),
     },
     {
-      id: 'billing',
-      label: 'Billing',
+      id: 'docs',
+      label: 'Docs',
       icon: dockIcon('docs'),
       children: (
         <>
-          <SidebarItem icon={<CreditCard size={20} />} label="Invoices" selected={page === 'invoices'} onClick={() => setPage('invoices')} />
-          <SidebarItem icon={<FileDoc size={20} />} label="Statements" selected={page === 'statements'} onClick={() => setPage('statements')} />
-          <SidebarItem icon={<ShoppingCart size={20} />} label="Subscriptions" selected={page === 'subscriptions'} onClick={() => setPage('subscriptions')} />
-          <SidebarItem icon={<Activity size={20} />} label="Usage" selected={page === 'usage'} onClick={() => setPage('usage')} />
+          <SidebarItem icon={<BookOpen size={20} />} label="Guides" selected={page === 'guides'} onClick={() => setPage('guides')} />
+          <SidebarItem icon={<FileDoc size={20} />} label="API Reference" selected={page === 'api'} onClick={() => setPage('api')} />
+          <SidebarItem icon={<FileSearch size={20} />} label="Search Docs" selected={page === 'search'} onClick={() => setPage('search')} />
+          <SidebarItem icon={<Activity size={20} />} label="Changelog" selected={page === 'changelog'} onClick={() => setPage('changelog')} />
         </>
       ),
       footer: (
-        <SidebarItem icon={<Settings01 size={20} />} label="Billing Settings" />
+        <SidebarItem icon={<Settings01 size={20} />} label="Docs Settings" />
       ),
     },
     {
-      id: 'crm',
-      label: 'CRM',
-      icon: dockIcon('apollo'),
+      id: 'analytics',
+      label: 'Analytics',
+      icon: dockIcon('analytics'),
       children: (
         <>
-          <SidebarItem icon={<Users size={20} />} label="Contacts" selected={page === 'contacts'} onClick={() => setPage('contacts')} />
-          <SidebarItem icon={<Heart size={20} />} label="Deals" selected={page === 'deals'} onClick={() => setPage('deals')} />
-          <SidebarItem icon={<Mail01 size={20} />} label="Campaigns" selected={page === 'campaigns'} onClick={() => setPage('campaigns')} />
-          <SidebarItem icon={<Globe01 size={20} />} label="Leads" selected={page === 'leads'} onClick={() => setPage('leads')} />
+          <SidebarItem icon={<LineChartUp size={20} />} label="Performance" selected={page === 'performance'} onClick={() => setPage('performance')} />
+          <SidebarItem icon={<PieChart01 size={20} />} label="Segments" selected={page === 'segments'} onClick={() => setPage('segments')} />
           <SidebarItem icon={<BarChart01 size={20} />} label="Reports" selected={page === 'reports'} onClick={() => setPage('reports')} />
+          <SidebarItem icon={<Globe01 size={20} />} label="Funnels" selected={page === 'funnels'} onClick={() => setPage('funnels')} />
         </>
       ),
     },
     {
-      id: 'hr',
-      label: 'Human Resources',
-      icon: dockIcon('analytics'),
+      id: 'hra',
+      label: 'HRA',
+      icon: dockIcon('hra'),
       children: (
         <>
           <SidebarItem icon={<Users size={20} />} label="Employees" selected={page === 'employees'} onClick={() => setPage('employees')} />
-          <SidebarItem icon={<Calendar size={20} />} label="Time Off" selected={page === 'timeoff'} onClick={() => setPage('timeoff')} />
+          <SidebarItem icon={<Briefcase size={20} />} label="Recruitment" selected={page === 'recruitment'} onClick={() => setPage('recruitment')} />
+          <SidebarItem icon={<Clock size={20} />} label="Time Off" selected={page === 'timeoff'} onClick={() => setPage('timeoff')} />
+          <SidebarItem icon={<HeartHand size={20} />} label="Benefits" selected={page === 'benefits'} onClick={() => setPage('benefits')} />
           <SidebarItem icon={<Lock01 size={20} />} label="Permissions" selected={page === 'permissions'} onClick={() => setPage('permissions')} />
         </>
       ),
