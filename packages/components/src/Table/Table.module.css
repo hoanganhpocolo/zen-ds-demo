@@ -429,15 +429,24 @@
  * z-index: -1 paints ::before above td's own background (step 1 of the
  * stacking context) but below td's content (steps 3-7), which is correct.
  */
+/* Register as animatable color property so transitions interpolate smoothly.
+ * inherits: true so ::before sees the value set on the <td> parent */
+@property --_sticky-tint {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: transparent;
+}
+
 .td-sticky-left::before,
 .td-sticky-right::before {
   content: '';
   position: absolute;
   inset: 0;
   background-color: var(--color-bg-surface-default);
-  background-image: var(--_sticky-overlay, none);
+  background-image: linear-gradient(var(--_sticky-tint), var(--_sticky-tint));
   z-index: -1;
   pointer-events: none;
+  transition: --_sticky-tint 150ms ease;
 }
 
 /* State: row hover */
@@ -445,45 +454,30 @@
 .tr:hover .td-sticky-right,
 .td-sticky-left.td-hover,
 .td-sticky-right.td-hover {
-  --_sticky-overlay: linear-gradient(
-    var(--comp-table-cell-color-bg-hover),
-    var(--comp-table-cell-color-bg-hover)
-  );
+  --_sticky-tint: var(--comp-table-cell-color-bg-hover);
 }
 
 /* State: row selected */
 .td-sticky-left.td-selected,
 .td-sticky-right.td-selected {
-  --_sticky-overlay: linear-gradient(
-    var(--comp-table-cell-color-bg-selected),
-    var(--comp-table-cell-color-bg-selected)
-  );
+  --_sticky-tint: var(--comp-table-cell-color-bg-selected);
 }
 
 /* State: sort column highlight */
 .td-sticky-left.td-sorted,
 .td-sticky-right.td-sorted {
-  --_sticky-overlay: linear-gradient(
-    var(--comp-table-cell-color-bg-hover),
-    var(--comp-table-cell-color-bg-hover)
-  );
+  --_sticky-tint: var(--comp-table-cell-color-bg-hover);
 }
 
 /* State: child row */
 .tr-child .td-sticky-left,
 .tr-child .td-sticky-right {
-  --_sticky-overlay: linear-gradient(
-    var(--color-bg-fill-neutral-subtle-light-default),
-    var(--color-bg-fill-neutral-subtle-light-default)
-  );
+  --_sticky-tint: var(--color-bg-fill-neutral-subtle-light-default);
 }
 
 .tr-child:hover .td-sticky-left,
 .tr-child:hover .td-sticky-right {
-  --_sticky-overlay: linear-gradient(
-    var(--comp-table-cell-color-bg-hover),
-    var(--comp-table-cell-color-bg-hover)
-  );
+  --_sticky-tint: var(--comp-table-cell-color-bg-hover);
 }
 
 /* Shadow: gradient ::after extending into the adjacent column */

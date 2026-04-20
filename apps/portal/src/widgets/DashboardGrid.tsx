@@ -1,7 +1,7 @@
 import { useState, useCallback, useMemo, useRef } from 'react';
 import { Button, Modal, Popover, PopoverItem, Segmented } from '@zen/components';
 import { DotsHorizontal, Trash } from '@zen/icons/line';
-import { getWidget, getAllWidgets } from './registry';
+import { getWidget, getAllWidgets, WIDGET_CATEGORIES, type WidgetCategory } from './registry';
 import './widgets.css';
 import './widget-content.css';
 
@@ -11,6 +11,7 @@ import './TicketsWidget';
 import './UpdatesWidget';
 import './AnalyticsWidget';
 import './ToolsWidget';
+import './FinanceWidget';
 
 export type WidgetSize = 1 | 2 | 3;
 
@@ -150,6 +151,7 @@ export function DashboardGrid() {
   const [slots, setSlots] = useState<GridSlot[]>(() => loadState() ?? normalize(DEFAULT_SLOTS));
   const [showAddPanel, setShowAddPanel] = useState(false);
   const [addTargetId, setAddTargetId] = useState<string | null>(null);
+  const [addCategory, setAddCategory] = useState<WidgetCategory>('home');
 
   const commit = useCallback((next: GridSlot[]) => {
     const n = normalize(next);
@@ -208,7 +210,7 @@ export function DashboardGrid() {
     commit(next);
   }, [slots, commit]);
 
-  /* Add → place widget into an empty slot (always size 1) */
+  /* Add → place widget into an empty slot, respecting widget's defaultW when possible */
   const handleAdd = useCallback((widgetId: string) => {
     if (!addTargetId) return;
     const def = getWidget(widgetId);
@@ -216,8 +218,33 @@ export function DashboardGrid() {
     const idx = slots.findIndex(s => s.id === addTargetId);
     if (idx === -1) return;
 
+    // Try to honor defaultW; if not enough adjacent empties, clamp to what fits
+    const desired = def.defaultW;
+    const rightAvail = adjacentEmptiesAfter(slots, idx);
+    const leftAvail = adjacentEmptiesBefore(slots, idx);
+    const maxPossible = 1 + rightAvail + leftAvail;
+    const size = Math.min(desired, maxPossible) as WidgetSize;
+
     const next = [...slots];
-    next[idx] = { type: 'widget', id: `${widgetId}-${Date.now()}`, widgetId, size: 1 };
+    let widgetIdx = idx;
+
+    if (size > 1) {
+      // Consume adjacent empties (right first, then left)
+      const needed = size - 1;
+      const takeRight = Math.min(needed, rightAvail);
+      let removed = 0;
+      for (let i = widgetIdx + 1; removed < takeRight;) {
+        if (next[i].type === 'empty') { next.splice(i, 1); removed++; }
+        else i++;
+      }
+      const takeLeft = needed - takeRight;
+      removed = 0;
+      for (let i = widgetIdx - 1; removed < takeLeft; i--) {
+        if (next[i].type === 'empty') { next.splice(i, 1); removed++; widgetIdx--; }
+      }
+    }
+
+    next[widgetIdx] = { type: 'widget', id: `${widgetId}-${Date.now()}`, widgetId, size };
     commit(next);
     setShowAddPanel(false);
     setAddTargetId(null);
@@ -293,25 +320,28 @@ export function DashboardGrid() {
         <div className="add-widget-body">
           <Segmented
             size="medium"
-            items={[
-              { value: 'home', label: 'Home' },
-              { value: 'apollo', label: 'Apollo' },
-              { value: 'analytics', label: 'Analytics' },
-              { value: 'fpa', label: 'FPA' },
-              { value: 'legal', label: 'Legal' },
-            ]}
-            defaultValue="home"
+            items={WIDGET_CATEGORIES.map((c) => ({ value: c.value, label: c.label }))}
+            value={addCategory}
+            onChange={(v) => setAddCategory(v as WidgetCategory)}
           />
           <div className="add-widget-panel-horizontal">
-            {getAllWidgets().map(def => (
-              <button key={def.id} className="add-widget-option-horizontal" onClick={() => handleAdd(def.id)}>
-                <span className="add-widget-option-emoji">{def.emoji}</span>
-                <div className="add-widget-option-info">
-                  <span className="text-body-base wc-bold">{def.title}</span>
-                  <span className="text-body-small wc-tertiary-text">{def.description}</span>
-                </div>
-              </button>
-            ))}
+            {getAllWidgets().filter((def) => def.category === addCategory).length === 0 ? (
+              <p className="text-body-base wc-tertiary-text add-widget-empty">
+                No widgets in this category.
+              </p>
+            ) : (
+              getAllWidgets()
+                .filter((def) => def.category === addCategory)
+                .map((def) => (
+                  <button key={def.id} className="add-widget-option-horizontal" onClick={() => handleAdd(def.id)}>
+                    <span className="add-widget-option-emoji">{def.emoji}</span>
+                    <div className="add-widget-option-info">
+                      <span className="text-body-base wc-bold">{def.title}</span>
+                      <span className="text-body-small wc-tertiary-text">{def.description}</span>
+                    </div>
+                  </button>
+                ))
+            )}
           </div>
         </div>
       </Modal>

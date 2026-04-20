@@ -201,6 +201,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-2xsmall);
+  /* Fit up to 3 widget options — tallest category — so modal doesn't jump between tabs */
+  min-height: 252px;
 }
 
 .add-widget-option-horizontal {
@@ -225,6 +227,11 @@
 .add-widget-option-emoji {
   font-size: 28px;
   flex-shrink: 0;
+}
+
+.add-widget-empty {
+  padding: var(--padding-xlarge) 0;
+  text-align: center;
 }
 
 .add-widget-option-info {

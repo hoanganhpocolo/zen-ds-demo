@@ -153,7 +153,8 @@ export function AnalyticsWidget({ menu }: { menu?: React.ReactNode }) {
 
 registerWidget({
   id: 'analytics',
-  title: 'Analytics',
+  title: 'Game Dashboard',
+  category: 'analytics',
   defaultW: 2,
   defaultH: 4,
   minW: 2,

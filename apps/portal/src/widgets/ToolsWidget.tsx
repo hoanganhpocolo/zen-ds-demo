@@ -31,7 +31,8 @@ export function ToolsWidget({ menu }: { menu?: React.ReactNode }) {
 
 registerWidget({
   id: 'tools',
-  title: 'Favourited Tools',
+  title: 'Favourite Tools',
+  category: 'home',
   defaultW: 1,
   defaultH: 4,
   minH: 2,

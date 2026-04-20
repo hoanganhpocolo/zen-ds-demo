@@ -32,7 +32,7 @@ function useCalendarInfo() {
 function EventList() {
   return (
     <div className="wc-event-list">
-      {events.map((e, i) => (
+      {events.slice(0, 5).map((e, i) => (
         <div key={i} className="wc-event-item">
           <p className="text-body-base wc-bold">{e.title}</p>
           <p className="text-body-small wc-tertiary-text">{e.time}  ·  {e.location}</p>
@@ -48,7 +48,6 @@ export function GreetingWidget({ menu, widgetSize }: { menu?: React.ReactNode; w
 
   return (
     <WidgetShell
-      maxHeight={418}
       title=""
       icon={
         <div className="wc-calendar-header">
@@ -95,6 +94,7 @@ export function GreetingWidget({ menu, widgetSize }: { menu?: React.ReactNode; w
 registerWidget({
   id: 'greeting',
   title: 'Calendar',
+  category: 'home',
   defaultW: 1,
   defaultH: 3,
   minH: 2,

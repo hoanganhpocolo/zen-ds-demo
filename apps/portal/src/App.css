@@ -131,6 +131,69 @@
   gap: 2px;
 }
 
+.portal-ws-dropdown-danger {
+  color: var(--color-content-negative-highlight) !important;
+}
+
+/* ── Add Workspace Modal ── */
+
+.portal-add-ws-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  width: 100%;
+  min-width: 0;
+}
+
+.portal-add-ws-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+  max-height: 360px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bg-fill-neutral-subtle-default) transparent;
+}
+
+.portal-add-ws-item {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  padding: var(--padding-small) var(--padding-medium);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-base);
+  background: var(--color-bg-fill-neutral-flat-default);
+  color: var(--color-content-neutral-primary);
+  cursor: pointer;
+  text-align: left;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.portal-add-ws-item:hover {
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+.portal-add-ws-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.portal-add-ws-info > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portal-add-ws-empty {
+  padding: var(--padding-xlarge) 0;
+  text-align: center;
+}
+
 /* ── Responsive — Tablet ── */
 
 @media (max-width: 1024px) {
