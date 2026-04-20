@@ -13,6 +13,8 @@ import { APP_REGISTRY, getApp } from './app-registry';
 import { AppIcon } from './AppIcon';
 import { useDarkMode } from './useDarkMode';
 import { HomePage } from './pages/HomePage';
+import { CentralizedDashboardPage } from './pages/CentralizedDashboardPage';
+import { NexusDocsDetailPage } from './pages/NexusDocsDetailPage';
 import './App.css';
 
 function DockLogo() {
@@ -237,8 +239,11 @@ export function App() {
 
       <main className="portal-main">
         <div className="portal-content">
-          {page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}
-          {page !== 'dashboard' && (
+          {ws === 'centralized' && page === 'centralized-dashboard' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws === 'centralized' && page === 'docs' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} variant="docs" />}
+          {ws === 'centralized' && page === 'nexus-docs' && <NexusDocsDetailPage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws !== 'centralized' && page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws !== 'centralized' && page !== 'dashboard' && (
             <div className="portal-empty">
               <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
               <p className="text-body-base portal-empty-text">Page coming soon...</p>
