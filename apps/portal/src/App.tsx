@@ -93,6 +93,15 @@ function buildWorkspaceContent(
           </>
         ),
       };
+    case 'centralized':
+      return {
+        children: (
+          <>
+            <SidebarItem icon={<BarChart01 size={20} />} label="Dashboard" selected={sel('centralized-dashboard')} onClick={go('centralized-dashboard')} />
+            <SidebarItem icon={<FileDoc size={20} />} label="Docs" selected={sel('docs')} onClick={go('docs')} />
+          </>
+        ),
+      };
     default:
       return {
         children: (
@@ -108,7 +117,7 @@ function buildWorkspaceContent(
   }
 }
 
-const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra'];
+const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra', 'centralized'];
 const DOCK_STORAGE_KEY = 'portal-dock-ids-v1';
 
 function loadDockIds(): string[] {
