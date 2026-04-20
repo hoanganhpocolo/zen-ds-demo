@@ -29,7 +29,8 @@ export function UpdatesWidget({ menu }: { menu?: React.ReactNode }) {
 
 registerWidget({
   id: 'updates',
-  title: 'Recent Updates',
+  title: 'Event and News',
+  category: 'hra',
   defaultW: 1,
   defaultH: 3,
   minH: 2,

@@ -102,7 +102,6 @@
   width: 100%;
   flex: 1;
   min-height: 0;
-  max-height: calc(6 * 52px);
   overflow-y: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--color-bg-fill-neutral-subtle-default) transparent;
@@ -119,7 +118,7 @@
 }
 
 .wc-event-item:hover {
-  background: var(--color-bg-fill-white-solid-hover);
+  background: var(--color-bg-fill-neutral-flat-hover);
 }
 
 /* ── Tickets Widget ── */
@@ -157,7 +156,7 @@
 }
 
 .wc-ticket-item:hover {
-  background: var(--color-bg-fill-white-solid-hover);
+  background: var(--color-bg-fill-neutral-flat-hover);
 }
 
 .wc-ticket-info {
@@ -196,6 +195,50 @@
   border-bottom: none;
 }
 
+/* Last column (actions): shrink to button width */
+.wc-ticket-table th:last-child,
+.wc-ticket-table td:last-child {
+  width: 1%;
+  white-space: nowrap;
+  padding-left: var(--padding-2xsmall);
+  padding-right: var(--padding-2xsmall);
+}
+
+/* Actions button: hidden by default, appear on row hover / focus */
+.wc-ticket-table tbody td:last-child button {
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.wc-ticket-table tbody tr:hover td:last-child button,
+.wc-ticket-table tbody td:last-child:focus-within button {
+  opacity: 1;
+}
+
+/* ── Finance Widget ── */
+
+.wc-finance-header-line {
+  display: block;
+  line-height: 1.2;
+}
+
+/* Section divider row (STRATEGIC / FINANCIALS) */
+.wc-finance-section-cell {
+  padding-top: var(--padding-2xsmall) !important;
+  padding-bottom: var(--padding-2xsmall) !important;
+}
+
+.wc-finance-section-label {
+  color: var(--color-content-accent-highlight);
+  font-weight: var(--font-weight-primary);
+  text-transform: uppercase;
+}
+
+/* Remove bottom border on last row */
+.wc-finance-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
 /* ── Updates Widget (banner) ── */
 
 .wc-banner-img {
@@ -225,7 +268,7 @@
 }
 
 .wc-tool-item:hover {
-  background: var(--color-bg-fill-white-solid-hover);
+  background: var(--color-bg-fill-neutral-flat-hover);
 }
 
 

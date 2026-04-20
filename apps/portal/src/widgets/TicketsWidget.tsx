@@ -21,14 +21,15 @@ interface Ticket {
   statusColor: TicketStatusColor;
   name: string;
   color: TicketAvatarColor;
+  avatar: string;
 }
 
 const initialTickets: Ticket[] = [
-  { id: '#114051', date: '12 Nov', title: 'Report missing items', service: 'Nexus Tickets', status: 'In progress', statusColor: 'yellow', name: 'Luna Tran', color: 'accent' },
-  { id: '#214051', date: '8 Nov', title: 'PUBGM request access', service: 'Apollo', status: 'In progress', statusColor: 'yellow', name: 'Minh Nguyen', color: 'blue' },
-  { id: '#314051', date: '4 Nov', title: 'Campaign 2738 approval request', service: 'Apollo', status: 'Resolved', statusColor: 'green', name: 'Hoa Le', color: 'green' },
-  { id: '#314052', date: '1 Nov', title: 'Server maintenance notification', service: 'SDK Management', status: 'Resolved', statusColor: 'green', name: 'Duc Pham', color: 'purple' },
-  { id: '#414053', date: '28 Oct', title: 'SDK integration issue', service: 'SDK Management', status: 'In progress', statusColor: 'yellow', name: 'An Vo', color: 'orange' },
+  { id: '#114051', date: '12 Nov', title: 'Report missing items',           service: 'Nexus Tickets',  status: 'In progress', statusColor: 'yellow', name: 'Luna Tran',    color: 'accent', avatar: 'https://randomuser.me/api/portraits/women/44.jpg' },
+  { id: '#214051', date: '8 Nov',  title: 'PUBGM request access',           service: 'Apollo',         status: 'In progress', statusColor: 'yellow', name: 'Minh Nguyen',  color: 'blue',   avatar: 'https://randomuser.me/api/portraits/men/32.jpg' },
+  { id: '#314051', date: '4 Nov',  title: 'Campaign 2738 approval request', service: 'Apollo',         status: 'Resolved',    statusColor: 'green',  name: 'Hoa Le',       color: 'green',  avatar: 'https://randomuser.me/api/portraits/women/79.jpg' },
+  { id: '#314052', date: '1 Nov',  title: 'Server maintenance notification', service: 'SDK Management', status: 'Resolved',    statusColor: 'green',  name: 'Duc Pham',     color: 'purple', avatar: 'https://randomuser.me/api/portraits/men/40.jpg' },
+  { id: '#414053', date: '28 Oct', title: 'SDK integration issue',          service: 'SDK Management', status: 'In progress', statusColor: 'yellow', name: 'An Vo',        color: 'orange', avatar: 'https://randomuser.me/api/portraits/men/83.jpg' },
 ];
 
 function TicketActions({ onApprove, onReject }: { onApprove: () => void; onReject: () => void }) {
@@ -107,7 +108,7 @@ export function TicketsWidget({ menu, widgetSize }: { menu?: React.ReactNode; wi
                   <TableCell>{t.service}</TableCell>
                   <TableCell>
                     <div className="wc-ticket-requestor">
-                      <Avatar size="s" color={t.color}>{t.name.charAt(0)}</Avatar>
+                      <Avatar size="s" src={t.avatar} alt={t.name} />
                       <span>{t.name}</span>
                     </div>
                   </TableCell>
@@ -129,7 +130,7 @@ export function TicketsWidget({ menu, widgetSize }: { menu?: React.ReactNode; wi
         <div className="wc-ticket-list">
           {tickets.map((t, i) => (
             <div key={i} className="wc-ticket-item">
-              <Avatar size="m" color={t.color}>{t.name.charAt(0)}</Avatar>
+              <Avatar size="m" src={t.avatar} alt={t.name} />
               <div className="wc-ticket-info">
                 <p className="text-body-base wc-bold wc-truncate">{t.title}</p>
                 <p className="text-body-small wc-tertiary-text">{t.id} · {t.date} · {t.name}</p>
@@ -149,7 +150,8 @@ export function TicketsWidget({ menu, widgetSize }: { menu?: React.ReactNode; wi
 
 registerWidget({
   id: 'tickets',
-  title: 'Your Tickets',
+  title: 'Tickets',
+  category: 'home',
   defaultW: 1,
   defaultH: 3,
   minH: 2,

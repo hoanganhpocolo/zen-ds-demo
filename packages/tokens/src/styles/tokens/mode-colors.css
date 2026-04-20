@@ -600,9 +600,14 @@
   --color-white: #ffffff;
 }
 
-/* ── Brand contrast: content-inverse on dark/saturated brand hues ── */
+/* ── Brand contrast: white text on saturated brand hues (both themes) ── */
 [data-brand-bright="false"] {
-  --color-content-on-accent: var(--color-content-inverse);
+  --color-content-on-accent: #ffffff;
+}
+
+/* ── Brand contrast: dark text on bright brand hues (both themes) ── */
+[data-brand-bright="true"] {
+  --color-content-on-accent: rgba(0, 0, 0, 0.8);
 }
 
 [data-theme="dark"] {
@@ -1207,5 +1212,9 @@
 
 /* ── Brand contrast override for dark theme ── */
 [data-theme="dark"][data-brand-bright="false"] {
-  --color-content-on-accent: var(--color-content-inverse);
+  --color-content-on-accent: #ffffff;
+}
+
+[data-theme="dark"][data-brand-bright="true"] {
+  --color-content-on-accent: rgba(0, 0, 0, 0.8);
 }
