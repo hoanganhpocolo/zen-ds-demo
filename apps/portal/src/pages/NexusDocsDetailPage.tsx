@@ -233,12 +233,11 @@ function DocsBreadcrumbs() {
 export function NexusDocsDetailPage({ onMenuClick }: { onMenuClick?: () => void }) {
   return (
     <div className="nexus-docs-page">
-      <div className="nexus-docs-body">
+      <div className="portal-content">
         <TopBar onMenuClick={onMenuClick} />
-        <div className="nexus-docs-body-scroll">
-          <DocsMenuSidebar defaultSelected="home" defaultSelectedChild="change-mgmt" />
-          <div className="nexus-docs-middle">
-          <article className="nexus-docs-article">
+        <div className="nexus-docs-body">
+        <DocsMenuSidebar defaultSelected="home" defaultSelectedChild="change-mgmt" />
+        <article className="nexus-docs-article">
           <div className="nexus-docs-article-content">
             <div className="nexus-docs-hero">
               <img src="https://www.figma.com/api/mcp/asset/c6726eb1-d256-4966-a00f-c917b201e4d1" alt="" />
@@ -370,7 +369,6 @@ export function NexusDocsDetailPage({ onMenuClick }: { onMenuClick?: () => void 
           </div>
         </article>
         <DocsTOC />
-        </div>
         </div>
       </div>
     </div>

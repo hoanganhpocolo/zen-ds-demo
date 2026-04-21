@@ -37,6 +37,10 @@
   filter: brightness(0) invert(1);
 }
 
+[data-theme="dark"] .centralized-search-btn .search-icon {
+  color: white;
+}
+
 .centralized-header,
 .centralized-content {
   position: relative;

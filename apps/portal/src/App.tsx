@@ -101,7 +101,6 @@ function buildWorkspaceContent(
           <>
             <SidebarItem icon={<BarChart01 size={20} />} label="Dashboard" selected={sel('centralized-dashboard')} onClick={go('centralized-dashboard')} />
             <SidebarItem icon={<FileDoc size={20} />} label="Docs" selected={sel('docs')} onClick={go('docs')} />
-            <SidebarItem icon={<Users size={20} />} label="HR Dashboard" selected={sel('hr-dashboard')} onClick={go('hr-dashboard')} />
           </>
         ),
       };
