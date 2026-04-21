@@ -1,9 +1,20 @@
 {
   "includeCoAuthoredBy": false,
-  "statusLine": {
-    "type": "command",
-    "command": "node .claude/statusline.cjs",
-    "padding": 0
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:minimax-algeng-chat-tts-us.oss-us-east-1.aliyuncs.com)",
+      "Read(//d/VyTT4/GPP Workspace/**)",
+      "Bash(netstat -ano)",
+      "Bash(pnpm dev *)",
+      "Bash(pnpm --filter @zen/portal dev)",
+      "Bash(pnpm install *)",
+      "Bash(../node_modules/.bin/vite)",
+      "Bash(taskkill /F /IM node.exe)",
+      "Bash(lsof -ti:5178)",
+      "Bash(pkill -f \"5178\")",
+      "Bash(taskkill //F //PID 15800)",
+      "Read(//c/Users/cohit/AppData/Local/Temp/claude/d--VyTT4-GPP-Workspace-vnggp-design-system/85408036-97f0-4197-9765-80ec4a738a4f/tasks/**)"
+    ]
   },
   "hooks": {
     "SessionStart": [
@@ -113,5 +124,10 @@
         ]
       }
     ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "node .claude/statusline.cjs",
+    "padding": 0
   }
 }

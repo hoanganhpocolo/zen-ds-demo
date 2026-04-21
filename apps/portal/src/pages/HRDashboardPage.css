@@ -1,0 +1,229 @@
+/* ── HR Dashboard Page ── */
+.hr-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-canvas-default);
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.hr-content {
+  flex: 1;
+  padding: var(--padding-medium) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xsmall);
+  overflow-y: auto;
+}
+
+.hr-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-medium);
+  margin-bottom: var(--gap-small);
+}
+
+.hr-title-left {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+}
+
+.hr-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* ── Metrics Grid ── */
+.hr-metrics {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--gap-xsmall);
+}
+
+.hr-metric-card-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Charts Grid ── */
+.hr-charts-row-1 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-xsmall);
+}
+
+.hr-charts-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--gap-xsmall);
+}
+
+/* ── Chart Card ── */
+.hr-chart-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-base);
+  padding: var(--padding-small) var(--padding-medium);
+  box-shadow: var(--shadow-bottom-level-1);
+  min-width: 0;
+}
+
+.hr-chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--gap-xsmall);
+}
+
+.hr-chart-title {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-primary);
+}
+
+.hr-chart-action {
+  cursor: pointer;
+  color: var(--color-content-neutral-secondary);
+}
+
+.hr-chart-content {
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Horizontal Bar ── */
+.hr-horizontal-bar-wrapper {
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+}
+
+/* ── Bar Chart Legend ── */
+.hr-bar-chart-legend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  margin-top: var(--gap-medium);
+}
+
+.hr-bar-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-medium);
+}
+
+.hr-bar-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-tertiary);
+  color: var(--color-content-neutral-secondary);
+}
+
+.hr-bar-legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-2xsmall);
+}
+
+.hr-line-legend-color {
+  width: 12px;
+  height: 3px;
+  border-radius: var(--radius-2xsmall);
+}
+
+/* ── Doughnut Chart ── */
+.hr-doughnut-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hr-doughnut-chart-container {
+  min-height: 200px;
+  width: 100%;
+}
+
+.hr-doughnut-legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--gap-medium);
+  margin-top: var(--gap-medium);
+}
+
+.hr-doughnut-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.hr-doughnut-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-rounded);
+}
+
+.hr-doughnut-legend-text {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-tertiary);
+  color: var(--color-content-neutral-secondary);
+}
+
+/* ── Responsive — Tablet ── */
+@media (max-width: 1024px) {
+  .hr-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hr-charts-row-1 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hr-charts-row-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Responsive — Mobile ── */
+@media (max-width: 768px) {
+  .hr-content {
+    padding: var(--padding-small) 16px;
+  }
+
+  .hr-title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hr-metrics {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--gap-xsmall);
+  }
+
+  .hr-charts-row-1,
+  .hr-charts-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .hr-chart-card {
+    overflow: hidden;
+  }
+
+  .hr-charts-row-2 .hr-chart-card:last-child {
+    height: 320px;
+  }
+}

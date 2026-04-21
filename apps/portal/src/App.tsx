@@ -13,6 +13,10 @@ import { APP_REGISTRY, getApp } from './app-registry';
 import { AppIcon } from './AppIcon';
 import { useDarkMode } from './useDarkMode';
 import { HomePage } from './pages/HomePage';
+import { CentralizedDashboardPage } from './pages/CentralizedDashboardPage';
+import { CentralizedDocsPage } from './pages/CentralizedDocsPage';
+import { NexusDocsDetailPage } from './pages/NexusDocsDetailPage';
+import { HRDashboardPage } from './pages/HRDashboardPage';
 import './App.css';
 
 function DockLogo() {
@@ -91,6 +95,15 @@ function buildWorkspaceContent(
           </>
         ),
       };
+    case 'centralized':
+      return {
+        children: (
+          <>
+            <SidebarItem icon={<BarChart01 size={20} />} label="Dashboard" selected={sel('centralized-dashboard')} onClick={go('centralized-dashboard')} />
+            <SidebarItem icon={<FileDoc size={20} />} label="Docs" selected={sel('docs')} onClick={go('docs')} />
+          </>
+        ),
+      };
     default:
       return {
         children: (
@@ -106,7 +119,7 @@ function buildWorkspaceContent(
   }
 }
 
-const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra'];
+const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra', 'centralized'];
 const DOCK_STORAGE_KEY = 'portal-dock-ids-v1';
 
 function loadDockIds(): string[] {
@@ -236,9 +249,13 @@ export function App() {
       </div>
 
       <main className="portal-main">
-        <div className="portal-content">
-          {page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}
-          {page !== 'dashboard' && (
+        <div className={`portal-content ${page === 'nexus-docs' ? 'portal-content--nexus-docs' : ''}`}>
+          {ws === 'centralized' && page === 'centralized-dashboard' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws === 'centralized' && page === 'docs' && <CentralizedDocsPage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws === 'centralized' && page === 'nexus-docs' && <NexusDocsDetailPage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws === 'centralized' && page === 'hr-dashboard' && <HRDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws !== 'centralized' && page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}
+          {ws !== 'centralized' && page !== 'dashboard' && (
             <div className="portal-empty">
               <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
               <p className="text-body-base portal-empty-text">Page coming soon...</p>

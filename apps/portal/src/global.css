@@ -14,3 +14,12 @@ body {
 #root {
   min-height: 100vh;
 }
+
+/* ── Popover Override ── */
+[class*="zen-popover-content"],
+[class*="popover-content"],
+[data-radix-popover-content] {
+  min-width: unset !important;
+  max-width: 140px !important;
+  width: fit-content !important;
+}

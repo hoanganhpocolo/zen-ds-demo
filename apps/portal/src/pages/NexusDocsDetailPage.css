@@ -1,0 +1,383 @@
+/* ── Nexus Docs Page ── */
+.nexus-docs-page {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  background: var(--color-bg-canvas-default);
+  position: relative;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+/* ── Portal Content ── */
+.portal-content {
+  padding: 16px 16px 0 16px;
+}
+
+/* ── Body ── */
+.nexus-docs-body {
+  display: flex;
+  flex: 1;
+  align-items: flex-start;
+  gap: var(--gap-large);
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  height: calc(100vh - 65px);
+}
+
+/* ── Menu Sidebar ── */
+.nexus-docs-menu {
+  position: sticky;
+  top: var(--gap-medium);
+  width: 280px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-medium);
+  background: var(--color-bg-surface-default);
+  align-self: flex-start;
+}
+
+.nexus-docs-menu-select {
+  margin-bottom: var(--gap-large) !important;
+}
+
+.nexus-docs-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+}
+
+.nexus-docs-menu-children {
+  margin-left: var(--gap-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+}
+
+/* ── Article ── */
+.nexus-docs-article {
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.nexus-docs-article-content {
+  width: 100%;
+  padding: var(--padding-large) 0;
+}
+
+.nexus-docs-hero {
+  width: 100%;
+  max-height: 300px;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: var(--radius-large);
+  margin-bottom: var(--gap-2xlarge);
+}
+
+.nexus-docs-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.nexus-docs-article-top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  margin-bottom: var(--gap-2xlarge);
+}
+
+.nexus-docs-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-display-3);
+  font-weight: var(--font-weight-primary);
+  line-height: var(--line-height-display-3);
+  letter-spacing: var(--letter-spacing-display-3);
+  color: var(--color-content-neutral-primary);
+  margin: 0;
+}
+
+.nexus-docs-date {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  font-weight: var(--font-weight-tertiary);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  margin: 0;
+}
+
+.nexus-docs-tags {
+  display: flex;
+  gap: var(--gap-xsmall);
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+/* ── Meta / Description ── */
+.nexus-docs-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap-small);
+  margin: 0;
+}
+
+.nexus-docs-meta-row {
+  display: flex;
+  gap: var(--gap-xsmall);
+  align-items: center;
+}
+
+.nexus-docs-meta-label {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  font-weight: var(--font-weight-tertiary);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-secondary);
+  flex-shrink: 0;
+}
+
+.nexus-docs-meta-value {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  font-weight: var(--font-weight-tertiary);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+}
+
+.nexus-docs-meta-separator {
+  color: var(--color-content-placeholder);
+  margin: 0 var(--gap-xsmall);
+}
+
+/* ── Sections ── */
+.nexus-docs-section {
+  margin-bottom: var(--gap-large);
+}
+
+.nexus-docs-section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+.nexus-docs-section-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-primary);
+  line-height: var(--line-height-h4);
+  letter-spacing: var(--letter-spacing-h4);
+  color: var(--color-content-neutral-primary);
+  margin-bottom: var(--gap-medium);
+}
+
+.nexus-docs-section-paragraph {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-tertiary);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+  color: var(--color-content-neutral-secondary);
+  margin: 0;
+}
+
+/* ── Flowchart Legend ── */
+.nexus-docs-flowchart-legend {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-medium);
+  margin-top: var(--gap-large);
+}
+
+.nexus-docs-flowchart-item {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+}
+
+.nexus-docs-flowchart-box {
+  padding: var(--gap-xsmall) var(--gap-small);
+  border-radius: var(--radius-small);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  font-weight: var(--font-weight-tertiary);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-secondary);
+  flex-shrink: 0;
+}
+
+.nexus-docs-flowchart-desc {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  font-weight: var(--font-weight-tertiary);
+  line-height: var(--line-height-body-small);
+  letter-spacing: var(--letter-spacing-body-small);
+  color: var(--color-content-neutral-secondary);
+}
+
+.nexus-docs-flowchart-box--process {
+  background: var(--color-bg-fill-neutral-subtle-light-default);
+  border: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+.nexus-docs-flowchart-box--decision {
+  background: var(--color-bg-fill-warning-subtle-default);
+  border: 1px solid var(--color-border-warning-subtle);
+}
+
+.nexus-docs-flowchart-box--start {
+  background: var(--color-bg-fill-positive-subtle-default);
+  border: 1px solid var(--color-border-positive-subtle);
+}
+
+.nexus-docs-flowchart-box--connector {
+  background: var(--color-bg-fill-info-subtle-default);
+  border: 1px solid var(--color-border-info-subtle);
+}
+
+/* ── Change Types ── */
+.nexus-docs-change-types {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  margin-top: var(--gap-large);
+}
+
+.nexus-docs-change-type {
+  padding: var(--padding-medium);
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-large);
+}
+
+.nexus-docs-change-type-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-primary);
+  color: var(--color-content-neutral-primary);
+  margin-bottom: var(--gap-xsmall);
+}
+
+/* ── Roles ── */
+.nexus-docs-roles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-medium);
+  margin-top: var(--gap-large);
+}
+
+.nexus-docs-role {
+  padding: var(--padding-medium);
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-large);
+}
+
+.nexus-docs-role-title {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-primary);
+  color: var(--color-content-neutral-primary);
+  margin-bottom: var(--gap-xsmall);
+}
+
+/* ── Table of Contents ── */
+.nexus-docs-toc {
+  position: sticky;
+  top: 0;
+  width: 240px;
+  flex-shrink: 0;
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+  border-radius: var(--radius-large);
+  padding: var(--padding-medium) var(--padding-large) var(--padding-xsmall) var(--padding-large);
+  background: var(--color-bg-surface-default);
+  align-self: flex-start;
+  overflow: visible;
+  height: fit-content;
+}
+
+.nexus-docs-toc-title {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-extra);
+  font-weight: var(--font-weight-secondary);
+  line-height: var(--line-height-body-extra);
+  letter-spacing: var(--letter-spacing-body-extra);
+  color: var(--color-content-neutral-primary);
+  margin-bottom: var(--gap-small);
+  padding: 0;
+}
+
+.nexus-docs-toc-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-3xsmall);
+  padding: var(--padding-small) 0 0 0;
+}
+
+.nexus-docs-toc-item {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  font-weight: var(--font-weight-secondary);
+  line-height: var(--line-height-body-base);
+  letter-spacing: var(--letter-spacing-body-base);
+  color: var(--color-content-neutral-primary);
+  cursor: pointer;
+  padding: var(--gap-small) var(--padding-small);
+  border-radius: var(--radius-large);
+  transition: background 120ms ease;
+}
+
+.nexus-docs-toc-item:hover {
+  color: var(--color-content-neutral-primary);
+  background: var(--color-bg-fill-neutral-flat-hover);
+}
+
+/* ── Responsive — Tablet ── */
+@media (max-width: 1024px) {
+  .nexus-docs-menu {
+    width: 240px;
+  }
+
+  .nexus-docs-toc {
+    display: none;
+  }
+
+  .nexus-docs-flowchart-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .nexus-docs-roles {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Responsive — Mobile ── */
+@media (max-width: 768px) {
+  .nexus-docs-header-left h2 {
+    display: none;
+  }
+
+  .nexus-docs-header-search {
+    display: none;
+  }
+
+  .nexus-docs-menu {
+    display: none;
+  }
+
+  .nexus-docs-article {
+    padding: 0 var(--padding-medium);
+  }
+
+  .nexus-docs-title {
+    font-size: var(--font-size-h2);
+  }
+}

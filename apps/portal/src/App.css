@@ -46,6 +46,11 @@
   overflow-y: auto;
 }
 
+.portal-content.portal-content--nexus-docs {
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
 /* ── Metrics Row ── */
 
 .portal-metrics {
