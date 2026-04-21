@@ -147,7 +147,6 @@ const employmentData = [
   { name: 'Full Time', value: 1000, percentage: 80.3, color: '#f05a22' },
   { name: 'Part Time', value: 20, percentage: 1.6, color: '#0087ff' },
 ];
-
 const recruitmentData = [
   { day: '1 Feb', applications: 30, interviews: 25, offers: 8 },
   { day: '2 Feb', applications: 45, interviews: 12, offers: 5 },
