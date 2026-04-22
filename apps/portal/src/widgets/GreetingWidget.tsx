@@ -29,10 +29,10 @@ function useCalendarInfo() {
   return { month, monthShort, year, day, range: `${fmt(firstDay)} – ${fmt(lastDay)}`, eventDates };
 }
 
-function EventList() {
+function EventList({ maxItems = 5 }: { maxItems?: number }) {
   return (
     <div className="wc-event-list">
-      {events.slice(0, 5).map((e, i) => (
+      {events.slice(0, maxItems).map((e, i) => (
         <div key={i} className="wc-event-item">
           <p className="text-body-base wc-bold">{e.title}</p>
           <p className="text-body-small wc-tertiary-text">{e.time}  ·  {e.location}</p>
@@ -42,7 +42,7 @@ function EventList() {
   );
 }
 
-export function GreetingWidget({ menu, widgetSize }: { menu?: React.ReactNode; widgetSize?: WidgetSize }) {
+export function GreetingWidget({ menu, widgetSize, maxItems }: { menu?: React.ReactNode; widgetSize?: WidgetSize; maxItems?: number }) {
   const cal = useCalendarInfo();
   const isWide = (widgetSize ?? 1) >= 2;
 
@@ -81,11 +81,11 @@ export function GreetingWidget({ menu, widgetSize }: { menu?: React.ReactNode; w
             eventDates={cal.eventDates}
           />
           <div className="wc-calendar-wide-events">
-            <EventList />
+            <EventList maxItems={maxItems} />
           </div>
         </div>
       ) : (
-        <EventList />
+        <EventList maxItems={maxItems} />
       )}
     </WidgetShell>
   );

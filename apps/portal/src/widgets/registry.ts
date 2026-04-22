@@ -23,7 +23,7 @@ export interface WidgetDef {
   /** Min row span */
   minH?: number;
   /** Component to render */
-  component: ComponentType<{ menu?: React.ReactNode; widgetSize?: 1 | 2 | 3 }>;
+  component: ComponentType<{ menu?: React.ReactNode; widgetSize?: 1 | 2 | 3; maxItems?: number }>;
   /** Emoji or icon for add panel */
   emoji?: string;
   /** Description for add panel */

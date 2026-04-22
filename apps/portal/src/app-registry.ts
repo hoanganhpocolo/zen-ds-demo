@@ -2,7 +2,6 @@ import type { ComponentType } from 'react';
 import {
   Home03, Ticket01, Rocket, BarChartSquare01,
   CodeSquare01, MessageChatCircle, FileDoc, Users,
-  LayoutGrid01,
 } from '@zen/icons/line';
 
 export type AppColor =
@@ -27,7 +26,6 @@ export const APP_REGISTRY: AppDef[] = [
   { id: 'docs',        name: 'Docs',              desc: 'Documentation and knowledge base',             icon: FileDoc,           semantic: 'cyan' },
   { id: 'home',        name: 'Home',              desc: 'Home dashboard',                              icon: Home03,            semantic: 'accent' },
   { id: 'hra',         name: 'HRA',               desc: 'Human Resources App',                           icon: Users,             semantic: 'pink' },
-  { id: 'centralized', name: 'Centralized',       desc: 'Centralized Dashboard & Docs',                icon: LayoutGrid01,     semantic: 'orange' },
 ];
 
 export function getApp(id: string): AppDef | undefined {

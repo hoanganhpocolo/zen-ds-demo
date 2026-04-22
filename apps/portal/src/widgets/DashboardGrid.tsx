@@ -152,11 +152,23 @@ export function DashboardGrid() {
   const [showAddPanel, setShowAddPanel] = useState(false);
   const [addTargetId, setAddTargetId] = useState<string | null>(null);
   const [addCategory, setAddCategory] = useState<WidgetCategory>('home');
+  const [addPreviewId, setAddPreviewId] = useState<string | null>(null);
 
   // Reset to Home every time the modal opens (Segmented indicator also re-measures)
   useEffect(() => {
-    if (showAddPanel) setAddCategory('home');
+    if (showAddPanel) {
+      setAddCategory('home');
+      const firstInHome = getAllWidgets().find((def) => def.category === 'home');
+      setAddPreviewId(firstInHome?.id ?? null);
+    }
   }, [showAddPanel]);
+
+  // When switching category, select the first widget in that category
+  useEffect(() => {
+    if (!showAddPanel) return;
+    const firstInCategory = getAllWidgets().find((def) => def.category === addCategory);
+    setAddPreviewId(firstInCategory?.id ?? null);
+  }, [addCategory, showAddPanel]);
 
   const commit = useCallback((next: GridSlot[]) => {
     const n = normalize(next);
@@ -312,44 +324,92 @@ export function DashboardGrid() {
       </div>
 
       {/* Add widget modal */}
-      <Modal
-        open={showAddPanel}
-        layout="basic"
-        title="Add Widget"
-        primaryLabel="Reset Layout"
-        secondaryLabel="Cancel"
-        onPrimary={handleReset}
-        onSecondary={() => { setShowAddPanel(false); setAddTargetId(null); }}
-        onClose={() => { setShowAddPanel(false); setAddTargetId(null); }}
-      >
-        <div className="add-widget-body">
-          <Segmented
-            size="medium"
-            items={WIDGET_CATEGORIES.map((c) => ({ value: c.value, label: c.label }))}
-            value={addCategory}
-            onChange={(v) => setAddCategory(v as WidgetCategory)}
-          />
-          <div className="add-widget-panel-horizontal">
-            {getAllWidgets().filter((def) => def.category === addCategory).length === 0 ? (
-              <p className="text-body-base wc-tertiary-text add-widget-empty">
-                No widgets in this category.
-              </p>
-            ) : (
-              getAllWidgets()
-                .filter((def) => def.category === addCategory)
-                .map((def) => (
-                  <button key={def.id} className="add-widget-option-horizontal" onClick={() => handleAdd(def.id)}>
-                    <span className="add-widget-option-emoji">{def.emoji}</span>
-                    <div className="add-widget-option-info">
-                      <span className="text-body-base wc-bold">{def.title}</span>
-                      <span className="text-body-small wc-tertiary-text">{def.description}</span>
+      {(() => {
+        const categoryWidgets = getAllWidgets().filter((def) => def.category === addCategory);
+        const previewDef = addPreviewId ? getWidget(addPreviewId) : undefined;
+        const PreviewComp = previewDef?.component;
+        const closeModal = () => { setShowAddPanel(false); setAddTargetId(null); };
+        return (
+          <Modal
+            open={showAddPanel}
+            layout="big"
+            title="Add Widget"
+            primaryLabel="Add widget"
+            secondaryLabel="Reset Layout"
+            onPrimary={() => { if (addPreviewId) handleAdd(addPreviewId); }}
+            onSecondary={handleReset}
+            onClose={closeModal}
+          >
+            <div className="add-widget-layout">
+              {/* Top: centered segmented */}
+              <div className="add-widget-top">
+                <Segmented
+                  size="medium"
+                  items={WIDGET_CATEGORIES.map((c) => ({ value: c.value, label: c.label }))}
+                  value={addCategory}
+                  onChange={(v) => setAddCategory(v as WidgetCategory)}
+                  fullWidth
+                />
+              </div>
+
+              {/* Bottom: list + preview */}
+              <div className="add-widget-main">
+                <div className="add-widget-left">
+                  <div className="add-widget-panel-horizontal">
+                    {categoryWidgets.length === 0 ? (
+                      <p className="text-body-base wc-tertiary-text add-widget-empty">
+                        No widgets in this category.
+                      </p>
+                    ) : (
+                      categoryWidgets.map((def) => (
+                        <button
+                          key={def.id}
+                          className={[
+                            'add-widget-option-horizontal',
+                            addPreviewId === def.id ? 'add-widget-option-active' : '',
+                          ].filter(Boolean).join(' ')}
+                          onClick={() => setAddPreviewId(def.id)}
+                        >
+                          <span className="add-widget-option-emoji">{def.emoji}</span>
+                          <div className="add-widget-option-info">
+                            <span className="text-body-base wc-bold">{def.title}</span>
+                            <span className="text-body-small wc-tertiary-text">{def.description}</span>
+                          </div>
+                        </button>
+                      ))
+                    )}
+                  </div>
+                </div>
+
+                <div className="add-widget-preview">
+                  {previewDef && PreviewComp ? (
+                    <>
+                      <div className="add-widget-preview-header">
+                        <span className="text-body-small wc-tertiary-text">Preview</span>
+                        <span className="text-body-base wc-bold">{previewDef.title}</span>
+                      </div>
+                      <div
+                        className="add-widget-preview-stage"
+                        data-widget-size={previewDef.defaultW}
+                      >
+                        <div className="add-widget-preview-frame">
+                          <PreviewComp widgetSize={previewDef.defaultW} maxItems={3} />
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <div className="add-widget-preview-empty">
+                      <p className="text-body-base wc-tertiary-text">
+                        Select a widget to preview
+                      </p>
                     </div>
-                  </button>
-                ))
-            )}
-          </div>
-        </div>
-      </Modal>
+                  )}
+                </div>
+              </div>
+            </div>
+          </Modal>
+        );
+      })()}
     </div>
   );
 }

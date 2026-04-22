@@ -205,6 +205,92 @@
   min-height: 252px;
 }
 
+/* ── Add Widget Layout (segmented on top, list + preview below) ── */
+
+.add-widget-layout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  min-height: 420px;
+}
+
+.add-widget-top {
+  display: flex;
+  justify-content: center;
+}
+
+.add-widget-top>* {
+  width: 100%;
+  max-width: 560px;
+}
+
+.add-widget-main {
+  display: flex;
+  gap: var(--gap-large);
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+
+.add-widget-left {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+  min-width: 0;
+}
+
+.add-widget-preview {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  padding: var(--padding-medium);
+  background: var(--color-bg-canvas-alt);
+  border-radius: var(--radius-large);
+  border: 1px solid var(--color-border-neutral-subtle-light-default);
+}
+
+.add-widget-preview-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.add-widget-preview-stage {
+  height: 460px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: auto;
+}
+
+.add-widget-preview-frame {
+  width: 100%;
+  max-width: 560px;
+  pointer-events: none;
+}
+
+/* 1-col widget: wider in preview to feel premium (vs ~320px in real grid) */
+.add-widget-preview-stage[data-widget-size="1"] .add-widget-preview-frame {
+  max-width: 480px;
+}
+
+.add-widget-preview-empty {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Active preview state for option cards */
+.add-widget-option-active {
+  background: var(--color-bg-surface-default) !important;
+  /* box-shadow: var(--shadow-bottom-level-1); */
+}
+
 .add-widget-option-horizontal {
   display: flex;
   align-items: center;
@@ -279,7 +365,7 @@
   }
 
   /* Only show first empty add-widget cell */
-  .dashboard-cell-1:has(.add-widget-cell) ~ .dashboard-cell-1:has(.add-widget-cell) {
+  .dashboard-cell-1:has(.add-widget-cell)~.dashboard-cell-1:has(.add-widget-cell) {
     display: none;
   }
 }

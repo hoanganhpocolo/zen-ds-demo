@@ -1,47 +1,9 @@
-import { Avatar, Button, Search } from '@zen/components';
-import { Bell01, ChevronDown, Sun, Moon01, Menu01, SearchMedium } from '@zen/icons/line';
+import { SearchMedium } from '@zen/icons/line';
 import { useDarkMode } from '../useDarkMode';
 import { useNavigate } from 'react-router-dom';
+import { PortalTopBar } from '../components/PortalTopBar';
 import './CentralizedDashboardPage.css';
 import './HomePage.css';
-
-/* ── Top Bar ── */
-function getGreeting(): { text: string; icon: string } {
-  const hour = new Date().getHours();
-  if (hour >= 5 && hour < 12) return { text: 'Good morning', icon: '/Day.png' };
-  if (hour >= 12 && hour < 17) return { text: 'Good afternoon', icon: '/Day.png' };
-  if (hour >= 17 && hour < 21) return { text: 'Good evening', icon: '/Night.png' };
-  return { text: 'Good night', icon: '/Night.png' };
-}
-
-function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
-  const { dark, toggle } = useDarkMode();
-  const greeting = getGreeting();
-
-  return (
-    <div className="home-topbar">
-      <div className="home-topbar-mobile-left">
-        <Button variant="flat-primary" size="m" icon={<Menu01 size={20} />} onClick={onMenuClick} />
-      </div>
-      <div className="home-topbar-greeting">
-        <img src={greeting.icon} alt="" width={65} height={65} />
-        <h2 className="text-h4">{greeting.text}! Luna,</h2>
-      </div>
-      <div className="home-topbar-right">
-        <div id="header-search" className="home-topbar-search">
-          <Search size="default" placeholder="Search" />
-        </div>
-        <Button variant="flat-primary" size="m" icon={dark ? <Sun size={20} /> : <Moon01 size={20} />} onClick={toggle} />
-        <Button variant="flat-primary" size="m" icon={<Bell01 size={20} />} />
-        <div className="home-topbar-lang">
-          <span className="text-body-small">VN</span>
-          <ChevronDown size={16} />
-        </div>
-        <Avatar size="m" color="blue">N</Avatar>
-      </div>
-    </div>
-  );
-}
 
 /* ── Dashboard Card ── */
 interface DashboardCardProps {
@@ -115,7 +77,7 @@ export function CentralizedDashboardPage({ onMenuClick }: { onMenuClick?: () => 
   return (
     <div className="centralized-page">
       <img src="https://www.figma.com/api/mcp/asset/c24e3069-894c-4f4c-beb7-eaeaacdfaa1f" alt="" className="centralized-page-bg" />
-      <TopBar onMenuClick={onMenuClick} />
+      <PortalTopBar onMenuClick={onMenuClick} userName="Luna" showLogo={false} />
       <div className="centralized-content">
         <div className="centralized-welcome">
           <p className="text-h3 centralized-welcome-sub">All data and insight in one place</p>
@@ -140,7 +102,7 @@ export function CentralizedDashboardPage({ onMenuClick }: { onMenuClick?: () => 
                 logoDark={dashboard.logoDark}
                 textLogo={dashboard.textLogo}
                 logoColor={dashboard.logoColor}
-                onClick={dashboard.page ? () => navigate(`/centralized/${dashboard.page}`) : undefined}
+                onClick={dashboard.page ? () => navigate(`/analytics/${dashboard.page}`) : undefined}
               />
             ))}
           </div>
@@ -159,7 +121,7 @@ export function CentralizedDashboardPage({ onMenuClick }: { onMenuClick?: () => 
               logoDark={dashboard.logoDark}
               textLogo={dashboard.textLogo}
               logoColor={dashboard.logoColor}
-              onClick={dashboard.page ? () => navigate(`/centralized/${dashboard.page}`) : undefined}
+              onClick={dashboard.page ? () => navigate(`/analytics/${dashboard.page}`) : undefined}
             />
           ))}
         </div>

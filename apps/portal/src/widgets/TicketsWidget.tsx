@@ -70,12 +70,13 @@ function TicketActions({ onApprove, onReject }: { onApprove: () => void; onRejec
   );
 }
 
-export function TicketsWidget({ menu, widgetSize }: { menu?: React.ReactNode; widgetSize?: WidgetSize }) {
-  const [tickets, setTickets] = useState<Ticket[]>(initialTickets);
+export function TicketsWidget({ menu, widgetSize, maxItems }: { menu?: React.ReactNode; widgetSize?: WidgetSize; maxItems?: number }) {
+  const [allTickets, setAllTickets] = useState<Ticket[]>(initialTickets);
+  const tickets = maxItems != null ? allTickets.slice(0, maxItems) : allTickets;
   const isWide = (widgetSize ?? 1) >= 2;
 
   const updateStatus = (idx: number, status: string, statusColor: TicketStatusColor) => {
-    setTickets(prev => prev.map((t, i) => i === idx ? { ...t, status, statusColor } : t));
+    setAllTickets(prev => prev.map((t, i) => i === idx ? { ...t, status, statusColor } : t));
   };
 
   return (

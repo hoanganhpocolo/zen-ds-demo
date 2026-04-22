@@ -5,9 +5,8 @@ import type { WorkspaceItem } from '@zen/components';
 import {
   Home03, BarChart01, Users, Settings01, Bell01,
   ShoppingCart, Calendar, Mail01, Globe01,
-  Activity, FileDoc, Lock01, BookOpen, FileSearch,
-  LineChartUp, PieChart01, HeartHand, Clock, Briefcase,
-  SearchMedium,
+  Activity, Lock01, HeartHand, Clock, Briefcase,
+  LineChartUp, PieChart01, SearchMedium, Ticket01, LayoutGrid01,
 } from '@zen/icons/line';
 import { APP_REGISTRY, getApp } from './app-registry';
 import { AppIcon } from './AppIcon';
@@ -64,10 +63,12 @@ function buildWorkspaceContent(
       return {
         children: (
           <>
-            <SidebarItem icon={<BookOpen size={20} />} label="Guides" selected={sel('guides')} onClick={go('guides')} />
-            <SidebarItem icon={<FileDoc size={20} />} label="API Reference" selected={sel('api')} onClick={go('api')} />
-            <SidebarItem icon={<FileSearch size={20} />} label="Search Docs" selected={sel('search')} onClick={go('search')} />
-            <SidebarItem icon={<Activity size={20} />} label="Changelog" selected={sel('changelog')} onClick={go('changelog')} />
+            <SidebarItem icon={<LayoutGrid01 size={20} />} label="All Tenants" selected={sel('all-tenants') || sel('nexus-docs')} onClick={go('all-tenants')} />
+            <SidebarItem icon={<Ticket01 size={20} />} label="Nexus Docs" selected={sel('nexus')} onClick={go('nexus')} />
+            <SidebarItem icon={<BarChart01 size={20} />} label="FPA Docs" selected={sel('fpa')} onClick={go('fpa')} />
+            <SidebarItem icon={<Lock01 size={20} />} label="SRM Docs" selected={sel('srm')} onClick={go('srm')} />
+            <SidebarItem icon={<Briefcase size={20} />} label="Legal Docs" selected={sel('legal')} onClick={go('legal')} />
+            <SidebarItem icon={<Users size={20} />} label="HR Docs" selected={sel('hr')} onClick={go('hr')} />
           </>
         ),
         footer: <SidebarItem icon={<Settings01 size={20} />} label="Docs Settings" />,
@@ -76,6 +77,7 @@ function buildWorkspaceContent(
       return {
         children: (
           <>
+            <SidebarItem icon={<LayoutGrid01 size={20} />} label="Centralized Dashboard" selected={sel('centralized-dashboard') || sel('hr-dashboard')} onClick={go('centralized-dashboard')} />
             <SidebarItem icon={<LineChartUp size={20} />} label="Performance" selected={sel('performance')} onClick={go('performance')} />
             <SidebarItem icon={<PieChart01 size={20} />} label="Segments" selected={sel('segments')} onClick={go('segments')} />
             <SidebarItem icon={<BarChart01 size={20} />} label="Reports" selected={sel('reports')} onClick={go('reports')} />
@@ -95,15 +97,6 @@ function buildWorkspaceContent(
           </>
         ),
       };
-    case 'centralized':
-      return {
-        children: (
-          <>
-            <SidebarItem icon={<BarChart01 size={20} />} label="Dashboard" selected={sel('centralized-dashboard')} onClick={go('centralized-dashboard')} />
-            <SidebarItem icon={<FileDoc size={20} />} label="Docs" selected={sel('docs')} onClick={go('docs')} />
-          </>
-        ),
-      };
     default:
       return {
         children: (
@@ -119,7 +112,7 @@ function buildWorkspaceContent(
   }
 }
 
-const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra', 'centralized'];
+const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra'];
 const DOCK_STORAGE_KEY = 'portal-dock-ids-v1';
 
 function loadDockIds(): string[] {
@@ -142,7 +135,14 @@ export function App() {
   const page = parts[1] || 'dashboard';
 
   const setPage = useCallback((p: string) => navigate(`/${ws}/${p}`), [navigate, ws]);
-  const setWs = useCallback((w: string) => navigate(`/${w}/dashboard`), [navigate]);
+  const setWs = useCallback((w: string) => {
+    // Each workspace has its own default landing page
+    const defaultPage =
+      w === 'docs' ? 'all-tenants'
+      : w === 'analytics' ? 'centralized-dashboard'
+      : 'dashboard';
+    navigate(`/${w}/${defaultPage}`);
+  }, [navigate]);
 
   const [mobileSidebar, setMobileSidebar] = useState(false);
   const [mobileSidebarClosing, setMobileSidebarClosing] = useState(false);
@@ -250,17 +250,38 @@ export function App() {
 
       <main className="portal-main">
         <div className={`portal-content ${page === 'nexus-docs' ? 'portal-content--nexus-docs' : ''}`}>
-          {ws === 'centralized' && page === 'centralized-dashboard' && <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
-          {ws === 'centralized' && page === 'docs' && <CentralizedDocsPage onMenuClick={() => setMobileSidebar(true)} />}
-          {ws === 'centralized' && page === 'nexus-docs' && <NexusDocsDetailPage onMenuClick={() => setMobileSidebar(true)} />}
-          {ws === 'centralized' && page === 'hr-dashboard' && <HRDashboardPage onMenuClick={() => setMobileSidebar(true)} />}
-          {ws !== 'centralized' && page === 'dashboard' && <HomePage onMenuClick={() => setMobileSidebar(true)} />}
-          {ws !== 'centralized' && page !== 'dashboard' && (
-            <div className="portal-empty">
-              <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
-              <p className="text-body-base portal-empty-text">Page coming soon...</p>
-            </div>
-          )}
+          {(() => {
+            // Analytics workspace — centralized dashboard + per-studio dashboards
+            if (ws === 'analytics') {
+              if (page === 'centralized-dashboard') return <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
+              if (page === 'hr-dashboard') return <HRDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
+              return (
+                <div className="portal-empty">
+                  <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
+                  <p className="text-body-base portal-empty-text">Page coming soon...</p>
+                </div>
+              );
+            }
+            // Docs workspace — All Tenants landing + per-tenant placeholders + detail page
+            if (ws === 'docs') {
+              if (page === 'all-tenants') return <CentralizedDocsPage onMenuClick={() => setMobileSidebar(true)} />;
+              if (page === 'nexus-docs') return <NexusDocsDetailPage onMenuClick={() => setMobileSidebar(true)} />;
+              return (
+                <div className="portal-empty">
+                  <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
+                  <p className="text-body-base portal-empty-text">Page coming soon...</p>
+                </div>
+              );
+            }
+            // Other workspaces — Home dashboard or generic placeholder
+            if (page === 'dashboard') return <HomePage onMenuClick={() => setMobileSidebar(true)} />;
+            return (
+              <div className="portal-empty">
+                <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
+                <p className="text-body-base portal-empty-text">Page coming soon...</p>
+              </div>
+            );
+          })()}
         </div>
       </main>
 

@@ -1,0 +1,63 @@
+import { Avatar, Button, Search } from '@zen/components';
+import { Bell01, ChevronDown, Sun, Moon01, Menu01 } from '@zen/icons/line';
+import { useDarkMode } from '../useDarkMode';
+import { useGreeting } from './useGreeting';
+
+export interface PortalTopBarProps {
+  onMenuClick?: () => void;
+  /** User display name shown in the greeting. */
+  userName?: string;
+  /** Show VNGGames logo next to the mobile menu button. */
+  showLogo?: boolean;
+}
+
+export function PortalTopBar({
+  onMenuClick,
+  userName = 'Luna',
+  showLogo = true,
+}: PortalTopBarProps) {
+  const { dark, toggle } = useDarkMode();
+  const greeting = useGreeting();
+
+  return (
+    <div className="home-topbar">
+      <div className="home-topbar-mobile-left">
+        <Button
+          variant="flat-primary"
+          size="m"
+          icon={<Menu01 size={20} />}
+          onClick={onMenuClick}
+        />
+        {showLogo && (
+          <img
+            src={dark ? '/vnggames-logo-dark.svg' : '/vnggames-logo.svg'}
+            alt="VNGGames"
+            width={34}
+            height={24}
+          />
+        )}
+      </div>
+      <div className="home-topbar-greeting">
+        <img src={greeting.icon} alt="" width={65} height={65} />
+        <h2 className="text-h4">{greeting.text}! {userName},</h2>
+      </div>
+      <div className="home-topbar-right">
+        <div className="home-topbar-search">
+          <Search size="default" placeholder="Search" />
+        </div>
+        <Button
+          variant="flat-primary"
+          size="m"
+          icon={dark ? <Sun size={20} /> : <Moon01 size={20} />}
+          onClick={toggle}
+        />
+        <Button variant="flat-primary" size="m" icon={<Bell01 size={20} />} />
+        <div className="home-topbar-lang">
+          <span className="text-body-small">VN</span>
+          <ChevronDown size={16} />
+        </div>
+        <Avatar size="m" color="blue">N</Avatar>
+      </div>
+    </div>
+  );
+}

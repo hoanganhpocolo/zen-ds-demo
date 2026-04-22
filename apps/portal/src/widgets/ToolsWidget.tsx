@@ -5,9 +5,10 @@ import { APP_REGISTRY } from '../app-registry';
 import { AppIcon } from '../AppIcon';
 import './widget-content.css';
 
-const tools = APP_REGISTRY.filter(a => a.id !== 'home' && a.id !== 'docs').slice(0, 5);
+const allTools = APP_REGISTRY.filter(a => a.id !== 'home' && a.id !== 'docs').slice(0, 5);
 
-export function ToolsWidget({ menu }: { menu?: React.ReactNode }) {
+export function ToolsWidget({ menu, maxItems }: { menu?: React.ReactNode; maxItems?: number }) {
+  const tools = maxItems != null ? allTools.slice(0, maxItems) : allTools;
   return (
     <WidgetShell
       title="Favourited Tools"

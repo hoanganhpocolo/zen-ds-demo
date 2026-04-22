@@ -30,6 +30,7 @@
 .unpinned .sidebar-inline {
   width: 100%;
 }
+
 .unpinned.hovered .sidebar-inline {
   width: 100%;
 }
@@ -370,11 +371,13 @@
 }
 
 .dock-pinned {
-  width: 328px; /* 76px dock + 244px panel + 8px gap */
+  width: 328px;
+  /* 76px dock + 244px panel + 8px gap */
 }
 
 .dock-unpinned {
-  width: 88px; /* 72px dock + 8px×2 padding */
+  width: 88px;
+  /* 72px dock + 8px×2 padding */
 }
 
 /* ── Container — fixed or inline ── */
@@ -453,8 +456,8 @@
   overflow: hidden;
   border: 1px solid var(--color-border-neutral-subtle-light-default);
   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 200ms ease,
-              box-shadow 200ms ease;
+    opacity 200ms ease,
+    box-shadow 200ms ease;
 }
 
 .dock-panel-open {
@@ -476,8 +479,8 @@
   border-width: 0;
   overflow: hidden;
   transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 150ms ease,
-              width 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 150ms ease,
+    width 200ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Glass effect for unpinned panel (overlay) — no border, with shadow */
@@ -516,9 +519,10 @@
   background: var(--color-bg-fill-neutral-subtle-default);
   cursor: pointer;
   flex-shrink: 0;
-  transition: transform 120ms ease, box-shadow 120ms ease;
+  transition: transform 120ms ease,
+    box-shadow 120ms ease,
+    border-radius 320ms cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
-  overflow: hidden;
   padding: 0;
 }
 
@@ -526,11 +530,18 @@
   transform: scale(1.05);
 }
 
-.workspace-item > img {
+.workspace-item>img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border-radius: inherit;
+}
+
+/* All direct children inherit the item's animating radius (covers AppIcon span etc.).
+ * !important needed to beat AppIcon's own .app-icon { border-radius } rule (same specificity). */
+.workspace-item>* {
+  border-radius: inherit !important;
+  transition: border-radius 320ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .workspace-item:has(> img) {
@@ -538,11 +549,30 @@
   background: none;
 }
 
-/* Active workspace ring */
+/* Active ring — pseudo-element so it can fade + zoom independently */
+.workspace-item::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  /* border-radius: calc(var(--radius-base) + 5px); */
+  border: 3px solid var(--color-border-focused-accent-solid);
+  opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
+  transition: opacity 220ms ease,
+    transform 320ms cubic-bezier(0.4, 0, 0.2, 1),
+    border-radius 320ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Active workspace — larger radius + ring fades in & zooms out */
 .workspace-active {
-  outline: 3px solid var(--color-border-focused-accent-solid);
-  outline-offset: 2px;
-  border-radius: var(--radius-large);
+  border-radius: var(--radius-xlarge);
+}
+
+.workspace-active::after {
+  opacity: 1;
+  transform: scale(1);
+  border-radius: calc(24px + 5px);
 }
 
 /* ── Workspace initial letter ── */
@@ -608,6 +638,13 @@
 }
 
 @keyframes ws-dropdown-in {
-  from { opacity: 0; transform: translateY(-4px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
