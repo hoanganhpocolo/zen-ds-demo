@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from 'react';
+import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { Button, Modal, Popover, PopoverItem, Segmented } from '@zen/components';
 import { DotsHorizontal, Trash } from '@zen/icons/line';
 import { getWidget, getAllWidgets, WIDGET_CATEGORIES, type WidgetCategory } from './registry';
@@ -152,6 +152,11 @@ export function DashboardGrid() {
   const [showAddPanel, setShowAddPanel] = useState(false);
   const [addTargetId, setAddTargetId] = useState<string | null>(null);
   const [addCategory, setAddCategory] = useState<WidgetCategory>('home');
+
+  // Reset to Home every time the modal opens (Segmented indicator also re-measures)
+  useEffect(() => {
+    if (showAddPanel) setAddCategory('home');
+  }, [showAddPanel]);
 
   const commit = useCallback((next: GridSlot[]) => {
     const n = normalize(next);
