@@ -5,7 +5,7 @@ import type { WorkspaceItem } from '@zen/components';
 import {
   Home03, BarChart01, Users, Settings01, Bell01,
   ShoppingCart, Calendar, Mail01, Globe01,
-  Activity, Lock01, HeartHand, Clock, Briefcase,
+  Activity, FileDoc, Lock01, HeartHand, Clock, Briefcase,
   LineChartUp, PieChart01, SearchMedium, Ticket01, LayoutGrid01,
 } from '@zen/icons/line';
 import { APP_REGISTRY, getApp } from './app-registry';
@@ -97,6 +97,15 @@ function buildWorkspaceContent(
           </>
         ),
       };
+    case 'centralized':
+      return {
+        children: (
+          <>
+            <SidebarItem icon={<BarChart01 size={20} />} label="Dashboard" selected={sel('centralized-dashboard')} onClick={go('centralized-dashboard')} />
+            <SidebarItem icon={<FileDoc size={20} />} label="Docs" selected={sel('docs')} onClick={go('docs')} />
+          </>
+        ),
+      };
     default:
       return {
         children: (
@@ -139,8 +148,8 @@ export function App() {
     // Each workspace has its own default landing page
     const defaultPage =
       w === 'docs' ? 'all-tenants'
-      : w === 'analytics' ? 'centralized-dashboard'
-      : 'dashboard';
+        : w === 'analytics' ? 'centralized-dashboard'
+          : 'dashboard';
     navigate(`/${w}/${defaultPage}`);
   }, [navigate]);
 
