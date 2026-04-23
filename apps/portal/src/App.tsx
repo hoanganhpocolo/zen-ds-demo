@@ -121,7 +121,7 @@ function buildWorkspaceContent(
   }
 }
 
-const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra'];
+const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra', 'centralized'];
 const DOCK_STORAGE_KEY = 'portal-dock-ids-v1';
 
 function loadDockIds(): string[] {
@@ -264,6 +264,17 @@ export function App() {
             if (ws === 'analytics') {
               if (page === 'centralized-dashboard') return <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
               if (page === 'hr-dashboard') return <HRDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
+              return (
+                <div className="portal-empty">
+                  <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
+                  <p className="text-body-base portal-empty-text">Page coming soon...</p>
+                </div>
+              );
+            }
+            // Centralized workspace
+            if (ws === 'centralized') {
+              if (page === 'dashboard' || page === 'centralized-dashboard') return <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
+              if (page === 'docs') return <CentralizedDocsPage onMenuClick={() => setMobileSidebar(true)} />;
               return (
                 <div className="portal-empty">
                   <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
