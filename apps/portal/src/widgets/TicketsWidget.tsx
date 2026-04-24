@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {
   Badge, Avatar, Button, Popover, PopoverItem,
   Table, TableContainer, TableHead, TableBody, TableRow, TableHeaderCell, TableCell,
@@ -73,7 +73,19 @@ function TicketActions({ onApprove, onReject }: { onApprove: () => void; onRejec
 export function TicketsWidget({ menu, widgetSize, maxItems }: { menu?: React.ReactNode; widgetSize?: WidgetSize; maxItems?: number }) {
   const [allTickets, setAllTickets] = useState<Ticket[]>(initialTickets);
   const tickets = maxItems != null ? allTickets.slice(0, maxItems) : allTickets;
-  const isWide = (widgetSize ?? 1) >= 2;
+
+  // Force 1-column list view on mobile (<= 768px) regardless of configured widgetSize
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' && window.matchMedia('(max-width: 768px)').matches
+  );
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
+  const isWide = !isMobile && (widgetSize ?? 1) >= 2;
 
   const updateStatus = (idx: number, status: string, statusColor: TicketStatusColor) => {
     setAllTickets(prev => prev.map((t, i) => i === idx ? { ...t, status, statusColor } : t));
