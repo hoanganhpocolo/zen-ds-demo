@@ -5,7 +5,7 @@ import type { WorkspaceItem } from '@zen/components';
 import {
   Home03, BarChart01, Users, Settings01, Bell01,
   ShoppingCart, Calendar, Mail01, Globe01,
-  Activity, FileDoc, Lock01, HeartHand, Clock, Briefcase,
+  Activity, Lock01, HeartHand, Clock, Briefcase,
   LineChartUp, PieChart01, SearchMedium, Ticket01, LayoutGrid01,
 } from '@zen/icons/line';
 import { APP_REGISTRY, getApp } from './app-registry';
@@ -97,15 +97,6 @@ function buildWorkspaceContent(
           </>
         ),
       };
-    case 'centralized':
-      return {
-        children: (
-          <>
-            <SidebarItem icon={<BarChart01 size={20} />} label="Dashboard" selected={sel('centralized-dashboard')} onClick={go('centralized-dashboard')} />
-            <SidebarItem icon={<FileDoc size={20} />} label="Docs" selected={sel('docs')} onClick={go('docs')} />
-          </>
-        ),
-      };
     default:
       return {
         children: (
@@ -121,7 +112,7 @@ function buildWorkspaceContent(
   }
 }
 
-const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra', 'centralized'];
+const DEFAULT_DOCK_IDS = ['home', 'docs', 'analytics', 'hra'];
 const DOCK_STORAGE_KEY = 'portal-dock-ids-v1';
 
 function loadDockIds(): string[] {
@@ -264,17 +255,6 @@ export function App() {
             if (ws === 'analytics') {
               if (page === 'centralized-dashboard') return <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
               if (page === 'hr-dashboard') return <HRDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
-              return (
-                <div className="portal-empty">
-                  <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>
-                  <p className="text-body-base portal-empty-text">Page coming soon...</p>
-                </div>
-              );
-            }
-            // Centralized workspace
-            if (ws === 'centralized') {
-              if (page === 'dashboard' || page === 'centralized-dashboard') return <CentralizedDashboardPage onMenuClick={() => setMobileSidebar(true)} />;
-              if (page === 'docs') return <CentralizedDocsPage onMenuClick={() => setMobileSidebar(true)} />;
               return (
                 <div className="portal-empty">
                   <h2 className="text-h4">{activeWs?.label} — {page.charAt(0).toUpperCase() + page.slice(1)}</h2>

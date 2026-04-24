@@ -26,7 +26,6 @@ export const APP_REGISTRY: AppDef[] = [
   { id: 'docs', name: 'Docs', desc: 'Documentation and knowledge base', icon: FileDoc, semantic: 'cyan' },
   { id: 'home', name: 'Home', desc: 'Home dashboard', icon: Home03, semantic: 'accent' },
   { id: 'hra', name: 'HRA', desc: 'Human Resources App', icon: Users, semantic: 'pink' },
-  { id: 'centralized', name: 'Centralized', desc: 'Centralized dashboard and docs', icon: BarChartSquare01, semantic: 'orange' },
 ];
 
 export function getApp(id: string): AppDef | undefined {
