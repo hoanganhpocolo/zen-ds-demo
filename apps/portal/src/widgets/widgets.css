@@ -3,8 +3,8 @@
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 480px;
   gap: var(--gap-small);
-  /* align-items: start; */
 }
 
 .dashboard-cell-1 {
@@ -85,6 +85,9 @@
   min-height: 0;
   padding: 0 var(--padding-medium) var(--padding-medium);
   overflow: hidden;
+  /* Flex column so children with flex:1 + min-height:0 can size + scroll */
+  display: flex;
+  flex-direction: column;
 }
 
 .widget-body-flush {
@@ -92,6 +95,8 @@
   min-height: 0;
   padding: 0 var(--padding-xsmall) var(--padding-xsmall);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Widget menu (inline in header) ── */

@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Button, Sidebar, SidebarItem } from '@zen/components';
 import { Settings01, Palette } from '@zen/icons/line';
 import { HomePage } from './HomePage';
+import { ElevationPage } from './ElevationPage';
+import { TypographyPage } from './TypographyPage';
 import { ButtonPage } from './ButtonPage';
 import { AlertBannerPage } from './AlertBannerPage';
 import { AvatarPage } from './AvatarPage';
@@ -61,6 +63,7 @@ const sidebarSections = [
       { id: 'theming', label: 'Theming' },
       { id: 'tokens', label: 'Tokens' },
       { id: 'typography', label: 'Typography' },
+      { id: 'elevation', label: 'Elevation' },
       { id: 'icons', label: 'Icons' },
     ],
   },
@@ -289,6 +292,8 @@ export function App() {
         <main className="docs-main">
           {isOverview && <ComponentsOverviewPage onNavigate={(id) => navigate(`/docs/components/${id}`)} />}
           {page === 'tokens' && <TokenPage />}
+          {page === 'typography' && <TypographyPage />}
+          {page === 'elevation' && <ElevationPage />}
           {page === 'accordion' && <AccordionPage />}
           {page === 'alert-banner' && <AlertBannerPage />}
           {page === 'avatar' && <AvatarPage />}

@@ -16,7 +16,8 @@
     "./breakpoints": "./src/styles/tokens/breakpoints.css"
   },
   "files": [
-    "src/styles/tokens"
+    "src/styles/tokens",
+    "src/fonts"
   ],
   "keywords": ["design-tokens", "css-variables", "vngg"],
   "license": "MIT"

@@ -6,9 +6,11 @@
 
 @font-face {
   font-family: 'BT Solisiert';
-  src: url('../fonts/BTSolisiert-ExtraBold.otf') format('opentype');
+  src: url('../../fonts/BTSolisiert-ExtraBold.woff2') format('woff2');
   font-weight: 600 800;
   font-display: swap;
+  /* Subset to Latin + Vietnamese + typographic punctuation */
+  unicode-range: U+0020-007E, U+00A0-024F, U+1E00-1EFF, U+2010-202F;
 }
 
 :root {

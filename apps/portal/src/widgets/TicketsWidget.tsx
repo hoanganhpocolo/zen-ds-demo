@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import {
-  Badge, Avatar, Button, Popover, PopoverItem,
+  Badge, Avatar, Button, Popover, PopoverItem, Segmented,
   Table, TableContainer, TableHead, TableBody, TableRow, TableHeaderCell, TableCell,
 } from '@zen/components';
 import { Calendar, DotsHorizontal, Check, XMedium } from '@zen/icons/line';
@@ -30,6 +30,35 @@ const initialTickets: Ticket[] = [
   { id: '#314051', date: '4 Nov',  title: 'Campaign 2738 approval request', service: 'Apollo',         status: 'Resolved',    statusColor: 'green',  name: 'Hoa Le',       color: 'green',  avatar: 'https://randomuser.me/api/portraits/women/79.jpg' },
   { id: '#314052', date: '1 Nov',  title: 'Server maintenance notification', service: 'SDK Management', status: 'Resolved',    statusColor: 'green',  name: 'Duc Pham',     color: 'purple', avatar: 'https://randomuser.me/api/portraits/men/40.jpg' },
   { id: '#414053', date: '28 Oct', title: 'SDK integration issue',          service: 'SDK Management', status: 'In progress', statusColor: 'yellow', name: 'An Vo',        color: 'orange', avatar: 'https://randomuser.me/api/portraits/men/83.jpg' },
+];
+
+/* ── AMT (Access Management Tool) ── */
+type AMTStatus = 'CLOSE' | 'REJECTED' | 'PENDING' | 'APPROVED';
+type AMTStatusColor = 'neutral' | 'red' | 'yellow' | 'green';
+
+interface AMTRequest {
+  id: string;
+  user: string;
+  tool: string;
+  /** Combined "Type - Role update" (e.g. "Grant — Custom permission") */
+  role: string;
+  status: AMTStatus;
+}
+
+const AMT_STATUS_COLOR: Record<AMTStatus, AMTStatusColor> = {
+  CLOSE: 'neutral',
+  REJECTED: 'red',
+  PENDING: 'yellow',
+  APPROVED: 'green',
+};
+
+const initialAMT: AMTRequest[] = [
+  { id: '2690', user: 'Tuấn. Trịnh Trần Minh',  tool: 'Nexus', role: 'Grant — Custom permission',      status: 'CLOSE' },
+  { id: '2689', user: 'Tuấn. Trịnh Trần Minh',  tool: 'Nexus', role: 'Grant — CookieRun OvenSmash',    status: 'CLOSE' },
+  { id: '2688', user: 'Quân. Đỗ Hồng',          tool: 'Nexus', role: 'Grant — Custom permission',      status: 'CLOSE' },
+  { id: '2687', user: 'Tuấn. Trịnh Trần Minh',  tool: 'Nexus', role: 'Grant — GMT All Games',          status: 'CLOSE' },
+  { id: '2686', user: 'Tuấn. Trịnh Trần Minh',  tool: 'Nexus', role: 'Grant — Animal Brawl: PvP Me…',  status: 'CLOSE' },
+  { id: '2685', user: 'Thanh. Diệp Bội',        tool: 'Nexus', role: 'Grant — GMT All Non-Game',       status: 'REJECTED' },
 ];
 
 function TicketActions({ onApprove, onReject }: { onApprove: () => void; onReject: () => void }) {
@@ -70,9 +99,61 @@ function TicketActions({ onApprove, onReject }: { onApprove: () => void; onRejec
   );
 }
 
+type TabKey = 'tickets' | 'amt';
+
+function AMTList({ items }: { items: AMTRequest[] }) {
+  return (
+    <div className="wc-ticket-list">
+      {items.map((r) => (
+        <div key={r.id} className="wc-amt-item">
+          <div className="wc-amt-info">
+            <span className="text-body-small wc-tertiary-text">#{r.id}</span>
+            <p className="text-body-base wc-bold wc-truncate">{r.user}</p>
+            <p className="text-body-small wc-tertiary-text wc-truncate">{r.tool} · {r.role}</p>
+          </div>
+          <Badge label={r.status} size="m" color={AMT_STATUS_COLOR[r.status]} variant="subtle" dot={false} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function AMTTable({ items }: { items: AMTRequest[] }) {
+  return (
+    <TableContainer className="wc-ticket-table">
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableHeaderCell label="ID" />
+            <TableHeaderCell label="User" />
+            <TableHeaderCell label="Tool" />
+            <TableHeaderCell label="Role" />
+            <TableHeaderCell label="Status" />
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {items.map((r) => (
+            <TableRow key={r.id}>
+              <TableCell>#{r.id}</TableCell>
+              <TableCell><span className="wc-bold">{r.user}</span></TableCell>
+              <TableCell>{r.tool}</TableCell>
+              <TableCell>{r.role}</TableCell>
+              <TableCell>
+                <Badge label={r.status} size="m" color={AMT_STATUS_COLOR[r.status]} variant="subtle" dot={false} />
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
+}
+
 export function TicketsWidget({ menu, widgetSize, maxItems }: { menu?: React.ReactNode; widgetSize?: WidgetSize; maxItems?: number }) {
+  const [tab, setTab] = useState<TabKey>('tickets');
   const [allTickets, setAllTickets] = useState<Ticket[]>(initialTickets);
   const tickets = maxItems != null ? allTickets.slice(0, maxItems) : allTickets;
+  const amt = maxItems != null ? initialAMT.slice(0, maxItems) : initialAMT;
 
   // Force 1-column list view on mobile (<= 768px) regardless of configured widgetSize
   const [isMobile, setIsMobile] = useState(() =>
@@ -93,69 +174,83 @@ export function TicketsWidget({ menu, widgetSize, maxItems }: { menu?: React.Rea
 
   return (
     <WidgetShell
-      title="Your Tickets"
-      icon={<Calendar size={20} />}
+      title=""
+      icon={
+        <Segmented
+          size="medium"
+          items={[
+            { value: 'tickets', label: 'Tickets' },
+            { value: 'amt',     label: 'AMT' },
+          ]}
+          value={tab}
+          onChange={(v) => setTab(v as TabKey)}
+        />
+      }
       actions={<Button variant="tertiary" size="m">See all</Button>}
       menu={menu}
     >
-      {isWide ? (
-        <TableContainer className="wc-ticket-table">
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableHeaderCell label="ID" />
-                <TableHeaderCell label="Title" />
-                <TableHeaderCell label="Service" />
-                <TableHeaderCell label="Requestor" />
-                <TableHeaderCell label="Status" />
-                <TableHeaderCell label="" align="right" />
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {tickets.map((t, i) => (
-                <TableRow key={i}>
-                  <TableCell>{t.id}</TableCell>
-                  <TableCell>
-                    <span className="wc-bold">{t.title}</span>
-                  </TableCell>
-                  <TableCell>{t.service}</TableCell>
-                  <TableCell>
-                    <div className="wc-ticket-requestor">
-                      <Avatar size="s" src={t.avatar} alt={t.name} />
-                      <span>{t.name}</span>
-                    </div>
-                  </TableCell>
-                  <TableCell>
-                    <Badge label={t.status} size="m" color={t.statusColor} variant="subtle" dot={false} />
-                  </TableCell>
-                  <TableCell align="right">
-                    <TicketActions
-                      onApprove={() => updateStatus(i, 'Resolved', 'green')}
-                      onReject={() => updateStatus(i, 'Rejected', 'red')}
-                    />
-                  </TableCell>
+      {tab === 'tickets' ? (
+        isWide ? (
+          <TableContainer className="wc-ticket-table">
+            <Table>
+              <TableHead>
+                <TableRow>
+                  <TableHeaderCell label="ID" />
+                  <TableHeaderCell label="Title" />
+                  <TableHeaderCell label="Service" />
+                  <TableHeaderCell label="Requestor" />
+                  <TableHeaderCell label="Status" />
+                  <TableHeaderCell label="" align="right" />
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      ) : (
-        <div className="wc-ticket-list">
-          {tickets.map((t, i) => (
-            <div key={i} className="wc-ticket-item">
-              <Avatar size="m" src={t.avatar} alt={t.name} />
-              <div className="wc-ticket-info">
-                <p className="text-body-base wc-bold wc-truncate">{t.title}</p>
-                <p className="text-body-small wc-tertiary-text">{t.id} · {t.date} · {t.name}</p>
+              </TableHead>
+              <TableBody>
+                {tickets.map((t, i) => (
+                  <TableRow key={i}>
+                    <TableCell>{t.id}</TableCell>
+                    <TableCell>
+                      <span className="wc-bold">{t.title}</span>
+                    </TableCell>
+                    <TableCell>{t.service}</TableCell>
+                    <TableCell>
+                      <div className="wc-ticket-requestor">
+                        <Avatar size="s" src={t.avatar} alt={t.name} />
+                        <span>{t.name}</span>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <Badge label={t.status} size="m" color={t.statusColor} variant="subtle" dot={false} />
+                    </TableCell>
+                    <TableCell align="right">
+                      <TicketActions
+                        onApprove={() => updateStatus(i, 'Resolved', 'green')}
+                        onReject={() => updateStatus(i, 'Rejected', 'red')}
+                      />
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        ) : (
+          <div className="wc-ticket-list">
+            {tickets.map((t, i) => (
+              <div key={i} className="wc-ticket-item">
+                <Avatar size="m" src={t.avatar} alt={t.name} />
+                <div className="wc-ticket-info">
+                  <p className="text-body-base wc-bold wc-truncate">{t.title}</p>
+                  <p className="text-body-small wc-tertiary-text">{t.id} · {t.date} · {t.name}</p>
+                </div>
+                <Badge label={t.status} size="m" color={t.statusColor} variant="subtle" dot={false} />
+                <TicketActions
+                  onApprove={() => updateStatus(i, 'Resolved', 'green')}
+                  onReject={() => updateStatus(i, 'Rejected', 'red')}
+                />
               </div>
-              <Badge label={t.status} size="m" color={t.statusColor} variant="subtle" dot={false} />
-              <TicketActions
-                onApprove={() => updateStatus(i, 'Resolved', 'green')}
-                onReject={() => updateStatus(i, 'Rejected', 'red')}
-              />
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )
+      ) : (
+        isWide ? <AMTTable items={amt} /> : <AMTList items={amt} />
       )}
     </WidgetShell>
   );
