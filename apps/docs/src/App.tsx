@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Button, Sidebar, SidebarItem } from '@zen/components';
 import { Settings01, Palette } from '@zen/icons/line';
 import { HomePage } from './HomePage';
+import { ZenHomePage } from './ZenHomePage';
 import { ButtonPage } from './ButtonPage';
 import { AlertBannerPage } from './AlertBannerPage';
 import { AvatarPage } from './AvatarPage';
@@ -118,19 +119,22 @@ export function App() {
 
   // Derive section + page from pathname
   const isHome = pathname === '/' || pathname === '/home';
+  const isZen = pathname === '/zen';
   const isAudit = pathname === '/audit';
   const isDemo = pathname === '/docs/demo';
   const isTest = pathname === '/docs/test';
   const isOverview = pathname === '/docs/components';
   const section = isHome
     ? 'home'
-    : isAudit
-      ? 'audit'
-      : isDemo
-        ? 'demo'
-        : isTest
-          ? 'test'
-          : 'docs';
+    : isZen
+      ? 'zen'
+      : isAudit
+        ? 'audit'
+        : isDemo
+          ? 'demo'
+          : isTest
+            ? 'test'
+            : 'docs';
 
   // Extract page slug from path
   let page = '';
@@ -259,6 +263,7 @@ export function App() {
 
       {/* ── Content ── */}
       {section === 'home' && <HomePage />}
+      {section === 'zen' && <ZenHomePage />}
       {section === 'demo' && <DemoPage />}
       {section === 'test' && <TestPage />}
       {section === 'audit' && <AuditPage onNavigate={(id) => navigate(`/docs/components/${id}`)} />}

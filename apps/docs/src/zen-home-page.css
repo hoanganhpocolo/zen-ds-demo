@@ -1,0 +1,1357 @@
+/* ══════════════════════════════════════════════
+   HOME PAGE
+   ══════════════════════════════════════════════ */
+
+.zen-home-page {
+  position: relative;
+  width: 100%;
+  background: var(--color-bg-canvas-alt);
+  --font-family-display: var(--font-family-sans);
+  /* Hide page until BT Solisiert is ready → no FOUT swap visible.
+     .is-fonts-ready is added by JS when document.fonts.ready resolves. */
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+}
+
+.zen-home-page.is-fonts-ready {
+  opacity: 1;
+}
+
+
+/* ══════════════════════════════════════════════
+   HERO — editorial layout with bronze drum pattern + ink landscape
+   Figma canvas: 1512px × ~1200px
+   ══════════════════════════════════════════════ */
+
+.zen-home-hero {
+  position: relative;
+  width: 100%;
+  max-width: 1512px;
+  margin: 0 auto;
+  padding: 0 38px;
+  box-sizing: border-box;
+}
+
+/* ── Bronze drum pattern — subtle circular motif behind title ──
+   SVG viewBox (1158×917) is NOT centered on drum: drum's actual
+   visual center is at (579, 337) in SVG coords = (50%, 36.75%).
+   We pivot rotation at that point so drum spins in place. ── */
+.zen-home-hero-pattern {
+  position: absolute;
+  left: 50%;
+  top: -250px;
+  width: 1158px;
+  max-width: 85%;
+  aspect-ratio: 1158 / 917;
+  transform: translateX(-50%);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+
+.zen-home-hero-pattern-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  filter: grayscale(1);
+  transform-origin: 50% 36.75%;
+  animation: zen-home-drum-spin 120s linear infinite;
+}
+
+@keyframes zen-home-drum-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zen-home-hero-pattern-img {
+    animation: none;
+  }
+}
+
+/* ── Top navigation bar ── */
+.zen-home-topbar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 25px 0 0;
+}
+
+.zen-home-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-xsmall);
+}
+
+.zen-home-topbar-mark {
+  display: block;
+}
+
+.zen-home-topbar-brand {
+  font-family: 'BT Solisiert', var(--font-family-display);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 0.86;
+  color: var(--color-content-neutral-primary);
+  text-transform: uppercase;
+}
+
+.zen-home-topbar-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-small);
+  line-height: var(--line-height-body-small);
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-primary);
+}
+
+.zen-home-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+}
+
+.zen-home-topbar-link {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-base);
+  line-height: var(--line-height-body-base);
+  font-weight: var(--font-weight-secondary);
+  color: var(--color-content-neutral-primary);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.zen-home-topbar-link:hover {
+  color: var(--color-content-accent-highlight);
+}
+
+/* ── Hero content grid — title left, copy right ── */
+.zen-home-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: start;
+  gap: var(--gap-4xlarge);
+  padding-top: 120px;
+  padding-left: 5%;
+  padding-right: 5%;
+  min-height: 500px;
+  justify-content: space-between;
+}
+
+/* Right column — subtitle + meta (col 3, middle col reserved for sunray/zenmark) */
+.zen-home-hero-right {
+  grid-column: 3;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-xlarge);
+  max-width: 420px;
+  padding-top: 80px;
+}
+
+/* ── Ink landscape painting — WebGL canvas wrapper.
+   aspect-ratio reserves layout height. Canvas inside is absolute so its
+   first-paint / buffer-resize can never shift surrounding flow. ── */
+.zen-home-hero-landscape {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100vw;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  max-width: 1512px;
+  aspect-ratio: 2268 / 960;
+  contain: layout paint;
+  pointer-events: none;
+  user-select: none;
+}
+
+.zen-home-hero-landscape canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+/* ── Sunray in about section — starts at hero position via negative translateY,
+   drops to final position (top of about) as user scrolls ── */
+
+.zen-home-about-sunray {
+  position: absolute;
+  left: 50%;
+  top: 60px;
+  transform: translateX(-50%);
+  width: 420px;
+  max-width: 30vw;
+  aspect-ratio: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  /* above video (1), below content (3) */
+}
+
+/* Individual layer — hidden by default, positioned at hero location via negative offset */
+.zen-home-hero-sun-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: translateY(calc(var(--hero-start-offset, 800px) * -1 + 30px));
+}
+
+/* ── Sunray appear once: staggered fade in from below, stays visible ── */
+
+/* Initial appear: fade in at hero position (negative offset from about) */
+.zen-home-about-sunray.is-sun-animating .zen-home-hero-sun-layer {
+  opacity: 1;
+  transform: translateY(calc(var(--hero-start-offset, 800px) * -1));
+  transition:
+    opacity 800ms ease-out,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--layer-index, 0) * 80ms);
+}
+
+/* ── Sunray scroll-linked drop: ONLY after initial appear completes (.is-hero-visible) ── */
+/* --hero-drop-N (0..1) set by JS. 0 = in place, 1 = fully dropped + faded out */
+
+/* Scroll drop: layers move from hero position (negative offset) to final about position (0).
+   --drop: 0 = at hero position, 1 = at about position (final).
+   --hero-start-offset: px distance from about to hero (set by JS). */
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer {
+  --drop: var(--hero-drop, 0);
+  transform: translateY(calc((1 - var(--drop)) * var(--hero-start-offset, -800px) * -1));
+  opacity: 1;
+  will-change: transform;
+  transition: transform 800ms cubic-bezier(0.33, 1, 0.68, 1);
+
+}
+
+/* Per-layer drop vars */
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(1) {
+  --hero-drop: var(--hero-drop-1, 0);
+}
+
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(2) {
+  --hero-drop: var(--hero-drop-2, 0);
+}
+
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(3) {
+  --hero-drop: var(--hero-drop-3, 0);
+}
+
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(4) {
+  --hero-drop: var(--hero-drop-4, 0);
+}
+
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(5) {
+  --hero-drop: var(--hero-drop-5, 0);
+}
+
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(6) {
+  --hero-drop: var(--hero-drop-6, 0);
+}
+
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(7) {
+  --hero-drop: var(--hero-drop-7, 0);
+}
+
+.zen-home-about-sunray.is-hero-visible .zen-home-hero-sun-layer:nth-child(8) {
+  --hero-drop: var(--hero-drop-8, 0);
+}
+
+/* ── Title — left column, huge stacked text ── */
+
+.zen-home-hero-title {
+  grid-column: 1;
+  margin: 0;
+  font-family: 'BT Solisiert', var(--font-family-display);
+  font-size: clamp(72px, 10vw, 150px);
+  font-weight: 800;
+  line-height: 0.86;
+  color: var(--color-content-neutral-primary);
+  text-transform: uppercase;
+}
+
+/* ── Subtitle — right column ── */
+
+.zen-home-hero-subtitle {
+  margin: 0;
+  color: var(--color-content-neutral-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-medium);
+}
+
+.zen-home-hero-subtitle p {
+  margin: 0;
+}
+
+/* ── Meta — right column, capsline uppercase ── */
+
+.zen-home-hero-meta {
+  display: flex;
+  gap: var(--gap-xlarge);
+  color: var(--color-content-neutral-primary);
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════════════
+   HERO ANIMATION — curtain title + fade subtitle/meta
+   ══════════════════════════════════════════════ */
+
+.zen-home-hero-title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.zen-home-hero-title-line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 600ms ease-out;
+  transition-delay: calc(var(--line-index, 0) * 120ms);
+}
+
+.zen-home-hero.is-hero-visible .zen-home-hero-title-line-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Subtitle + Meta — use curtain lines (.zen-home-hero-title-line) with higher --line-index offset */
+.zen-home-hero-subtitle .zen-home-hero-title-line-inner {
+  transition-delay: calc((var(--line-index, 0) + 3) * 120ms);
+}
+
+.zen-home-hero-meta .zen-home-hero-title-line-inner {
+  transition-delay: calc((var(--line-index, 0) + 5) * 120ms);
+}
+
+/* Leaves image — fade in from above, overlaps with meta */
+.zen-home-hero-horse {
+  opacity: 0;
+  transform: translateY(-40px);
+  transition:
+    opacity 800ms ease-out,
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 550ms;
+}
+
+.zen-home-hero.is-hero-visible .zen-home-hero-horse {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .zen-home-hero-title-line-inner,
+  .zen-home-hero-subtitle,
+  .zen-home-hero-meta,
+  .zen-home-hero-horse {
+    transform: none !important;
+    transition: opacity 200ms ease !important;
+    transition-delay: 0ms !important;
+  }
+
+  .zen-home-about-sunray.is-sun-animating .zen-home-hero-sun-layer {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SECTION 2 — About UIAI
+   ══════════════════════════════════════════════ */
+
+.zen-home-about {
+  position: relative;
+  width: 100%;
+  margin-top: var(--gap-2xlarge);
+  /* Bottom padding = video top offset + video height - content height. Scale with vw. */
+  padding: var(--gap-2xgiant) 0 max(540px, calc(55.8vw - 310px));
+  overflow: visible;
+  isolation: isolate;
+}
+
+.zen-home-about-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xlarge);
+  width: 100%;
+  max-width: 764px;
+  margin: 0 auto;
+  padding: 0 var(--padding-xlarge);
+  box-sizing: border-box;
+}
+
+.zen-home-about-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  text-align: center;
+  width: 100%;
+}
+
+/* ── Video — full-bleed ── */
+
+.zen-home-about-video-wrap {
+  position: absolute;
+  top: 280px;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1512 / 843.9;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.zen-home-about-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.zen-home-about-noise {
+  position: absolute;
+  inset: 0;
+  background-image: url('/home/noise-burn.png');
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  mix-blend-mode: color-burn;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════
+   Section 2 text animations
+   ══════════════════════════════════════════════ */
+
+.zen-home-about-label {
+  color: var(--color-brand-9);
+  font-weight: var(--font-weight-primary);
+  transform: translateY(16px);
+  opacity: 0;
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1), opacity 400ms ease-out;
+}
+
+.zen-home-about.is-text-visible .zen-home-about-label {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.zen-home-about-title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.zen-home-about-title-line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms ease-out;
+  transition-delay: calc(200ms + var(--line-index, 0) * 100ms);
+}
+
+.zen-home-about.is-text-visible .zen-home-about-title-line-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.zen-home-about-title-word {
+  display: inline;
+}
+
+.zen-home-about-cta {
+  display: flex;
+  gap: var(--gap-medium);
+  justify-content: center;
+  align-items: center;
+  transform: translateY(24px);
+  opacity: 0;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1), opacity 500ms ease-out;
+  transition-delay: 800ms;
+}
+
+.zen-home-about.is-text-visible .zen-home-about-cta {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .zen-home-about-label,
+  .zen-home-about-title-line-inner,
+  .zen-home-about-cta {
+    transform: none !important;
+    transition: opacity 200ms ease !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   SECTION 3 — The ultimate Design System
+   Mockup image + label + title + subtitle on canvas bg with noise overlay
+   ══════════════════════════════════════════════ */
+
+.zen-home-showcase {
+  position: relative;
+  width: 100%;
+  padding: 0 0 var(--gap-2xgiant);
+  background: var(--color-bg-canvas-default);
+  overflow: hidden;
+  margin-top: -200px;
+}
+
+/* Noise pattern overlay — 5% opacity, behind cards */
+.zen-home-showcase-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('/home/noise-burn.png');
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+/* Mockup image — full width, no padding */
+.zen-home-showcase-mockup {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.zen-home-showcase-mockup img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Text block — centered below mockup */
+.zen-home-showcase-text {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  text-align: center;
+  max-width: 764px;
+  margin: var(--gap-xgiant) auto 0;
+  padding: 0 var(--padding-xlarge);
+  box-sizing: border-box;
+}
+
+.zen-home-showcase-label {
+  margin: 0;
+  color: var(--color-brand-9);
+  font-weight: var(--font-weight-primary);
+}
+
+.zen-home-showcase-text h2 {
+  margin: 0;
+}
+
+.zen-home-showcase-subtitle {
+  margin: var(--gap-small) 0 0;
+  color: var(--color-content-neutral-secondary);
+}
+
+/* ══════════════════════════════════════════════
+   USP Cards — grid + card component
+   ══════════════════════════════════════════════ */
+
+.zen-home-usp-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--gap-small);
+  max-width: 1280px;
+  margin: var(--gap-xgiant) auto 0;
+  padding: 0 var(--padding-xlarge);
+  box-sizing: border-box;
+}
+
+/* 6-column card (row 1) */
+.zen-home-usp-card-6 {
+  grid-column: span 6;
+}
+
+/* Row 2: 5+7 split */
+.zen-home-usp-card-5 {
+  grid-column: span 5;
+}
+
+.zen-home-usp-card-7 {
+  grid-column: span 7;
+}
+
+/* 4-column card (row 3) */
+.zen-home-usp-card-4 {
+  grid-column: span 4;
+}
+
+/* Card component */
+.zen-home-usp-card {
+  background: var(--color-bg-surface-default);
+  border: 1px solid var(--color-border-container-default, rgba(0, 0, 0, 0.06));
+  border-radius: var(--radius-2xlarge);
+  padding: var(--padding-small);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.zen-home-usp-card-header {
+  display: flex;
+  gap: var(--gap-medium);
+  align-items: flex-start;
+  padding: var(--padding-medium);
+  overflow: hidden;
+}
+
+.zen-home-usp-card-icon {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.zen-home-usp-card-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-2xsmall);
+  padding: var(--padding-xsmall) 0;
+}
+
+.zen-home-usp-card-text h3,
+.zen-home-usp-card-text p {
+  margin: 0;
+}
+
+.zen-home-usp-card-subtitle {
+  color: var(--color-content-neutral-secondary);
+}
+
+/* Slot area — canvas bg + noise 5% */
+.zen-home-usp-card-slot {
+  width: 100%;
+  height: 360px;
+  border-radius: var(--radius-large);
+  background: var(--color-bg-canvas-default);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.zen-home-usp-card-slot>* {
+  flex: 1;
+  min-height: 0;
+}
+
+.zen-home-usp-card-slot::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/home/noise-burn.png');
+  background-repeat: repeat;
+  background-size: 300px 300px;
+  mix-blend-mode: multiply;
+  opacity: 0.05;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.zen-home-usp-card-slot img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ══════════════════════════════════════════════
+   USP Icons — segmented filter + icon grid
+   ══════════════════════════════════════════════ */
+
+.usp-icons-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-medium);
+  padding: var(--padding-medium);
+  height: 100%;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+
+.usp-icons-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  align-content: start;
+  border-top: 1px solid var(--color-border-neutral-subtle-default);
+  border-left: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+.usp-icons-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  color: var(--color-content-neutral-primary);
+  border-right: 1px solid var(--color-border-neutral-subtle-default);
+  border-bottom: 1px solid var(--color-border-neutral-subtle-default);
+}
+
+/* ══════════════════════════════════════════════
+   USP Figma Code — image top + code editor bottom
+   ══════════════════════════════════════════════ */
+
+.usp-figma-slot {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: inherit;
+  overflow: visible;
+  position: relative;
+}
+
+.usp-figma-slot-img {
+  width: 80%;
+  object-fit: contain;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* CLI terminal window — overlaps bottom, extends outside slot */
+.usp-figma-cli {
+  position: relative;
+  z-index: 2;
+  margin: -20px calc(var(--padding-small) * -1) calc(var(--padding-small) * -1) var(--padding-xlarge);
+  border-radius: var(--radius-large);
+  background: var(--color-bg-surface-alt);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+/* Window chrome — 3 dots */
+.usp-figma-cli-header {
+  display: flex;
+  gap: 6px;
+  padding: var(--padding-small) var(--padding-medium);
+  background: var(--color-bg-fill-neutral-solid-default);
+}
+
+.usp-figma-cli-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-rounded);
+}
+
+/* Code content with syntax highlighting */
+.usp-figma-cli-code {
+  margin: 0;
+  padding: var(--padding-medium);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  line-height: 1.7;
+  color: #a2a5b3;
+  white-space: pre;
+  overflow: hidden;
+}
+
+/* Syntax colors */
+.usp-figma-cli-code .cl-ln {
+  color: #4a4e5a;
+  user-select: none;
+}
+
+.usp-figma-cli-code .cl-kw {
+  color: #c792ea;
+}
+
+.usp-figma-cli-code .cl-prop {
+  color: #82aaff;
+}
+
+.usp-figma-cli-code .cl-str {
+  color: #c3e88d;
+}
+
+.usp-figma-cli-code .cl-val {
+  color: #f78c6c;
+}
+
+.usp-figma-cli-code .cl-fn {
+  color: #ffcb6b;
+}
+
+/* ══════════════════════════════════════════════
+   USP Customize — mini theme playground
+   ══════════════════════════════════════════════ */
+
+.usp-customize {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-large);
+  height: 100%;
+  padding: var(--padding-medium);
+  box-sizing: border-box;
+  background: var(--color-bg-canvas-default);
+  border-radius: inherit;
+  transition: background 200ms ease;
+}
+
+.usp-customize-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-small);
+  flex-wrap: wrap;
+}
+
+.usp-customize-color {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-rounded);
+  border: none;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 150ms ease, background 200ms ease;
+  padding: 0;
+}
+
+.usp-customize-color:hover {
+  transform: scale(1.1);
+}
+
+.usp-customize-color:active {
+  transform: scale(0.95);
+}
+
+.usp-customize-preview {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap-medium);
+  border-radius: var(--radius-large);
+  overflow: hidden;
+}
+
+.usp-customize-preview-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.usp-customize-preview-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+}
+
+.usp-customize-preview-buttons {
+  display: flex;
+  gap: var(--gap-small);
+  align-items: center;
+}
+
+.usp-customize-preview-tags {
+  display: flex;
+  gap: var(--gap-xsmall);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ── Budget chart mockup ── */
+
+.usp-customize-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-small);
+  height: 100%;
+  padding: var(--padding-medium);
+  background: var(--color-bg-surface-default);
+  border-radius: var(--radius-large);
+  box-sizing: border-box;
+}
+
+.usp-customize-chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.usp-customize-chart-header .text-h4 {
+  margin: 0;
+}
+
+/* Chart body: Y-axis + chart area side by side */
+.usp-customize-chart-body {
+  flex: 1;
+  display: flex;
+  gap: var(--gap-2xsmall);
+}
+
+/* Y-axis labels — evenly spaced vertically */
+.usp-customize-chart-yaxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--color-content-neutral-tertiary);
+  text-align: right;
+  flex-shrink: 0;
+  padding-bottom: 28px;
+  /* space for x-axis labels */
+}
+
+/* Chart area: grid + bars + x-labels stacked */
+.usp-customize-chart-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Horizontal grid lines — dashed, behind bars */
+.usp-customize-chart-grid {
+  position: absolute;
+  inset: 0;
+  bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.usp-customize-chart-grid span {
+  width: 100%;
+  height: 0;
+  border-top: 1px dashed var(--color-border-neutral-subtle-default);
+}
+
+/* Bars container — above grid lines */
+.usp-customize-chart-bars {
+  flex: 1;
+  display: flex;
+  gap: var(--gap-medium);
+  align-items: flex-end;
+  padding: 0 var(--padding-xsmall);
+  position: relative;
+  z-index: 1;
+}
+
+.usp-customize-bar {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.usp-customize-bar-stack {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-small) var(--radius-small) 0 0;
+  overflow: hidden;
+}
+
+.usp-customize-bar-stack span {
+  display: block;
+  width: 100%;
+  min-height: 4px;
+}
+
+/* X-axis labels — match bar grid layout so labels center under bars */
+.usp-customize-chart-labels {
+  display: flex;
+  gap: var(--gap-medium);
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-xsmall) var(--padding-xsmall) 0;
+  color: var(--color-content-neutral-tertiary);
+}
+
+.usp-customize-chart-labels>* {
+  flex: 1;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════════════
+   USP Dark theme — comparison slider
+   ══════════════════════════════════════════════ */
+
+.usp-dark-slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: ew-resize;
+  user-select: none;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.usp-dark-slider-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+}
+
+.usp-dark-slider-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+/* Slider handle — vertical line + circular knob */
+.usp-dark-slider-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.usp-dark-slider-line {
+  flex: 1;
+  width: 2px;
+  background: var(--color-brand-9);
+}
+
+.usp-dark-slider-knob {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-brand-9);
+  border: 3px solid white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* ══════════════════════════════════════════════
+   SECTION 4 — Human Contributors
+   ══════════════════════════════════════════════ */
+
+.zen-home-contributors {
+  padding: var(--gap-2xgiant) 0;
+  background: var(--color-bg-canvas-alt);
+}
+
+.zen-home-contributors-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-2xsmall);
+  text-align: center;
+  max-width: 764px;
+  margin: 0 auto;
+  padding: 0 var(--padding-xlarge);
+}
+
+.zen-home-contributors-label {
+  margin: 0;
+  color: var(--color-brand-9);
+  font-weight: var(--font-weight-primary);
+}
+
+.zen-home-contributors-content h2 {
+  margin: 0;
+}
+
+.zen-home-contributors-subtitle {
+  margin: var(--gap-small) 0 0;
+  color: var(--color-content-neutral-secondary);
+}
+
+.zen-home-contributors-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--gap-2xgiant);
+  margin-top: var(--gap-xgiant);
+  padding: 0 var(--padding-xlarge);
+}
+
+.zen-home-contributor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-xsmall);
+  text-align: center;
+}
+
+.zen-home-contributor h3,
+.zen-home-contributor p {
+  margin: 0;
+}
+
+.zen-home-contributor-handle {
+  color: var(--color-content-neutral-tertiary);
+}
+
+/* ── Avatar frame — PNG graphic + avatar circle ── */
+
+.zen-home-contributor-frame {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: var(--gap-small);
+}
+
+.zen-home-contributor-frame-img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* Avatar circle — centered in upper half of frame (inside the ring) */
+.zen-home-contributor-avatar {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 170px;
+  height: 170px;
+  border-radius: var(--radius-rounded);
+  background: var(--color-bg-fill-neutral-subtle-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-content-neutral-tertiary);
+}
+
+.zen-home-contributor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ══════════════════════════════════════════════
+   SECTION TEXT REVEAL — generic for showcase + contributors
+   ══════════════════════════════════════════════ */
+
+/* Label — first (0ms) */
+.zen-home-page.is-js .zen-home-showcase-label,
+.zen-home-page.is-js .zen-home-contributors-label {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.zen-home-page.is-js .is-visible .zen-home-showcase-label,
+.zen-home-page.is-js .is-visible .zen-home-contributors-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Subtitle — overlaps with title (300ms) */
+.zen-home-page.is-js .zen-home-showcase-subtitle,
+.zen-home-page.is-js .zen-home-contributors-subtitle {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms ease-out, transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 300ms;
+}
+
+.zen-home-page.is-js .is-visible .zen-home-showcase-subtitle,
+.zen-home-page.is-js .is-visible .zen-home-contributors-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ══════════════════════════════════════════════
+   Section title line-by-line curtain (showcase + contributors)
+   ══════════════════════════════════════════════ */
+
+.zen-home-section-title-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.zen-home-section-title-line-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 500ms ease-out;
+  transition-delay: calc(100ms + var(--line-index, 0) * 80ms);
+}
+
+.is-visible .zen-home-section-title-line-inner {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* ══════════════════════════════════════════════
+   USP CARD REVEAL — fade up per card on scroll
+   ══════════════════════════════════════════════ */
+
+/* Cards visible by default for no-JS, hidden only when JS marks page as enhanced */
+.zen-home-page.is-js .zen-home-usp-card {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 600ms ease-out,
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.zen-home-page.is-js .zen-home-usp-card.is-card-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .zen-home-showcase-text>*,
+  .zen-home-contributors-content>*,
+  .zen-home-usp-card {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ══════════════════════════════════════════════
+   FOOTER — 3 layers: bg + sunray + foreground
+   ══════════════════════════════════════════════ */
+
+.zen-home-footer {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 200px;
+}
+
+/* Layer 1: Background — sets footer height */
+.zen-home-footer-bg {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  display: block;
+}
+
+/* Layer 2: Sunray — stacked webp layers, rises from below on scroll */
+.zen-home-footer-sunray {
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  z-index: 1;
+  width: 420px;
+  max-width: 40vw;
+  aspect-ratio: 1;
+  pointer-events: none;
+  transform: translate(-50%, 60%);
+  opacity: 0;
+  transition:
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1s ease-out;
+}
+
+.zen-home-footer-sunray img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.zen-home-footer.is-footer-visible .zen-home-footer-sunray {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+/* Layer 3: Foreground grass — on top of sunray */
+.zen-home-footer-front {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════
+   Responsive
+   ══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .zen-home-hero {
+    min-height: 560px;
+    padding: 0 var(--padding-medium);
+  }
+
+  .zen-home-hero-title {
+    font-size: clamp(64px, 12vw, 150px);
+    left: 40%;
+  }
+
+  .zen-home-hero-subtitle {
+    left: var(--padding-medium);
+    width: auto;
+    max-width: 80%;
+  }
+
+  .zen-home-hero-meta {
+    left: var(--padding-medium);
+  }
+
+  .zen-home-hero-horse {
+    display: none;
+  }
+
+  .zen-home-hero-sunray {
+    opacity: 0.4;
+  }
+
+  .zen-home-about {
+    margin-top: 80px;
+  }
+
+  .zen-home-about-cta {
+    flex-wrap: wrap;
+  }
+}
